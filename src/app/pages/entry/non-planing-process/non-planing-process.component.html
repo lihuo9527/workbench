@@ -1,0 +1,53 @@
+<div class="container">
+    <app-title *ngIf="Language=='en'" title="Non-Planing Process Entry"></app-title>
+    <app-title *ngIf="Language=='cn'" title="非排产工序进度录入"></app-title>
+    <app-search-box (getstate)='state=$event'></app-search-box>
+    <app-filter *ngIf="state" Info="process" (ReturnData)="GetTabs($event)" (back)="state=!state" (envet)="Complete($event)"></app-filter>
+    <div class="container_box">
+        <div class="select_box">
+            <ul class="select">
+                <li [ngClass]="{'green':item.state}" *ngFor="let item of navigations;let i=index;" (click)="Select(i)">
+                    {{item.text}}
+                </li>
+            </ul>
+        </div>
+        <div class="box">
+            <ul class="materList dailyProcess">
+                <li *ngFor="let item of datas"><i></i>
+                    <h3>
+                        <span *ngIf="Language=='en'">JO:</span>
+                        <span *ngIf="Language=='cn'">生产单号:</span> {{item.code}}</h3>
+                    <button *ngIf="Language=='en'" (click)="Link(item)" class="entry">Entry</button>
+                    <button *ngIf="Language=='cn'" (click)="Link(item)" class="entry">录入</button>
+                    <ul class="marterInfo">
+                        <li>
+                            <p>{{item.customername}}</p>
+                            <span *ngIf="Language=='en'">Customer Name</span>
+                            <span *ngIf="Language=='cn'">客户名称</span></li>
+                        <li>
+                            <p>{{item.StarDate.substring(0,10)}}</p>
+                            <span *ngIf="Language=='en'">Production Start Time</span>
+                            <span *ngIf="Language=='cn'">开始日期</span></li>
+                        <li>
+                            <p>{{item.EndDate.substring(0,10)}}</p>
+                            <span *ngIf="Language=='en'">Completion Time</span>
+                            <span *ngIf="Language=='cn'">结束日期</span></li>
+                        <li>
+                            <p>{{item.amount}}</p>
+                            <span *ngIf="Language=='en'">Schd.Qty</span>
+                            <span *ngIf="Language=='cn'">排单数</span></li>
+                        <li>
+                            <p>{{item.CompleteAmount}}</p>
+                            <span *ngIf="Language=='en'">Completed Qty</span>
+                            <span *ngIf="Language=='cn'">完成数量</span></li>
+                        <li>
+                            <p>{{item.pattern}}</p>
+                            <span *ngIf="Language=='en'">Fty.Style</span>
+                            <span *ngIf="Language=='cn'">本厂款号</span></li>
+                    </ul>
+                </li>
+            </ul>
+            <app-load-more *ngIf="datas.length>3" [language]="Language" (click)="UpdateList()"></app-load-more>
+        </div>
+    </div>
+</div>

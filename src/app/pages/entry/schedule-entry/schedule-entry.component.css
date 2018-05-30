@@ -1,0 +1,187 @@
+.tab {
+    width: 100%;
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    align-items: center;
+    background: #fff;
+    height: 2.5rem;
+}
+
+.tab a {
+    flex: 0 0 40%;
+}
+
+.tab a span {
+    font-weight: 600;
+    font-size: 1.2rem;
+    padding-bottom: 0.5rem;
+}
+
+.green {
+    color: #088c77;
+    border-bottom: 2px solid #088c77;
+}
+
+.big_green {
+    border-bottom: 2px solid #088c77;
+}
+
+.small_green {
+    color: #088c77;
+}
+
+.colrCon {
+    background: #f3f4f6;
+    display: flex;
+    flex: 1;
+    align-items: flex-start;
+}
+
+.colorMenu {
+    flex: 0 0 20%;
+    height: 100%;
+}
+
+.colorMenu li {
+    line-height: 4rem;
+    text-align: center;
+    font-size: 1.6rem;
+    background: #f3f4f6;
+}
+
+.colorMenu li span {
+    line-height: 4rem;
+    text-align: center;
+    font-size: 1.6rem;
+    width: 100%;
+    background: #f3f4f6;
+}
+
+.colrCon .colorTab {
+    flex: 0 0 80%;
+    overflow: hidden;
+    background: #fff;
+}
+
+.colrCon .colorTab td {
+    min-width: inherit;
+    text-align: center;
+}
+
+.colrCon table {
+    clear: both;
+    border-collapse: collapse;
+}
+
+.colrCon table td,
+.colrCon table th {
+    border-collapse: collapse;
+    border-top: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
+    border-left: 1px solid #dbdbdb;
+}
+
+.colrCon table th {
+    color: black;
+    font-size: 1rem;
+    text-align: center;
+    height: 3.5rem;
+    line-height: 3.5rem;
+}
+
+.colrCon table td {
+    font-size: 1.4rem;
+    color: #808080;
+    line-height: 2rem;
+    padding: 0.5rem;
+    width: 25%;
+    max-width: 25%;
+}
+
+tbody,
+tr {
+    width: 100%;
+}
+
+td input {
+    width: 100%;
+    font-size: 1.4rem;
+}
+
+.date_container {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    background: #fff;
+    border-top: 1px solid #dbdbdb;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    border-bottom: 1px solid #dbdbdb;
+    justify-content: space-between;
+}
+
+.date_container div {
+    flex: 0 0 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.date_container div span {
+    font-size: 1.2rem;
+}
+
+.date_container input {
+    font-size: 1.2rem;
+    width: 8rem;
+}
+
+.select1 {
+    padding: 0.8rem 1rem 0.8rem 1rem;
+    font-size: 1.2rem;
+}
+
+.select2 {
+    padding: 0.8rem 2rem 0.8rem 1rem;
+    font-size: 1.2rem;
+    color: #b3b3b3;
+    background: url(/assets/images/arrow_right.png) no-repeat right top 0.6rem;
+    background-size: 1.2rem;
+}
+
+.set_container {
+    padding: 0.8rem;
+    font-size: 1.2rem;
+}
+
+.cn_off {
+    margin-right: 1.5rem;
+    background: url(/assets/images/cn_off.png) no-repeat right;
+    background-size: 5rem;
+    width: 5rem;
+    height: 2rem;
+}
+
+.cn_on {
+    margin-right: 1.5rem;
+    background: url(/assets/images/cn_on.png) no-repeat right;
+    background-size: 5rem;
+    width: 5rem;
+    height: 2rem;
+}
+
+.en_off {
+    margin-right: 1.5rem;
+    background: url(/assets/images/filter_off.png) no-repeat right;
+    background-size: 4rem;
+    width: 4rem;
+    height: 2rem;
+}
+
+.en_on {
+    margin-right: 1.5rem;
+    background: url(/assets/images/filter_on.png) no-repeat right;
+    background-size: 4rem;
+    width: 4rem;
+    height: 2rem;
+}

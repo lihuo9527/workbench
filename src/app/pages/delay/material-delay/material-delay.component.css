@@ -1,0 +1,88 @@
+/* material */
+
+.material {
+    overflow: hidden;
+    display: flex;
+}
+
+.material>li {
+    overflow: hidden;
+    padding: 1rem 0 0;
+    background: #fff;
+    display: flex;
+}
+
+.material .bar {
+    flex: 0 0 10%;
+    display: flex;
+    align-items: center;
+    width: 1.4rem;
+    background: url(/assets/images/line_bg.png) repeat-y center;
+    height: 13rem;
+    flex-flow: wrap;
+    justify-content: center;
+    position: relative;
+}
+
+.material .bar span {
+    display: flex;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: url(/assets/images/m_nor.png) no-repeat center;
+    background-size: 1.5rem;
+}
+
+.material .bar img {
+    width: 55%;
+}
+
+.material .bar div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.material .bar .start {
+    position: absolute;
+    top: 0px;
+}
+
+.material .bar .end {
+    position: absolute;
+    bottom: 0px;
+}
+
+.material .marterInfo {
+    flex: 0 0 90%;
+    padding: 0;
+    clear: none;
+}
+
+.material .marterInfo {
+    border: 0;
+    display: flex;
+    flex-flow: wrap;
+}
+
+.material .marterInfo li {
+    flex: 0 0 33.33%;
+    margin: 0;
+}
+
+.marterInfo li .big {
+    font-size: 1.4rem;
+}
+
+.green {
+    color: #0a8686;
+    background: url(/assets/images/arrow_right.png) no-repeat 6rem center;
+    background-size: 2rem;
+}
+
+.red {
+    color: #ff5a52;
+}
+
+
+/*.container{background: #f3f4f6;}*/

@@ -1,0 +1,52 @@
+<div class="container">
+    <app-title *ngIf="Language=='en'" title="Critical Event Delay"></app-title>
+    <app-title *ngIf="Language=='cn'" title="关键事件延误"></app-title>
+    <app-search-box (getstate)='state=$event'></app-search-box>
+    <app-filter *ngIf="state" Info="event" (back)="state=!state"></app-filter>
+</div>
+<ul class="criticalList" id="deliver">
+    <li *ngFor="let item of datas;">
+        <div class="criticalCon">
+            <div class="left">
+                <p>{{item.PoCode}}</p>
+                <span *ngIf="Language=='en'">JO</span>
+                <span *ngIf="Language=='cn'">生产单号</span>
+                <p>{{item.Pattern}}</p>
+                <span *ngIf="Language=='en'">Fty Style</span>
+                <span *ngIf="Language=='cn'">本厂款号</span>
+                <p>{{item.CustomerName}}</p>
+                <span *ngIf="Language=='en'">Customer Name</span>
+                <span *ngIf="Language=='cn'">客户名称</span>
+            </div>
+            <div class="centre">
+                <em class="slightDelay">
+                    <span style="font-size:1.6rem;color:#fff;">{{item.EventName}}</span>
+              </em>
+            </div>
+            <div class="right">
+                <p>{{item.DeliveryDate.substring(0,10)}}</p>
+                <span *ngIf="Language=='en'">Delivery</span>
+                <span *ngIf="Language=='cn'">交货日期</span>
+                <p>{{item.ExpectFinishDate.substring(0,10)}}</p>
+                <span *ngIf="Language=='en'">Recommended Date</span>
+                <span *ngIf="Language=='cn'">开始日期</span>
+                <p>
+                    <span class="red">{{item.DelayDays}} </span>
+                    <span class="red" *ngIf="Language=='en'">Days </span>
+                    <span class="red" *ngIf="Language=='cn'">天</span></p>
+                <span *ngIf="Language=='en'">Dalay</span>
+                <span *ngIf="Language=='cn'">延误</span>
+                <i class="arrow_right"></i>
+            </div>
+        </div>
+    </li>
+</ul>
+<!-- <div class="processIng">
+        <span class="completed">PPS</span>
+        <span class="completed">Paper Sample</span>
+        <span class="completed">Paper Sample</span>
+        <span class="fault">Paper Sample</span>
+        <span class="nostart">Paper Sample</span>
+        <span class="nostart">Paper Sample</span>
+      </div> -->
+<app-load-more *ngIf="datas.length>3" [language]="Language" (click)="GetList()"></app-load-more>

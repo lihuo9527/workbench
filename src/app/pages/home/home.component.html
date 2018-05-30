@@ -1,0 +1,36 @@
+<header>
+    <h1 *ngIf="Language=='en'">Workbench</h1>
+    <h1 *ngIf="Language=='cn'">工作台</h1>
+    <!-- <button (click)="language_state=!language_state" class="language">language</button> -->
+    <!-- <ul class="language_ul" *ngIf="language_state">
+        <li (click)="LanguageSelect('cn')">中文(简体)</li>
+        <li (click)="LanguageSelect('en')">English</li>
+    </ul> -->
+</header>
+<div class="hidden_header"></div>
+<!--list-->
+<div class="container">
+    <div *ngFor="let items of list;let i=index;">
+        <div>
+            <app-list-title *ngIf="Language=='en'&& i>0" text="orders" [title]="items.title" [number]="items.TodayHandledCount" orders="true"></app-list-title>
+            <app-list-title *ngIf="Language=='cn'&& i>0" text="单已处理" [title]="items.title2" [number]="items.TodayHandledCount" orders="true"></app-list-title>
+            <ul class="list_1">
+                <li *ngFor="let item of items.TipsCountList;let b=index;">
+                    <a [routerLink]="[item.link,item.Id]" routerLinkActive="active">
+                        <div>
+                            <div class="icon">
+                                <img [src]="item.url">
+                                <i *ngIf="item.Amount>0">{{item.Amount}}</i>
+                            </div>
+                        </div>
+                        <span *ngIf="Language=='en'">{{item.text}}</span>
+                        <span *ngIf="Language=='cn'">{{item.Name}}</span>
+                        <span *ngIf="Language=='en' && i==2 || Language=='en' && i==3">{{item.Name}}</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<a routerLink="/echarts">echarts</a>
+<!--list-->

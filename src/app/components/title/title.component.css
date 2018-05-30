@@ -1,0 +1,36 @@
+header {
+    left: 0;
+    top: 0;
+    background-color: #088c77;
+    width: 100%;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font: 10px/10px Roboto, Helvetica;
+    position: fixed;
+    z-index: 3;
+}
+
+header h1 {
+    color: #ffffff !important;
+    font-size: 1.6rem;
+}
+
+header .reBut {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: url(/assets/images/i_re.png) no-repeat center;
+    width: 46px;
+    height: 46px;
+    background-size: 2rem;
+}
+
+.hidden_header {
+    width: 46px;
+    height: 46px;
+    position: relative;
+    left: 0;
+    top: 0;
+}

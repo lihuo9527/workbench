@@ -1,0 +1,40 @@
+<div class="container">
+    <app-title *ngIf="Language=='en'" title="Critical Event"></app-title>
+    <app-title *ngIf="Language=='cn'" title="关键事件进度录入"></app-title>
+    <app-search-box (getstate)='state=$event'></app-search-box>
+    <app-filter *ngIf="state" Info="event" (ReturnData)="GetTabs($event)" (back)="state=!state" (envet)="Complete($event)"></app-filter>
+    <div class="container_box">
+        <div class="select_box">
+            <ul class="select">
+                <li [ngClass]="{'green':item.state}" *ngFor="let item of navigations;let i=index;" (click)="Select(i)">
+                    {{item.text}}
+                </li>
+            </ul>
+        </div>
+        <div class="box">
+            <ul class="list">
+                <li *ngFor="let item of datas;">
+                    <div class="listTop">
+                        <h5>{{item.code}}</h5>
+                    </div>
+                    <div class="other">
+                        <p>{{item.StarDate.substring(0,10)}}</p>
+                        <span *ngIf="Language=='en'">Recommended Date</span>
+                        <span *ngIf="Language=='cn'">推荐完成日期</span> </div>
+                    <div class="other">
+                        <p>{{item.EndDate.substring(0,10)}}</p>
+                        <span *ngIf="Language=='en'">Delivery Date</span>
+                        <span *ngIf="Language=='cn'">客户交期</span></div>
+                    <div class="other">
+                        <p>{{item.pattern}}</p>
+                        <span *ngIf="Language=='en'">Fty.style</span>
+                        <span *ngIf="Language=='cn'">本厂款号</span></div>
+                    <div class="btn">
+                        <button *ngIf="Language=='en'" class="entry" (click)="Link(item)">Entry</button>
+                        <button *ngIf="Language=='cn'" class="entry" (click)="Link(item)">录入</button></div>
+                </li>
+            </ul>
+            <app-load-more *ngIf="datas.length>3" [language]="Language" (click)="UpdateList()"></app-load-more>
+        </div>
+    </div>
+</div>

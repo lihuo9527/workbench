@@ -1,0 +1,15 @@
+.dailyProcess li button {
+    background: #088c77;
+    width: 6rem;
+    text-align: center;
+    line-height: 2.8rem;
+    margin: 0.4rem 1rem 0 0;
+    float: right;
+    border-radius: 0.5rem;
+    color: #fff;
+    font-size: 1.6rem;
+}
+
+.container {
+    background: #f3f4f6;
+}

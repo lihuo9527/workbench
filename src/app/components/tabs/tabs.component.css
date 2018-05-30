@@ -1,0 +1,19 @@
+.criticalTab {
+    flex: 1;
+    display:flex;
+    background: #fff;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+.criticalTab li{
+    flex:0 0 33.33%;position:relative;
+}
+.criticalTab a{
+   display: flex ; justify-content:center;align-items: center;
+}
+.criticalTab a span{
+    padding-top: 1rem; padding-bottom: 1rem;font-size: 1.5rem;font-weight: bold;
+ }
+.show_color{
+    border-bottom: 2px solid #088c77; color: #088c77 !important;
+}

@@ -1,0 +1,41 @@
+<div class="container">
+    <app-title *ngIf="Language=='en'" title="Production Daily Progress"></app-title>
+    <app-title *ngIf="Language=='cn'" title="生产日进度"></app-title>
+    <app-search-box (getstate)='state=$event'></app-search-box>
+    <app-filter *ngIf="state" Info="criticalEvent" (back)="state=!state" (envet)="Complete($event)"></app-filter>
+    <ul class="materList dailyProcess">
+        <li *ngFor="let item of datas"><i></i>
+            <h3>
+                <span *ngIf="Language=='en'">JO:</span>
+                <span *ngIf="Language=='cn'">生产单号:</span> {{item.code}}</h3>
+            <button *ngIf="Language=='en'" (click)="Link(item)">Entry</button>
+            <button *ngIf="Language=='cn'" (click)="Link(item)">录入</button>
+            <ul class="marterInfo">
+                <li>
+                    <p>{{item.LineName}}</p>
+                    <span *ngIf="Language=='en'">Line</span>
+                    <span *ngIf="Language=='cn'">生产线</span></li>
+                <li>
+                    <p>{{item.StarDate.substring(0,10)}}</p>
+                    <span *ngIf="Language=='en'">Production Start Time</span>
+                    <span *ngIf="Language=='cn'">开始日期</span></li>
+                <li>
+                    <p>{{item.EndDate.substring(0,10)}}</p>
+                    <span *ngIf="Language=='en'">Completion Time</span>
+                    <span *ngIf="Language=='cn'">结束日期</span></li>
+                <li>
+                    <p>{{item.amount}}</p>
+                    <span *ngIf="Language=='en'">Schd.Qty</span>
+                    <span *ngIf="Language=='cn'">排单数</span></li>
+                <li>
+                    <p>{{item.CompleteAmount}}</p>
+                    <span *ngIf="Language=='en'">Completed Qty</span>
+                    <span *ngIf="Language=='cn'">完成数量</span></li>
+                <li>
+                    <p>{{item.pattern}}</p>
+                    <span *ngIf="Language=='en'">Fty.Style</span>
+                    <span *ngIf="Language=='cn'">本厂款号</span></li>
+            </ul>
+        </li>
+    </ul>
+</div>

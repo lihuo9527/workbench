@@ -1,0 +1,129 @@
+/*.container{
+    width: 100%;background: #f3f4f6;
+}*/
+
+
+/* Non-planing Process Entry */
+
+.select_box {
+    display: flex;
+    width: 100%;
+    flex: 0 0 20%;
+}
+
+.container_box {
+    background: #f3f4f6;
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.select {
+    width: 100%;
+}
+
+.box {
+    flex: 0 0 78%;
+}
+
+.select li {
+    width: 100%;
+    background: #fff;
+    text-align: left;
+    padding: 1rem 0 1rem 0.2rem;
+    background: #fff;
+    overflow: hidden;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.box .list {
+    width: 100%;
+    float: right;
+}
+
+.box .list li {
+    background: #fff;
+    margin-bottom: 1rem;
+    line-height: 4rem;
+    font-size: 1.6rem;
+    overflow: hidden;
+    display: flex;
+    flex-flow: wrap;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.box .list li i {
+    line-height: 4rem;
+    font-size: 1.6rem;
+}
+
+.box .list li .on {
+    background: #088c77;
+    color: #fff;
+}
+
+.box .list li.on i {
+    color: #fff;
+}
+
+.box .list .listTop,
+.ListOther {
+    border-bottom: #f0f0f0 solid 1px;
+    height: 3rem;
+    padding: 0 1rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    flex: 0 0 100%;
+}
+
+.box .list .listTop h5 {
+    color: #088c77;
+    font-size: 1.3rem;
+}
+
+.box .list .other {
+    flex: 0 0 50%;
+    list-style: none;
+    font-style: normal;
+    color: #333;
+    text-decoration: none;
+}
+
+.box .list .other p {
+    margin: 1rem;
+    font-size: 1.4rem;
+}
+
+.box .list .other span {
+    margin-left: 1rem;
+    font-size: 1rem;
+    color: #808080;
+}
+
+.btn {
+    flex: 0 0 50%;
+}
+
+.entry {
+    background: #088c77;
+    float: right;
+    margin: 1rem;
+    color: #fff;
+    text-align: center;
+    line-height: 3rem;
+    height: 3rem;
+    width: 6rem;
+    border-radius: 0.5rem;
+    font-size: 1.6rem;
+}
+
+.height_auto {
+    height: auto;
+}
+
+.green {
+    background: #088c77 !important;
+    color: #fff;
+}

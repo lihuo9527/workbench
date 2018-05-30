@@ -1,0 +1,9 @@
+.arrow_right {
+    background: url(/assets/images/arrow_right.png) right no-repeat;
+    background-size: 2rem;
+    width: 2rem;
+    height: 3.5rem;
+    margin-right: 1rem;
+    line-height: 3.5rem;
+    float: right;
+}

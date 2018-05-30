@@ -1,0 +1,1 @@
+declare function window_obj():void;

@@ -1,0 +1,126 @@
+.criticalTab {
+    flex: 1;
+    display: flex;
+    background: #fff;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.criticalTab li {
+    flex: 0 0 33.33%;
+    position: relative;
+}
+
+.criticalTab a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.criticalTab a span {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.show_color {
+    border-bottom: 2px solid #088c77;
+    color: #088c77 !important;
+}
+
+.colorTab {
+    flex: 0 0 100%;
+    background: #fff;
+    display: flex;
+}
+
+.colorTab td {
+    text-align: center;
+}
+
+table {
+    clear: both;
+    border-collapse: collapse;
+}
+
+table td,
+table th {
+    border-collapse: collapse;
+    border-top: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
+    border-left: 1px solid #dbdbdb;
+}
+
+table th {
+    color: #088c77;
+    font-size: 1rem;
+    text-align: center;
+    height: 3.5rem;
+    line-height: 3.5rem;
+    flex: 0 0 20%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+table td {
+    font-size: 1.4rem;
+    color: #808080;
+    line-height: 2rem;
+    flex: 0 0 20%;
+}
+
+tbody {
+    width: 100%;
+}
+
+tr {
+    width: 100%;
+    display: flex;
+    flex: 1;
+}
+
+.event_name {
+    display: flex;
+    flex: 1;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+}
+
+.event_name li {
+    display: flex;
+    flex: 0 0 25%;
+    align-items: center;
+    justify-content: center;
+    color: #088c77;
+    padding: 1rem 0 1rem 0;
+    text-align: center;
+}
+
+.border_right {
+    border-right: 1px solid #dbdbdb;
+}
+
+.event_date {
+    display: flex;
+    flex: 1;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+    flex-flow: wrap;
+}
+
+.event_date li {
+    display: flex;
+    flex: 0 0 25%;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0 1rem 0;
+}
+
+.green {
+    color: #088c77;
+}
+
+.tab2 {
+    background: #fff;
+}

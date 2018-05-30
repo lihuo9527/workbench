@@ -1,0 +1,30 @@
+<aside id="filter">
+    <div id="filterBox">
+        <h3 *ngIf="Language=='en'">Filter<span (click)="Back()">Back</span></h3>
+        <h3 *ngIf="Language=='cn'">筛选<span (click)="Back()">返回</span></h3>
+        <ul class="filter">
+            <li *ngFor="let item of datas;let i=index;">
+                <div class="filterTit">
+                    <strong *ngIf="Language=='en'">{{item.title}}</strong>
+                    <strong *ngIf="Language=='cn'">{{item.title2}}</strong>
+                    <a *ngIf="item.arrow" (click)="item.rowstate=!item.rowstate" [ngClass]="{'rowDown':item.rowstate,'rowRight':!item.rowstate}"></a>
+                    <a *ngIf="item.but" (click)="On_Off(item.allstate,i)" [ngClass]="{'allOn':item.allstate,'allOff':!item.allstate}"></a>
+                </div>
+                <ul class="list" *ngIf="item.rowstate">
+                    <li (click)="arr.state=!arr.state" *ngFor="let arr of item.list;" [ngClass]="{'on':arr.state}">
+                        <span>  {{arr.text}}</span>
+                </ul>
+                </li>
+        </ul>
+        <div class="date_container">
+            <div class="date_item">
+                <app-date selectstate="true" targetContainerId="targetContainerId1" targetId="targetId1" (submit)="BackDate($event,'start')"></app-date>
+                <p class="bar"></p>
+                <app-date selectstate="true" targetContainerId="targetContainerId2" targetId="targetId2" (submit)="BackDate($event,'end')"></app-date>
+            </div>
+        </div>
+        <button *ngIf="Language=='en'" class="sbmit" (click)="Complete()">Complete</button>
+        <button *ngIf="Language=='cn'" class="sbmit" (click)="Complete()">完成</button>
+    </div>
+    <div id="shadow"></div>
+</aside>

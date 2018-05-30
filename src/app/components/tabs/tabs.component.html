@@ -1,0 +1,7 @@
+<ul class="criticalTab">
+  <li *ngFor="let item of tabs;let i=index;" >
+    <a (click)="indexChange(i)" [routerLink]="[item.link,i]">
+       <span [ngClass]="{'show_color':item.show}">{{item.text}}</span>
+    </a>
+  </li>
+</ul>

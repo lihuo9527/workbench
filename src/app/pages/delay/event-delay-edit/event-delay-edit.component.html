@@ -1,0 +1,91 @@
+<div class="container">
+    <app-title *ngIf="Language=='en'" title="Critical Event Delay Edit"></app-title>
+    <app-title *ngIf="Language=='cn'" title="交期延误处理"></app-title>
+    <main>
+        <ul class="materList criticaEdit">
+            <li><i></i>
+                <h3 *ngIf="Language=='en'">JO</h3>
+                <h3 *ngIf="Language=='cn'">生产单号</h3>
+                <em>1317423890</em>
+                <ul class="marterInfo">
+                    <li>
+                        <p>Luyixuelai</p>
+                        <span *ngIf="Language=='en'">Customer Name</span>
+                        <span *ngIf="Language=='cn'">客户名称</span></li>
+                    <li>
+                        <p>2017-08-06</p>
+                        <span *ngIf="Language=='en'">Customer Delivery Date</span>
+                        <span *ngIf="Language=='cn'">客户交期</span></li>
+                    <li>
+                        <p>459-4-7</p>
+                        <span *ngIf="Language=='en'">Fty.Style</span>
+                        <span *ngIf="Language=='cn'">本厂款号</span></li>
+                    <li>
+                        <p>Blouse</p>
+                        <span *ngIf="Language=='en'">Product Type</span>
+                        <span *ngIf="Language=='cn'">产品类型</span></li>
+                    <li>
+                        <p>2017-07-20</p>
+                        <span *ngIf="Language=='en'">Original Delivery Date</span>
+                        <span *ngIf="Language=='cn'">原始交期</span></li>
+                    <li>
+                        <p>2017-07-19</p>
+                        <span *ngIf="Language=='en'">Delivery Date</span>
+                        <span *ngIf="Language=='cn'">交货期</span></li>
+                    <li>
+                        <p>2018-12-29</p>
+                        <span *ngIf="Language=='en'">Fabric Arrival Date</span>
+                        <span *ngIf="Language=='cn'">面料到货期</span></li>
+                    <li>
+                        <p>33</p>
+                        <span *ngIf="Language=='en'">Std.TIME(m)</span>
+                        <span *ngIf="Language=='cn'">标准工时</span></li>
+                    <li>
+                        <p>7008</p>
+                        <span *ngIf="Language=='en'">Amount</span>
+                        <span *ngIf="Language=='cn'">数量</span></li>
+                    <li>
+                        <p>2017-06-28</p>
+                        <span *ngIf="Language=='en'">Earliest Allowed Start Time</span>
+                        <span *ngIf="Language=='cn'">最早开工日期</span></li>
+                    <li>
+                        <p class="color">Antenatal Plate</p>
+                        <span *ngIf="Language=='en'">Progress</span>
+                        <span *ngIf="Language=='cn'">进度</span></li>
+                    <li>
+                        <p class="color">Untreated</p>
+                        <span *ngIf="Language=='en'">Processing Results</span>
+                        <span *ngIf="Language=='cn'">处理结果</span></li>
+                </ul>
+            </li>
+        </ul>
+        <section class="editrEcord">
+            <h4 *ngIf="Language=='en'">Historical records</h4>
+            <h4 *ngIf="Language=='cn'">历史记录</h4>
+            <a class="show"></a>
+            <!--<a class="hidden"></a> 切换的样式-->
+            <table>
+                <tbody>
+                    <tr>
+                        <th *ngIf="Language=='en'">Date</th>
+                        <th *ngIf="Language=='cn'">日期</th>
+                        <th *ngIf="Language=='en'">Result</th>
+                        <th *ngIf="Language=='cn'">结果</th>
+                    </tr>
+                    <tr>
+                        <td>2017-06-15</td>
+                        <td>It has been arranged to work overtime to make the antenatal board out</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <div class="inputEdit">
+            <textarea class="inputEdit" placeholder="Cause and record of treatment results"></textarea>
+        </div>
+        <div class="submitBox">
+            <button *ngIf="Language=='en'" type="submit">Submit</button>
+            <button *ngIf="Language=='cn'" type="submit">提交</button>
+        </div>
+    </main>
+
+</div>

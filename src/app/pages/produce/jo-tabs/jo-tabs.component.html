@@ -1,0 +1,116 @@
+<div class="container">
+    <app-title *ngIf="Language=='en'" title="JO Traking"></app-title>
+    <app-title *ngIf="Language=='cn'" title="生产单跟催"></app-title>
+    <ul class="criticalTab">
+        <li *ngFor="let item of tabs;let i=index;">
+            <a (click)="ShowIndex(i)">
+                <span *ngIf="Language=='cn'" [ngClass]="{'show_color':item.show}">{{item.text}}</span>
+                <span *ngIf="Language=='en'" [ngClass]="{'show_color':item.show}">{{item.text2}}</span>
+            </a>
+        </li>
+    </ul>
+
+    <ul class="materList" *ngIf="tabs[0].show">
+        <li>
+            <i></i>
+            <h3 *ngIf="Language=='cn'">生产单号</h3>
+            <h3 *ngIf="Language=='en'">JO</h3>
+            <em>{{data.code}}</em>
+            <ul class="marterInfo">
+                <li>
+                    <p>{{data.pattern}}</p>
+                    <span *ngIf="Language=='cn'">本厂款号</span>
+                    <span *ngIf="Language=='en'">Fty.Style</span></li>
+                <li>
+                    <p>{{data.customerPattern}}</p>
+                    <span *ngIf="Language=='cn'">客户款号</span>
+                    <span *ngIf="Language=='en'">Cust.Style</span></li>
+                <li>
+                    <p>{{data.customername}}</p>
+                    <span *ngIf="Language=='cn'">客户名称</span>
+                    <span *ngIf="Language=='en'">Customer Name</span></li>
+                <li>
+                    <p>{{data.deliverydate.substring(0,10)}}</p>
+                    <span *ngIf="Language=='cn'">交货期</span>
+                    <span *ngIf="Language=='en'">Delivery Date</span></li>
+                <li>
+                    <p>{{data.ProcessRoleName}}</p>
+                    <span *ngIf="Language=='cn'">工艺路线</span>
+                    <span *ngIf="Language=='en'">Process Route Name</span></li>
+                <li>
+                    <p>{{data.MainMaterielArriveDate.substring(0,10)}}</p>
+                    <span *ngIf="Language=='cn'">主料到厂日</span>
+                    <span *ngIf="Language=='en'">Fabric Arrival Date</span></li>
+                <li>
+                    <p>{{data.OthMaterielArriveDate.substring(0,10)}}</p>
+                    <span *ngIf="Language=='cn'">辅料到厂日</span>
+                    <span *ngIf="Language=='en'">Accessories Arrival Date</span></li>
+                <li>
+                    <p>{{data.WorkshopName}}</p>
+                    <span *ngIf="Language=='cn'">车间</span>
+                    <span *ngIf="Language=='en'">Floor</span></li>
+                <li>
+                    <p>{{data.LineName}}</p>
+                    <span *ngIf="Language=='cn'">生产线</span>
+                    <span *ngIf="Language=='en'">Line</span></li>
+                <li>
+                    <p>{{data.StandardHour}}</p>
+                    <span *ngIf="Language=='cn'">标准工时</span>
+                    <span *ngIf="Language=='en'">Std.Time(m)</span></li>
+                <li>
+                    <p>{{data.WorkerNum}}</p>
+                    <span *ngIf="Language=='cn'">人数</span>
+                    <span *ngIf="Language=='en'">Workers</span></li>
+                <li>
+                    <p>{{data.Remark}}</p>
+                    <span *ngIf="Language=='cn'">备注</span>
+                    <span *ngIf="Language=='en'">Remarks</span></li>
+            </ul>
+            <table class="colorTab">
+                <tbody>
+                    <tr>
+                        <th *ngIf="Language=='cn'">颜色</th>
+                        <th *ngIf="Language=='cn'">规格</th>
+                        <th *ngIf="Language=='cn'">订单数量</th>
+                        <th *ngIf="Language=='cn'">排单数</th>
+                        <th *ngIf="Language=='cn'">完成数</th>
+                        <th *ngIf="Language=='en'">Color</th>
+                        <th *ngIf="Language=='en'">Size</th>
+                        <th *ngIf="Language=='en'">JO Qty</th>
+                        <th *ngIf="Language=='en'">Schd.Qty</th>
+                        <th *ngIf="Language=='en'">Completed Qty</th>
+                    </tr>
+                    <tr *ngFor="let item of sizelist;">
+                        <td>{{item.Color}}</td>
+                        <td>{{item.Size}}</td>
+                        <td>{{item.BillAmount}}</td>
+                        <td>{{item.PlanAmount}}</td>
+                        <td>{{item.CompleteAmount}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </li>
+    </ul>
+
+
+    <ul class="tab2" *ngIf="tabs[1].show">
+        <ul class="event_name">
+            <li *ngIf="Language=='cn'" class="border_right">关键事件名称</li>
+            <li *ngIf="Language=='cn'" class="border_right">计划推荐日期</li>
+            <li *ngIf="Language=='cn'" class="border_right">开始日期</li>
+            <li *ngIf="Language=='cn'">结束日期</li>
+            <li *ngIf="Language=='en'" class="border_right">Critical Event Name</li>
+            <li *ngIf="Language=='en'" class="border_right">Schedule recommended Date</li>
+            <li *ngIf="Language=='en'" class="border_right">Start Date</li>
+            <li *ngIf="Language=='en'">End Date</li>
+        </ul>
+        <ul class="event_date" *ngFor="let item of eventlist;">
+            <li>{{item.eventflownodeName}}</li>
+            <li>{{item.recommendeddate.substring(0,10)}}</li>
+            <li>{{item.startdate.substring(0,10)}}</li>
+            <li>{{item.enddate.substring(0,10)}}</li>
+            <li></li>
+            <li class="green">偏移2天</li>
+        </ul>
+    </ul>
+</div>

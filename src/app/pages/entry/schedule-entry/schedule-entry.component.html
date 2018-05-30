@@ -1,0 +1,97 @@
+<div class="container">
+    <app-title *ngIf="Language=='en'" [title]="title"></app-title>
+    <app-title *ngIf="Language=='cn'" [title]="title2"></app-title>
+    <ul class="materList criticaEdit">
+        <li>
+            <ul class="marterInfo">
+                <li>
+                    <p>{{data.LineName}}</p>
+                    <span *ngIf="Language=='en'">Line</span>
+                    <span *ngIf="Language=='cn'">生产线</span></li>
+                <li>
+                    <p>{{data.code}}</p>
+                    <span *ngIf="Language=='en'">JO</span>
+                    <span *ngIf="Language=='cn'">生产单号</span></li>
+                <li>
+                    <p>{{data.pattern}}</p>
+                    <span *ngIf="Language=='en'">Fty Style</span>
+                    <span *ngIf="Language=='cn'">本厂款号</span></li>
+                <li>
+                    <p>{{data.deliverydate.substring(0,10)}}</p>
+                    <span *ngIf="Language=='en'">Completion Time</span>
+                    <span *ngIf="Language=='cn'">车间交期</span></li>
+                <li>
+                    <p>{{data.StarDate.substring(0,10)}}</p>
+                    <span *ngIf="Language=='en'">Production Start Time</span>
+                    <span *ngIf="Language=='cn'">开始日期</span></li>
+                <li>
+                    <p>{{data.EndDate.substring(0,10)}}</p>
+                    <span *ngIf="Language=='en'">Production End Time</span>
+                    <span *ngIf="Language=='cn'">结束日期</span></li>
+                <li>
+                    <p>{{data.amount}}</p>
+                    <span *ngIf="Language=='en'">Amount</span>
+                    <span *ngIf="Language=='cn'">总数量</span></li>
+                <li>
+                    <p>{{data.CompleteAmount}}</p>
+                    <span *ngIf="Language=='en'">Completion.Qty</span>
+                    <span *ngIf="Language=='cn'">已完成数量</span></li>
+            </ul>
+        </li>
+    </ul>
+    <div class="tab">
+        <a> <span *ngIf="Language=='cn'" [ngClass]="{'green':!tabstate}" (click)="tabstate=false">分颜色尺码录入</span>
+            <span *ngIf="Language=='en'" [ngClass]="{'green':!tabstate}" (click)="tabstate=false">Color/Size Entrt</span> </a>
+        <a> <span *ngIf="Language=='cn'" [ngClass]="{'green':tabstate}" (click)="tabstate=true">按订单录入</span>
+            <span *ngIf="Language=='en'" [ngClass]="{'green':tabstate}" (click)="tabstate=true">JO Entrt</span></a>
+    </div>
+
+    <div class="colrCon" *ngIf="!tabstate">
+        <ul class="colorMenu">
+            <li *ngFor="let item of color_tabs;let i=index;" [ngClass]="{'big_green':green_show==i}" (click)="green_show=i">
+                <span [ngClass]="{'small_green':green_show==i}">{{item.Color}}</span>
+            </li>
+        </ul>
+        <table class="colorTab" *ngIf="color_tabs.length>0">
+            <tbody>
+                <tr>
+                    <th *ngIf="Language=='cn'">尺码</th>
+                    <th *ngIf="Language=='cn'">排产数</th>
+                    <th *ngIf="Language=='cn'">已完成数</th>
+                    <th *ngIf="Language=='cn'">本次进度</th>
+                    <th *ngIf="Language=='en'">Size</th>
+                    <th *ngIf="Language=='en'">Schd.Qty</th>
+                    <th *ngIf="Language=='en'">Completed.Qty</th>
+                    <th *ngIf="Language=='en'">Progress</th>
+                </tr>
+                <tr *ngFor="let item of color_tabs[green_show].SizeCompletes">
+                    <td>{{item.Size}}</td>
+                    <td>{{item.PlanAmount}}</td>
+                    <td>{{item.CompleteAmount}}</td>
+                    <td><input type="text" (change)="change()" [(ngModel)]="item.Amount"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="date_container" (click)="DateState=1">
+        <span *ngIf="Language=='cn'" class="select1">生产日期</span>
+        <span *ngIf="Language=='en'" class="select1">Production Date</span>
+        <span class="select2">{{date}}</span>
+    </div>
+    <div class="date_container" style="margin-bottom:1rem;" *ngIf="tabstate" (click)="InputFocus()">
+        <span *ngIf="Language=='en'" class="select1"> Completed Qty</span>
+        <span *ngIf="Language=='cn'" class="select1"> 完成数量</span>
+        <input #NumberInput [(ngModel)]="number" type="text" [placeholder]="placeholder">
+    </div>
+    <div class="date_container">
+        <span *ngIf="Language=='en'" class="select1">Setup is completed</span>
+        <span *ngIf="Language=='cn'" class="select1">设置已完成</span>
+        <i *ngIf="Language=='cn'" [ngClass]="{'cn_off':!allstate,'cn_on':allstate}" (click)="allstate=!allstate"></i>
+        <i *ngIf="Language=='en'" [ngClass]="{'en_off':!allstate,'en_on':allstate}" (click)="allstate=!allstate"></i>
+    </div>
+    <app-date [state]="DateState" (submit)="GetDate($event)"></app-date>
+    <div class="submitBox">
+        <button *ngIf="Language=='cn'" type="submit" (click)="Save()">保存</button>
+        <button *ngIf="Language=='en'" type="submit" (click)="Save()">Submit</button>
+    </div>
+</div>

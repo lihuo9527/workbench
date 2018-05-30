@@ -1,0 +1,74 @@
+<div class="container">
+    <app-title *ngIf="Language=='en'" title="Produciton Daily Progress"></app-title>
+    <app-title *ngIf="Language=='cn'" title="日计划产量生产结果对比"></app-title>
+    <app-search-box></app-search-box>
+    <ul class="materList">
+        <li>
+            <i></i>
+            <h3 *ngIf="Language=='en'">Line：T01</h3>
+            <h3 *ngIf="Language=='cn'">生产线：T01</h3>
+            <em *ngIf="Language=='en'">JO：1317423890</em>
+            <em *ngIf="Language=='cn'">生产单号：1317423890</em>
+            <ul class="marterInfo" style="border-bottom:1px solid #dbdbdb;">
+                <li>
+                    <p>KSS23334</p>
+                    <span *ngIf="Language=='cn'">本厂款号</span>
+                    <span *ngIf="Language=='en'">Fty.Style</span></li>
+                <li>
+                    <p>PO3222233</p>
+                    <span *ngIf="Language=='cn'">客户名称</span>
+                    <span *ngIf="Language=='en'">Customer Name</span></li>
+                <li>
+                    <p>111</p>
+                    <span *ngIf="Language=='cn'">数量</span>
+                    <span *ngIf="Language=='en'">Amount</span></li>
+                <li>
+                    <p>6672</p>
+                    <span *ngIf="Language=='cn'">排单数</span>
+                    <span *ngIf="Language=='en'">Schd.Qty</span></li>
+                <li>
+                    <p>2017-12-25</p>
+                    <span *ngIf="Language=='cn'">交货期</span>
+                    <span *ngIf="Language=='en'">Delivery Date</span></li>
+                <li>
+                    <p>43</p>
+                    <span *ngIf="Language=='cn'">生产人数</span>
+                    <span *ngIf="Language=='en'">Workers</span></li>
+            </ul>
+            <ul class="event_name">
+                <li *ngIf="Language=='cn'" class="border_right">日期</li>
+                <li *ngIf="Language=='cn'" class="border_right">计划数</li>
+                <li *ngIf="Language=='cn'" class="border_right">实际数</li>
+                <li *ngIf="Language=='cn'" class="border_right">差异</li>
+                <li *ngIf="Language=='cn'">目标达成</li>
+                <li *ngIf="Language=='en'" class="border_right">Date</li>
+                <li *ngIf="Language=='en'" class="border_right">Scheduled Qty</li>
+                <li *ngIf="Language=='en'" class="border_right">Actual output</li>
+                <li *ngIf="Language=='en'" class="border_right">Diff.</li>
+                <li *ngIf="Language=='en'">Goal Attainment</li>
+            </ul>
+            <ul class="event_date">
+                <li>2017-10-23</li>
+                <li>111</li>
+                <li>222</li>
+                <li>100</li>
+                <li>90%</li>
+            </ul>
+            <ul class="event_date">
+                <li>2017-10-23</li>
+                <li>111</li>
+                <li>222</li>
+                <li>100</li>
+                <li>90%</li>
+            </ul>
+            <ul class="event_date">
+                <li>2017-10-23</li>
+                <li>111</li>
+                <li>222</li>
+                <li>100</li>
+                <li>90%</li>
+            </ul>
+        </li>
+    </ul>
+
+</div>

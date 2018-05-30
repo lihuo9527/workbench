@@ -1,0 +1,37 @@
+<div class="container">
+    <app-title *ngIf="Language=='en'" title="Process Delay"></app-title>
+    <app-title *ngIf="Language=='cn'" title="工序延误"></app-title>
+    <app-search-box (getstate)='state=$event'></app-search-box>
+    <app-filter *ngIf="state" Info="non-planing-process" (back)="state=!state"></app-filter>
+    <ul class="processList">
+        <li *ngFor="let item of datas;">
+            <div class="listTop">
+                <h5>{{item.PoId}} — {{item.PoCode}}</h5>
+                <em *ngIf="Language=='en'">{{item.DelayDays}} days dalay</em><span *ngIf="Language=='en'">Handle</span>
+                <em *ngIf="Language=='cn'">{{item.DelayDays}} 天延误 </em><span *ngIf="Language=='cn'">去处理</span>
+            </div>
+            <div class="listCon">
+                <div class="process"><span class="number">{{item.Totalqty}}/{{item.Planqty}}</span>
+                    <div class="processBox">
+                        <div class="processBar" style="width: 30%"></div>
+                    </div>
+                    <span *ngIf="Language=='en'" class="begin">{{item.StartDate.substring(0,10)}}(Begin)</span>
+                    <span *ngIf="Language=='cn'" class="begin">{{item.StartDate.substring(0,10)}}(始)</span>
+                    <span *ngIf="Language=='en'" class="end">{{item.EndDate.substring(0,10)}}(End)</span>
+                    <span *ngIf="Language=='cn'" class="end">{{item.EndDate.substring(0,10)}}(终)</span> </div>
+                <span class="vlue">{{item.Schedulepercent*100}}%</span> </div>
+            <div class="ListOther">
+                <div class="otherBox">
+                    <p>{{item.LineName}}</p>
+                    <span *ngIf="Language=='en'">Line</span>
+                    <span *ngIf="Language=='cn'">生产线</span></div>
+                <div class="processName">{{item.ProcessName}}</div>
+                <div class="otherBox right">
+                    <p>{{item.DeliveryDate.substring(0,10)}}</p>
+                    <span *ngIf="Language=='en'">Delivery Date</span>
+                    <span *ngIf="Language=='cn'">交货期</span></div>
+            </div>
+        </li>
+    </ul>
+    <app-load-more *ngIf="datas.length>3" [language]="Language" (click)="GetList()"></app-load-more>
+</div>

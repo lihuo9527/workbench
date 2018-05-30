@@ -1,0 +1,65 @@
+<div class="container">
+    <app-title *ngIf="Language=='en'" title="Progress of Critical Event"></app-title>
+    <app-title *ngIf="Language=='cn'" title="关键事件进度录入"></app-title>
+    <ul class="materList criticaEdit">
+        <li>
+            <ul class="marterInfo">
+                <li>
+                    <p>{{data.code}}</p>
+                    <span *ngIf="Language=='en'">JO</span>
+                    <span *ngIf="Language=='cn'">生产单号</span></li>
+                <li>
+                    <p>{{data.deliverydate.substring(0,10)}}</p>
+                    <span *ngIf="Language=='en'">Delivery Date</span>
+                    <span *ngIf="Language=='cn'">交货期</span></li>
+                <li>
+                    <p>{{data.StarDate.substring(0,10)}}</p>
+                    <span *ngIf="Language=='en'">Production Date</span>
+                    <span *ngIf="Language=='cn'">生产日期</span></li>
+                <li>
+                    <p>{{data.pattern}}</p>
+                    <span *ngIf="Language=='en'">Fty Style</span>
+                    <span *ngIf="Language=='cn'">本厂款号</span></li>
+                <li>
+                    <p>{{data.customername}}</p>
+                    <span *ngIf="Language=='en'">Cust Name</span>
+                    <span *ngIf="Language=='cn'">客户名称</span></li>
+                <li>
+                    <p>{{data.MainMaterielArriveDate.substring(0,10)}}</p>
+                    <span *ngIf="Language=='en'">Fabric Arrival Date</span>
+                    <span *ngIf="Language=='cn'">主料到货日期</span></li>
+                <li>
+                    <p>{{data.OthMaterielArriveDate.substring(0,10)}}</p>
+                    <span *ngIf="Language=='en'">Accessories Arrival Date</span>
+                    <span *ngIf="Language=='cn'">辅料到货日期</span></li>
+                <li>
+                    <p>{{data.EventFlowName}}</p>
+                    <span *ngIf="Language=='en'">Critical Event</span>
+                    <span *ngIf="Language=='cn'">关键事件</span></li>
+            </ul>
+        </li>
+    </ul>
+    <section class="editrEcord">
+        <ul class="entryEdit">
+            <li *ngIf="Language=='en'">Critical Event</li>
+            <li *ngIf="Language=='en'">Recommended Date</li>
+            <li *ngIf="Language=='en'">Expect Date</li>
+            <li *ngIf="Language=='en'">Completion Date</li>
+            <li *ngIf="Language=='cn'">关键事件</li>
+            <li *ngIf="Language=='cn'">推荐日期</li>
+            <li *ngIf="Language=='cn'">预期日期</li>
+            <li *ngIf="Language=='cn'">完成日期</li>
+        </ul>
+        <ul class="entryEdit" *ngFor="let item of list;let i=index;">
+            <li>{{item.eventflownodeName}}</li>
+            <li>{{item.recommendeddate}}</li>
+            <li (click)="ShowDate(i,'startdate')">{{item.startdate.substring(0,10)}}</li>
+            <li (click)="ShowDate(i,'enddate')">{{item.enddate.substring(0,10)}}</li>
+        </ul>
+    </section>
+    <app-date type="date" [state]="DateState" [name]='DateName' (submit)="GetDate($event)"></app-date>
+    <div class="submitBox">
+        <button *ngIf="Language=='cn'" type="submit" (click)="Save()">保存</button>
+        <button *ngIf="Language=='en'" type="submit" (click)="Save()">Conserve</button>
+    </div>
+</div>

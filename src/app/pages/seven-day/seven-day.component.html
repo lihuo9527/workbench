@@ -1,0 +1,132 @@
+<div class="container">
+    <app-title *ngIf="Language=='en'&&this.id==0" title="Material Arrival Within N Days"></app-title>
+    <app-title *ngIf="Language=='cn'&&this.id==0" title="7天内到货物料"></app-title>
+    <app-title *ngIf="Language=='en'&&this.id==1" title="Events Finished Within N Days"></app-title>
+    <app-title *ngIf="Language=='cn'&&this.id==1" title="7天内完成事件"></app-title>
+    <app-title *ngIf="Language=='en'&&this.id==2" title="Progress Tracking"></app-title>
+    <app-title *ngIf="Language=='cn'&&this.id==2" title="7天内进度跟踪"></app-title>
+    <app-search-box></app-search-box>
+
+    <ul *ngIf="this.id==0" class="materList">
+        <li *ngFor="let item of datas;"><i></i>
+            <h3>JO</h3>
+            <em>{{item.PoCode}}</em>
+            <ul class="marterInfo">
+                <li>
+                    <p>{{item.Pattern}}</p>
+                    <span>Fty Style</span></li>
+                <li>
+                    <p>{{item.MPNO}}</p>
+                    <span>Purchasing JO</span></li>
+                <li>
+                    <p>{{item.MPDate.substring(0,10)}}</p>
+                    <span>Purchasing Date</span></li>
+                <li>
+                    <p>{{item.MaterialCode}}</p>
+                    <span>Material Code</span></li>
+                <li>
+                    <p>{{item.MaterialColor}}</p>
+                    <span>Color</span></li>
+                <li>
+                    <p>{{item.MaterialSize}}</p>
+                    <span>Size</span></li>
+                <li>
+                    <p>{{item.MPAmount}}</p>
+                    <span>Purchasing qty</span></li>
+                <li>
+                    <p>{{item.ExpectedReciveDate.substring(0,10)}}</p>
+                    <span>Expected Arrival Date</span></li>
+                <li>
+                    <p>{{item.NeedDate.substring(0,10)}}</p>
+                    <span>Required Date</span></li>
+            </ul>
+        </li>
+    </ul>
+
+    <ul *ngIf="this.id==1" class="materList">
+        <li *ngFor="let item of datas;"><i></i>
+            <h3>JO</h3>
+            <em>{{item.PoCode}}</em>
+            <ul class="marterInfo">
+                <li>
+                    <p>{{item.Pattern}}</p>
+                    <span>Fty Style</span></li>
+                <li>
+                    <p>{{item.EventName}}</p>
+                    <span>Critical Event Name</span></li>
+                <li>
+                    <p>{{item.Merchandiser}}</p>
+                    <span>Merchandiser</span></li>
+                <li>
+                    <p>{{item.MakeDayStartTime.substring(0,10)}}</p>
+                    <span>Schedule Start Date</span></li>
+                <li>
+                    <p>{{item.StartDate.substring(0,10)}}</p>
+                    <span>Expected Completion Date</span></li>
+            </ul>
+        </li>
+    </ul>
+
+
+    <ul *ngIf="this.id==2" class="materList">
+        <li *ngFor="let item of datas;"><i></i>
+            <h3>JO</h3>
+            <em>{{item.Code}}</em>
+            <ul class="marterInfo">
+                <li>
+                    <p>{{item.Pattern}}</p>
+                    <span>Fty Style</span></li>
+                <li>
+                    <p>{{item.CustomerName}}</p>
+                    <span>Customer Name</span></li>
+                <li>
+                    <p>{{item.CustomerStyleNO}}</p>
+                    <span>Cuse Style</span></li>
+                <li>
+                    <p>{{item.Amount}}</p>
+                    <span>Amount</span></li>
+                <li class="item" (click)="item.arrow=!item.arrow">
+                    <p>更多</p>
+                    <i [ngClass]="{'arrow_down':!item.arrow,'arrow_up':item.arrow}"></i></li>
+                <li *ngIf="item.arrow">
+                    <p>{{item.Amount}}</p>
+                    <span>Material Code</span></li>
+                <li *ngIf="item.arrow">
+                    <p>{{item.Amount}}</p>
+                    <span>Sewing</span></li>
+                <li *ngIf="item.arrow">
+                    <p>{{item.Amount}}</p>
+                    <span>Cutting</span></li>
+                <li *ngIf="item.arrow">
+                    <p>{{item.Amount}}</p>
+                    <span>Material Name</span></li>
+                <li *ngIf="item.arrow">
+                    <p>{{item.Amount}}</p>
+                    <span>Cumulative Sewing</span></li>
+                <li *ngIf="item.arrow">
+                    <p>{{item.Amount}}</p>
+                    <span>Cumulative Cutting</span></li>
+                <li *ngIf="item.arrow">
+                    <p>{{item.Amount}}</p>
+                    <span>Printing</span></li>
+                <li *ngIf="item.arrow">
+                    <p>{{item.Amount}}</p>
+                    <span>Packing</span></li>
+                <li *ngIf="item.arrow">
+                    <p>{{item.Amount}}</p>
+                    <span>Shipping</span></li>
+                <li *ngIf="item.arrow">
+                    <p>{{item.Amount}}</p>
+                    <span>Cumulative Printing</span></li>
+                <li *ngIf="item.arrow">
+                    <p>{{item.Amount}}</p>
+                    <span>Cumulative Packing</span></li>
+                <li *ngIf="item.arrow">
+                    <p>{{item.Amount}}</p>
+                    <span>Cumulative Shipping</span></li>
+            </ul>
+        </li>
+    </ul>
+
+
+</div>

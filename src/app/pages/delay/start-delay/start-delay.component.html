@@ -1,0 +1,71 @@
+<div class="container">
+    <app-title *ngIf="Language=='en'" title="Start Time Delay"></app-title>
+    <app-title *ngIf="Language=='cn'" title="开工期延误订单"></app-title>
+    <app-search-box (getstate)='state=$event'></app-search-box>
+    <app-filter *ngIf="state" (back)="state=!state"></app-filter>
+
+    <ul class="materList">
+        <li *ngFor="let item of datas;"><i></i>
+            <h3 *ngIf="Language=='en'">JO</h3>
+            <h3 *ngIf="Language=='cn'">生产单号</h3>
+            <em>{{item.PoCode}}</em>
+            <ul class="marterInfo">
+                <li>
+                    <p>{{item.Pattern}}</p>
+                    <span *ngIf="Language=='en'">Fty Style</span>
+                    <span *ngIf="Language=='cn'">本厂款号</span></li>
+                <li>
+                    <p>{{item.CustomerName}}</p>
+                    <span *ngIf="Language=='en'">Customer Name</span>
+                    <span *ngIf="Language=='cn'">客户名称</span></li>
+                <li>
+                    <p>{{item.DeliveryDate.substring(0,10)}}</p>
+                    <span *ngIf="Language=='en'">Delivery Date</span>
+                    <span *ngIf="Language=='cn'">交货期</span></li>
+                <li>
+                    <p>{{item.PlanStart.substring(0,10)}}</p>
+                    <span *ngIf="Language=='en'">Schedule Start Date</span>
+                    <span *ngIf="Language=='cn'">计划开始时间</span></li>
+                <li>
+                    <p *ngIf="Language=='en'" style="color:red;">{{item.DelayDays}}Day</p>
+                    <p *ngIf="Language=='cn'" style="color:red;">{{item.DelayDays}}天</p>
+                    <span *ngIf="Language=='en'">Delay</span>
+                    <span *ngIf="Language=='cn'">延误</span></li>
+                <li class="item" (click)="item.arrow=!item.arrow">
+                    <p *ngIf="Language=='cn'">更多</p>
+                    <p *ngIf="Language=='en'">more</p>
+                    <i [ngClass]="{'arrow_down':!item.arrow,'arrow_up':item.arrow}"></i></li>
+
+                <li *ngIf="item.arrow">
+                    <p>{{item.CustomerStyleNO}}</p>
+                    <span *ngIf="Language=='en'">Cust Style</span>
+                    <span *ngIf="Language=='cn'">客户款号</span></li>
+                <li *ngIf="item.arrow">
+                    <p>{{item.ProductTypeName}}</p>
+                    <span *ngIf="Language=='en'">Product Type</span>
+                    <span *ngIf="Language=='cn'">产品分类</span></li>
+                <li *ngIf="item.arrow">
+                    <p>{{item.Amount}}</p>
+                    <span *ngIf="Language=='en'">Amount</span>
+                    <span *ngIf="Language=='cn'">数量</span></li>
+                <li *ngIf="item.arrow">
+                    <p>{{item.LineName}}</p>
+                    <span *ngIf="Language=='en'">Line</span>
+                    <span *ngIf="Language=='cn'">生产线</span></li>
+                <li *ngIf="item.arrow">
+                    <p>{{item.MasterMatFinishDate.substring(0,10)}}</p>
+                    <span *ngIf="Language=='en'">Fabric Arrival Date</span>
+                    <span *ngIf="Language=='cn'">主料到厂日</span></li>
+                <li *ngIf="item.arrow">
+                    <p>{{item.NotMasterMatFinishDate.substring(0,10)}}</p>
+                    <span *ngIf="Language=='en'">Accessories Arrival Date</span>
+                    <span *ngIf="Language=='cn'">辅料到厂日</span></li>
+                <li *ngIf="item.arrow">
+                    <p>{{item.EarliestStartDate.substring(0,10)}}</p>
+                    <span *ngIf="Language=='en'">Earliest allowed start time</span>
+                    <span *ngIf="Language=='cn'">最早开工期</span></li>
+            </ul>
+        </li>
+    </ul>
+    <app-load-more *ngIf="datas.length>3" [language]="Language" (click)="UpdateList()"></app-load-more>
+</div>

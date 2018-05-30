@@ -1,0 +1,37 @@
+<div class="container">
+    <app-title *ngIf="Language=='en'" title="JO Details Analysis"></app-title>
+    <app-title *ngIf="Language=='cn'" title="生产单明细分析"></app-title>
+    <app-search-box (getstate)='state=$event'></app-search-box>
+    <app-filter *ngIf="state" Info="event" (back)="state=!state" (envet)="Complete($event)"></app-filter>
+    <ul class="materList">
+        <li *ngFor="let item of polist;" (click)="Link(item)">
+            <i></i>
+            <h3 *ngIf="Language=='cn'">生产单号</h3>
+            <h3 *ngIf="Language=='en'">JO</h3>
+            <a class="arrow_right"></a>
+            <em>{{item.code }}</em>
+            <ul class="marterInfo">
+                <li>
+                    <p>{{item.customername}}</p>
+                    <span *ngIf="Language=='en'">Customer Name</span>
+                    <span *ngIf="Language=='cn'">客户名称</span></li>
+                <li>
+                    <p>{{item.deliverydate.substring(0,10)}}</p>
+                    <span *ngIf="Language=='en'">Delivery Date</span>
+                    <span *ngIf="Language=='cn'">交货期</span></li>
+                <li>
+                    <p>{{item.EventFlowName}}</p>
+                    <span *ngIf="Language=='en'">Process Route name</span>
+                    <span *ngIf="Language=='cn'">事件流程</span></li>
+                <li>
+                    <p>{{item.amount}}</p>
+                    <span *ngIf="Language=='en'">Amount</span>
+                    <span *ngIf="Language=='cn'">数量</span></li>
+                <li>
+                    <p>{{item.pattern}}</p>
+                    <span *ngIf="Language=='en'">Pattern</span>
+                    <span *ngIf="Language=='cn'">款号</span></li>
+            </ul>
+        </li>
+    </ul>
+</div>

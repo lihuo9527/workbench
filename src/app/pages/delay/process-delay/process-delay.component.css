@@ -1,0 +1,35 @@
+/*.container{
+    width: 100%;background: #f3f4f6;
+}*/
+
+.ListOther {
+    display: flex;
+    flex: 1;
+    padding: 1rem;
+}
+
+.ListOther>div {
+    flex: 0 0 33.33%;
+    float: left;
+}
+
+.ListOther .otherBox p {
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+}
+
+.ListOther .otherBox span {
+    font-size: 1.2rem;
+    color: #808080;
+}
+
+.right {
+    text-align: right;
+}
+
+.ListOther .processName {
+    text-align: center;
+    color: #0a8686;
+    font-size: 2.2rem;
+    line-height: 3rem;
+}
