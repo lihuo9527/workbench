@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { fail } from 'assert';
 
 @Component({
     selector: 'app-date',
@@ -8,95 +9,130 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class DateComponent implements OnInit {
 
     constructor() { }
-    @Input() public state;
-    @Input() public datas;
-    @Input() public name;
-    @Input() public targetContainerId;
-    @Input() public targetId;
-    @Input() public selectstate;
     @Output() public submit: EventEmitter<string> = new EventEmitter();
-    public years = [];
-    public months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
-    public days = [];
     public year;
-    public month;
     public day;
     public Language;
-    public ymd = "年/月/日";
+    public days = [];
+    public today = new Date();
+    public last_year = this.today.getFullYear() - 1;
+    public month = this.today.getMonth() + 1;
+    public start_date;
+    public end_date;
+    public state;
+    public dates = [
+    ]
     ngOnInit() {
+        for (let i = 0; i < 24; i++) {
+            let myDate = new Date(this.last_year + "," + this.month + "," + "01");
+            this.days = [];
+            if (myDate.getDay() > 0) {
+                for (let b = 0; b < myDate.getDay(); b++) {
+                    this.days.push("");
+                }
+            }
+
+            this.backDays(this.last_year, this.month, this.days);
+            let json = {
+                year: this.last_year ,
+                month: this.month ,
+                days: this.days
+            }
+            this.dates.push(json);
+            this.last_year = this.month == 12 ? this.last_year + 1 : this.last_year;
+            this.month = this.month == 12 ? 1 : this.month + 1;
+
+        }
+
         this.Language = localStorage.getItem("language");
-        if (this.Language == "en") this.ymd = "yesr/month/day";
-        for (let i = 1992; i < 2030; i++) {
-            this.years.push(i);
-        }
-        for (let i = 1; i < 32; i++) {
-            i < 10 ? this.days.push("0" + i) : this.days.push(i);
-        }
-        this.year = this.years[0];
-        this.month = this.months[0];
-        this.day = this.days[0];
     }
-    ngAfterViewInit(){
-        new DateSelector({
-        input: this.targetId,  //点击触发插件的input框的id
-        container: this.targetContainerId,  //插件插入的容器id
-        type: 1,   //0：不需要tab切换，自定义滑动内容，建议小于三个； //1：需要tab切换，【年月日】【时分】完全展示，固定死，可设置开始年份和结束年份
-        param: [1, 1, 1, 0,0],  //设置['year','month','day','hour','minute'],1为需要，0为不需要,需要连续的1
-        beginTime: [2017, 5, 1, 1, 1],  //如空数组默认设置成1970年1月1日0时0分开始，如需要设置开始时间点，数组的值对应param参数的对应值。
-        endTime: [2027, 5, 7, 12, 2],   //如空数组默认设置成次年12月31日23时59分结束，如需要设置结束时间点，数组的值对应param参数的对应值。
-        recentTime: [2017, 5, 9, 2, 2], //如不需要设置当前时间，被为空数组，如需要设置的开始的时间点，数组的值对应param参数的对应值。
-        success:  (arr, arr2)=>{
-            this.ymd = arr2[0] + "-" + arr2[1] + '-' + arr2[2];
-            this.submit.emit(this.ymd);
-            console.log(arr2[0] + "-" + arr2[1] + '-' + arr2[2], '--- 字符串结果');
-        }
-      });
+    ngAfterViewInit() {
+        let dates_box = document.querySelectorAll(".dates_box")[0];
+        dates_box.scrollTop = dates_box.scrollHeight/2.2;
     }
-    select_event(value, str) {
-        if (str == "m" && this.month == "01" || str == "m" && this.month == "03" || str == "m" && this.month == "05" ||
-            str == "m" && this.month == "07" || str == "m" && this.month == "08" || str == "m" && this.month == "10" ||
-            str == "m" && this.month == "12") {
-            this.days = [];
+    backDays(year, month, days) {
+        if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
             for (let i = 1; i < 32; i++) {
-                i < 10 ? this.days.push("0" + i) : this.days.push(i);
+                if (this.today.getFullYear() == year && this.today.getMonth() + 1 == month && i == this.today.getDate()) {
+                    days.push("今天");
+                } else {
+                    days.push(i);
+                }
+
             }
         }
-        if (str == "m" && this.month == "04" || str == "m" && this.month == "06" || str == "m" && this.month == "09" ||
-            str == "m" && this.month == "11") {
-            this.days = [];
+        if (month == 4 || month == 6 || month == 9 || month == 11) {
             for (let i = 1; i < 31; i++) {
-                i < 10 ? this.days.push("0" + i) : this.days.push(i);
+                if (this.today.getFullYear() == year && this.today.getMonth() + 1 == month && i == this.today.getDate()) {
+                    days.push("今天");
+                } else {
+                    days.push(i);
+                }
             }
         }
-        if (str == "m" && this.month == "02") {
-            this.days = [];
-            if (this.year % 4 == 0 && this.year % 100 != 0 || this.year % 400 == 0) {
+        if (month == 2) {
+            if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
                 for (let i = 1; i < 30; i++) {
-                    i < 10 ? this.days.push("0" + i) : this.days.push(i);
+                    if (this.today.getFullYear() == year && this.today.getMonth() + 1 == month && i == this.today.getDate()) {
+                        days.push("今天");
+                    } else {
+                        days.push(i);
+                    }
                 }
             } else {
                 for (let i = 1; i < 29; i++) {
-                    i < 10 ? this.days.push("0" + i) : this.days.push(i);
+                    if (this.today.getFullYear() == year && this.today.getMonth() + 1 == month && i == this.today.getDate()) {
+                        days.push("今天");
+                    } else {
+                        days.push(i);
+                    }
                 }
             }
         }
-        console.log(value + str)
     }
-    finish() {
-        this.state = false;
-        if (this.year != undefined && this.month != undefined && this.day != undefined) {
-            this.ymd = this.year + "-" + this.month + '-' + this.day;
-        }
-        if (this.name) {
-            this.submit.emit(JSON.stringify({ 'name': this.name, 'date': this.year + "-" + this.month + '-' + this.day }))
-        } else {
-            this.submit.emit(this.year + "-" + this.month + '-' + this.day)
+    backDate(){
+        if(this.start_date && this.end_date) {
+            let backdate = []
+            backdate[0] = this.start_date;
+            backdate[1] = this.end_date;
+            this.submit.emit(JSON.stringify({state:false,dates:backdate}));
+            console.log(backdate);
+            return;
         };
+    }
+    selectDate(index, day) {
+        this.backDate();
+        if(day == "今天") day = this.today.getDate();
+        if (day > 0){
+            console.log(this.dates[index].year + "年" +  this.dates[index].month + "月"+ day + "日");
+        }else{
+            return;
+        }
+        let text = this.dates[index].year + "-"  + this.dates[index].month + "-"  + day;
+        if (this.start_date && this.start_date!= text) {
+            let arr1 = new Date(this.start_date);
+            let arr2 = new Date(text);
+            if(arr1 >arr2){
+                alert("结束时间不能小于当前时间！");
+                return;
+            }
+            console.log(arr1,arr2)
+            this.end_date = this.dates[index].year + "-"  + this.dates[index].month + "-"  +  day 
+            this.backDate();
+        }else if (!this.start_date && !this.end_date){
+            this.state = !this.state;
+            if(day == "今天") day = this.today.getDate();
+            this.start_date = this.dates[index].year + "-"  + this.dates[index].month + "-"  + day 
+        }
 
     }
+    close(){
+        this.submit.emit(JSON.stringify({state:false,dates:false}));
+    }
     cancel() {
-        this.state = false;
-        this.submit.emit("false");
+       this.start_date = false;
+       this.end_date = false;
+       this.state = false;
     }
 
 }

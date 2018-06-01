@@ -57,7 +57,7 @@
             <li (click)="ShowDate(i,'enddate')">{{item.enddate.substring(0,10)}}</li>
         </ul>
     </section>
-    <app-date type="date" [state]="DateState" [name]='DateName' (submit)="GetDate($event)"></app-date>
+    <app-date></app-date>
     <div class="submitBox">
         <button *ngIf="Language=='cn'" type="submit" (click)="Save()">保存</button>
         <button *ngIf="Language=='en'" type="submit" (click)="Save()">Conserve</button>

@@ -89,7 +89,7 @@
         <i *ngIf="Language=='cn'" [ngClass]="{'cn_off':!allstate,'cn_on':allstate}" (click)="allstate=!allstate"></i>
         <i *ngIf="Language=='en'" [ngClass]="{'en_off':!allstate,'en_on':allstate}" (click)="allstate=!allstate"></i>
     </div>
-    <app-date [state]="DateState" (submit)="GetDate($event)"></app-date>
+    <app-date (submit)="GetDate($event)"></app-date>
     <div class="submitBox">
         <button *ngIf="Language=='cn'" type="submit" (click)="Save()">保存</button>
         <button *ngIf="Language=='en'" type="submit" (click)="Save()">Submit</button>

@@ -24,9 +24,9 @@
             </ul>
             <div class="date_container" *ngIf="datecontainer">
                 <div class="date_item">
-                    <app-date selectstate="true" targetContainerId="targetContainerId1" targetId="targetId1" (submit)="BackDate($event,'start')"></app-date>
+                    <p (click)="state=true">{{StartDate}}</p>
                     <p class="bar"></p>
-                    <app-date selectstate="true" targetContainerId="targetContainerId2" targetId="targetId2" (submit)="BackDate($event,'end')"></app-date>
+                    <p (click)="state=true">{{EndDate}}</p>
                 </div>
             </div>
             <div class="submitBox">
@@ -34,6 +34,6 @@
                 <button *ngIf="Language=='cn'" (click)="Query()">查询</button>
             </div>
         </div>
+        <app-date *ngIf="state" (submit)="backDate($event)"></app-date>
     </aside>
-
 </div>

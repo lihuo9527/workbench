@@ -1,16 +1,16 @@
-.date_container {
+.date_box {
     width: 100%;
     height: 90%;
     background: #fff;
     position: fixed;
     bottom: 0;
     left: 0;
-    display: flex;
-    flex-wrap: wrap;
+    z-index: 9;
+    flex-flow: wrap;
 }
 
 .date_title {
-    flex: 0 0 100%;
+    width: 100%;
     height: 50px;
     display: flex;
     justify-content: center;
@@ -22,14 +22,125 @@
     color: #088c77;
 }
 
-.date_title a {
-    position: fixed;
+.date_title .close {
+    position: absolute;
     left: 1rem;
+    font-size: 1.3rem;
+    color: #333333;
+}
+
+.date_title .cancel {
+    position: absolute;
+    right: 1rem;
     font-size: 1.3rem;
     color: #333333;
 }
 
 .start_box,
 .end_box {
-    flex: 0 0 50%;
+    float: left;
+    display: flex;
+    width: 50%;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    flex-flow: wrap;
+    margin-bottom: 0.5rem;
+}
+
+.start_box p,
+.end_box p {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.have_bd {
+    border-bottom: 2px solid #088c77;
+}
+
+.no_bd {
+    border-bottom: none;
+}
+
+.week {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background: #eee;
+}
+
+.week span {
+    flex: 0 0 14.2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.green {
+    color: #088c77;
+}
+
+.dates {
+    width: 100%;
+    display: flex;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    flex-flow: wrap;
+    border-bottom: 1px solid #eee;
+}
+
+.year_month {
+    flex: 0 0 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+}
+
+.dates_box {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-flow: wrap;
+    overflow: scroll;
+}
+
+.days {
+    flex: 0 0 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-flow: wrap;
+}
+
+.day {
+    font-size: 1.4rem;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 14.2%;
+    display: flex;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.bg_green {
+    background: #088c77;
+    color: #fff;
+}
+
+.bg_red {
+    background: crimson;
+    color: #fff;
+}
+
+.bg_orange {
+    color: #fff;
+    background: orange;
 }

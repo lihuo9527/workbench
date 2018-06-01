@@ -18,13 +18,14 @@
         </ul>
         <div class="date_container">
             <div class="date_item">
-                <app-date selectstate="true" targetContainerId="targetContainerId1" targetId="targetId1" (submit)="BackDate($event,'start')"></app-date>
+                <p (click)="state=true">{{StartDate}}</p>
                 <p class="bar"></p>
-                <app-date selectstate="true" targetContainerId="targetContainerId2" targetId="targetId2" (submit)="BackDate($event,'end')"></app-date>
+                <p (click)="state=true">{{EndDate}}</p>
             </div>
         </div>
         <button *ngIf="Language=='en'" class="sbmit" (click)="Complete()">Complete</button>
         <button *ngIf="Language=='cn'" class="sbmit" (click)="Complete()">完成</button>
     </div>
-    <div class="shadow"></div>
+    <div id="shadow"></div>
+    <app-date *ngIf="state" (submit)="backDate($event)"></app-date>
 </aside>

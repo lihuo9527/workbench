@@ -12,9 +12,10 @@ export class SearchComponent implements OnInit {
     public Language;
     public id;
     public title;
-    public state = true;
+    public state;
     public placeholder = "输入单号或款号查询";
-    public lists = [{
+    public lists = [
+    {
         data: [
             { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
             { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
@@ -265,10 +266,15 @@ export class SearchComponent implements OnInit {
             this.datas[i].list[b].state = this.datas[i].allstate;
         }
     }
-    BackDate(date, state) {
-        if (state == "start") this.StartDate = date;
-        if (state == "end") this.EndDate = date;
-        console.log(date + state);
+    backDate(objs) {
+        let obj = JSON.parse(objs);
+        let time = 0;
+        if(obj.dates){
+            this.StartDate = obj.dates[0];
+            this.EndDate = obj.dates[1];
+            time = 1000;
+        }
+        setTimeout(()=>this.state = obj.state,time);
     }
     Query() {
         if (this.id == 0) {

@@ -15,6 +15,7 @@ export class FilterComponent implements OnInit {
         private routerIonfo: ActivatedRoute, ) { }
     public allstate: boolean;
     public rowstate: boolean;
+    public state=false;
     public datas = [
         { title: "Factory", title2: "工厂", rowstate: true, allstate: false, but: true, arrow: true, list: [] },
         { title: "Floor", title2: "车间", rowstate: true, allstate: false, but: true, arrow: true, list: [] },
@@ -128,10 +129,16 @@ export class FilterComponent implements OnInit {
             this.datas[i].list[b].state = this.datas[i].allstate;
         }
     }
-    BackDate(date, state) {
-        if (state == "start") this.StartDate = date;
-        if (state == "end") this.EndDate = date;
-        console.log(date + state);
+    backDate(objs) {
+        let obj = JSON.parse(objs);
+        let time = 0;
+        if(obj.dates){
+            this.StartDate = obj.dates[0];
+            this.EndDate = obj.dates[1];
+            time = 1000;
+        }
+        setTimeout(()=>this.state = obj.state,time);
+        
     }
     Complete() {
         let fids = [];

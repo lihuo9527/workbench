@@ -11,10 +11,10 @@
             <app-list-title *ngIf="Language=='cn'&& i>1" text="单已处理" [title]="items.title2" [number]="items.TodayHandledCount" orders="true"></app-list-title>
             <ul class="list_1">
                 <li *ngFor="let item of items.TipsCountList;let b=index;">
-                    <a [routerLink]="[item.link,item.Id]" routerLinkActive="active">
+                    <a [routerLink]="[item.Link,item.Id]" routerLinkActive="active">
                         <div>
                             <div class="icon">
-                                <img [src]="item.url">
+                                <img [src]="item.Url">
                                 <i *ngIf="item.Amount>0">{{item.Amount}}</i>
                             </div>
                         </div>

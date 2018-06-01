@@ -1,47 +1,36 @@
 <div class="shadow"></div>
 
-<div class="date_container">
+<div class="date_box">
     <div class="date_title">
-        <a>Cancel</a>
-        <span>Select a date</span>
+        <a class="close" (click)="close()">关闭</a>
+        <span>选择日期</span>
+        <a class="cancel" (click)="cancel()">撤销</a>
     </div>
-    <div class="start_box">
-        <p>开始时间</p>
-        <span></span>
+    <div class="start_box" [ngClass]="{'have_bd':!state,'no_bd':state}" (click)="state=false">
+        <p class="green">开始时间</p>
+        <span *ngIf="start_date">{{start_date}}</span>
     </div>
-    <div class="end_box">
-        <p>结束时间</p>
-        <span></span>
+    <div class="end_box" [ngClass]="{'have_bd':state,'no_bd':!state}" (click)="state=true">
+        <p class="green">结束时间</p>
+        <span *ngIf="end_date">{{end_date}}</span>
+    </div>
+    <div class="week">
+        <span class="green">SU</span>
+        <span>MO</span>
+        <span>TU</span>
+        <span>WE</span>
+        <span>TH</span>
+        <span class="green">SA</span>
+    </div>
+    <div class="dates_box">
+        <div class="dates" *ngFor="let item of dates;let i=index;">
+            <div class="year_month">
+                {{item.year}}年 {{item.month}}月
+            </div>
+            <div class="days">
+                <span class="day" *ngFor="let day of item.days;" [ngClass]="{'bg_green':start_date==dates[i].year +'-'+ dates[i].month +'-'+ day ,'bg_orange': end_date==dates[i]['year'] +'-'+ dates[i]['month'] +'-'+ day,'bg_red':day=='今天' }" (click)="selectDate(i,day)">{{day}}</span>
+            </div>
+        </div>
+        <div style="height: 30%;width: 100%;"></div>
     </div>
 </div>
-
-
-
-<!-- <div *ngIf="state" class="bg"></div>
-<div *ngIf="state" class="container">
-    <span *ngIf="Language=='cn'" (click)="cancel()" class="cancel">取消</span>
-    <span *ngIf="Language=='cn'" (click)="finish()" class="finish">确认</span>
-    <span *ngIf="Language=='en'" (click)="cancel()" class="cancel">Cancel</span>
-    <span *ngIf="Language=='en'" (click)="finish()" class="finish">Finish</span>
-    <div class="year">
-        <h4 *ngIf="Language=='cn'">年</h4>
-        <h4 *ngIf="Language=='en'">year</h4>
-        <select [(ngModel)]='year' (change)="select_event(year,'y')">
-    <option *ngFor="let year of years;" [value]='year' >{{year}}</option>
-    </select>
-    </div>
-    <div class="month">
-        <h4 *ngIf="Language=='cn'">月</h4>
-        <h4 *ngIf="Language=='en'">month</h4>
-        <select [(ngModel)]='month' (change)="select_event(month,'m')">
-    <option *ngFor="let month of months;" >{{month}}</option> 
-    </select>
-    </div>
-    <div class="day">
-        <h4 *ngIf="Language=='cn'">日</h4>
-        <h4 *ngIf="Language=='en'">day</h4>
-        <select [(ngModel)]='day' (change)="select_event(day,'d')">
-    <option *ngFor="let day of days;"  >{{day}}</option>
-    </select>
-    </div>
-</div> -->
