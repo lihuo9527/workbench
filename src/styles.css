@@ -1,51 +1,296 @@
+header,
+html,
+body,
+main,
+h1,
+h2,
+h3,
+h4,
+h5,
+ul,
+li,
+div,
+i,
+section,
+p,
+em,
+span,
+input,
+button,
+filter,
+strong,
+a,
+table,
+tr,
+td,
+th,
+textarea {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: 10px/10px Roboto, Helvetica;
+    list-style: none;
+    font-style: normal;
+    color: #333;
+    text-decoration: none;
+    outline: none;
+}
 
-header,html,body,main,h1,h2,h3,h4,h5,ul,li,div,i,section,p,em,span,input,button,filter,strong,a,table,tr,td,th,textarea{margin: 0;padding: 0;border: 0;font: 10px/10px Roboto,Helvetica;list-style: none;font-style: normal;color: #333;text-decoration: none;outline:none;}
-html,body{
- height: 100% !important;background: #f3f4f6;
+html,
+body {
+    height: 100% !important;
+    background: #f3f4f6;
 }
-html{
-    font-size:10px;
-}
-@media screen and (min-width:300px) and (max-width:350px){html{font-size:10px !important;}}
-@media screen and (min-width:351px) and (max-width:375px){html{font-size:11px !important;}}
-@media screen and (min-width:376px) and (max-width:420px){html{font-size:12.5px !important;}}
-@media screen and (min-width:421px) and (max-width:639px){html{font-size:12.8px !important;}}
-@media screen and (min-width:640px) and (max-width:719px){html{font-size:13.5px !important;}}
-@media screen and (min-width:720px) and (max-width:749px){html{font-size:15px !important;}}
-@media screen and (min-width:750px) and (max-width:799px){html{font-size:16px !important;}}
-@media screen and (min-width:800px){html{font-size:17px !important;}}
 
-.container{
-  width: 100%;
+html {
+    font-size: 10px;
 }
+
+@media screen and (min-width:300px) and (max-width:350px) {
+    html {
+        font-size: 10px !important;
+    }
+}
+
+@media screen and (min-width:351px) and (max-width:375px) {
+    html {
+        font-size: 11px !important;
+    }
+}
+
+@media screen and (min-width:376px) and (max-width:420px) {
+    html {
+        font-size: 12.5px !important;
+    }
+}
+
+@media screen and (min-width:421px) and (max-width:639px) {
+    html {
+        font-size: 12.8px !important;
+    }
+}
+
+@media screen and (min-width:640px) and (max-width:719px) {
+    html {
+        font-size: 13.5px !important;
+    }
+}
+
+@media screen and (min-width:720px) and (max-width:749px) {
+    html {
+        font-size: 15px !important;
+    }
+}
+
+@media screen and (min-width:750px) and (max-width:799px) {
+    html {
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width:800px) {
+    html {
+        font-size: 17px !important;
+    }
+}
+
+.container {
+    width: 100%;
+}
+
+
 /* marter */
-.materList{overflow: hidden;}
-.materList li{margin-bottom: 1rem;background: #fff;}
-.materList i{width: 5px;float: left;height: 3.5rem;background: #9eb4d8;}
-.materList h3,.materList em{height: 3.5rem;float: left;line-height: 3.5rem;font-size: 1.4rem;padding: 0 1rem;}
-.materList em{float: right;}
-.marterInfo{clear: both;overflow: hidden;padding: 1rem 5% 0;border-top: #dbdbdb solid 1px;margin-bottom: 1rem;}
-.marterInfo li{float: left;width: 33%;margin: 0 0.1%;line-height:1rem;margin-bottom: 0.5rem;padding: 0.2rem 0;overflow: hidden;}
-.marterInfo li p{font-size: 1.4rem;line-height:1.4rem;margin-bottom:0.2rem; overflow: hidden;text-overflow:ellipsis;
-white-space: nowrap;}
-.marterInfo li span{line-height: 1.5rem;font-size: 1rem;color: #b2b2b2;}
+
+.materList {
+    overflow: hidden;
+}
+
+.materList li {
+    margin-bottom: 1rem;
+    background: #fff;
+}
+
+.materList i {
+    width: 5px;
+    float: left;
+    height: 3.5rem;
+    background: #9eb4d8;
+}
+
+.materList h3,
+.materList em {
+    height: 3.5rem;
+    float: left;
+    line-height: 3.5rem;
+    font-size: 1.4rem;
+    padding: 0 1rem;
+}
+
+.materList em {
+    float: right;
+}
+
+.marterInfo {
+    clear: both;
+    overflow: hidden;
+    padding: 1rem 5% 0;
+    border-top: #dbdbdb solid 1px;
+    margin-bottom: 1rem;
+}
+
+.marterInfo li {
+    float: left;
+    width: 33%;
+    margin: 0 0.1%;
+    line-height: 1rem;
+    margin-bottom: 0.5rem;
+    padding: 0.2rem 0;
+    overflow: hidden;
+}
+
+.marterInfo li p {
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    margin-bottom: 0.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.marterInfo li span {
+    line-height: 1.5rem;
+    font-size: 1rem;
+    color: #b2b2b2;
+}
+
 
 /* processList */
-.processList{overflow: hidden;}
-.processList li{overflow: hidden;background: #fff;margin-bottom: 1rem;}
-.processList li .listTop{border-bottom: #f0f0f0 solid 1px;height: 4rem;padding: 0 1rem;overflow: hidden;background: url(assets/images/arrow_right.png) no-repeat right center;background-size: 1.5rem;}
-.processList li .listTop h5{float: left;font-size:1.4rem;line-height: 4rem;}
-.processList li .listTop em{font-size: 1.4rem;line-height: 1.6rem;background:#ff5a52;color: #fff;padding: 0 0.2rem;display: inline-block;float: left;border-radius: 0.2rem;margin: 1.1rem 0 0 0.5rem;}
-.processList li .listTop span{float: right;line-height: 4rem;font-size: 1.4rem;display: inline-block;margin: 0 1rem 0 0;}
-.processList li .listCon{padding: 1rem;overflow: hidden;border-bottom: #f0f0f0 solid 1px;}
-.processList li .listCon .process{overflow: hidden;width: 75%;float: left;}
 
-.processList li .listCon .number{display: block;text-align: center;font-size: 1.4rem;line-height: 1.8rem;}
-.processList li .listCon .processBox{width: 100%;height: 0.5rem;background: #e1e1e1;overflow: hidden;margin: 1rem 0;}
-.processList li .listCon .processBar{background:#ff5a52;height: 0.5rem;}
-.processList li .listCon .begin,.processList li .listCon .end{font-size: 1.2rem;line-height: 2rem;float: left;color: #adadad;}
-.processList li .listCon .end{float: right;}
-.processList li .listCon .vlue{display: block;float: right;width: 23%;font-size:2.5rem;text-align: center;color:#ff5a52;line-height:6rem;}
+.processList {
+    overflow: hidden;
+}
 
-.submitBox{padding: 1rem;background: #fff;}
-.submitBox button{color: #fff;background: #088c77;display: block;width: 100%;border-radius: 0.5rem;height: 4rem;font-size: 1.8rem;background: #088c77;display: block;width: 100%;border-radius: 0.5rem;height: 4rem;font-size: 1.8rem;}
+.processList li {
+    overflow: hidden;
+    background: #fff;
+    margin-bottom: 1rem;
+}
+
+.processList li .listTop {
+    border-bottom: #f0f0f0 solid 1px;
+    height: 4rem;
+    padding: 0 1rem;
+    overflow: hidden;
+    background: url(assets/images/arrow_right.png) no-repeat right center;
+    background-size: 1.5rem;
+}
+
+.processList li .listTop h5 {
+    float: left;
+    font-size: 1.4rem;
+    line-height: 4rem;
+}
+
+.processList li .listTop em {
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    background: #ff5a52;
+    color: #fff;
+    padding: 0 0.2rem;
+    display: inline-block;
+    float: left;
+    border-radius: 0.2rem;
+    margin: 1.1rem 0 0 0.5rem;
+}
+
+.processList li .listTop span {
+    float: right;
+    line-height: 4rem;
+    font-size: 1.4rem;
+    display: inline-block;
+    margin: 0 1rem 0 0;
+}
+
+.processList li .listCon {
+    padding: 1rem;
+    overflow: hidden;
+    border-bottom: #f0f0f0 solid 1px;
+}
+
+.processList li .listCon .process {
+    overflow: hidden;
+    width: 75%;
+    float: left;
+}
+
+.processList li .listCon .number {
+    display: block;
+    text-align: center;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+}
+
+.processList li .listCon .processBox {
+    width: 100%;
+    height: 0.5rem;
+    background: #e1e1e1;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.processList li .listCon .processBar {
+    background: #ff5a52;
+    height: 0.5rem;
+}
+
+.processList li .listCon .begin,
+.processList li .listCon .end {
+    font-size: 1.2rem;
+    line-height: 2rem;
+    float: left;
+    color: #adadad;
+}
+
+.processList li .listCon .end {
+    float: right;
+}
+
+.processList li .listCon .vlue {
+    display: block;
+    float: right;
+    width: 23%;
+    font-size: 2.5rem;
+    text-align: center;
+    color: #ff5a52;
+    line-height: 6rem;
+}
+
+.submitBox {
+    padding: 1rem;
+    background: #fff;
+}
+
+.submitBox button {
+    color: #fff;
+    background: #088c77;
+    display: block;
+    width: 100%;
+    border-radius: 0.5rem;
+    height: 4rem;
+    font-size: 1.8rem;
+    background: #088c77;
+    display: block;
+    width: 100%;
+    border-radius: 0.5rem;
+    height: 4rem;
+    font-size: 1.8rem;
+}
+
+.shadow {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+}

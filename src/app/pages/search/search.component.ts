@@ -115,7 +115,82 @@ export class SearchComponent implements OnInit {
         data: [
             { title: "Factory", title2: "工厂", rowstate: true, allstate: false, but: true, arrow: true, list: [] },
         ]
-    }
+    },
+    {
+        data: [
+            { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+            { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+            { title: "Line", title2: "生产线", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+            {
+                title: "Grouping condition", title2: "分组条件", rowstate: true, allstate: false, but: false, arrow: true,
+                list: [
+                    { text: "Factory", text2: "工厂", state: false },
+                    { text: "Floor", text2: "车间", state: false },
+                    { text: "Line", text2: "生产线", state: false },
+                    { text: "Line+Rank", text2: "生产线+班次分组", state: false },
+                    { text: "+Fty Style", text2: "+本厂款号", state: false }
+                ]
+            },
+            {
+                title: "Display Mode", title2: "显示方式", rowstate: true, allstate: false, but: false, arrow: true,
+                list: [
+                    { text: "Date", text2: "按日期", state: false },
+                    { text: "Month", text2: "按月份", state: false }
+                ]
+            },
+            { title: "Date", title2: "日期", rowstate: true, allstate: false, but: false, arrow: false, list: [] }
+        ]
+    },
+    {
+        data: [
+            { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+            { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+            { title: "Line", title2: "生产线", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+            {
+                title: "Grouping condition", title2: "分组条件", rowstate: true, allstate: false, but: false, arrow: true,
+                list: [
+                    { text: "Factory", text2: "工厂", state: false },
+                    { text: "Floor", text2: "车间", state: false },
+                    { text: "Line", text2: "生产线", state: false },
+                    { text: "Line+Rank", text2: "生产线+班次分组", state: false },
+                    { text: "+Fty Style", text2: "+本厂款号", state: false }
+                ]
+            },
+            {
+                title: "Display Mode", title2: "显示方式", rowstate: true, allstate: false, but: false, arrow: true,
+                list: [
+                    { text: "Date", text2: "按日期", state: false },
+                    { text: "Month", text2: "按月份", state: false }
+                ]
+            },
+            { title: "Date", title2: "日期", rowstate: true, allstate: false, but: false, arrow: false, list: [] }
+        ]
+    },
+    {
+        data: [
+            { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+            { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+            { title: "Line", title2: "生产线", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+            {
+                title: "Grouping condition", title2: "分组条件", rowstate: true, allstate: false, but: false, arrow: true,
+                list: [
+                    { text: "Factory", text2: "工厂", state: false },
+                    { text: "Floor", text2: "车间", state: false },
+                    { text: "Line", text2: "生产线", state: false },
+                    { text: "Line+Rank", text2: "生产线+班次分组", state: false },
+                    { text: "+Fty Style", text2: "+本厂款号", state: false }
+                ]
+            },
+            {
+                title: "Display Mode", title2: "显示方式", rowstate: true, allstate: false, but: false, arrow: true,
+                list: [
+                    { text: "Date", text2: "按日期", state: false },
+                    { text: "Month", text2: "按月份", state: false }
+                ]
+            },
+            { title: "Date", title2: "日期", rowstate: true, allstate: false, but: false, arrow: false, list: [] }
+        ]
+    },
 
     ]
     public datas = [];
@@ -137,13 +212,19 @@ export class SearchComponent implements OnInit {
         if (this.id == 4 && this.Language == "cn") this.title = '生产单明细分析';
         if (this.id == 3 && this.Language == "en") this.title = 'Line Efficiency';
         if (this.id == 3 && this.Language == "cn") this.title = '生产线效率';
+        if (this.id == 5 && this.Language == "en") this.title = 'Embroidery Printing Process Plan';
+        if (this.id == 5 && this.Language == "cn") this.title = '印绣花工序';
+        if (this.id == 6 && this.Language == "en") this.title = 'Sewing';
+        if (this.id == 6 && this.Language == "cn") this.title = '车缝';
+        if (this.id == 7 && this.Language == "en") this.title = 'Washing';
+        if (this.id == 7 && this.Language == "cn") this.title = '洗水';
         if (this.id == 4) this.datecontainer = false;
         this.datas = this.lists[this.id].data;
         if (this.Language == "en") this.placeholder = "input number or style to query";
         this.Init();
     }
     Init() {
-        this.service.http_get('/api/BaseData/GetFactoryLines?userId=1', false).subscribe((data:any) => {
+        this.service.http_get('/api/BaseData/GetFactoryLines', false).subscribe((data:any) => {
             if (data.length > 0) {
                 for (let i = 0; i < data.length; i++) {
                     let json: any = {

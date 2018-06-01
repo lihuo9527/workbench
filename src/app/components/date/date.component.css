@@ -1,87 +1,35 @@
-.select {
-    padding: 1rem 0.5rem 1rem 0.5rem;
-    display: flex;
-    border-radius: 4px;
+.date_container {
+    width: 100%;
+    height: 90%;
     background: #fff;
-    flex: 0 0 45%;
-    align-items: center;
-    justify-content: center;
-}
-
-.bg {
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
     position: fixed;
-    top: 0px;
-    left: 0px;
-}
-
-.container {
-    width: 100%;
+    bottom: 0;
+    left: 0;
     display: flex;
-    height: 120px;
-    background-color: #fff;
-    position: fixed;
-    bottom: 0px;
-    left: 0px;
-    flex-flow: wrap;
+    flex-wrap: wrap;
 }
 
-h4 {
-    height: 3rem;
-    line-height: 3rem;
+.date_title {
     flex: 0 0 100%;
-    font-size: 1.5rem;
+    height: 50px;
     display: flex;
     justify-content: center;
-    margin-top: 2.5rem;
-    border-top: solid 2px #f3f4f6;
-    border-bottom: solid 2px #f3f4f6;
-}
-
-.cancel {
-    position: absolute;
-    left: 1rem;
-    color: #d0486d;
-    font-size: 1.5rem;
-    top: 1rem;
-    font-weight: bold;
-}
-
-.finish {
-    position: absolute;
-    right: 1rem;
-    color: #4564bb;
-    font-size: 1.5rem;
-    top: 1rem;
-    font-weight: bold;
-}
-
-.container div {
-    flex: 0 0 33.33%;
-    font-size: 1.2rem;
-    display: flex;
-    justify-content: center;
-    border-top: solid 2px #f3f4f6;
-    flex-flow: wrap;
     align-items: center;
 }
 
-select {
-    border: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    background: url("/assets/images/sm_arrow_right.png") no-repeat scroll right center transparent;
-    padding-right: 1.2rem;
-    line-height: 2rem;
+.date_title span {
+    font-size: 1.4rem;
+    color: #088c77;
 }
 
+.date_title a {
+    position: fixed;
+    left: 1rem;
+    font-size: 1.3rem;
+    color: #333333;
+}
 
-/*.year,.month{
- border-right: 1px solid #f3f4f6;
-}*/
-
-option {
-    text-align: center;
+.start_box,
+.end_box {
+    flex: 0 0 50%;
 }

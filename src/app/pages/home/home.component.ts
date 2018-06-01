@@ -12,16 +12,22 @@ export class HomeComponent implements OnInit {
         {
             TodayHandledCount: "0",
             TipsCountList: [
-                { url: "/assets/images/ico_02.png", text: "JO Tracking", Name: "生产单跟踪", link: "/search", Id: "0", Amount: "0" },
+                { url: "/assets/images/ico_01.png", text: "JO Tracking", Name: "生产单跟踪", link: "/search", Id: "0", Amount: "0" },
                 { url: "/assets/images/ico_02.png", text: "Daily Output", Name: "日计划产量", link: "/search", Id: "1", Amount: "0" },
                 { url: "/assets/images/ico_03.png", text: "Running Schedule", Name: "滚动排期", link: "/search", Id: "2", Amount: "0" },
                 { url: "/assets/images/ico_04.png", text: "All", Name: "全部", link: "/all", Id: "3", Amount: "0" }]
         },
         {
+            title: "Outgoing Process Plan", title2: "外发工序计划", TodayHandledCount: "0", TipsCountList: [
+                { url: "/assets/images/a_44.png", text: "Embroidery", Name: "印花", link: "/search", Id: "5", Amount: "0" },
+                { url: "/assets/images/a_45.png", text: "Sewing", Name: "车缝", link: "/search", Id: "6",  Amount: "0" },
+                { url: "/assets/images/a_46.png", text: "Washing", Name: "洗水", link: "/search", Id: "7", Amount: "0" }]
+        },
+        {
             title: "Delivery Delay", title2: "交期延误单", TodayHandledCount: "0", TipsCountList: [
-                { url: "/assets/images/ico_21.png", text: "Urgency", Name: "紧急单", link: "/deliverDelay", Id: "0", Id2: "6", Amount: "0" },
-                { url: "/assets/images/ico_22.png", text: "Important", Name: "重要单", link: "/deliverDelay", Id: "1", Id2: "8", Amount: "0" },
-                { url: "/assets/images/ico_23.png", text: "General", Name: "普通单", link: "/deliverDelay", Id: "2", Id2: "10", Amount: "0" }]
+                { url: "/assets/images/ico_21.png", text: "Urgency", Name: "紧急单", link: "/deliverDelay", Id: "0",  Amount: "0" },
+                { url: "/assets/images/ico_22.png", text: "Important", Name: "重要单", link: "/deliverDelay", Id: "1", Amount: "0" },
+                { url: "/assets/images/ico_23.png", text: "General", Name: "普通单", link: "/deliverDelay", Id: "2",  Amount: "0" }]
         },
         {
             title: "Critical Event Delay", title2: "关键事件延误", TodayHandledCount: "0", TipsCountList: [
@@ -72,15 +78,17 @@ export class HomeComponent implements OnInit {
         let url: string;
         for (let i = 1; i < this.list.length; i++) {
             switch (i) {
-                case 1: url = "/api/Main/GetDeliveryDelayCount";
+                case 1: url = "/api/Main/GetOutgoingProcessCount";
                     break;
-                case 2: url = "/api/Main/GetEventsDelayCount";
+                case 2: url = "/api/Main/GetDeliveryDelayCount";
                     break;
-                case 3: url = "/api/Main/GetProcessDelayCount";
+                case 3: url = "/api/Main/GetEventsDelayCount";
                     break;
-                case 4: url = "/api/Main/GetMaterialDelayCount";
+                case 4: url = "/api/Main/GetProcessDelayCount";
                     break;
-                case 5: url = "/api/Main/GetTodayCount";
+                case 5: url = "/api/Main/GetMaterialDelayCount";
+                    break;
+                case 6: url = "/api/Main/GetTodayCount";
                     break;
             }
             this.service.http_get(url, false).subscribe((data:any) => {
@@ -89,31 +97,8 @@ export class HomeComponent implements OnInit {
                 this.list[i].TodayHandledCount = obj.TodayHandledCount;
                 if (obj.TipsCountList.length > 0) {
                     for (let b = 0; b < this.list[i].TipsCountList.length; b++) {
-                        if (i == 2 || i == 3) {
+                        if (i == 3 || i == 4) {
                             this.list[i].TipsCountList = obj.TipsCountList;
-                            if (i == 2) {
-                                this.list[i].TipsCountList[b].link = '/criticalEventDelay';
-                                this.list[i].TipsCountList[b].url = '/assets/images/ico_3' + (b + 1) + '.png';
-                            }
-                            if (i == 3) {
-                                this.list[i].TipsCountList[b].link = '/processDelay';
-                                this.list[i].TipsCountList[b].url = '/assets/images/ico_4' + (b + 1) + '.png';
-                            }
-                        }
-                        if (i == 1) {
-                            for (let c = 0; c < obj.TipsCountList.length; c++) {
-                                if (obj.TipsCountList[c].Id == this.list[i].TipsCountList[b].Id2) {
-                                    if (obj.TipsCountList[c].Amount > 99) {
-                                        this.list[i].TipsCountList[b].Amount = "99";
-                                    } else {
-                                        this.list[i].TipsCountList[b].Amount = obj.TipsCountList[c].Amount;
-                                    }
-                                }
-                            }
-                        } else if (obj.TipsCountList[b].Amount > 99) {
-                            this.list[i].TipsCountList[b].Amount = "99";
-                        } else {
-                            this.list[i].TipsCountList[b].Amount = obj.TipsCountList[b].Amount;
                         }
                     }
                 }

@@ -24,6 +24,7 @@ import { DetailAnalysisListComponent } from './pages/produce/detail-analysis-lis
 import { DetailAnalysisComponent } from './pages/produce/detail-analysis/detail-analysis.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 export const appRoutes = [
 	{
 		path: 'home',
@@ -139,9 +140,14 @@ export const appRoutes = [
 	// 	loadChildren: 'app/schedule-entry/schedule-entry.module#ScheduleEntryModule'
     // },
     {
+        path: 'forgot-password',
+        component:ForgotPasswordComponent
+    },
+    {
         path: '',
         component:LoginComponent
     },
+
 	{
 		path: '**',
 		pathMatch: 'full',

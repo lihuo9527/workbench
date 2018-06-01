@@ -1,4 +1,56 @@
-<div class="container">
+<div class="register_container">
     <app-title *ngIf="Language=='en'" title="Register"></app-title>
     <app-title *ngIf="Language=='cn'" title="注册"></app-title>
+
+    <div class="item">
+        <div class="item_container">
+            <div class="img_container">
+                <img src="assets/images/phone2.png" alt="">
+            </div>
+            <div class="input_container">
+                <input class="input" type="text" placeholder="Phone Number">
+            </div>
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item_container">
+            <div class="img_container">
+                <img src="assets/images/password2.png">
+            </div>
+            <div class="input2_container">
+                <input id="password" class="input" type="password" placeholder="Enter Password">
+            </div>
+            <div class="look_container">
+                <img src="assets/images/look.png" width="50%" (touchstart)="lookStart()" (touchend)="lookEnd()">
+            </div>
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item_container">
+            <div class="img_container">
+                <img src="assets/images/email.png">
+            </div>
+            <div class="input3_container">
+                <input class="input" type="text" placeholder="Verification Code">
+            </div>
+            <div class="code_container">
+                <button class="code_btn">Get the verifying code</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="item3">
+        <button class="register" [disabled]="state" [ngClass]="{'green':state,'gray':!state}">Register</button>
+    </div>
+
+    <div class="item4">
+        <div class="item4_container">
+            <div class="check_radio">
+                <a [ngClass]="{'radio_on':state,'radio_off':!state}" (click)="state=!state"></a>
+            </div>
+            <p style="display: flex;flex: 0 0 90%;">I agree with the &nbsp; <span style="color: #088c77;">Terms of Service Privacy Policy.</span></p>
+        </div>
+    </div>
 </div>

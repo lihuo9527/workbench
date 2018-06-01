@@ -9,6 +9,7 @@ export class DateComponent implements OnInit {
 
     constructor() { }
     @Input() public state;
+    @Input() public datas;
     @Input() public name;
     @Input() public targetContainerId;
     @Input() public targetId;

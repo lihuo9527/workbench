@@ -90,3 +90,11 @@ a {
     flex: 0 0 50%;
     justify-content: flex-end;
 }
+
+.item4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 3rem;
+    font-size: 1.3rem;
+}
