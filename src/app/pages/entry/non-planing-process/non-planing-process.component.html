@@ -4,13 +4,13 @@
     <app-search-box (getstate)='state=$event'></app-search-box>
     <app-filter *ngIf="state" Info="process" (ReturnData)="GetTabs($event)" (back)="state=!state" (envet)="Complete($event)"></app-filter>
     <div class="container_box">
-        <div class="select_box">
+        <!-- <div class="select_box">
             <ul class="select">
                 <li [ngClass]="{'green':item.state}" *ngFor="let item of navigations;let i=index;" (click)="Select(i)">
                     {{item.text}}
                 </li>
             </ul>
-        </div>
+        </div> -->
         <div class="box">
             <ul class="materList dailyProcess">
                 <li *ngFor="let item of datas"><i></i>

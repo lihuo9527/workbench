@@ -224,6 +224,7 @@ input::-webkit-input-placeholder {
     height: 0.3rem;
     flex: 0 0 10%;
     display: block;
+    padding: 0 !important;
 }
 
 .date_container {
@@ -242,4 +243,8 @@ input::-webkit-input-placeholder {
     flex: 1;
     border-radius: 3px;
     padding: 0.3rem;
+}
+
+.date_item p {
+    padding: 0.5rem;
 }

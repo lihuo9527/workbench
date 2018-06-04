@@ -27,5 +27,5 @@
         <button *ngIf="Language=='cn'" class="sbmit" (click)="Complete()">完成</button>
     </div>
     <div id="shadow"></div>
-    <app-date *ngIf="state" (submit)="backDate($event)"></app-date>
+    <app-date *ngIf="state" number="2" (submit)="backDate($event)"></app-date>
 </aside>

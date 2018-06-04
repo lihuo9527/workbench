@@ -17,6 +17,7 @@ export class EventEntryComponent implements OnInit {
     public DateState = false;
     public DateName;
     public index;
+    public state = false;
     ngOnInit() {
         this.data = JSON.parse(this.routerIonfo.snapshot.params["data"]);
         this.Language = localStorage.getItem("language");
@@ -38,21 +39,20 @@ export class EventEntryComponent implements OnInit {
             data.Events.push(json);
         }
         this.service.http_post('/api/Schedule/UpdateEventsDate', data, false).subscribe((data:any) => {
+            if(data.IsSuccess==1)alert("录入成功!")
             console.log(data);
         })
     }
-    GetDate($event) {
-        console.log($event)
-        this.DateState = false;
-        if ($event != "false") {
-            let obj = JSON.parse($event);
-            this.list[this.index][obj.name] = obj.date;
-            this.list[this.index][obj.name] = obj.date;
+    backDate($event) {
+        let obj = JSON.parse($event);
+        if (obj.date) {
+            this.list[this.index][this.DateName] = obj.date;
         }
+        this.state = false;
     }
     ShowDate(i, event) {
+        this.state = true;
         this.index = i;
         this.DateName = event;
-        this.DateState = true;
     }
 }

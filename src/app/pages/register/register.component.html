@@ -42,7 +42,7 @@
     </div>
 
     <div class="item3">
-        <button class="register" [disabled]="state" [ngClass]="{'green':state,'gray':!state}">Register</button>
+        <button class="register" (click)="register(state)" [disabled]="!state" [ngClass]="{'green':state,'gray':!state}">Register</button>
     </div>
 
     <div class="item4">

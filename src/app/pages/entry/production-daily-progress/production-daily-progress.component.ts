@@ -26,7 +26,7 @@ export class ProductionDailyProgressComponent implements OnInit {
         console.log("id:" + this.id);
     }
     UpdateList() {
-        let pageIndex = this.datas.length / 4 + 1;
+        let pageIndex = Math.ceil(this.datas.length / 4) + 1;
         this.service.http_get('/api/Schedule/GetPlanPoes?pageIndex=' + pageIndex + '&pageSize=4&star=' + this.start + '&end=' + this.end, false).subscribe((data:any) => {
             let obj = data;
             if (obj.length > 0) {
@@ -41,19 +41,10 @@ export class ProductionDailyProgressComponent implements OnInit {
         this.end = $event.EndDate;
         console.log("收到" + $event);
         this.service.http_get('/api/Schedule/GetPlanPoes?pageIndex=1&pageSize=4' +
-            // '&fids=' + $event.fids + '&wsids=' +  $event.wsids+ 
-            // '&eventid=' +  $event.eventid+ 
             '&star=' + $event.StartDate + '&end=' + $event.EndDate, false).subscribe((data:any) => {
                 let obj = data;
                 if (obj.length > 0) {
-                    this.datas = [{
-                        "ProductionEventID": 4357, "LineID": 4, "LineName": "T02组",
-                        "StartTime": "2018-03-22T08:00:00", "id": 1084, "code": "D03NIK0438", "customerid": 5,
-                        "customername": "高尔夫巡回赛", "deliverydate": "2018-04-13T00:00:00",
-                        "initDeliveryDate": null, "producttype": "POLO-有领上衣-TP3", "pattern": "s/330239",
-                        "amount": 7375.0, "priority": 8,
-                        "merchandiser": "YUANHONG", "StarDate": "2018-03-22T08:00:00", "EndDate": "2018-03-22T08:00:00", "CompleteAmount": 0.0
-                    }]
+                    this.datas = obj;
                     this.state = false;
                 }
             })

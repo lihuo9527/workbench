@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AppService } from '../../app.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:AppService) { }
   public Language;
   public state = false;
   ngOnInit() {
@@ -21,5 +21,10 @@ export class RegisterComponent implements OnInit {
   }
   lookEnd(){
     document.querySelector('#password')['type'] = "password";
+  }
+  register(state){
+      if(state){
+        console.log("!!!")
+      }
   }
 }

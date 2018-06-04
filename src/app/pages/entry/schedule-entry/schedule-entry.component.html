@@ -17,15 +17,15 @@
                     <span *ngIf="Language=='en'">Fty Style</span>
                     <span *ngIf="Language=='cn'">本厂款号</span></li>
                 <li>
-                    <p>{{data.deliverydate.substring(0,10)}}</p>
+                    <p>{{data.deliverydate}}</p>
                     <span *ngIf="Language=='en'">Completion Time</span>
                     <span *ngIf="Language=='cn'">车间交期</span></li>
                 <li>
-                    <p>{{data.StarDate.substring(0,10)}}</p>
+                    <p>{{data.StarDate}}</p>
                     <span *ngIf="Language=='en'">Production Start Time</span>
                     <span *ngIf="Language=='cn'">开始日期</span></li>
                 <li>
-                    <p>{{data.EndDate.substring(0,10)}}</p>
+                    <p>{{data.EndDate}}</p>
                     <span *ngIf="Language=='en'">Production End Time</span>
                     <span *ngIf="Language=='cn'">结束日期</span></li>
                 <li>
@@ -73,7 +73,7 @@
             </tbody>
         </table>
     </div>
-    <div class="date_container" (click)="DateState=1">
+    <div class="date_container" (click)="showDate()">
         <span *ngIf="Language=='cn'" class="select1">生产日期</span>
         <span *ngIf="Language=='en'" class="select1">Production Date</span>
         <span class="select2">{{date}}</span>
@@ -89,7 +89,7 @@
         <i *ngIf="Language=='cn'" [ngClass]="{'cn_off':!allstate,'cn_on':allstate}" (click)="allstate=!allstate"></i>
         <i *ngIf="Language=='en'" [ngClass]="{'en_off':!allstate,'en_on':allstate}" (click)="allstate=!allstate"></i>
     </div>
-    <app-date (submit)="GetDate($event)"></app-date>
+    <app-date *ngIf="state" number="1" (submit)="backDate($event)"></app-date>
     <div class="submitBox">
         <button *ngIf="Language=='cn'" type="submit" (click)="Save()">保存</button>
         <button *ngIf="Language=='en'" type="submit" (click)="Save()">Submit</button>

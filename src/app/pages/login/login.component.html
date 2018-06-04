@@ -7,7 +7,7 @@
                     <img [src]="item.url" width="30%" alt="">
             </div>
             <div style="flex: 0 0 80%">
-                   <input class="input" [type]="item.type"  [placeholder]="item.text">
+                   <input [minlength]="item.minlength" [maxlength]="item.maxlength" class="input" [type]="item.type"  [(ngModel)]="item.input" [placeholder]="item.text" required />
             </div>
         </button>
     </div>
@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="item3">
-        <button class="login">Login</button>
+        <button class="login" (click)="login()">Login</button>
     </div>
     <div class="item4">
         <p>©Guangzhou Integrated Optimization Software Co.,Ltd.</p>

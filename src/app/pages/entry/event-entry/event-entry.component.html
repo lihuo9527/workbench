@@ -9,11 +9,11 @@
                     <span *ngIf="Language=='en'">JO</span>
                     <span *ngIf="Language=='cn'">生产单号</span></li>
                 <li>
-                    <p>{{data.deliverydate.substring(0,10)}}</p>
+                    <p>{{data.deliverydate}}</p>
                     <span *ngIf="Language=='en'">Delivery Date</span>
                     <span *ngIf="Language=='cn'">交货期</span></li>
                 <li>
-                    <p>{{data.StarDate.substring(0,10)}}</p>
+                    <p>{{data.StarDate}}</p>
                     <span *ngIf="Language=='en'">Production Date</span>
                     <span *ngIf="Language=='cn'">生产日期</span></li>
                 <li>
@@ -25,11 +25,11 @@
                     <span *ngIf="Language=='en'">Cust Name</span>
                     <span *ngIf="Language=='cn'">客户名称</span></li>
                 <li>
-                    <p>{{data.MainMaterielArriveDate.substring(0,10)}}</p>
+                    <p>{{data.MainMaterielArriveDate}}</p>
                     <span *ngIf="Language=='en'">Fabric Arrival Date</span>
                     <span *ngIf="Language=='cn'">主料到货日期</span></li>
                 <li>
-                    <p>{{data.OthMaterielArriveDate.substring(0,10)}}</p>
+                    <p>{{data.OthMaterielArriveDate}}</p>
                     <span *ngIf="Language=='en'">Accessories Arrival Date</span>
                     <span *ngIf="Language=='cn'">辅料到货日期</span></li>
                 <li>
@@ -53,11 +53,11 @@
         <ul class="entryEdit" *ngFor="let item of list;let i=index;">
             <li>{{item.eventflownodeName}}</li>
             <li>{{item.recommendeddate}}</li>
-            <li (click)="ShowDate(i,'startdate')">{{item.startdate.substring(0,10)}}</li>
-            <li (click)="ShowDate(i,'enddate')">{{item.enddate.substring(0,10)}}</li>
+            <li (click)="ShowDate(i,'startdate')">{{item.startdate}}</li>
+            <li (click)="ShowDate(i,'enddate')">{{item.enddate}}</li>
         </ul>
     </section>
-    <app-date></app-date>
+    <app-date *ngIf="state" number="1" (submit)="backDate($event)"></app-date>
     <div class="submitBox">
         <button *ngIf="Language=='cn'" type="submit" (click)="Save()">保存</button>
         <button *ngIf="Language=='en'" type="submit" (click)="Save()">Conserve</button>

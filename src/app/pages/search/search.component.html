@@ -34,6 +34,6 @@
                 <button *ngIf="Language=='cn'" (click)="Query()">查询</button>
             </div>
         </div>
-        <app-date *ngIf="state" (submit)="backDate($event)"></app-date>
+        <app-date *ngIf="state" number="2" (submit)="backDate($event)"></app-date>
     </aside>
 </div>

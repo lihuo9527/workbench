@@ -34,10 +34,18 @@ export class AppService {
         }
         return this.http.get(ip);
     }
-    http_post(url: string, body: any, boolean?: boolean) {
-        const httpOptions = {
-            headers: new HttpHeaders({ 'Content-Type': 'application/json;charset=utf-8' })
+    http_post(url: string, body: any, boolean?: boolean,contentType?:string) {
+        let httpOptions;
+        if(contentType){
+            httpOptions = {
+                headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' })
+            }
+        }else{
+            httpOptions = {
+                headers: new HttpHeaders({ 'Content-Type': 'application/json;charset=utf-8' })
+            }
         }
+  
         let ip = this.ip() + url;
         if (boolean) {
             ip = url;

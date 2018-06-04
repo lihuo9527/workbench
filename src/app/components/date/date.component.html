@@ -3,14 +3,16 @@
 <div class="date_box">
     <div class="date_title">
         <a class="close" (click)="close()">关闭</a>
-        <span>选择日期</span>
-        <a class="cancel" (click)="cancel()">撤销</a>
+        <span style="flex: 0 0 100%;display:flex;justify-content: center;align-items: center;">选择日期</span>
+        <span class="show_date" *ngIf="start_date&&number==1">{{start_date}}</span>
+        <a *ngIf="number==2" class="cancel" (click)="cancel()">撤销</a>
+        <!-- <a *ngIf="number==1" class="cancel" (click)="finish()">确定</a> -->
     </div>
-    <div class="start_box" [ngClass]="{'have_bd':!state,'no_bd':state}" (click)="state=false">
+    <div *ngIf="number==2" class="start_box" [ngClass]="{'have_bd':!state,'no_bd':state}" (click)="state=false">
         <p class="green">开始时间</p>
         <span *ngIf="start_date">{{start_date}}</span>
     </div>
-    <div class="end_box" [ngClass]="{'have_bd':state,'no_bd':!state}" (click)="state=true">
+    <div *ngIf="number==2" class="end_box" [ngClass]="{'have_bd':state,'no_bd':!state}" (click)="state=true">
         <p class="green">结束时间</p>
         <span *ngIf="end_date">{{end_date}}</span>
     </div>
@@ -20,6 +22,7 @@
         <span>TU</span>
         <span>WE</span>
         <span>TH</span>
+        <span>FR</span>
         <span class="green">SA</span>
     </div>
     <div class="dates_box">
@@ -28,7 +31,8 @@
                 {{item.year}}年 {{item.month}}月
             </div>
             <div class="days">
-                <span class="day" *ngFor="let day of item.days;" [ngClass]="{'bg_green':start_date==dates[i].year +'-'+ dates[i].month +'-'+ day ,'bg_orange': end_date==dates[i]['year'] +'-'+ dates[i]['month'] +'-'+ day,'bg_red':day=='今天' }" (click)="selectDate(i,day)">{{day}}</span>
+                <span class="day" *ngFor="let day of item.days;let b=index;" [ngClass]="{'bg_green':start_date==dates[i].year +'-'+ dates[i].month +'-'+ day,'bg_orange': end_date==dates[i]['year'] +'-'+ dates[i]['month'] +'-'+ day,'bg_red':day=='今天','color_red':b==0&&day>0 || b==6&&day>0 || b==7&&day>0 || b==13&&day>0 || b==14&&day>0 || b==20&&day>0 || b==21&&day>0 || b==27&&day>0 || b==28&&day>0 || b==34&&day>0 || b==35&&day>0}"
+                    (click)="selectDate(i,day)">{{day}}</span>
             </div>
         </div>
         <div style="height: 30%;width: 100%;"></div>

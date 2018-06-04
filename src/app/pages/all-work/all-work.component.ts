@@ -19,9 +19,9 @@ export class AllWorkComponent implements OnInit {
     ]
     public list_2 = [{
         title: "Entry", title2: "录入审核", data: [
-            { url: "/assets/images/a_21.png", text: "Critical Event", text2: "产前事件", link: "/criticalEvent", id: "all", index: "0" },
-            { url: "/assets/images/a_22.png", text: "Daily Progress", text2: "每日进度", link: "/productionDailyProgress", id: "all", index: "0" },
-            { url: "/assets/images/a_23.png", text: "Non-planing Process", text2: "非排产工序", link: "/NonPlaningProcessComponent", id: "all", index: "0" }]
+            { url: "/assets/images/a_21.png", text: "Critical Event", text2: "产前事件", link: "/criticalEvent", id: "0", index: "0" },
+            { url: "/assets/images/a_22.png", text: "Daily Progress", text2: "每日进度", link: "/productionDailyProgress", id: "1", index: "0" },
+            { url: "/assets/images/a_23.png", text: "Non-planing Process", text2: "非排产工序", link: "/NonPlaningProcessComponent", id: "2", index: "0" }]
     },
     {
         title: "Abnormal Event Reminder", title2: "异常事件提醒", data: [

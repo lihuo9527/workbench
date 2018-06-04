@@ -18,12 +18,14 @@ export class ScheduleEntryComponent implements OnInit {
     public DateState;
     public date;
     public allstate;
+    public state;
     public color_tabs = [];
     public green_show = 0;
     public number;
     public title;
     public title2;
     public placeholder;
+    public DateName;
     ngOnInit() {
         this.data = JSON.parse(this.routerIonfo.snapshot.params["data"]);
         this.Language = localStorage.getItem("language");
@@ -32,23 +34,34 @@ export class ScheduleEntryComponent implements OnInit {
         if (this.data.Pid == "progress") {
             this.title = "Production Daily Progress";
             this.title2 = "日进度数录入";
+            this.service.http_get('/api/Schedule/GetPlanScheduleData?poid=' + this.data.id + '&planId=' + this.data.ProductionEventID, false).subscribe((data:any) => {
+                console.log(data)
+                this.color_tabs = data;
+            })
         }
         if (this.data.Pid == "non-process") {
             this.title = "Non-Planing Process Entry";
             this.title2 = "非排产工序进度录入";
+            this.service.http_get('/api/Schedule/GetScheduleData?poid=' + this.data.id + '&processId=' + this.data.ProductionEventID, false).subscribe((data:any) => {
+                console.log(data)
+                this.color_tabs = data;
+            })
         }
         console.log(this.data)
-        this.service.http_get('/api/Schedule/GetPlanScheduleData?poId=' + this.data.id + '&planId=' + this.data.ProductionEventID, false).subscribe((data:any) => {
-            console.log(data)
-            this.color_tabs = data;
-        })
+
     }
     change() {
         console.log(this.color_tabs)
     }
-    GetDate($event) {
-        this.DateState = false;
-        $event == "false" ? this.date = "选择生产日期" : this.date = $event;
+    backDate($event) {
+        let obj = JSON.parse($event);
+        if (obj.date) {
+            this.date = obj.date;
+        }
+        this.state = false;
+    }
+    showDate(event) {
+        this.state = true;
     }
     InputFocus() {
         this.input.nativeElement.focus();
@@ -79,17 +92,13 @@ export class ScheduleEntryComponent implements OnInit {
             }
             console.log(JSON.stringify(this.color_tabs))
             this.service.http_post('/api/Schedule/AddPlanScheduleDaily', JSON.stringify(data), false).subscribe((data:any) => {
+                if(data.IsSuccess==1)alert("提交成功！")
                 console.log(data);
             })
         } else {
-            let data = {
-                ProductionEventId: this.data.ProductionEventID,
-                lineId: this.data.LineID,
-                poId: this.data.id,
-                proDate: this.date,
-                amount: this.number
-            }
-            this.service.http_post('/api/Schedule/AddPlanScheduleByPo', JSON.stringify(data), false).subscribe((data:any) => {
+            let data = "ProductionEventId=" +  this.data.ProductionEventID + "&lineId=" + this.data.LineID + "&poId=" + this.data.id + "&proDate=" + this.date + "&amount=" + this.number;
+            this.service.http_post('/api/Schedule/AddPlanScheduleByPo', data, false,"form").subscribe((data:any) => {
+                if(data.IsSuccess==1)alert("提交成功！")
                 console.log(data);
             })
 
