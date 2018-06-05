@@ -1,0 +1,51 @@
+.shadowcontainer {
+    margin: 0 auto;
+    max-width: 768px;
+}
+
+.shadow {
+    max-width: 768px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.message {
+    width: 50%;
+    flex: 0 0 50%;
+    display: flex;
+    background: #fff;
+    border-radius: 12px;
+    flex-flow: wrap;
+    height: 120px;
+}
+
+.message span {
+    flex: 0 0 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    border-radius: 10px 10px;
+    height: 80px;
+}
+
+.message button {
+    flex: 0 0 100%;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background: #088c77;
+    border-radius: 0 0 10px 10px;
+    color: #fff;
+    height: 40px;
+}

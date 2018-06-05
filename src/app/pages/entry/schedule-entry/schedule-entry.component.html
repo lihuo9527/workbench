@@ -1,6 +1,16 @@
 <div class="container">
     <app-title *ngIf="Language=='en'" [title]="title"></app-title>
     <app-title *ngIf="Language=='cn'" [title]="title2"></app-title>
+    <div style="display: flex;padding:1rem;flex-flow: wrap;" *ngIf="data.Pid=='non-process'">
+        <div style="display: flex;flex: 0 0 100%;padding-bottom:0.5rem;" (click)="selectstate=!selectstate">
+            <span style="font-size: 1.4rem;flex:0 0 60%;">Please select the process</span>
+            <span style="flex:0 0 30%;font-size: 1.4rem;">{{processName}}</span>
+            <span style="flex:0 0 10%;display: flex;align-items:center;justify-content: center;font-size: 1.4rem;">></span>
+        </div>
+        <div *ngIf="selectstate" style="display: flex;flex: 0 0 100%;flex-flow: wrap;">
+            <p *ngFor="let item of process" style="display: flex;flex: 0 0 100%;padding-top:0.5rem;padding-bottom:0.5rem;font-size: 1.4rem;" (click)="switch(item.itemId,item.itemName)">{{item.itemName}}</p>
+        </div>
+    </div>
     <ul class="materList criticaEdit">
         <li>
             <ul class="marterInfo">

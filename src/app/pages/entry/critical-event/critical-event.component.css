@@ -83,8 +83,8 @@
     font-size: 1.3rem;
 }
 
-.box .list .other {
-    flex: 0 0 50%;
+.box .list .left-content {
+    flex: 0 0 33.33%;
     list-style: none;
     font-style: normal;
     color: #333;
@@ -100,6 +100,10 @@
     margin-left: 1rem;
     font-size: 1rem;
     color: #808080;
+}
+
+.other {
+    padding-bottom: 1rem;
 }
 
 .btn {
@@ -126,4 +130,28 @@
 .green {
     background: #088c77 !important;
     color: #fff;
+}
+
+.eventName {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 7rem;
+    background: #ddf6f2;
+    color: #fff;
+    font-size: 1.6rem;
+    line-height: 1.6rem;
+    display: -webkit-box;
+    display: -moz-box;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    text-align: center;
+}
+
+.center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 33.33%;
 }

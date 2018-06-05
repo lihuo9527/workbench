@@ -39,6 +39,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { MessageBoxComponent } from './components/message-box/message-box.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,6 +77,7 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,
+    MessageBoxComponent,
   ],
   imports: [
     BrowserModule,

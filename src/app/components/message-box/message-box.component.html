@@ -1,0 +1,8 @@
+<div class="shadowcontainer">
+    <div class="shadow" *ngIf="msgShow">
+        <div class="message">
+            <span>{{msg}}</span>
+            <button (click)="send()"> {{btnText}}</button>
+        </div>
+    </div>
+</div>

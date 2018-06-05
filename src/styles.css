@@ -40,6 +40,8 @@ html,
 body {
     height: 100% !important;
     background: #f3f4f6;
+    max-width: 768px;
+    margin: 0 auto;
 }
 
 html {

@@ -63,10 +63,6 @@ export const appRoutes = [
 		component: CriticalEventComponent
 	},
 	{
-		path: 'criticalEvent/:id',
-		component: CriticalEventComponent
-	},
-	{
 		path: 'productionDailyProgress/:id',
 		component: ProductionDailyProgressComponent
 	},
@@ -145,12 +141,12 @@ export const appRoutes = [
     },
     {
         path: '',
-        component:LoginComponent
+        component:HomeComponent
     },
 
 	{
 		path: '**',
 		pathMatch: 'full',
-		redirectTo: 'login'
+		redirectTo: 'home'
 	}
 ];

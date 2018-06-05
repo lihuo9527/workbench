@@ -43,42 +43,9 @@
     border-bottom: 1px solid #f3f4f6;
 }
 
-.box .list li {
-    line-height: 4rem;
-    font-size: 1.6rem;
-    overflow: hidden;
+.lists {
     display: flex;
-    flex-flow: wrap;
-}
-
-.box .list li i {
-    line-height: 4rem;
-    font-size: 1.6rem;
-}
-
-.box .list li .on {
-    background: #088c77;
-    color: #fff;
-}
-
-.box .list li.on i {
-    color: #fff;
-}
-
-.box .list .listTop,
-.ListOther {
-    border-bottom: #f0f0f0 solid 1px;
-    height: 3rem;
-    padding: 1rem;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    flex: 0 0 100%;
-}
-
-.listTop h5 {
-    color: #088c77;
-    font-size: 1.3rem;
+    width: 100%;
 }
 
 .green {
@@ -86,31 +53,43 @@
     color: #fff;
 }
 
-.box .list .other {
+.other p {
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    margin-bottom: 0.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.other span {
+    line-height: 1.5rem;
+    font-size: 1rem;
+    color: #b2b2b2;
     flex: 0 0 100%;
+}
+
+.items {
+    width: 100%;
+    clear: both;
+    overflow: hidden;
+    padding: 0 5% 0;
+    border-top: #dbdbdb solid 1px;
+    margin-bottom: 1rem;
+}
+
+.box .list .other {
+    flex: 0 0 33.33%;
     list-style: none;
     font-style: normal;
     color: #333;
     text-decoration: none;
-}
-
-.otherBox {
     display: flex;
-    flex: 1;
-    justify-content: flex-start;
     flex-flow: wrap;
 }
 
-.otherBox p {
-    font-size: 1.4rem;
+.other p {
     flex: 0 0 100%;
-}
-
-.otherBox span {
-    flex: 0 0 100%;
-    font-size: 1rem;
-    color: #808080;
-    margin-top: 1rem;
 }
 
 .btn {
@@ -119,8 +98,6 @@
 
 .entry {
     background: #088c77;
-    float: right;
-    margin: 1rem;
     color: #fff;
     text-align: center;
     line-height: 3rem;
@@ -128,4 +105,48 @@
     width: 5rem;
     border-radius: 0.5rem;
     font-size: 1.6rem;
+    margin-right: 1rem;
+}
+
+.list {
+    display: flex;
+    flex-flow: wrap;
+}
+
+.list .list_title {
+    display: flex;
+    flex: 0 0 100%;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.list .list_title .i p {
+    height: 4rem;
+    width: 10px;
+    background: #9eb4d8;
+}
+
+.list .list_title .i {
+    flex: 0 0 5%;
+    height: 4rem;
+    width: 10px;
+}
+
+.jo_container {
+    flex: 0 0 65%;
+}
+
+.jo_container span {
+    font-size: 1.4rem;
+}
+
+.entry_container {
+    flex: 0 0 30%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.row {
+    display: flex;
+    padding-top: 1rem;
 }

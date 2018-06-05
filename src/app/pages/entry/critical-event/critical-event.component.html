@@ -17,21 +17,30 @@
                     <div class="listTop">
                         <h5>{{item.code}}</h5>
                     </div>
-                    <div class="other">
-                        <p>{{item.StarDate.substring(0,10)}}</p>
-                        <span *ngIf="Language=='en'">Recommended Date</span>
-                        <span *ngIf="Language=='cn'">推荐完成日期</span> </div>
-                    <div class="other">
-                        <p>{{item.EndDate.substring(0,10)}}</p>
-                        <span *ngIf="Language=='en'">Delivery Date</span>
-                        <span *ngIf="Language=='cn'">客户交期</span></div>
-                    <div class="other">
-                        <p>{{item.pattern}}</p>
-                        <span *ngIf="Language=='en'">Fty.style</span>
-                        <span *ngIf="Language=='cn'">本厂款号</span></div>
-                    <div class="btn">
-                        <button *ngIf="Language=='en'" class="entry" (click)="Link(item)">Entry</button>
-                        <button *ngIf="Language=='cn'" class="entry" (click)="Link(item)">录入</button></div>
+                    <div class="left-content">
+                        <div class="other">
+                            <p>{{item.StarDate.substring(0,10)}}</p>
+                            <span *ngIf="Language=='en'">Recommended Date</span>
+                            <span *ngIf="Language=='cn'">推荐完成日期</span></div>
+                        <div class="other">
+                            <p>{{item.pattern}}</p>
+                            <span *ngIf="Language=='en'">Fty.style</span>
+                            <span *ngIf="Language=='cn'">本厂款号</span></div>
+                    </div>
+                    <div class="center-content">
+                        <em class="eventName">
+                                <span style="font-size:1.6rem;color:#088c77;"></span>
+                          </em>
+                    </div>
+                    <div class="right-content">
+                        <div class="other">
+                            <p>{{item.EndDate.substring(0,10)}}</p>
+                            <span *ngIf="Language=='en'">Delivery Date</span>
+                            <span *ngIf="Language=='cn'">客户交期</span></div>
+                        <div class="btn">
+                            <button *ngIf="Language=='en'" class="entry" (click)="Link(item)">Entry</button>
+                            <button *ngIf="Language=='cn'" class="entry" (click)="Link(item)">录入</button></div>
+                    </div>
                 </li>
             </ul>
             <app-load-more *ngIf="datas.length>3" [language]="Language" (click)="UpdateList()"></app-load-more>
