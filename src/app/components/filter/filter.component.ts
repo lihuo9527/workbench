@@ -36,7 +36,9 @@ export class FilterComponent implements OnInit {
     public Language;
     ngOnInit() {
         this.Language = localStorage.getItem("language");
+        console.log("INfo",this.Info)
         this.Init();
+
     }
     Init() {
         this.service.http_get('/api/BaseData/GetFactoryLines', false).subscribe((data:any) => {
@@ -59,7 +61,7 @@ export class FilterComponent implements OnInit {
                 }
             }
         })
-        if (this.Info == "process") {
+        if (this.Info == "process" || this.Info == "non-process") {
             this.service.http_get('/api/BaseData/GetProcesses', false).subscribe((data:any) => {
                 if (data.length > 0) {
                     let names = [];

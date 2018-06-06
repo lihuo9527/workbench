@@ -149,4 +149,5 @@
 .row {
     display: flex;
     padding-top: 1rem;
+    align-items: flex-start;
 }

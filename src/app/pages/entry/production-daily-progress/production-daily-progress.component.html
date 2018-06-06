@@ -2,7 +2,7 @@
     <app-title *ngIf="Language=='en'" title="Production Daily Progress"></app-title>
     <app-title *ngIf="Language=='cn'" title="生产日进度"></app-title>
     <app-search-box (getstate)='state=$event'></app-search-box>
-    <app-filter *ngIf="state" Info="criticalEvent" (back)="state=!state" (envet)="Complete($event)"></app-filter>
+    <app-filter *ngIf="state" Info="process" (back)="state=!state" (envet)="Complete($event)"></app-filter>
     <ul class="materList dailyProcess">
         <li *ngFor="let item of datas"><i></i>
             <h3>

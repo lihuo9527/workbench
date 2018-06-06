@@ -92,7 +92,6 @@ export class ScheduleEntryComponent implements OnInit {
                 let IsProCompleted = this.allstate ? 1 : 0;
                 let data = {
                     "ProceesId": this.processId,
-                    "LineId": this.data.LineID,
                     "PoId": this.data.id,
                     "ProDate": this.date,
                     "IsProCompleted": IsProCompleted,
@@ -116,7 +115,7 @@ export class ScheduleEntryComponent implements OnInit {
                     console.log(data);
                 })
             } else {
-                let data = "processId=" + this.processId + "&lineId=" + this.data.LineID + "&poId=" + this.data.id + "&proDate=" + this.date + "&amount=" + this.number;
+                let data = "processId=" + this.processId + "&poId=" + this.data.id + "&proDate=" + this.date + "&amount=" + this.number;
                 this.service.http_post('/api/Schedule/AddScheduleByPo', data, false, "form").subscribe((data: any) => {
                     if (data.IsSuccess == 1) alert("提交成功！")
                     console.log(data);

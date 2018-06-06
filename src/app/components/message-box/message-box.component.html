@@ -1,5 +1,5 @@
-<div class="shadowcontainer">
-    <div class="shadow" *ngIf="msgShow">
+<div class="shadowcontainer" *ngIf="msgShow">
+    <div class="shadow">
         <div class="message">
             <span>{{msg}}</span>
             <button (click)="send()"> {{btnText}}</button>

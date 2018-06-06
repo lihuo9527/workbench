@@ -5,10 +5,10 @@
     <div class="item">
         <div class="item_container">
             <div class="img_container">
-                <img src="assets/images/phone2.png" alt="">
+                <img src="assets/images/icon_user_normal.png" alt="">
             </div>
             <div class="input_container">
-                <input class="input" minlength="11" maxlength="11" [(ngModel)]="username" type="text" placeholder="Phone Number">
+                <input class="input" minlength="11" maxlength="11" [(ngModel)]="username" type="text" placeholder="User Name">
             </div>
         </div>
     </div>
@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <div class="item">
+    <!-- <div class="item">
         <div class="item_container">
             <div class="img_container">
                 <img src="assets/images/email.png">
@@ -39,7 +39,9 @@
                 <button [ngClass]="{'code_gray':!codestate,'code_green':codestate}" (click)="getCode()">Get the verifying code{{time}}</button>
             </div>
         </div>
-    </div>
+    </div> -->
+    <img src="assets/images/radio_right.png" style="display: none;" alt="">
+    <img src="assets/images/loading.gif" style="display: none;" alt="">
 
     <div class="item3">
         <button class="register" (click)="register()" [disabled]="!state" [ngClass]="{'green':state,'gray':!state}">Register</button>
@@ -54,4 +56,5 @@
         </div>
     </div>
     <app-message-box [msg]="message.msg" (event)="message.state=false" [btnText]="message.btnText" [msgShow]="message.state"></app-message-box>
+    <app-loading [loadingShow]="loading"></app-loading>
 </div>

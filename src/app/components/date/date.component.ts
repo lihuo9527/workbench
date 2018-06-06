@@ -148,7 +148,7 @@ export class DateComponent implements OnInit {
                 return;
             }
             this.start_date = this.dates[index].year + "-" + this.dates[index].month + "-" + day;
-            setTimeout(()=>this.backDate(),1000);
+            setTimeout(()=>this.backDate(),500);
         }
 
     }

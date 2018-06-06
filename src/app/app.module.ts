@@ -40,6 +40,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { MessageBoxComponent } from './components/message-box/message-box.component';
+import { CookieService } from 'ngx-cookie-service';
+import { LoadingComponent } from './components/loading/loading.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,6 +80,7 @@ import { MessageBoxComponent } from './components/message-box/message-box.compon
     RegisterComponent,
     ForgotPasswordComponent,
     MessageBoxComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,7 +89,7 @@ import { MessageBoxComponent } from './components/message-box/message-box.compon
     HttpClientModule,
 
   ],
-  providers: [AppService],
+  providers: [AppService,CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

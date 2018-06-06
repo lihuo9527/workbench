@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
     public nowdate = new Date();
     public time;
     public timer;
+    public loading = false;
     public message = {
         state: false,
         btnText: "OK",
@@ -44,14 +45,6 @@ export class RegisterComponent implements OnInit {
             this.alert("用户名或密码不能为空！")
             return;
         }
-        if (this.service.getStrLength(this.code) != 6) {
-            this.alert("验证码输入有误！")
-            return;
-        }
-        if (this.service.isPoneAvailable(this.username) == false) {
-            this.alert("输入的手机号不合法！")
-            return;
-        }
         if (this.service.getStrLength(this.password) < 6) {
             this.alert("密码长度不能少于6位！")
             return;
@@ -60,41 +53,46 @@ export class RegisterComponent implements OnInit {
             loginName: this.username,
             password: this.password
         }
-        this.service.http_post("/users/addUser/" + this.code, JSON.stringify(obj), false).subscribe((data: any) => {
+        this.loading = true;
+        this.service.http_post("/users/addUser", JSON.stringify(obj), false).subscribe((data: any) => {
+            this.loading = false;
             if (data.msg == "success") {
                 this.alert("注册成功！");
             } else {
                 this.alert(data.result.failedMsg);
             }
-        })
+        },error=>{
+            this.loading = false;
+         }
+        )
     }
-    getCode() {
-        if (!this.username) {
-            this.alert("手机号不能为空！")
-            return;
-        }
-        if (!this.service.isPoneAvailable(this.username)) {
-            this.alert("输入的手机号不合法！")
-            return;
-        }
-        if (this.codestate == true) {
-            this.codestate = false;
-            this.service.http_get("/users/verifycode/" + this.username, false).subscribe((data: any) => {
-                if (data.msg == "success") {
-                    this.time = 60
-                    this.timer = setInterval(() => {
-                        if (this.time <= 1) {
-                            this.codestate = true;
-                            this.time = null;
-                            clearInterval(this.timer);
-                            return;
-                        }
-                        this.time = this.time - 1;
-                    }, 1000)
-                } else {
-                    this.codestate = true;
-                }
-            })
-        }
-    }
+    // getCode() {
+    //     if (!this.username) {
+    //         this.alert("手机号不能为空！")
+    //         return;
+    //     }
+    //     if (!this.service.isPoneAvailable(this.username)) {
+    //         this.alert("输入的手机号不合法！")
+    //         return;
+    //     }
+    //     if (this.codestate == true) {
+    //         this.codestate = false;
+    //         this.service.http_get("/users/verifycode/" + this.username, false).subscribe((data: any) => {
+    //             if (data.msg == "success") {
+    //                 this.time = 60
+    //                 this.timer = setInterval(() => {
+    //                     if (this.time <= 1) {
+    //                         this.codestate = true;
+    //                         this.time = null;
+    //                         clearInterval(this.timer);
+    //                         return;
+    //                     }
+    //                     this.time = this.time - 1;
+    //                 }, 1000)
+    //             } else {
+    //                 this.codestate = true;
+    //             }
+    //         })
+    //     }
+    // }
 }

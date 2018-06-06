@@ -23,6 +23,7 @@ export class ForgotPasswordComponent implements OnInit {
         btnText: "OK",
         msg: ""
     };
+    public loading = false;
     ngOnInit() {
         this.Language = localStorage.getItem("language");
     }
@@ -86,12 +87,17 @@ export class ForgotPasswordComponent implements OnInit {
             newPwd:this.items[1].value,
             code:this.items[0].value
         }
+        this.loading = true;
         this.service.http_post('/users/modifyPasswordWithCode', "phone=" + this.username+ "&newPwd=" + this.items[1].value + "&code=" + this.items[0].value , false,"form").subscribe((data: any) => {
+            this.loading = false;
             if (data.msg == "success") {
                 this.alert("修改成功！");
             } else {
                 this.alert(data.result.failedMsg);
             }
+        },error=>{
+            this.loading = false;
+            this.alert("连接失败！");
         })
     }
 }

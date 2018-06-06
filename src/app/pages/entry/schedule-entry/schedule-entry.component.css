@@ -34,13 +34,14 @@
 .colrCon {
     background: #f3f4f6;
     display: flex;
-    flex: 1;
     align-items: flex-start;
 }
 
 .colorMenu {
     flex: 0 0 20%;
     height: 100%;
+    max-height: 150px;
+    overflow: auto;
 }
 
 .colorMenu li {
@@ -58,10 +59,26 @@
     background: #f3f4f6;
 }
 
+.Tabtitle {
+    display: flex;
+}
+
+.colorTab ul {
+    display: flex;
+    width: 100%;
+}
+
+.Tabtitle span {
+    flex: 0 0 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .colrCon .colorTab {
     flex: 0 0 80%;
-    overflow: hidden;
     background: #fff;
+    display: flex;
 }
 
 .colrCon .colorTab td {
@@ -184,4 +201,83 @@ td input {
     background-size: 4rem;
     width: 4rem;
     height: 2rem;
+}
+
+.non-process {
+    display: flex;
+    padding: 1rem;
+    flex-flow: wrap;
+    position: relative;
+    background: #fff;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.select-container {
+    display: flex;
+    flex: 0 0 100%;
+    padding-bottom: 0.5rem;
+}
+
+.select_name {
+    flex: 0 0 30%;
+    font-size: 1.4rem;
+    color: #333333;
+}
+
+.arrow {
+    flex: 0 0 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+}
+
+.tabs {
+    display: flex;
+    flex: 0 0 100%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: 1.4rem;
+    border-bottom: solid 1px #e6e6e6;
+    color: #333333;
+}
+
+.tabs_container {
+    display: flex;
+    width: 100%;
+    flex-flow: wrap;
+    position: absolute;
+    top: 0;
+    background: #fff;
+}
+
+.colorTab ul {
+    flex: 0 0 100%;
+    display: flex;
+    flex-flow: wrap;
+}
+
+.colorTab ul li {
+    flex: 0 0 100%;
+    display: flex;
+}
+
+.colorTab ul li span {
+    flex: 0 0 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-top: 1px solid #e6e6e6;
+    border-right: 1px solid #e6e6e6;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.select_p {
+    font-size: 1.4rem;
+    flex: 0 0 60%;
+    color: #808080;
 }

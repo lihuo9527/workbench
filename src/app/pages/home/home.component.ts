@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../../app.service';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
@@ -7,7 +8,7 @@ import { AppService } from '../../app.service';
 })
 export class HomeComponent implements OnInit {
 
-    constructor(private service: AppService) { }
+    constructor(private service: AppService,private cookieService:CookieService) { }
     public list: any = [
         {
             TodayHandledCount: "0",
@@ -62,7 +63,6 @@ export class HomeComponent implements OnInit {
 
 
     ngOnInit() {
-
         // this.service.http_get("http://127.0.0.1:3000/app.js?name=li&password=123456&router=login2",true).subscribe(data=>{
         //     console.log(data);
         // })
@@ -72,9 +72,14 @@ export class HomeComponent implements OnInit {
         let obj = new window_obj();
         console.log(obj.ip());
         console.log(obj.language());
-        this.service.set_params("true");
         this.Language = obj.language();
+        let time :number = 2*60*6000*100000;
+        if(obj.cookies()){
+            console.log("cookies")
+            this.cookieService.set('JSESSIONID', obj.cookies(),new Date(new Date().getTime() + time));
+        }
         localStorage.setItem("language", this.Language);
+        this.service.set_params("true");
         let url: string;
         for (let i = 1; i < this.list.length; i++) {
             switch (i) {

@@ -1,14 +1,18 @@
 <div class="container">
     <app-title *ngIf="Language=='en'" [title]="title"></app-title>
     <app-title *ngIf="Language=='cn'" [title]="title2"></app-title>
-    <div style="display: flex;padding:1rem;flex-flow: wrap;" *ngIf="data.Pid=='non-process'">
-        <div style="display: flex;flex: 0 0 100%;padding-bottom:0.5rem;" (click)="selectstate=!selectstate">
-            <span style="font-size: 1.4rem;flex:0 0 60%;">Please select the process</span>
-            <span style="flex:0 0 30%;font-size: 1.4rem;">{{processName}}</span>
-            <span style="flex:0 0 10%;display: flex;align-items:center;justify-content: center;font-size: 1.4rem;">></span>
+    <div class="non-process" *ngIf="data.Pid=='non-process'">
+        <div class="select-container" (click)="selectstate=!selectstate">
+            <span class="select_p">Please select the process</span>
+            <span class="select_name">{{processName}}</span>
+            <span class="arrow">></span>
         </div>
-        <div *ngIf="selectstate" style="display: flex;flex: 0 0 100%;flex-flow: wrap;">
-            <p *ngFor="let item of process" style="display: flex;flex: 0 0 100%;padding-top:0.5rem;padding-bottom:0.5rem;font-size: 1.4rem;" (click)="switch(item.itemId,item.itemName)">{{item.itemName}}</p>
+    </div>
+    <div style="position: relative;width: 100%;">
+        <div class="tabs_container" *ngIf="selectstate">
+            <p class="tabs" *ngFor="let item of process" (click)="switch(item.itemId,item.itemName)">
+                <span style="padding-left:1rem; ">{{item.itemName}}</span>
+            </p>
         </div>
     </div>
     <ul class="materList criticaEdit">
@@ -62,26 +66,26 @@
                 <span [ngClass]="{'small_green':green_show==i}">{{item.Color}}</span>
             </li>
         </ul>
-        <table class="colorTab" *ngIf="color_tabs.length>0">
-            <tbody>
-                <tr>
-                    <th *ngIf="Language=='cn'">尺码</th>
-                    <th *ngIf="Language=='cn'">排产数</th>
-                    <th *ngIf="Language=='cn'">已完成数</th>
-                    <th *ngIf="Language=='cn'">本次进度</th>
-                    <th *ngIf="Language=='en'">Size</th>
-                    <th *ngIf="Language=='en'">Schd.Qty</th>
-                    <th *ngIf="Language=='en'">Completed.Qty</th>
-                    <th *ngIf="Language=='en'">Progress</th>
-                </tr>
-                <tr *ngFor="let item of color_tabs[green_show].SizeCompletes">
-                    <td>{{item.Size}}</td>
-                    <td>{{item.PlanAmount}}</td>
-                    <td>{{item.CompleteAmount}}</td>
-                    <td><input type="text" (change)="change()" [(ngModel)]="item.Amount"></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="colorTab" *ngIf="color_tabs.length>0">
+            <ul>
+                <li class="Tabtitle">
+                    <span *ngIf="Language=='cn'">尺码</span>
+                    <span *ngIf="Language=='cn'">排产数</span>
+                    <span *ngIf="Language=='cn'">已完成数</span>
+                    <span *ngIf="Language=='cn'">本次进度</span>
+                    <span *ngIf="Language=='en'">Size</span>
+                    <span *ngIf="Language=='en'">Schd.Qty</span>
+                    <span *ngIf="Language=='en'">Completed.Qty</span>
+                    <span *ngIf="Language=='en'">Progress</span>
+                </li>
+                <li *ngFor="let item of color_tabs[green_show].SizeCompletes">
+                    <span>{{item.Size}}</span>
+                    <span>{{item.PlanAmount}}</span>
+                    <span>{{item.CompleteAmount}}</span>
+                    <span><input type="text" (change)="change()" style="width:100%;text-align: center;" [(ngModel)]="item.Amount"></span>
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="date_container" (click)="showDate()">
         <span *ngIf="Language=='cn'" class="select1">生产日期</span>

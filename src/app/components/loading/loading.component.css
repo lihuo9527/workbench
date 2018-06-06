@@ -1,0 +1,18 @@
+.loadingcontainer {
+    margin: 0 auto;
+    max-width: 768px;
+}
+
+.shadow {
+    max-width: 768px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(252, 250, 250, 0.5);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
