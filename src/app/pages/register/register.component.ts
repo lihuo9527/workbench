@@ -41,9 +41,15 @@ export class RegisterComponent implements OnInit {
         this.message.btnText = "OK";
     }
     register() {
+        let reg=/^[a-zA-Z0-9]{1,20}$/;
         if (!this.username || !this.password) {
             this.alert("用户名或密码不能为空！")
             return;
+        }
+        if (!reg.test(this.username)) {
+            this.alert("输入的用户名不合法！")
+            return;
+
         }
         if (this.service.getStrLength(this.password) < 6) {
             this.alert("密码长度不能少于6位！")
@@ -63,6 +69,7 @@ export class RegisterComponent implements OnInit {
             }
         },error=>{
             this.loading = false;
+            this.alert("连接失败...");
          }
         )
     }

@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
         msg: ""
     }
     public items = [
-        { url: "assets/images/icon_user.png", text: "User Name", type: "text", input: "", minlength: 11, maxlength: 11 },
+        { url: "assets/images/icon_user.png", text: "User Name", type: "text", input: "", minlength: 1, maxlength: 20 },
         { url: "assets/images/password.png", text: "Password", type: "password", input: "", minlength: 6, maxlength: 20 }
     ];
     public loading = false;
@@ -31,12 +31,13 @@ export class LoginComponent implements OnInit {
         this.message.btnText = "OK";
     }
     login() {
+        let reg=/^[a-zA-Z0-9]{1,20}$/;
         if (!this.items[0].input || !this.items[1].input) {
             this.alert("用户名或密码不能为空！")
             return;
         }
-        if (!this.service.isPoneAvailable(this.items[0].input)) {
-            this.alert("输入的手机号不合法！")
+        if (!reg.test(this.items[0].input)) {
+            this.alert("输入的用户名不合法！")
             return;
 
         }
