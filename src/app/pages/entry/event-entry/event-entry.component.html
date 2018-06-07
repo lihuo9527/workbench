@@ -1,42 +1,53 @@
 <div class="container">
     <app-title *ngIf="Language=='en'" title="Progress of Critical Event"></app-title>
     <app-title *ngIf="Language=='cn'" title="关键事件进度录入"></app-title>
-    <ul class="materList criticaEdit">
-        <li>
-            <ul class="marterInfo">
-                <li>
-                    <p>{{data.code}}</p>
-                    <span *ngIf="Language=='en'">JO</span>
-                    <span *ngIf="Language=='cn'">生产单号</span></li>
-                <li>
-                    <p>{{data.deliverydate}}</p>
-                    <span *ngIf="Language=='en'">Delivery Date</span>
-                    <span *ngIf="Language=='cn'">交货期</span></li>
-                <li>
-                    <p>{{data.StarDate}}</p>
-                    <span *ngIf="Language=='en'">Production Date</span>
-                    <span *ngIf="Language=='cn'">生产日期</span></li>
-                <li>
-                    <p>{{data.pattern}}</p>
-                    <span *ngIf="Language=='en'">Fty Style</span>
-                    <span *ngIf="Language=='cn'">本厂款号</span></li>
-                <li>
-                    <p>{{data.customername}}</p>
-                    <span *ngIf="Language=='en'">Cust Name</span>
-                    <span *ngIf="Language=='cn'">客户名称</span></li>
-                <li>
-                    <p>{{data.MainMaterielArriveDate}}</p>
-                    <span *ngIf="Language=='en'">Fabric Arrival Date</span>
-                    <span *ngIf="Language=='cn'">主料到货日期</span></li>
-                <li>
-                    <p>{{data.OthMaterielArriveDate}}</p>
-                    <span *ngIf="Language=='en'">Accessories Arrival Date</span>
-                    <span *ngIf="Language=='cn'">辅料到货日期</span></li>
-                <li>
-                    <p>{{data.EventFlowName}}</p>
-                    <span *ngIf="Language=='en'">Critical Event</span>
-                    <span *ngIf="Language=='cn'">关键事件</span></li>
-            </ul>
+    <ul class="items">
+        <li class="row">
+            <div class="other">
+                <p>{{data.code}}</p>
+                <span *ngIf="Language=='en'">JO</span>
+                <span *ngIf="Language=='cn'">生产单号</span>
+            </div>
+            <div class="other">
+                <p>{{data.deliverydate}}</p>
+                <span *ngIf="Language=='en'">Delivery Date</span>
+                <span *ngIf="Language=='cn'">交货期</span>
+            </div>
+            <div class="other">
+                <p>{{data.StarDate}}</p>
+                <span *ngIf="Language=='en'">Production Date</span>
+                <span *ngIf="Language=='cn'">生产日期</span>
+            </div>
+        </li>
+        <li class="row">
+            <div class="other">
+                <p>{{data.pattern}}</p>
+                <span *ngIf="Language=='en'">Fty Style</span>
+                <span *ngIf="Language=='cn'">本厂款号</span>
+            </div>
+            <div class="other">
+                <p>{{data.customername}}</p>
+                <span *ngIf="Language=='en'">Cust Name</span>
+                <span *ngIf="Language=='cn'">客户名称</span>
+            </div>
+            <div class="other">
+                <p>{{data.MainMaterielArriveDate}}</p>
+                <span *ngIf="Language=='en'">Fabric Arrival Date</span>
+                <span *ngIf="Language=='cn'">主料到货日期</span>
+            </div>
+        </li>
+
+        <li class="row">
+            <div class="other">
+                <p>{{data.OthMaterielArriveDate}}</p>
+                <span *ngIf="Language=='en'">Accessories Arrival Date</span>
+                <span *ngIf="Language=='cn'">辅料到货日期</span>
+            </div>
+            <div class="other">
+                <p>{{data.EventFlowName}}</p>
+                <span *ngIf="Language=='en'">Critical Event</span>
+                <span *ngIf="Language=='cn'">关键事件</span>
+            </div>
         </li>
     </ul>
     <section class="editrEcord">

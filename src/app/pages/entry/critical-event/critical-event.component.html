@@ -4,13 +4,6 @@
     <app-search-box (getstate)='state=$event'></app-search-box>
     <app-filter *ngIf="state" Info="event" (ReturnData)="GetTabs($event)" (back)="state=!state" (envet)="Complete($event)"></app-filter>
     <div class="container_box">
-        <!-- <div class="select_box">
-            <ul class="select">
-                <li [ngClass]="{'green':item.state}" *ngFor="let item of navigations;let i=index;" (click)="Select(i)">
-                    {{item.text}}
-                </li>
-            </ul>
-        </div> -->
         <div class="box">
             <ul class="list">
                 <li *ngFor="let item of datas;">
@@ -19,7 +12,7 @@
                     </div>
                     <div class="left-content">
                         <div class="other">
-                            <p>{{item.StarDate.substring(0,10)}}</p>
+                            <p>{{item.StarDate}}</p>
                             <span *ngIf="Language=='en'">Recommended Date</span>
                             <span *ngIf="Language=='cn'">推荐完成日期</span></div>
                         <div class="other">
@@ -34,7 +27,7 @@
                     </div>
                     <div class="right-content">
                         <div class="other">
-                            <p>{{item.EndDate.substring(0,10)}}</p>
+                            <p>{{item.EndDate}}</p>
                             <span *ngIf="Language=='en'">Delivery Date</span>
                             <span *ngIf="Language=='cn'">客户交期</span></div>
                         <div class="btn">

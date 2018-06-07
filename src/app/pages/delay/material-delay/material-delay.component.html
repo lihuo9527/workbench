@@ -18,7 +18,7 @@
             </div>
             <ul class="marterInfo">
                 <li>
-                    <p class="big">{{item.MPDate.substring(0,10)}}</p>
+                    <p class="big">{{item.MPDate}}</p>
                     <span *ngIf="Language=='en'">Purchase Date</span>
                     <span *ngIf="Language=='cn'">采购日期</span></li>
                 <li>
@@ -42,7 +42,7 @@
                     <span *ngIf="Language=='en'">Material Style</span>
                     <span *ngIf="Language=='cn'">物料类型</span></li>
                 <li>
-                    <p class="big">{{item.ExpectedReciveDate.substring(0,10)}}</p>
+                    <p class="big">{{item.ExpectedReciveDate}}</p>
                     <span *ngIf="Language=='en'">Material Arrival Date</span>
                     <span *ngIf="Language=='cn'">物料到货期</span></li>
                 <li>

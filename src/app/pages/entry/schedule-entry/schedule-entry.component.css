@@ -276,6 +276,50 @@ td input {
     box-sizing: border-box;
 }
 
+.row {
+    display: flex;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    align-items: flex-start;
+}
+
+.other {
+    flex: 0 0 33.33%;
+    list-style: none;
+    font-style: normal;
+    color: #333;
+    text-decoration: none;
+    display: flex;
+    flex-flow: wrap;
+}
+
+.other p {
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    margin-bottom: 0.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    min-height: 1.4rem;
+}
+
+.other span {
+    line-height: 1.5rem;
+    font-size: 1rem;
+    color: #b2b2b2;
+    flex: 0 0 100%;
+}
+
+.items {
+    width: 100%;
+    clear: both;
+    overflow: hidden;
+    border-top: #dbdbdb solid 1px;
+    margin-bottom: 1rem;
+    background: #fff;
+}
+
 .select_p {
     font-size: 1.4rem;
     flex: 0 0 60%;

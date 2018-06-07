@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from '../../app.service';
+import { AppService } from '../../../app.service';
 @Component({
     selector: 'app-register',
     templateUrl: './register.component.html',
@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
     public time;
     public timer;
     public loading = false;
+    public password2;
     public message = {
         state: false,
         btnText: "OK",
@@ -53,6 +54,10 @@ export class RegisterComponent implements OnInit {
         }
         if (this.service.getStrLength(this.password) < 6) {
             this.alert("密码长度不能少于6位！")
+            return;
+        }
+        if (this.password != this.password2) {
+            this.alert("密码2次输入的结果不一致！")
             return;
         }
         let obj = {

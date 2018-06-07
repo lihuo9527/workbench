@@ -1,10 +1,13 @@
-.searchBox{
-    padding: 1rem 1rem 1rem 1rem;
+.searchBox {
+    padding: 1rem 0.5rem 1rem 0.5rem;
     overflow: hidden;
     display: flex;
     flex: 1;
 }
-.searchBox .search, .searchBox .detail, .searchBox .searchBut {
+
+.searchBox .search,
+.searchBox .detail,
+.searchBox .searchBut {
     background: #fff;
     border: 0;
     border-radius: 3px 0 0 3px;
@@ -16,6 +19,7 @@
     font-size: 1.3rem;
     color: #333;
 }
+
 .searchBox .detail {
     width: 20%;
     margin: 0 0 0 1rem;
@@ -27,6 +31,7 @@
     padding: 0.5rem;
     border-radius: 3px;
 }
+
 .searchBox .searchBut {
     background: #fff url(/assets/images/i_search.png) no-repeat center;
     height: 3.5rem;
@@ -34,7 +39,7 @@
     background-size: 2rem;
     border-radius: 0 3px 3px 0;
 }
-   
+
 input {
     -webkit-appearance: textfield;
     background-color: white;
@@ -46,7 +51,11 @@ input {
     border-color: initial;
     border-image: initial;
 }
-input, textarea, select, button {
+
+input,
+textarea,
+select,
+button {
     text-rendering: auto;
     color: initial;
     letter-spacing: normal;

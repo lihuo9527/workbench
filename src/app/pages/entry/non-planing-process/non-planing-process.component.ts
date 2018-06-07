@@ -54,11 +54,8 @@ export class NonPlaningProcessComponent implements OnInit {
             // '&fids=' + $event.fids + '&wsids=' +  $event.wsids+ 
             // '&eventid=' +  $event.eventid+ 
             '&star=' + $event.StartDate + '&end=' + $event.EndDate, false).subscribe((data: any) => {
-                let obj = data;
-                if (obj.length > 0) {
-                    this.datas = [{ "id": 1084, "code": "D03NIK0438", "customerid": 5, "factoryid": 0, "customername": "Golf Tour", "deliverydate": "2018-06-20T00:00:00", "initDeliveryDate": null, "workshopDate": null, "producttype": "( Net color ) Men ( fiber ) casual shorts", "pattern": "s/330239", "customerPattern": null, "amount": 7375.0, "priority": 8, "merchandiser": "YUANHONG", "StarDate": "2018-05-27T00:00:00", "EndDate": "2018-06-20T00:00:00", "CompleteAmount": 14601.0, "MainMaterielArriveDate": "2018-06-20T00:00:00", "OthMaterielArriveDate": null, "EventFlowName": null, "Processes": [{ "itemId": 1, "itemName": "CUTTING" }]}];
+                    this.datas = data;
                     this.state = false;
-                }
             })
     }
     GetTabs($event) {

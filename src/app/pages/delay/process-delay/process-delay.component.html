@@ -15,10 +15,10 @@
                     <div class="processBox">
                         <div class="processBar" style="width: 30%"></div>
                     </div>
-                    <span *ngIf="Language=='en'" class="begin">{{item.StartDate.substring(0,10)}}(Begin)</span>
-                    <span *ngIf="Language=='cn'" class="begin">{{item.StartDate.substring(0,10)}}(始)</span>
-                    <span *ngIf="Language=='en'" class="end">{{item.EndDate.substring(0,10)}}(End)</span>
-                    <span *ngIf="Language=='cn'" class="end">{{item.EndDate.substring(0,10)}}(终)</span> </div>
+                    <span *ngIf="Language=='en'" class="begin">{{item.StartDate}}(Begin)</span>
+                    <span *ngIf="Language=='cn'" class="begin">{{item.StartDate}}(始)</span>
+                    <span *ngIf="Language=='en'" class="end">{{item.EndDate}}(End)</span>
+                    <span *ngIf="Language=='cn'" class="end">{{item.EndDate}}(终)</span> </div>
                 <span class="vlue">{{item.Schedulepercent*100}}%</span> </div>
             <div class="ListOther">
                 <div class="otherBox">
@@ -27,7 +27,7 @@
                     <span *ngIf="Language=='cn'">生产线</span></div>
                 <div class="processName">{{item.ProcessName}}</div>
                 <div class="otherBox right">
-                    <p>{{item.DeliveryDate.substring(0,10)}}</p>
+                    <p>{{item.DeliveryDate}}</p>
                     <span *ngIf="Language=='en'">Delivery Date</span>
                     <span *ngIf="Language=='cn'">交货期</span></div>
             </div>

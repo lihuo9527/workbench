@@ -1,12 +1,12 @@
 import { RouterModule } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
+import { HomeComponent } from './pages/navigation/home/home.component';
 import { DeliverDelayComponent } from './pages/delay/deliver-delay/deliver-delay.component';
 import { CriticalEventDelayComponent } from './pages/delay/critical-event-delay/critical-event-delay.component';
 import { ProcessDelayComponent } from './pages/delay/process-delay/process-delay.component';
 import { EventDelayEditComponent } from './pages/delay/event-delay-edit/event-delay-edit.component';
 import { MaterialDelayComponent } from './pages/delay/material-delay/material-delay.component';
 import { TodayComponent } from './pages/today/today.component';
-import { AllWorkComponent } from './pages/all-work/all-work.component';
+import { AllWorkComponent } from './pages/navigation/all-work/all-work.component';
 import { CriticalEventComponent } from './pages/entry/critical-event/critical-event.component';
 import { ProductionDailyProgressComponent } from './pages/entry/production-daily-progress/production-daily-progress.component';
 import { NonPlaningProcessComponent } from './pages/entry/non-planing-process/non-planing-process.component';
@@ -22,9 +22,12 @@ import { ScheduleListComponent } from './pages/produce/schedule-list/schedule-li
 import { ScheduleReportFormsComponent } from './pages/produce/schedule-report-forms/schedule-report-forms.component';
 import { DetailAnalysisListComponent } from './pages/produce/detail-analysis-list/detail-analysis-list.component';
 import { DetailAnalysisComponent } from './pages/produce/detail-analysis/detail-analysis.component';
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { LoginComponent } from './pages/user/login/login.component';
+import { RegisterComponent } from './pages/user/register/register.component';
+import { ForgotPasswordComponent } from './pages/user/forgot-password/forgot-password.component';
+import { OutProcessComponent } from './pages/out/out-process/out-process.component';
+import { PlanEntryComponent } from './pages/out/plan-entry/plan-entry.component';
+import { SelectingSuppliersComponent } from './pages/out/selecting-suppliers/selecting-suppliers.component';
 export const appRoutes = [
 	{
 		path: 'home',
@@ -138,6 +141,18 @@ export const appRoutes = [
     {
         path: 'forgot-password',
         component:ForgotPasswordComponent
+    },
+    {
+        path: 'outProcess/:data',
+        component:OutProcessComponent,
+    },
+    {
+        path: 'planEntry/:data',
+        component:PlanEntryComponent,
+    },
+    {
+        path: 'selectingSuppliers/:data',
+        component:SelectingSuppliersComponent,
     },
     {
         path: '',

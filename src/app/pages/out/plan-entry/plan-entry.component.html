@@ -1,0 +1,115 @@
+<div class="container">
+    <app-title *ngIf="Language=='en'" [title]="title"></app-title>
+    <app-title *ngIf="Language=='cn'" [title]="title"></app-title>
+
+    <ul class="items">
+        <li class="row">
+            <div class="other">
+                <p>{{data.code}}</p>
+                <span *ngIf="Language=='en'">PO/JO</span>
+                <span *ngIf="Language=='cn'">生产单号</span>
+            </div>
+            <div class="other">
+                <p>{{data.customername}}</p>
+                <span *ngIf="Language=='en'">Customer Name</span>
+                <span *ngIf="Language=='cn'">客户名称</span>
+            </div>
+            <div class="other">
+                <p>{{data.pattern}}</p>
+                <span *ngIf="Language=='en'">Style No</span>
+                <span *ngIf="Language=='cn'">款号</span>
+            </div>
+        </li>
+        <li class="row">
+            <div class="other">
+                <p>{{data.StarDate}}</p>
+                <span *ngIf="Language=='en'">Start Date</span>
+                <span *ngIf="Language=='cn'">开始时间</span>
+            </div>
+            <div class="other">
+                <p>{{data.EndDate}}</p>
+                <span *ngIf="Language=='en'">End Date</span>
+                <span *ngIf="Language=='cn'">结束时间</span>
+            </div>
+            <div class="other">
+                <p>{{data.amount}}</p>
+                <span *ngIf="Language=='en'">Order</span>
+                <span *ngIf="Language=='cn'">订单数</span>
+            </div>
+        </li>
+
+        <li class="row">
+            <div class="other">
+                <p>{{data.CuttingAmount}}</p>
+                <span *ngIf="Language=='en'">Cutting Qty</span>
+                <span *ngIf="Language=='cn'">裁剪数</span>
+            </div>
+            <div class="other">
+                <p>{{data.deliverydate}}</p>
+                <span *ngIf="Language=='en'">Delivery Date</span>
+                <span *ngIf="Language=='cn'">交期</span>
+            </div>
+        </li>
+    </ul>
+    <div *ngIf="data.plan=='Yes'" class="submit_form">
+        <p class="form_title"> Plan Requirements</p>
+        <p class="form_row">
+            <span>Amount</span>
+            <input type="text" [(ngModel)]="total" placeholder="input completed qty">
+        </p>
+        <p class="form_row" (click)="state=true">
+            <span>Start</span>
+            <i class="date">{{date}}</i>
+        </p>
+        <p class="form_row">
+            <span>Daily Quantity</span>
+            <input type="text" [(ngModel)]="dayAmount" placeholder="input completed qty">
+        </p>
+    </div>
+
+    <div *ngIf="data.plan=='No'">
+        <p style="color:#088c77;padding-left: 1rem;"> Plan Requirements</p>
+        <ul class="items">
+            <li class="row">
+                <div class="other">
+                    <p>{{data.code}}</p>
+                    <span *ngIf="Language=='en'">Supplier</span>
+                    <span *ngIf="Language=='cn'">生产单号</span>
+                </div>
+                <div class="other">
+                    <p>{{data.customername}}</p>
+                    <span *ngIf="Language=='en'">Total Quantity</span>
+                    <span *ngIf="Language=='cn'">客户名称</span>
+                </div>
+                <div class="other">
+                    <p>{{data.pattern}}</p>
+                    <span *ngIf="Language=='en'">Output Date</span>
+                    <span *ngIf="Language=='cn'">款号</span>
+                </div>
+            </li>
+            <li class="row">
+                <div class="other">
+                    <p>{{data.StarDate}}</p>
+                    <span *ngIf="Language=='en'">Start Date</span>
+                    <span *ngIf="Language=='cn'">开始时间</span>
+                </div>
+                <div class="other">
+                    <p>{{data.EndDate}}</p>
+                    <span *ngIf="Language=='en'">Daily Quantity</span>
+                    <span *ngIf="Language=='cn'">结束时间</span>
+                </div>
+                <div class="other">
+                    <p>{{data.amount}}</p>
+                    <span *ngIf="Language=='en'">Daily Output</span>
+                    <span *ngIf="Language=='cn'">订单数</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="submitBox">
+        <button *ngIf="Language=='cn'" type="submit" (click)="Next()">下一步</button>
+        <button *ngIf="Language=='en'" type="submit" (click)="Next()">Next</button>
+    </div>
+    <app-date *ngIf="state" number="1" (submit)="backDate($event)"></app-date>
+</div>

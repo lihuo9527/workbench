@@ -16,7 +16,8 @@
                         <a *ngIf="item.but" (click)="On_Off(item.allstate,i)" [ngClass]="{'allOn':item.allstate,'allOff':!item.allstate}"></a>
                     </div>
                     <ul class="list" *ngIf="item.rowstate">
-                        <li (click)="arr.state=!arr.state" *ngFor="let arr of item.list;" [ngClass]="{'on':arr.state}">
+                        <li (click)="arr.state=!arr.state" style="overflow: hidden;" *ngFor="let arr of item.list;" [ngClass]="{'on':arr.state}">
+                            <span *ngIf="id == 5 || id == 6 || id == 7">{{arr.itemName}}</span>
                             <span *ngIf="Language=='en'">  {{arr.text}}</span>
                             <span *ngIf="Language=='cn'">  {{arr.text2}}</span></li>
                     </ul>

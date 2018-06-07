@@ -19,11 +19,11 @@
                     <span *ngIf="Language=='en'">Customer Name</span>
                     <span *ngIf="Language=='cn'">客户名称</span></li>
                 <li>
-                    <p>{{item.DeliveryDate.substring(0,10)}}</p>
+                    <p>{{item.DeliveryDate}}</p>
                     <span *ngIf="Language=='en'">Delivery Date</span>
                     <span *ngIf="Language=='cn'">交货期</span></li>
                 <li>
-                    <p>{{item.PlanStart.substring(0,10)}}</p>
+                    <p>{{item.PlanStart}}</p>
                     <span *ngIf="Language=='en'">Schedule Start Date</span>
                     <span *ngIf="Language=='cn'">计划开始时间</span></li>
                 <li>
@@ -53,15 +53,15 @@
                     <span *ngIf="Language=='en'">Line</span>
                     <span *ngIf="Language=='cn'">生产线</span></li>
                 <li *ngIf="item.arrow">
-                    <p>{{item.MasterMatFinishDate.substring(0,10)}}</p>
+                    <p>{{item.MasterMatFinishDate}}</p>
                     <span *ngIf="Language=='en'">Fabric Arrival Date</span>
                     <span *ngIf="Language=='cn'">主料到厂日</span></li>
                 <li *ngIf="item.arrow">
-                    <p>{{item.NotMasterMatFinishDate.substring(0,10)}}</p>
+                    <p>{{item.NotMasterMatFinishDate}}</p>
                     <span *ngIf="Language=='en'">Accessories Arrival Date</span>
                     <span *ngIf="Language=='cn'">辅料到厂日</span></li>
                 <li *ngIf="item.arrow">
-                    <p>{{item.EarliestStartDate.substring(0,10)}}</p>
+                    <p>{{item.EarliestStartDate}}</p>
                     <span *ngIf="Language=='en'">Earliest allowed start time</span>
                     <span *ngIf="Language=='cn'">最早开工期</span></li>
             </ul>

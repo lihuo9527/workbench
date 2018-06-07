@@ -19,14 +19,23 @@
                 <img src="assets/images/password2.png">
             </div>
             <div class="input2_container">
-                <input id="password" minlength="6" maxlength="20" class="input" [(ngModel)]="password" type="password" placeholder="Enter Password">
-            </div>
-            <div class="look_container">
-                <img src="assets/images/look.png" width="50%" (touchstart)="lookStart()" (touchend)="lookEnd()">
+                <input minlength="6" maxlength="20" class="input" [(ngModel)]="password" type="password" placeholder="Enter Password">
             </div>
         </div>
     </div>
-
+    <div class="item">
+        <div class="item_container">
+            <div class="img_container">
+                <img src="assets/images/password2.png">
+            </div>
+            <div class="input2_container">
+                <input id="password" minlength="6" maxlength="20" class="input" [(ngModel)]="password2" type="password" placeholder="Confirm Password">
+            </div>
+            <div class="look_container" (touchstart)="lookStart()" (touchend)="lookEnd()">
+                <img src="assets/images/look.png" width="50%">
+            </div>
+        </div>
+    </div>
     <!-- <div class="item">
         <div class="item_container">
             <div class="img_container">

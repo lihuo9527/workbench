@@ -15,42 +15,52 @@
             </p>
         </div>
     </div>
-    <ul class="materList criticaEdit">
-        <li>
-            <ul class="marterInfo">
-                <li>
-                    <p>{{data.LineName}}</p>
-                    <span *ngIf="Language=='en'">Line</span>
-                    <span *ngIf="Language=='cn'">生产线</span></li>
-                <li>
-                    <p>{{data.code}}</p>
-                    <span *ngIf="Language=='en'">JO</span>
-                    <span *ngIf="Language=='cn'">生产单号</span></li>
-                <li>
-                    <p>{{data.pattern}}</p>
-                    <span *ngIf="Language=='en'">Fty Style</span>
-                    <span *ngIf="Language=='cn'">本厂款号</span></li>
-                <li>
-                    <p>{{data.deliverydate}}</p>
-                    <span *ngIf="Language=='en'">Completion Time</span>
-                    <span *ngIf="Language=='cn'">车间交期</span></li>
-                <li>
-                    <p>{{data.StarDate}}</p>
-                    <span *ngIf="Language=='en'">Production Start Time</span>
-                    <span *ngIf="Language=='cn'">开始日期</span></li>
-                <li>
-                    <p>{{data.EndDate}}</p>
-                    <span *ngIf="Language=='en'">Production End Time</span>
-                    <span *ngIf="Language=='cn'">结束日期</span></li>
-                <li>
-                    <p>{{data.amount}}</p>
-                    <span *ngIf="Language=='en'">Amount</span>
-                    <span *ngIf="Language=='cn'">总数量</span></li>
-                <li>
-                    <p>{{data.CompleteAmount}}</p>
-                    <span *ngIf="Language=='en'">Completion.Qty</span>
-                    <span *ngIf="Language=='cn'">已完成数量</span></li>
-            </ul>
+    <ul class="items">
+        <li class="row">
+            <div class="other">
+                <p>{{data.LineName}}</p>
+                <span *ngIf="Language=='en'">Line</span>
+                <span *ngIf="Language=='cn'">生产线</span>
+            </div>
+            <div class="other">
+                <p>{{data.code}}</p>
+                <span *ngIf="Language=='en'">JO</span>
+                <span *ngIf="Language=='cn'">生产单号</span>
+            </div>
+            <div class="other">
+                <p>{{data.pattern}}</p>
+                <span *ngIf="Language=='en'">Fty Style</span>
+                <span *ngIf="Language=='cn'">本厂款号</span>
+            </div>
+        </li>
+        <li class="row">
+            <div class="other">
+                <p>{{data.deliverydate}}</p>
+                <span *ngIf="Language=='en'">Completion Time</span>
+                <span *ngIf="Language=='cn'">车间交期</span>
+            </div>
+            <div class="other">
+                <p>{{data.StarDate}}</p>
+                <span *ngIf="Language=='en'">Production Start Time</span>
+                <span *ngIf="Language=='cn'">开始日期</span>
+            </div>
+            <div class="other">
+                <p>{{data.EndDate}}</p>
+                <span *ngIf="Language=='en'">Production End Time</span>
+                <span *ngIf="Language=='cn'">结束日期</span>
+            </div>
+        </li>
+        <li class="row">
+            <div class="other">
+                <p>{{data.amount}}</p>
+                <span *ngIf="Language=='en'">Amount</span>
+                <span *ngIf="Language=='cn'">总数量</span>
+            </div>
+            <div class="other">
+                <p>{{data.CompleteAmount}}</p>
+                <span *ngIf="Language=='en'">Completion.Qty</span>
+                <span *ngIf="Language=='cn'">已完成数量</span>
+            </div>
         </li>
     </ul>
     <div class="tab">

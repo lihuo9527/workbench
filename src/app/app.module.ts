@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import {AppService} from './app.service';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
-import { HomeComponent } from './pages/home/home.component';
+import { HomeComponent } from './pages/navigation/home/home.component';
 import { ListTitleComponent } from './components/list-title/list-title.component';
 import { DeliverDelayComponent  } from './pages/delay/deliver-delay/deliver-delay.component';
 import { CriticalEventDelayComponent } from './pages/delay/critical-event-delay/critical-event-delay.component';
@@ -17,7 +17,7 @@ import { MaterialDelayComponent } from './pages/delay/material-delay/material-de
 import { TodayComponent } from './pages/today/today.component';
 import { FilterComponent } from './components/filter/filter.component';
 import { DateComponent } from './components/date/date.component';
-import { AllWorkComponent } from './pages/all-work/all-work.component';
+import { AllWorkComponent } from './pages/navigation/all-work/all-work.component';
 import { CriticalEventComponent } from './pages/entry/critical-event/critical-event.component';
 import { ProductionDailyProgressComponent } from './pages/entry/production-daily-progress/production-daily-progress.component';
 import { LoadMoreComponent } from './components/load-more/load-more.component';
@@ -36,12 +36,15 @@ import { ScheduleReportFormsComponent } from './pages/produce/schedule-report-fo
 import { DetailAnalysisListComponent } from './pages/produce/detail-analysis-list/detail-analysis-list.component';
 import { DetailAnalysisComponent } from './pages/produce/detail-analysis/detail-analysis.component';
 import {HttpClientModule} from '@angular/common/http';
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { LoginComponent } from './pages/user/login/login.component';
+import { RegisterComponent } from './pages/user/register/register.component';
+import { ForgotPasswordComponent } from './pages/user/forgot-password/forgot-password.component';
 import { MessageBoxComponent } from './components/message-box/message-box.component';
 import { CookieService } from 'ngx-cookie-service';
 import { LoadingComponent } from './components/loading/loading.component';
+import { OutProcessComponent } from './pages/out/out-process/out-process.component';
+import { PlanEntryComponent } from './pages/out/plan-entry/plan-entry.component';
+import { SelectingSuppliersComponent } from './pages/out/selecting-suppliers/selecting-suppliers.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,6 +84,9 @@ import { LoadingComponent } from './components/loading/loading.component';
     ForgotPasswordComponent,
     MessageBoxComponent,
     LoadingComponent,
+    OutProcessComponent,
+    PlanEntryComponent,
+    SelectingSuppliersComponent,
   ],
   imports: [
     BrowserModule,

@@ -13,7 +13,7 @@
             </div>
             <div class="criticalCon">
                 <div class="left">
-                    <p>{{item.StartTime.substring(0,10)}}</p>
+                    <p>{{item.StartTime}}</p>
                     <span *ngIf="Language=='en'">Recommended date</span>
                     <span *ngIf="Language=='cn'">开始日期</span>
                     <p>{{item.pattern}}</p>
@@ -27,10 +27,10 @@
               </em>
                 </div>
                 <div class="right">
-                    <p>{{item.DeliveryDate.substring(0,10)}}</p>
+                    <p>{{item.DeliveryDate}}</p>
                     <span *ngIf="Language=='en'">Delivery date</span>
                     <span *ngIf="Language=='cn'">结束日期</span>
-                    <p>{{item.FactoryDelivery.substring(0,10)}}</p>
+                    <p>{{item.FactoryDelivery}}</p>
                     <span *ngIf="Language=='en'">FactoryDelivery Date</span>
                     <span *ngIf="Language=='cn'">交货期</span>
                 </div>

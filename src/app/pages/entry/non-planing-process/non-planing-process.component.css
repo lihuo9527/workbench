@@ -39,13 +39,14 @@
 .box .list {
     width: 100%;
     background: #fff;
-    float: right;
     border-bottom: 1px solid #f3f4f6;
+    margin-bottom: 1rem;
 }
 
 .lists {
     display: flex;
     width: 100%;
+    flex-flow: wrap;
 }
 
 .green {
@@ -60,6 +61,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    min-height: 1.4rem;
 }
 
 .other span {
@@ -116,20 +118,20 @@
 .list .list_title {
     display: flex;
     flex: 0 0 100%;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
 }
 
 .list .list_title .i p {
     height: 4rem;
-    width: 10px;
+    width: 6px;
     background: #9eb4d8;
 }
 
 .list .list_title .i {
     flex: 0 0 5%;
     height: 4rem;
-    width: 10px;
+    width: 6px;
 }
 
 .jo_container {

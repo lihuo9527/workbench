@@ -39,7 +39,6 @@
 
 .box .list {
     width: 100%;
-    float: right;
 }
 
 .box .list li {
@@ -89,10 +88,13 @@
     font-style: normal;
     color: #333;
     text-decoration: none;
+    justify-content: space-between;
 }
 
 .box .list .other p {
-    margin: 1rem;
+    width: 100%;
+    min-height: 1.4rem;
+    margin-left: 1rem;
     font-size: 1.4rem;
 }
 
@@ -103,7 +105,11 @@
 }
 
 .other {
+    padding-top: 1rem;
     padding-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+    flex-flow: wrap;
 }
 
 .btn {
@@ -154,4 +160,12 @@
     justify-content: center;
     align-items: center;
     flex: 0 0 33.33%;
+}
+
+.right-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 33.33%;
+    flex-flow: wrap;
 }

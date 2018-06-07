@@ -62,11 +62,8 @@ export class CriticalEventComponent implements OnInit {
             // '&fids=' + $event.fids + '&wsids=' +  $event.wsids+ 
             // '&eventid=' +  $event.eventid+ 
             '&star=' + $event.StartDate + '&end=' + $event.EndDate, false).subscribe((data:any) => {
-                let obj = data;
-                if (obj.length > 0) {
-                    this.datas = [{"id":1084,"code":"D03NIK0438","customerid":5,"factoryid":0,"customername":"Golf Tour","deliverydate":"2018-06-20T00:00:00","initDeliveryDate":"2018-06-20T00:00:00","workshopDate":"2018-06-20T00:00:00","producttype":"( Net color ) Men ( fiber ) casual shorts","pattern":"s/330239","customerPattern":null,"amount":7375.0,"priority":8,"merchandiser":"YUANHONG","StarDate":"2018-06-20T00:00:00","EndDate":"2018-06-20T00:00:00","CompleteAmount":0.0,"MainMaterielArriveDate":null,"OthMaterielArriveDate":null,"EventFlowName":"PPS","Processes":null}];
-                    this.state = false;
-                }
+                this.datas = data;
+                this.state = false;
             })
     }
     GetTabs($event) {

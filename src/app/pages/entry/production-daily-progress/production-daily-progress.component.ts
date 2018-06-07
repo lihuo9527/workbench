@@ -27,7 +27,7 @@ export class ProductionDailyProgressComponent implements OnInit {
     }
     UpdateList() {
         let pageIndex = Math.ceil(this.datas.length / 4) + 1;
-        this.service.http_get('/api/Schedule/GetPlanPoes?pageIndex=' + pageIndex + '&pageSize=4&star=' + this.start + '&end=' + this.end, false).subscribe((data:any) => {
+        this.service.http_get('/api/Schedule/GetPlanPoes?pageIndex=' + pageIndex + '&pageSize=4&star=' + this.start + '&end=' + this.end, false).subscribe((data: any) => {
             let obj = data;
             if (obj.length > 0) {
                 for (let i = 0; i < obj.length; i++) {
@@ -41,12 +41,9 @@ export class ProductionDailyProgressComponent implements OnInit {
         this.end = $event.EndDate;
         console.log("收到" + $event);
         this.service.http_get('/api/Schedule/GetPlanPoes?pageIndex=1&pageSize=4' +
-            '&star=' + $event.StartDate + '&end=' + $event.EndDate, false).subscribe((data:any) => {
-                let obj = data;
-                if (obj.length > 0) {
-                    this.datas = obj;
-                    this.state = false;
-                }
+            '&star=' + $event.StartDate + '&end=' + $event.EndDate, false).subscribe((data: any) => {
+                this.datas = data;
+                this.state = false;
             })
     }
     Link(item) {
