@@ -1,0 +1,103 @@
+.imgs {
+    display: flex;
+    flex: 0 0 70%;
+    justify-content: flex-start;
+    align-items: center;
+    flex-flow: nowrap;
+    overflow: auto;
+}
+
+.btn {
+    flex: 0 0 30%;
+    display: flex;
+    padding: 1rem 0 1rem 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn button {
+    background: #088c77;
+    color: #fff;
+    text-align: center;
+    border-radius: 0.3rem;
+    font-size: 1.3rem;
+    padding: 1rem 1.5rem 1rem 1.5rem;
+}
+
+.row {
+    border-bottom: 1px solid #eee;
+    background: #fff;
+}
+
+.group {
+    padding: 1rem;
+}
+
+.rows_off {
+    line-height: 1.4rem;
+    height: 1.4rem;
+    font-size: 1rem;
+    background: url(assets/images/arrow_right.png) no-repeat right;
+    background-size: 1.4rem 1.4rem;
+}
+
+.rows_on {
+    line-height: 1.4rem;
+    height: 1.4rem;
+    font-size: 1rem;
+    background: url(assets/images/arrow_down.png) no-repeat right;
+    background-size: 1.4rem 1.4rem;
+}
+
+.radio_on {
+    width: 100%;
+    line-height: 1.5rem;
+    height: 1.5rem;
+    background: url(assets/images/round_choose.png) no-repeat center;
+    background-size: 1.5rem 1.5rem;
+}
+
+.radio_off {
+    width: 100%;
+    line-height: 1.5rem;
+    height: 1.5rem;
+    background: url(assets/images/round_normal.png) no-repeat center;
+    background-size: 1.5rem 1.5rem;
+}
+
+.radio_box {
+    flex: 0 0 10%;
+    display: flex;
+    align-items: center;
+}
+
+.img_box {
+    flex: 0 0 15%;
+    display: flex;
+    align-items: center;
+}
+
+.row_title {
+    background: #f3f4f6;
+    flex: 0 0 100%;
+}
+
+.name_box {
+    flex: 0 0 75%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.user {
+    padding: 1rem;
+    flex: 0 0 100%;
+    display: flex;
+    box-sizing: border-box;
+}
+
+.row_content {
+    flex: 0 0 100%;
+    display: flex;
+    border-bottom: 1px solid #eee;
+}

@@ -51,7 +51,7 @@
             </div>
         </li>
     </ul>
-    <div *ngIf="data.plan=='Yes'" class="submit_form">
+    <div *ngIf="data.plan=='No'" class="submit_form">
         <p class="form_title"> Plan Requirements</p>
         <p class="form_row">
             <span>Amount</span>
@@ -67,49 +67,84 @@
         </p>
     </div>
 
-    <div *ngIf="data.plan=='No'">
-        <p style="color:#088c77;padding-left: 1rem;"> Plan Requirements</p>
+    <div *ngIf="data.plan=='Yes'">
+        <p class="row_title"> Plan Requirements</p>
         <ul class="items">
             <li class="row">
                 <div class="other">
-                    <p>{{data.code}}</p>
+                    <p>{{Plan.result.supplier}}</p>
                     <span *ngIf="Language=='en'">Supplier</span>
-                    <span *ngIf="Language=='cn'">生产单号</span>
+                    <span *ngIf="Language=='cn'">供应商</span>
                 </div>
                 <div class="other">
-                    <p>{{data.customername}}</p>
+                    <p>{{Plan.result.totalCount}}</p>
                     <span *ngIf="Language=='en'">Total Quantity</span>
-                    <span *ngIf="Language=='cn'">客户名称</span>
+                    <span *ngIf="Language=='cn'">总数量</span>
                 </div>
                 <div class="other">
-                    <p>{{data.pattern}}</p>
+                    <p>{{Plan.result.produceTime}}</p>
                     <span *ngIf="Language=='en'">Output Date</span>
-                    <span *ngIf="Language=='cn'">款号</span>
+                    <span *ngIf="Language=='cn'">出产量日期</span>
                 </div>
             </li>
             <li class="row">
                 <div class="other">
-                    <p>{{data.StarDate}}</p>
+                    <p>{{Plan.result.startTime}}</p>
                     <span *ngIf="Language=='en'">Start Date</span>
-                    <span *ngIf="Language=='cn'">开始时间</span>
+                    <span *ngIf="Language=='cn'">开始日期</span>
                 </div>
                 <div class="other">
-                    <p>{{data.EndDate}}</p>
+                    <p>{{Plan.result.dayCount}}</p>
                     <span *ngIf="Language=='en'">Daily Quantity</span>
-                    <span *ngIf="Language=='cn'">结束时间</span>
+                    <span *ngIf="Language=='cn'">每日数量</span>
                 </div>
                 <div class="other">
-                    <p>{{data.amount}}</p>
+                    <p>{{Plan.result.canDayCount}}</p>
                     <span *ngIf="Language=='en'">Daily Output</span>
-                    <span *ngIf="Language=='cn'">订单数</span>
+                    <span *ngIf="Language=='cn'">可供日产量</span>
                 </div>
             </li>
         </ul>
+
+        <div style="display: flex;flex-flow: wrap;" *ngIf="Plan.result.recording.length>0">
+            <div style="display: flex;flex: 0 0 100%;justify-content: space-between;padding: 1rem;box-sizing: border-box;">
+                <span style="color: #088c77;">Daily External Records</span>
+                <span style="color: #088c77;">Analysis Chart</span>
+            </div>
+            <div style="display: flex;flex: 0 0 100%;background:#e0f7f3;padding: 1rem;box-sizing: border-box;">
+                <span style="flex:0 0 20%;color: #088c77;">Date</span>
+                <span style="flex:0 0 35%;color: #088c77;text-align: center;">number of outgoing</span>
+                <span style="flex:0 0 25%;color: #088c77;text-align: center;">Return Number</span>
+                <span style="flex:0 0 20%;color: #088c77;text-align: center;"></span>
+            </div>
+            <div *ngFor="let item of Plan.result.recording;let i=index" [ngClass]="{'background-white':i%2==0,'background-green':i%2!=0}" class="row_box">
+                <span class="row1">{{item.date}}</span>
+                <span class="row2">{{item.outgoingCount}}</span>
+                <span class="row3">{{item.backFactory}}</span>
+                <span class="row4"> {{item.reduce}}</span>
+            </div>
+        </div>
+
+        <p class="row_title"> Daily External Records Input</p>
+        <div class="submit_form">
+            <p class="form_row" (click)="state=true">
+                <span>Date</span>
+                <i class="date">{{date}}</i>
+            </p>
+            <p class="form_row">
+                <span>Amount</span>
+                <input type="text" [(ngModel)]="total" placeholder="input qty">
+            </p>
+        </div>
     </div>
 
-    <div class="submitBox">
-        <button *ngIf="Language=='cn'" type="submit" (click)="Next()">下一步</button>
-        <button *ngIf="Language=='en'" type="submit" (click)="Next()">Next</button>
+    <div class="submitBox" *ngIf="data.plan=='No'">
+        <button *ngIf="Language=='cn'" (click)="next()">下一步</button>
+        <button *ngIf="Language=='en'" (click)="next()">Next</button>
+    </div>
+    <div class="submitBox" *ngIf="data.plan=='Yes'">
+        <button *ngIf="Language=='cn'" (click)="submit()">提交</button>
+        <button *ngIf="Language=='en'" (click)="submit()">Submit</button>
     </div>
     <app-date *ngIf="state" number="1" (submit)="backDate($event)"></app-date>
 </div>

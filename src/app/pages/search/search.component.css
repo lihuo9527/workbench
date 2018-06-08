@@ -163,6 +163,8 @@ input::-webkit-input-placeholder {
 #filter .list {
     overflow: hidden;
     padding: 0.5rem 0;
+    max-height: 100px;
+    overflow: auto;
 }
 
 #filter .list li {
