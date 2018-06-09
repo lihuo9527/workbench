@@ -55,7 +55,7 @@
         <p class="form_title"> Plan Requirements</p>
         <p class="form_row">
             <span>Amount</span>
-            <input type="text" [(ngModel)]="total" placeholder="input completed qty">
+            <input type="text" name="total" [(ngModel)]="total" placeholder="input completed qty">
         </p>
         <p class="form_row" (click)="state=true">
             <span>Start</span>
@@ -106,12 +106,12 @@
             </li>
         </ul>
 
-        <div style="display: flex;flex-flow: wrap;" *ngIf="Plan.result.recording.length>0">
-            <div style="display: flex;flex: 0 0 100%;justify-content: space-between;padding: 1rem;box-sizing: border-box;">
+        <div class="entry_box" *ngIf="Plan.result.recording.length>0">
+            <div class="entry_title">
                 <span style="color: #088c77;">Daily External Records</span>
                 <span style="color: #088c77;">Analysis Chart</span>
             </div>
-            <div style="display: flex;flex: 0 0 100%;background:#e0f7f3;padding: 1rem;box-sizing: border-box;">
+            <div class="entry_title2">
                 <span style="flex:0 0 20%;color: #088c77;">Date</span>
                 <span style="flex:0 0 35%;color: #088c77;text-align: center;">number of outgoing</span>
                 <span style="flex:0 0 25%;color: #088c77;text-align: center;">Return Number</span>
@@ -133,7 +133,7 @@
             </p>
             <p class="form_row">
                 <span>Amount</span>
-                <input type="text" [(ngModel)]="total" placeholder="input qty">
+                <input type="text" name="day" [(ngModel)]="total" placeholder="input qty">
             </p>
         </div>
     </div>

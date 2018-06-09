@@ -45,6 +45,9 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { OutProcessComponent } from './pages/out/out-process/out-process.component';
 import { PlanEntryComponent } from './pages/out/plan-entry/plan-entry.component';
 import { SelectingSuppliersComponent } from './pages/out/selecting-suppliers/selecting-suppliers.component';
+import { OutSourcingComponent } from './pages/navigation/out-sourcing/out-sourcing.component';
+import { UnansweredComponent } from './pages/out/unanswered/unanswered.component';
+import { UnfinishedComponent } from './pages/out/unfinished/unfinished.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,6 +90,9 @@ import { SelectingSuppliersComponent } from './pages/out/selecting-suppliers/sel
     OutProcessComponent,
     PlanEntryComponent,
     SelectingSuppliersComponent,
+    OutSourcingComponent,
+    UnansweredComponent,
+    UnfinishedComponent,
   ],
   imports: [
     BrowserModule,

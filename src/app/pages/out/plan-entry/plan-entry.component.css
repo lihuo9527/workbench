@@ -78,7 +78,7 @@
     font-size: 1.2rem;
     line-height: 1.4rem;
     text-align: center;
-    background: url(assets/images/arrow_right.png) no-repeat right;
+    background: url(/assets/images/arrow_right.png) no-repeat right;
     background-size: 1.4rem 1.4rem;
 }
 
@@ -120,4 +120,27 @@
 .row4 {
     flex: 0 0 20%;
     text-align: center;
+}
+
+.entry_title {
+    display: flex;
+    flex: 0 0 100%;
+    justify-content: space-between;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.entry_title2 {
+    display: flex;
+    flex: 0 0 100%;
+    background: #e0f7f3;
+    padding: 1rem;
+    box-sizing: border-box
+}
+
+.entry_box {
+    display: flex;
+    flex-flow: wrap;
+    max-height: 210px;
+    overflow: auto;
 }

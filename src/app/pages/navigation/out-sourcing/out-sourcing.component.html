@@ -1,0 +1,15 @@
+<header>
+    <h1 *ngIf="Language=='en'">Workbench</h1>
+    <h1 *ngIf="Language=='cn'">工作台</h1>
+</header>
+<div class="hidden_header"></div>
+<div class="container">
+    <div class="box ">
+        <div *ngFor="let item of plans" class="plan" (click)="link(item.link)">
+            <div>
+                <img [src]="item.icon" style="width: 50%;" alt="">
+            </div>
+            <span> {{item.title}}</span>
+        </div>
+    </div>
+</div>

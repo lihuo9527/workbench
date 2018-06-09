@@ -28,140 +28,155 @@ import { ForgotPasswordComponent } from './pages/user/forgot-password/forgot-pas
 import { OutProcessComponent } from './pages/out/out-process/out-process.component';
 import { PlanEntryComponent } from './pages/out/plan-entry/plan-entry.component';
 import { SelectingSuppliersComponent } from './pages/out/selecting-suppliers/selecting-suppliers.component';
+import { OutSourcingComponent } from './pages/navigation/out-sourcing/out-sourcing.component';
+import { UnansweredComponent } from './pages/out/unanswered/unanswered.component';
+import { UnfinishedComponent } from './pages/out/unfinished/unfinished.component';
 export const appRoutes = [
-	{
-		path: 'home',
-		component: HomeComponent
-	},
-	{
-		path: 'deliverDelay/:id',
-		component: DeliverDelayComponent
-	},
-	{
-		path: 'criticalEventDelay/:id',
-		component: CriticalEventDelayComponent
-	},
-	{
-		path: 'processDelay/:id',
-		component: ProcessDelayComponent
-	},
-	{
-		path: 'eventDalayEdit/:data',
-		component: EventDelayEditComponent
-	},
-	{
-		path: 'materialDalay/:id',
-		component: MaterialDelayComponent
-	},
-	{
-		path: 'today/:id',
-		component: TodayComponent
-	},
-	{
-		path: 'all/:id',
-		component: AllWorkComponent
-	},
-	{
-		path: 'criticalEvent/:id',
-		component: CriticalEventComponent
-	},
-	{
-		path: 'productionDailyProgress/:id',
-		component: ProductionDailyProgressComponent
-	},
-	{
-		path: 'NonPlaningProcessComponent/:id',
-		component: NonPlaningProcessComponent
-	},
-	{
-		path: 'sevenDay/:id',
-		component: SevenDayComponent
-	},
-	{
-		path: 'startDelay/:id',
-		component: StartDelayComponent
-	},
-	{
-		path: 'eventEntry/:data',
-		component: EventEntryComponent
-	},
-	{
-		path: 'scheduleEntry/:data',
-		component: ScheduleEntryComponent
-	},
-	{
-		path: 'search/:id',
-		component: SearchComponent
-	},
-	{
-		path: 'joList/:data',
-		component: JoListComponent
-	},
-	{
-		path: 'joTabs/:data',
-		component: JoTabsComponent
-	},
-	{
-		path: 'resultComparison',
-		component: ResultComparisonComponent
-	},
-	{
-		path: 'scheduleList',
-		component: ScheduleListComponent
-	},
-	{
-		path: 'scheduleReportForms',
-		component: ScheduleReportFormsComponent
-	},
-	{
-		path: 'detailAnalysisList/:data',
-		component: DetailAnalysisListComponent
-	},
-	{
-		path: 'detailAnalysis/:data',
-		component: DetailAnalysisComponent
+    {
+        path: 'home',
+        component: HomeComponent
     },
     {
-        path:'echarts',
+        path: 'deliverDelay/:id',
+        component: DeliverDelayComponent
+    },
+    {
+        path: 'criticalEventDelay/:id',
+        component: CriticalEventDelayComponent
+    },
+    {
+        path: 'processDelay/:id',
+        component: ProcessDelayComponent
+    },
+    {
+        path: 'eventDalayEdit/:data',
+        component: EventDelayEditComponent
+    },
+    {
+        path: 'materialDalay/:id',
+        component: MaterialDelayComponent
+    },
+    {
+        path: 'today/:id',
+        component: TodayComponent
+    },
+    {
+        path: 'all/:id',
+        component: AllWorkComponent
+    },
+    {
+        path: 'criticalEvent/:id',
+        component: CriticalEventComponent
+    },
+    {
+        path: 'productionDailyProgress/:id',
+        component: ProductionDailyProgressComponent
+    },
+    {
+        path: 'NonPlaningProcessComponent/:id',
+        component: NonPlaningProcessComponent
+    },
+    {
+        path: 'sevenDay/:id',
+        component: SevenDayComponent
+    },
+    {
+        path: 'startDelay/:id',
+        component: StartDelayComponent
+    },
+    {
+        path: 'eventEntry/:data',
+        component: EventEntryComponent
+    },
+    {
+        path: 'scheduleEntry/:data',
+        component: ScheduleEntryComponent
+    },
+    {
+        path: 'search/:id',
+        component: SearchComponent
+    },
+    {
+        path: 'joList/:data',
+        component: JoListComponent
+    },
+    {
+        path: 'joTabs/:data',
+        component: JoTabsComponent
+    },
+    {
+        path: 'resultComparison',
+        component: ResultComparisonComponent
+    },
+    {
+        path: 'scheduleList',
+        component: ScheduleListComponent
+    },
+    {
+        path: 'scheduleReportForms',
+        component: ScheduleReportFormsComponent
+    },
+    {
+        path: 'detailAnalysisList/:data',
+        component: DetailAnalysisListComponent
+    },
+    {
+        path: 'detailAnalysis/:data',
+        component: DetailAnalysisComponent
+    },
+    {
+        path: 'echarts',
         // component: EchartsComponent
-		loadChildren: './components/echarts/echarts.module#EchartsModule'
+        loadChildren: './components/echarts/echarts.module#EchartsModule'
     },
     {
-        path:'login',
+        path: 'login',
         component: LoginComponent
     },
     {
-        path:'register',
+        path: 'register',
         component: RegisterComponent
-	},
-	// {
-	// 	path:'scheduleEntry',
-	// 	loadChildren: 'app/schedule-entry/schedule-entry.module#ScheduleEntryModule'
+    },
+    // {
+    // 	path:'scheduleEntry',
+    // 	loadChildren: 'app/schedule-entry/schedule-entry.module#ScheduleEntryModule'
     // },
     {
         path: 'forgot-password',
-        component:ForgotPasswordComponent
+        component: ForgotPasswordComponent
     },
     {
         path: 'outProcess/:data',
-        component:OutProcessComponent,
+        component: OutProcessComponent,
     },
     {
         path: 'planEntry/:data',
-        component:PlanEntryComponent,
+        component: PlanEntryComponent,
     },
     {
         path: 'selectingSuppliers/:data',
-        component:SelectingSuppliersComponent,
+        component: SelectingSuppliersComponent,
+    },
+    {
+        path: 'outSourcing',
+        component: OutSourcingComponent,
+    },
+    {
+        path: 'unanswered',
+        component: UnansweredComponent,
+    },
+    {
+        path: 'unfinished',
+        component: UnfinishedComponent,
     },
     {
         path: '',
-        component:HomeComponent
+        component: HomeComponent
     },
 
-	{
-		path: '**',
-		pathMatch: 'full',
-		redirectTo: 'home'
-	}
+    {
+        path: '**',
+        pathMatch: 'full',
+        redirectTo: 'home'
+    }
 ];

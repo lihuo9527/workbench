@@ -16,47 +16,55 @@ export class PlanEntryComponent implements OnInit {
     public state;
     public date = "Select start date";
     public total;
+    public total2;
     public dayAmount;
-    public Plan;
+    public Plan = {"msg": "", "result": { "sumBackFactory": "", "dayCount": "", "canDayCount": "", "supplier": "", "produceTime": "", "recording": [], "startTime": "", "totalCount": "", "sumOutgoingCount": ""}, "status":""};
     ngOnInit() {
         this.Language = localStorage.getItem("language");
         this.datas = JSON.parse(this.routerIonfo.snapshot.params["data"]);
         this.title = this.datas.title;
         this.data = this.datas.data;
         console.log(this.datas);
+        this.getPlan();
+
+    }
+    getPlan() {
         if (this.data.plan == 'Yes') {
-            this.service.http_get('/api/OuterFactory/ShowPlan?code=' + this.data.code, false).subscribe((data: any) => {
-                if(data.msg="success"){
+            this.service.http_get('/api/OuterFactory/ShowPlan?planId=' + this.data.planId, false).subscribe((data: any) => {
+                if (data.msg == "success") {
                     this.Plan = data;
                 }
-                let totaloutgoing:number =0;
-                let totalreturn:number =0;
+                let totaloutgoing: number = 0;
+                let totalreturn: number = 0;
                 this.Plan.result.recording.forEach(element => {
                     totaloutgoing += Number(element.outgoingCount);
                     totalreturn += Number(element.backFactory);
                 });
                 this.Plan.result.recording.push({
-                    date:"Total",
-                    outgoingCount:totaloutgoing,
-                    backFactory:totalreturn,
-                    reduce:"-" + (totaloutgoing-totalreturn)
+                    date: "Total",
+                    outgoingCount: totaloutgoing,
+                    backFactory: totalreturn,
+                    reduce: "-" + (totaloutgoing - totalreturn)
                 })
                 console.log(data)
             })
         }
     }
     next() {
-        if (this.total > 0 && this.dayAmount > 0 && this.date != "Select start date") {
+        if (this.total > 0 && this.dayAmount > 0 && parseInt(this.date) > 0) {
             this.router.navigate(['selectingSuppliers', JSON.stringify({ total: this.total, date: this.date, dayAmount: this.dayAmount, code: this.data.code })])
         } else {
             alert("请填写完整信息！")
         }
     }
-    submit(){
-        if(this.total > 0 && this.date != "Select start date"){
-            let option="totalCount=" + this.total + "&startTime=" + this.date + "&code=" +  this.data.code
-            this.service.http_post("/api/OuterFactory/EntryDayOutSchedule", option,false).subscribe((data:any)=>{
-                
+    submit() {
+        if (this.total > 0 && parseInt(this.date) > 0) {
+            let option = "totalCount=" + this.total + "&startTime=" + this.date + "&code=" + this.data.code + "&planId=" + this.data.planId
+            this.service.http_post("/api/OuterFactory/EntryDayOutSchedule", option, false, "form").subscribe((data: any) => {
+                if (data.msg == "success") {
+                    this.getPlan();
+                    alert("录入成功")
+                }
             })
         }
     }

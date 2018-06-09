@@ -1,0 +1,65 @@
+<div class="container">
+    <app-title *ngIf="Language=='en'" [title]="title"></app-title>
+    <app-title *ngIf="Language=='cn'" [title]="title"></app-title>
+    <app-search-box (getstate)='state=$event'></app-search-box>
+    <app-filter *ngIf="state" (ReturnData)="GetTabs($event)" (back)="state=!state" (envet)="Complete($event)"></app-filter>
+    <div class="container_box">
+        <div class="box">
+            <ul class="items">
+                <li class="list" *ngFor="let item of datas">
+                    <div class="list_title">
+                        <div class="i">
+                            <p></p>
+                        </div>
+                        <div class="jo_container">
+                            <span *ngIf="Language=='en'">PO/JO:</span>
+                            <span *ngIf="Language=='cn'">生产单号</span>
+                            <span>{{item.code}}</span>
+                        </div>
+                        <div class="entry_container">
+                            <button *ngIf="Language=='en'" (click)="Link(item)" class="entry">Progress</button>
+                            <button *ngIf="Language=='cn'" (click)="Link(item)" class="entry">生产进度</button>
+                        </div>
+                    </div>
+                    <ul class="items">
+                        <li class="row">
+                            <div class="other">
+                                <p>{{item.styleNo}}</p>
+                                <span *ngIf="Language=='en'">Style No</span>
+                                <span *ngIf="Language=='cn'">款号</span>
+                            </div>
+                            <div class="other">
+                                <p>{{item.totalCount}}</p>
+                                <span *ngIf="Language=='en'">Total Qty</span>
+                                <span *ngIf="Language=='cn'">总数量</span>
+                            </div>
+                            <div class="other">
+                                <p>{{item.demandTime}}</p>
+                                <span *ngIf="Language=='en'">Demand Date</span>
+                                <span *ngIf="Language=='cn'">开始日期</span>
+                            </div>
+                        </li>
+                        <li class="row">
+                            <div class="other">
+                                <p>{{item.dayCount}}</p>
+                                <span *ngIf="Language=='en'">Daily Output</span>
+                                <span *ngIf="Language=='cn'">每日产量</span>
+                            </div>
+                            <div class="other">
+                                <p>{{item.replyTime}}</p>
+                                <span *ngIf="Language=='en'">Reply Date</span>
+                                <span *ngIf="Language=='cn'">回复日期</span>
+                            </div>
+                            <div class="other">
+                                <p>{{item.replyYield}}</p>
+                                <span *ngIf="Language=='en'">Reply Output</span>
+                                <span *ngIf="Language=='cn'">回复产量</span>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <app-load-more *ngIf="datas.length>3" [language]="Language" (click)="UpdateList()"></app-load-more>
+</div>
