@@ -14,6 +14,7 @@ export class OutProcessComponent implements OnInit {
     public Language;
     public title;
     public datas = [];
+    public state;
     ngOnInit() {
         this.data = JSON.parse(this.routerIonfo.snapshot.params["data"]);
         this.id = this.data.id;

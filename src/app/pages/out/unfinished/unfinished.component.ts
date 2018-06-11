@@ -10,8 +10,9 @@ export class UnfinishedComponent implements OnInit {
 
     constructor(private service: AppService, private router: Router) { }
     public Language;
-    public title = 'Unfinished Plan';
+    public title = 'Uncompleted Plan';
     public datas = [];
+    public state;
     ngOnInit() {
         this.Language = localStorage.getItem("language");
         this.UpdateList();
@@ -28,6 +29,6 @@ export class UnfinishedComponent implements OnInit {
         })
     }
     Link(item) {
-        this.router.navigate(['planEntry', JSON.stringify({ data: item, title: this.title })]);
+        this.router.navigate(['unfinishedEntry', JSON.stringify({ data: item, title: this.title })]);
     }
 }

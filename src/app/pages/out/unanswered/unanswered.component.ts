@@ -12,6 +12,7 @@ export class UnansweredComponent implements OnInit {
     public Language;
     public title = 'Unanswered Plan';
     public datas = [];
+    public state;
     ngOnInit() {
         this.Language = localStorage.getItem("language");
         this. UpdateList();
@@ -20,7 +21,7 @@ export class UnansweredComponent implements OnInit {
         let pageIndex = Math.ceil(this.datas.length / 4) + 1;
         this.service.http_get('/api/OuterFactory/UnansweredPlanList?pageIndex=' + pageIndex + '&pageSize=4', false).subscribe((data: any) => {
             if (data.msg == "success") {
-                let obj = data.result.listInfo;
+                let obj = data.result.resultInfo;
                 obj.forEach(element => {
                     this.datas.push(element);
                 });
@@ -28,6 +29,6 @@ export class UnansweredComponent implements OnInit {
         })
     }
     Link(item){
-        this.router.navigate(['planEntry', JSON.stringify({data:item,title:this.title})]);
+        this.router.navigate(['unansweredEntry', JSON.stringify({data:item,title:this.title})]);
     }
 }

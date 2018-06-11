@@ -1,0 +1,146 @@
+.row {
+    display: flex;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    align-items: flex-start;
+}
+
+.other {
+    flex: 0 0 33.33%;
+    list-style: none;
+    font-style: normal;
+    color: #333;
+    text-decoration: none;
+    display: flex;
+    flex-flow: wrap;
+}
+
+.other p {
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    margin-bottom: 0.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    min-height: 1.4rem;
+}
+
+.other span {
+    line-height: 1.5rem;
+    font-size: 1rem;
+    color: #b2b2b2;
+    flex: 0 0 100%;
+}
+
+.items {
+    width: 100%;
+    clear: both;
+    overflow: hidden;
+    border-top: #dbdbdb solid 1px;
+    padding-bottom: 1rem;
+    background: #fff;
+}
+
+.submit_form {
+    background: #fff;
+    margin-bottom: 1rem;
+}
+
+.form_title {
+    color: #088c77;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.form_row {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    height: 1.4rem;
+}
+
+.form_row span {
+    flex: 0 0 30%;
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+}
+
+.form_row input {
+    flex: 0 0 70%;
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+}
+
+.form_row .date {
+    flex: 0 0 70%;
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+    text-align: center;
+    background: url(/assets/images/arrow_right.png) no-repeat right;
+    background-size: 1.4rem 1.4rem;
+}
+
+.row_title {
+    color: #088c77;
+    padding: 1rem;
+}
+
+.background-white {
+    background: white;
+}
+
+.background-green {
+    background: #e0f7f3;
+    ;
+}
+
+.row_box {
+    display: flex;
+    flex: 0 0 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.row1 {
+    flex: 0 0 20%;
+}
+
+.row2 {
+    flex: 0 0 35%;
+    text-align: center;
+}
+
+.row3 {
+    flex: 0 0 25%;
+    text-align: center;
+}
+
+.row4 {
+    flex: 0 0 20%;
+    text-align: center;
+}
+
+.entry_title {
+    display: flex;
+    flex: 0 0 100%;
+    justify-content: space-between;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.entry_title2 {
+    display: flex;
+    flex: 0 0 100%;
+    background: #e0f7f3;
+    padding: 1rem;
+    box-sizing: border-box
+}
+
+.entry_box {
+    display: flex;
+    flex-flow: wrap;
+    max-height: 210px;
+    overflow: auto;
+}
