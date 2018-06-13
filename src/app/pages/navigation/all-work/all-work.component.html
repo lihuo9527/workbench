@@ -1,28 +1,24 @@
-<app-title *ngIf="Language=='en'" [link]="Link" title="Workbench"></app-title>
-<app-title *ngIf="Language=='cn'" [link]="Link" title="工作台"></app-title>
+<app-title *ngIf="Language=='en'" [link]="Link" title="All Applications"></app-title>
+<app-title *ngIf="Language=='cn'" [link]="Link" title="全部应用"></app-title>
 <div class="container">
-    <!--list_1-->
-    <ul class="list_1">
-        <li *ngFor="let item of list_1;let i=index;">
-            <a [routerLink]="[item.link,item.id]">
-                <div>
-                    <img [src]="item.url">
-                </div>
-                <span *ngIf="Language=='en'">{{item.text}}</span>
-                <span *ngIf="Language=='cn'">{{item.text2}}</span>
-            </a>
-        </li>
-    </ul>
-    <!--list_1-->
-
-    <!--list_2-->
-    <div *ngFor="let items of list_2;let i=index;">
+    <!--list-->
+    <div *ngFor="let items of list;let i=index;">
         <div>
             <app-list-title *ngIf="Language=='en'" [title]="items.title"></app-list-title>
             <app-list-title *ngIf="Language=='cn'" [title]="items.title2"></app-list-title>
-            <ul class="list_1">
+            <ul class="list">
                 <li *ngFor="let item of items.data;let i=index;">
-                    <a [routerLink]="[item.link,item.id]" routerLinkActive="active">
+                    <a *ngIf="!item.id" [routerLink]="[item.link]" routerLinkActive="active">
+                        <div>
+                            <div class="icon">
+                                <img [src]="item.url">
+                                <i *ngIf="item.index>0">{{item.index}}</i>
+                            </div>
+                        </div>
+                        <span *ngIf="Language=='en'">{{item.text}}</span>
+                        <span *ngIf="Language=='cn'">{{item.text2}}</span>
+                    </a>
+                    <a *ngIf="item.id" [routerLink]="[item.link,item.id]" routerLinkActive="active">
                         <div>
                             <div class="icon">
                                 <img [src]="item.url">
@@ -36,6 +32,5 @@
             </ul>
         </div>
     </div>
-    <!--list_2-->
-
+    <!--list-->
 </div>

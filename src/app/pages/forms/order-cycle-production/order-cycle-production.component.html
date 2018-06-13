@@ -1,0 +1,5 @@
+<div class="container">
+    <app-title *ngIf="Language=='en'" title="Order Production LeadTime Summary"></app-title>
+    <app-title *ngIf="Language=='cn'" title="订单周期生产情况统计"></app-title>
+    <div echarts [options]="option" class="demo-chart"></div>
+</div>

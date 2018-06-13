@@ -13,13 +13,13 @@ export class HomeComponent implements OnInit {
         {
             TodayHandledCount: "0",
             TipsCountList: [
-                { Url: "/assets/images/ico_01.png", Text: "JO Tracking", Name: "生产单跟踪", Link: "/search", Id: "0", Amount: "0" },
-                { Url: "/assets/images/ico_02.png", Text: "Daily Output", Name: "日计划产量", Link: "/search", Id: "1", Amount: "0" },
-                { Url: "/assets/images/ico_03.png", Text: "Running Schedule", Name: "滚动排期", Link: "/search", Id: "2", Amount: "0" },
+                { Url: "/assets/images/a_21.png", Text: "Critical Event", Name: "产前事件", Link: "/criticalEvent", Id: "0", Amount: "0" },
+                { Url: "/assets/images/a_22.png", Text: "Daily Progress", Name: "每日进度", Link: "/productionDailyProgress", Id: "1", Amount: "0" },
+                { Url: "/assets/images/a_23.png", Text: "Non-planing Process", Name: "非排产工序", Link: "/NonPlaningProcessComponent", Id: "2", Amount: "0" },
                 { Url: "/assets/images/ico_04.png", Text: "All", Name: "全部", Link: "/all", Id: "3", Amount: "0" }]
         },
         {
-            title: "Outgoing Process Plan", title2: "外发工序计划", TodayHandledCount: "0", TipsCountList: [
+            title: "Outsourced process plan", title2: "外发工序计划", TodayHandledCount: "0", TipsCountList: [
                 { Url: "/assets/images/a_44.png", Text: "Embroidery", Name: "印花", Link: "/search", Id: "5", Amount: "0" },
                 { Url: "/assets/images/a_45.png", Text: "Sewing", Name: "车缝", Link: "/search", Id: "6",  Amount: "0" },
                 { Url: "/assets/images/a_46.png", Text: "Washing", Name: "洗水", Link: "/search", Id: "7", Amount: "0" }]
@@ -51,12 +51,12 @@ export class HomeComponent implements OnInit {
                 { Url: "/assets/images/ico_51.png", Text: "Fabric", Name: "面料", Link: "/materialDalay", Id: "0", Amount: "0" },
                 { Url: "/assets/images/ico_52.png", Text: "Accessories", Name: "辅料", Link: "/materialDalay", Id: "1", Amount: "0" }]
         },
-        {
-            title: "Today", title2: "今日工作", TodayHandledCount: "0", TipsCountList: [
-                { Url: "/assets/images/ico_61.png", Text: "Critical Event", Name: "关键事件", Link: "/today", Id: "1", Amount: "0" },
-                { Url: "/assets/images/ico_62.png", Text: "Production", Name: "生产", Link: "/today", Id: "2", Amount: "0" },
-                { Url: "/assets/images/ico_63.png", Text: "Material purchase", Name: "物料采购", Link: "/today", Id: "3", Amount: "0" }]
-        }
+        // {
+        //     title: "Today", title2: "今日工作", TodayHandledCount: "0", TipsCountList: [
+        //         { Url: "/assets/images/ico_61.png", Text: "Critical Event", Name: "关键事件", Link: "/today", Id: "1", Amount: "0" },
+        //         { Url: "/assets/images/ico_62.png", Text: "Production", Name: "生产", Link: "/today", Id: "2", Amount: "0" },
+        //         { Url: "/assets/images/ico_63.png", Text: "Material purchase", Name: "物料采购", Link: "/today", Id: "3", Amount: "0" }]
+        // }
     ]
     public language_state;
     public Language;

@@ -126,11 +126,11 @@ export const appRoutes = [
         path: 'detailAnalysis/:data',
         component: DetailAnalysisComponent
     },
-    {
-        path: 'echarts',
-        // component: EchartsComponent
-        loadChildren: './components/echarts/echarts.module#EchartsModule'
-    },
+    // {
+    //     path: 'echarts',
+    //     // component: EchartsComponent
+    //     loadChildren: './components/echarts/echarts.module#EchartsModule'
+    // },
     {
         path: 'login',
         component: LoginComponent
@@ -178,6 +178,10 @@ export const appRoutes = [
     {
         path: 'unfinishedEntry/:data',
         component: UnfinishedEntryComponent,
+    },
+    {
+        path: 'forms',
+        loadChildren: 'app/pages/forms/forms.module#FormsModule'
     },
     {
         path: '',

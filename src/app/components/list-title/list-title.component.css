@@ -1,15 +1,17 @@
-span{
-    background:url(/assets/images/m_bg.png) no-repeat center;
+span {
+    background: url(/assets/images/m_bg.png) no-repeat center;
     padding: 0.7rem 2rem 0.5rem 1rem;
     line-height: 1.2rem;
     background-size: 6rem 1.4rem;
     color: #ffffff;
 }
-h2{
+
+h2 {
     float: left;
     font-size: 1.4rem;
-    font:14px/14px Roboto,Helvetica;
+    font: 14px/14px Roboto, Helvetica;
 }
-.list_title{
-    margin-top:1rem;
+
+.list_title {
+    padding-top: 1rem;
 }
