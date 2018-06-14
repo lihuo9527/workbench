@@ -19,10 +19,16 @@ export class TypeSummaryComponent implements OnInit {
             formatter: "{a} <br/>{b}: {c} ({d}%)",
 
         },
+        grid: {
+            containLabel: true,
+            left: '5%',
+            top: "5%",
+            bottom: "5%",
+        },
         legend: {
 
             orient: 'horizontal',
-            y:"bottom",
+            bottom:"2%",
             padding: [5, 10, 5,  10],
             itemWidth: 14,
             itemHeight: 14,

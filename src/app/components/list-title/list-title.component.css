@@ -10,6 +10,7 @@ h2 {
     float: left;
     font-size: 1.4rem;
     font: 14px/14px Roboto, Helvetica;
+    font-weight: 600;
 }
 
 .list_title {

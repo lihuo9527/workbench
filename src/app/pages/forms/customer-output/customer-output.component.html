@@ -1,3 +1,6 @@
-<p>
-  customer-output works!
-</p>
+<div class="container">
+    <app-title *ngIf="Language=='en'" title="Customer Actual Output By Monthly"></app-title>
+    <app-title *ngIf="Language=='cn'" title="当月品牌客户实际生产数量统计"></app-title>
+    <p class="row_title"> April 2018 customer actual production statistics</p>
+    <div echarts [options]="option" class="demo-chart"></div>
+</div>

@@ -1,3 +1,6 @@
-<p>
-  every-month-eff works!
-</p>
+<div class="container">
+    <app-title *ngIf="Language=='en'" title="Factory Eff% By Monthly"></app-title>
+    <app-title *ngIf="Language=='cn'" title="工厂每月生产效率汇总"></app-title>
+    <p class="row_title">Monthly production quantity and time consuming statistics</p>
+    <div echarts [options]="option" class="demo-chart"></div>
+</div>

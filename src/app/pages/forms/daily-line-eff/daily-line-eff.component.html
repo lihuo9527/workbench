@@ -1,3 +1,6 @@
-<p>
-  daily-line-eff works!
-</p>
+<div class="container">
+    <app-title *ngIf="Language=='en'" title="Daily Line Eff% Summary"></app-title>
+    <app-title *ngIf="Language=='cn'" title="当天生产线效率统计表"></app-title>
+    <p class="row_title">Monthly production quantity and time consuming statistics</p>
+    <div echarts [options]="option" class="demo-chart"></div>
+</div>

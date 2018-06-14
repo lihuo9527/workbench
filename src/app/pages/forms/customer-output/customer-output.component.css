@@ -1,0 +1,13 @@
+.demo-chart {
+    height: 300px;
+    width: 100%;
+    min-width: 320px;
+    background: #fff;
+}
+
+.row_title {
+    color: #088c77;
+    padding: 1rem;
+    font-weight: 500;
+    font-size: 1.2rem;
+}

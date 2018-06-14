@@ -20,16 +20,25 @@ export class OrderCycleProductionComponent implements OnInit {
                 type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
             },
         },
+        grid: {
+            containLabel: true,
+            left: "0",
+            top: "20%",
+            bottom: "5%"
+        },
         legend: {
             data: [
-                '品类1', '品类2'
-            ]
+                '30days', "45days", "60days", "Completed"
+            ],
+            top: "0",
+            padding: [20, 0, 20, 0,]
+
         },
         xAxis: [{
             axisLine: {
                 show: false,
             },
-            axisTick: { 
+            axisTick: {
                 show: false,
             },
             type: 'category',
@@ -39,93 +48,97 @@ export class OrderCycleProductionComponent implements OnInit {
             show: false,
             type: 'value'
         }],
-        series: [{
-            name: '品类1',
-            type: 'bar',
-            stack: 'B',
-            data: [320, 332, 301],
+        series: [
+            {
+                color: ['#34a593'],
+                name: 'Completed',
+                type: 'bar',
+                stack: 'B',
+                data: [120, 132, 101],
+                barCategoryGap: "30%",
+            },
+            {
+                name: '30days',
+                type: 'bar',
+                stack: 'B',
+                data: [320, 332, 301],
+                color: ['#b2b2b2'],
+                barGap:"70%",
+                label: {
+                    show: true,
+                    position: 'top',
+                    textStyle: {
+                        color: '#34474f'
+                    },
+                    formatter: function (params) {
+                        if (params.value == 0) {
+                            return '';
+                        } else {
+                            return params.dataIndex.value;
+                        }
+                    }
+                },
+            },
+            {
+                name: 'Completed',
+                type: 'bar',
+                color: ['#34a593'],
+                stack: 'C',
+                data: [120, 132, 400],
+                barCategoryGap: "30%",
+            },
+            {
+                name: '45days',
+                type: 'bar',
+                color: ['#5c6bbe'],
+                stack: 'C',
+                data: [620, 500, 701],
+                barGap:"70%",
+                label: {
+                    show: true,
+                    position: 'top',
+                    textStyle: {
+                        color: '#34474f'
+                    },
+                    formatter: function (params) {
+                        if (params.value == 0) {
+                            return '';
+                        } else {
+                            return params.dataIndex.value;
+                        }
+                    }
+                },
 
-        },
-        {
-            name: '品类2',
-            type: 'bar',
-            stack: 'B',
-            data: [120, 132, 101],
-            label: {
-                show: true,
-                position: 'top',
-                textStyle: {
-                    color: '#34474f'
-                },
-                formatter: function (params) {
-                    if (params.value == 0) {
-                        return '';
-                    } else {
-                        return params.dataIndex.value;
-                    }
-                }
             },
-            barCategoryGap: "40%",
-        },
-
-        {
-            name: '品类1',
-            type: 'bar',
-            color: ['#65cad0'],
-            stack: 'C',
-            data: [620, 732, 701]
-        },
-        {
-            name: '品类2',
-            type: 'bar',
-            color: ['#cfda7a'],
-            stack: 'C',
-            data: [120, 132, 101],
-            label: {
-                show: true,
-                position: 'top',
-                textStyle: {
-                    color: '#34474f'
-                },
-                formatter: function (params) {
-                    if (params.value == 0) {
-                        return '';
-                    } else {
-                        return params.dataIndex.value;
-                    }
-                }
+            {
+                name: 'Completed',
+                color: ['#34a593'],
+                type: 'bar',
+                stack: 'D',
+                data: [120, 300, 101],
             },
-            barCategoryGap: "40%",
-        },
-        {
-            name: '品类1',
-            type: 'bar',
-            color: ['#34474f'],
-            stack: 'D',
-            data: [620, 732, 701]
-        },
-        {
-            name: '品类2',
-            color: ['#333'],
-            type: 'bar',
-            stack: 'D',
-            data: [120, 132, 101],
-            label: {
-                show: true,
-                position: 'top',
-                textStyle: {
-                    color: '#34474f'
-                },
-                formatter: function (params) {
-                    if (params.value == 0) {
-                        return '';
-                    } else {
-                        return params.dataIndex.value;
+            {
+                name: '60days',
+                type: 'bar',
+                color: ['#d24a62'],
+                stack: 'D',
+                data: [620, 500, 701],
+                barGap:"70%",
+                label: {
+                    show: true,
+                    position: 'top',
+                    textStyle: {
+                        color: '#34474f'
+                    },
+                    formatter: function (params) {
+                        if (params.value == 0) {
+                            return '';
+                        } else {
+                            return params.dataIndex.value;
+                        }
                     }
-                }
-            },
-            barCategoryGap: "40%",
-        }
+                },
+            }
         ]
     };
 }

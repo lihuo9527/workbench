@@ -19,7 +19,18 @@ export class OrderCycleSummaryComponent implements OnInit {
             color: "#000000",
             fontfontFamily: "Microsoft YaHei"
         },
-        legend: {},
+        grid: {
+            containLabel: true,
+            left: 'left',
+            top: "20%",
+            bottom: "5%",
+        },
+        legend: {
+            top: "1%",
+            padding: [20, 0, 20, 0],
+            right:"3%"
+
+        },
         tooltip: {},
         dataset: {
             source: [
@@ -43,7 +54,8 @@ export class OrderCycleSummaryComponent implements OnInit {
         series: [
             {
                 type: 'bar',
-                color: ['#65cad0'],
+                color: ['#b2b2b2'],
+                barGap:"70%",
                 label: {
                     show: true,
                     position: 'top',
@@ -58,11 +70,12 @@ export class OrderCycleSummaryComponent implements OnInit {
                         }
                     }
                 },
-                barCategoryGap: "40%",
+                barCategoryGap: "30%",
             },
             {
                 type: 'bar',
-                color: ['#cfda7a'],
+                color: ['#5c6bbe'],
+                barGap:"70%",
                 label: {
                     show: true,
                     position: 'top',
@@ -77,11 +90,12 @@ export class OrderCycleSummaryComponent implements OnInit {
                         }
                     }
                 },
-                barCategoryGap: "40%",
+                barCategoryGap: "30%",
             },
             {
                 type: 'bar',
-                color: ['#8d7fd9'],
+                color: ['#d24a62'],
+                barGap:"70%",
                 label: {
                     show: true,
                     position: 'top',
@@ -96,7 +110,7 @@ export class OrderCycleSummaryComponent implements OnInit {
                         }
                     }
                 },
-                barCategoryGap: "40%",
+                // barCategoryGap: "30%",
             }
         ]
     };
