@@ -4,12 +4,19 @@
 </header>
 <div class="hidden_header"></div>
 <div class="container">
-    <div class="box ">
-        <div *ngFor="let item of plans" class="plan" (click)="link(item.link)">
-            <div>
-                <img [src]="item.icon" style="width: 50%;" alt="">
+    <img src="assets/images/banner.png" style="width: 100%;" alt="">
+    <div class="box">
+        <div *ngFor="let item of plans" class="plan">
+            <p class="row_title"><i></i>{{item.title}}</p>
+            <div class="item" *ngFor="let data of item.data" (click)="link(data.link)">
+                <div class="icon_box">
+                    <div style="width: 40%;position: relative;">
+                        <img [src]="data.icon" style="width: 100%;" alt="">
+                        <button>10</button>
+                    </div>
+                </div>
+                <p>{{data.title}}</p>
             </div>
-            <span> {{item.title}}</span>
         </div>
     </div>
 </div>

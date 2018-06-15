@@ -18,7 +18,7 @@ export class PlanEntryComponent implements OnInit {
     public total;
     public total2;
     public dayAmount;
-    public Plan = {"msg": "", "result": { "sumBackFactory": "", "dayCount": "", "canDayCount": "", "supplier": "", "produceTime": "", "recording": [], "startTime": "", "totalCount": "", "sumOutgoingCount": ""}, "status":""};
+    public Plan = { "msg": "", "result": { "sumBackFactory": "", "dayCount": "", "canDayCount": "", "supplier": "", "produceTime": "", "recording": [], "startTime": "", "totalCount": "", "sumOutgoingCount": "" }, "status": "" };
     ngOnInit() {
         this.Language = localStorage.getItem("language");
         this.datas = JSON.parse(this.routerIonfo.snapshot.params["data"]);
@@ -36,16 +36,19 @@ export class PlanEntryComponent implements OnInit {
                 }
                 let totaloutgoing: number = 0;
                 let totalreturn: number = 0;
-                this.Plan.result.recording.forEach(element => {
-                    totaloutgoing += Number(element.outgoingCount);
-                    totalreturn += Number(element.backFactory);
-                });
-                this.Plan.result.recording.push({
-                    date: "Total",
-                    outgoingCount: totaloutgoing,
-                    backFactory: totalreturn,
-                    reduce: "-" + (totaloutgoing - totalreturn)
-                })
+                if (this.Plan.result.recording.length > 0) {
+                    this.Plan.result.recording.forEach(element => {
+                        totaloutgoing += Number(element.outgoingCount);
+                        totalreturn += Number(element.backFactory);
+                    });
+                    this.Plan.result.recording.push({
+                        date: "Total",
+                        outgoingCount: totaloutgoing,
+                        backFactory: totalreturn,
+                        reduce: "-" + (totaloutgoing - totalreturn)
+                    })
+                }
+
                 console.log(data)
             })
         }
@@ -74,5 +77,15 @@ export class PlanEntryComponent implements OnInit {
             this.date = obj.date;
         }
         this.state = false;
+    }
+    change(item) {
+        let state = item.isEnd == 0 ? 1 : 0;
+        let option = 'planId=' + item.planId + "&status=" + state;
+        this.service.http_post('/api/OuterFactory/ModifyPlanStatus', option, false, "form").subscribe((data: any) => {
+            item.isEnd = state;
+            alert("修改成功！")
+            console.log(this.data)
+        })
+
     }
 }

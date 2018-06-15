@@ -40,7 +40,16 @@ export class OutProcessComponent implements OnInit {
             }
         })
     }
-    Link(item){
-        this.router.navigate(['planEntry', JSON.stringify({data:item,title:this.title})]);
+    Link(item) {
+        this.router.navigate(['planEntry', JSON.stringify({ data: item, title: this.title })]);
+    }
+    change(item) {
+        let state = item.isEnd== 0? 1 : 0;
+        let option = 'planId=' + item.planId + "&status=" + state;
+        this.service.http_post('/api/OuterFactory/ModifyPlanStatus', option, false, "form").subscribe((data:any)=>{
+            item.isEnd =  state;
+            alert("修改成功！")
+        })
+
     }
 }

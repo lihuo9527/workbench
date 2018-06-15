@@ -106,7 +106,7 @@
             </li>
         </ul>
 
-        <div class="entry_box" *ngIf="Plan.result.recording.length>0">
+        <div class="entry_box" *ngIf="Plan.result.recording.length">
             <div class="entry_title">
                 <span style="color: #088c77;">Daily External Records</span>
                 <span style="color: #088c77;">Analysis Chart</span>
@@ -125,8 +125,8 @@
             </div>
         </div>
 
-        <p class="row_title"> Daily External Records Input</p>
-        <div class="submit_form">
+        <p class="row_title" *ngIf="data.isEnd==0"> Daily External Records Input</p>
+        <div class="submit_form" *ngIf="data.isEnd==0">
             <p class="form_row" (click)="state=true">
                 <span>Date</span>
                 <i class="date">{{date}}</i>
@@ -142,9 +142,15 @@
         <button *ngIf="Language=='cn'" (click)="next()">下一步</button>
         <button *ngIf="Language=='en'" (click)="next()">Next</button>
     </div>
-    <div class="submitBox" *ngIf="data.plan=='Yes'">
-        <button *ngIf="Language=='cn'" (click)="submit()">提交</button>
-        <button *ngIf="Language=='en'" (click)="submit()">Submit</button>
+    <div class="submitBox" *ngIf="data.plan=='Yes' && data.isEnd==0">
+        <button class="end" *ngIf="Language=='cn'" (click)="change(data)">结束</button>
+        <button class="end" *ngIf="Language=='en'" (click)="change(data)">End</button>
+        <button class="submit" *ngIf="Language=='cn'" (click)="submit()">提交</button>
+        <button class="submit" *ngIf="Language=='en'" (click)="submit()">Submit</button>
+    </div>
+    <div class="cancelBox" *ngIf="data.plan=='Yes' && data.isEnd==1">
+        <button class="end" *ngIf="Language=='cn'" (click)="change(data)">取消已结束</button>
+        <button class="end" *ngIf="Language=='en'" (click)="change(data)">Cancel the end</button>
     </div>
     <app-date *ngIf="state" number="1" (submit)="backDate($event)"></app-date>
 </div>

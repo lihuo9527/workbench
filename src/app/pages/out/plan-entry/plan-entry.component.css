@@ -145,3 +145,63 @@
     max-height: 210px;
     overflow: auto;
 }
+
+.submitBox {
+    padding: 1rem;
+    background: #fff;
+    display: flex;
+    justify-content: space-around;
+}
+
+.submitBox .submit {
+    flex: 0 0 45%;
+    color: #fff;
+    background: #088c77;
+    display: block;
+    width: 50%;
+    border-radius: 0.5rem;
+    height: 4rem;
+    font-size: 1.8rem;
+    background: #088c77;
+    display: block;
+    border-radius: 0.5rem;
+    height: 4rem;
+    font-size: 1.8rem;
+}
+
+.submitBox .end {
+    flex: 0 0 45%;
+    background: #fff;
+    display: block;
+    width: 50%;
+    border-radius: 0.5rem;
+    height: 4rem;
+    font-size: 1.8rem;
+    border: 1px solid #ff5a52;
+    color: #ff5a52;
+    display: block;
+    border-radius: 0.5rem;
+    height: 4rem;
+    font-size: 1.8rem;
+}
+
+.cancelBox {
+    padding: 1rem;
+    background: #fff;
+    margin-top: 1rem;
+}
+
+.cancelBox button {
+    background: #fff;
+    display: block;
+    width: 100%;
+    border-radius: 0.5rem;
+    height: 4rem;
+    font-size: 1.8rem;
+    border: 1px solid #ff5a52;
+    color: #ff5a52;
+    display: block;
+    border-radius: 0.5rem;
+    height: 4rem;
+    font-size: 1.8rem;
+}

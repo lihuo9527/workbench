@@ -77,7 +77,7 @@ export class DailyLineEffComponent implements OnInit {
         }],
         dataZoom: [                                      //区域缩放  
             {
-                type: 'slider',                         //slider表示有滑动块的，inside表示内置的
+                type: 'inside',                         //slider表示有滑动块的，inside表示内置的
             }
         ],
         series: [{

@@ -16,6 +16,10 @@
                             <span *ngIf="Language=='cn'">生产单号:{{item.code}}</span>
                         </div>
                         <div class="entry_container">
+                            <button *ngIf="Language=='en' && item.plan=='Yes'" (click)="Link(item)" class="entry">View</button>
+                            <button *ngIf="Language=='cn' && item.plan=='Yes'" (click)="Link(item)" class="entry">查看</button>
+                            <button *ngIf="Language=='en' && item.plan=='No'" (click)="Link(item)" class="entry">Entry</button>
+                            <button *ngIf="Language=='cn' && item.plan=='No'" (click)="Link(item)" class="entry">录入</button>
                         </div>
                     </div>
                     <ul class="items">
@@ -48,10 +52,10 @@
                                 <span *ngIf="Language=='cn'">裁床数</span>
                             </div>
                             <div class="other">
-                                <button *ngIf="Language=='en' && item.plan=='Yes'" (click)="Link(item)" class="entry">View</button>
-                                <button *ngIf="Language=='cn' && item.plan=='Yes'" (click)="Link(item)" class="entry">查看</button>
-                                <button *ngIf="Language=='en' && item.plan=='No'" (click)="Link(item)" class="entry">Entry</button>
-                                <button *ngIf="Language=='cn' && item.plan=='No'" (click)="Link(item)" class="entry">录入</button>
+                                <button *ngIf="Language=='en' && item.plan=='Yes' && item.isEnd==0" (click)="change(item)" class="end">End</button>
+                                <button *ngIf="Language=='cn' && item.plan=='Yes' && item.isEnd==0" (click)="change(item)" class="end">结束</button>
+                                <button *ngIf="Language=='en' && item.plan=='Yes' && item.isEnd==1" (click)="change(item)" class="end">cancel</button>
+                                <button *ngIf="Language=='cn' && item.plan=='Yes' && item.isEnd==1" (click)="change(item)" class="end">取消</button>
                             </div>
                         </li>
                     </ul>
