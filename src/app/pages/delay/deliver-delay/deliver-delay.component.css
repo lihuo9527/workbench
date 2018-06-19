@@ -1,91 +1,62 @@
-.criticalList li {
-    overflow: hidden;
-    background: #fff;
+.box {
+    display: flex;
+    flex: 0 0 100%;
+    box-sizing: border-box;
+}
+
+.items {
+    width: 100%;
+    border-top: #dbdbdb solid 1px;
     margin-bottom: 1rem;
-}
-
-li {
-    display: list-item;
-    text-align: -webkit-match-parent;
-}
-
-.criticalList li .criticalTop {
-    overflow: hidden;
-    border-bottom: #ededed solid 1px;
-    height: 4rem;
-    padding: 0 1rem;
-    background: #fff url(/assets/images/arrow_right.png) no-repeat 98% center;
-    background-size: 1.5rem;
-}
-
-.criticalList li .criticalTop span {
-    float: right;
-    margin-right: 1rem;
-    line-height: 4rem;
-    font-size: 1.4rem;
-}
-
-.criticalList li .criticalTop h5 {
-    font-size: 1.5rem;
-    color: #088c77;
-    float: left;
-    line-height: 4rem;
-}
-
-.criticalCon {
     display: flex;
-    flex: 1;
+    flex: 0 0 100%;
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
-.criticalCon .right {
-    flex: 0 0 30%;
-    text-align: right;
-}
-
-.criticalCon .left {
-    flex: 0 0 30%;
-}
-
-.criticalCon .centre {
-    flex: 0 0 40%;
+.row {
+    flex: 0 0 33.33%;
     display: flex;
+    padding-top: 1rem;
+    align-items: flex-start;
+    flex-flow: wrap;
+}
+
+.box .other {
+    flex: 0 0 33.33%;
+    list-style: none;
+    font-style: normal;
+    color: #333;
+    text-decoration: none;
+    display: flex;
+    flex-flow: wrap;
+}
+
+.left {
+    justify-content: flex-start;
+}
+
+.right {
+    justify-content: flex-end;
+}
+
+.center {
     justify-content: center;
     align-items: center;
 }
 
-.criticalCon .slightDelay {
-    float: left;
-    width: 7rem;
-    height: 7rem;
-    border-radius: 7rem;
-    background: #ff81dd;
-    color: #fff;
-    font-size: 1.6rem;
-    line-height: 1.6rem;
-    display: -webkit-box;
-    display: -moz-box;
-    -webkit-box-pack: center;
-    -moz-box-pack: center;
-    -webkit-box-align: center;
-    -moz-box-align: center;
-    text-align: center;
-}
-
-.criticalCon {
-    overflow: hidden;
-    padding: 1rem 1rem 0;
-}
-
-.criticalCon .left p,
-.criticalCon .right p {
-    color: #4d4d4d;
+.other p {
     font-size: 1.4rem;
-    line-height: 2.5rem;
+    line-height: 1.4rem;
+    margin-bottom: 0.2rem;
+    overflow: hidden;
+    min-height: 1.4rem;
+    width: 100%;
 }
 
-.criticalCon .left span,
-.criticalCon .right span {
-    color: #b8b8b8;
-    display: inline-block;
-    margin-bottom: 1rem;
+.other span {
+    line-height: 1.5rem;
+    font-size: 1rem;
+    color: #b2b2b2;
+    flex: 0 0 100%;
 }

@@ -58,14 +58,14 @@
 
 .processIng span {
     display: inline;
-    width: 16%;
-    float: left;
     background: url(/assets/images/p_completed.png) no-repeat center top;
     background-size: 2rem;
     padding: 2.5rem 0 1rem;
     text-align: center;
     line-height: 1.6rem;
     font-size: 1.2rem;
+    width: 16%;
+    float: left;
 }
 
 .processIng span.fault {
