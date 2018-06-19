@@ -9,58 +9,39 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class NonPlaningProcessComponent implements OnInit {
 
     constructor(private service: AppService, private routerIonfo: ActivatedRoute, private router: Router) { }
-    public eventId = "-1";
     public datas = [];
-    public id;
     public Language;
-    public state = true;
-    public navigations = [];
-    public start;
-    public end;
-    public filter;
     ngOnInit() {
         this.Language = localStorage.getItem("language");
-        this.id = this.routerIonfo.snapshot.params["id"];
-        this.eventId = this.id == "all" ? "-1" : this.id;
-        console.log("id" + this.id);
+        this.UpdateList();
     }
-    UpdateList() {
-        let pageIndex = Math.ceil(this.datas.length / 4) + 1;
-        this.service.http_get('/api/Schedule/GetProcessPoes?pageIndex=' + pageIndex + '&pageSize=4&star=' + this.start + '&end=' + this.end, false).subscribe((data: any) => {
-            let obj = data;
-            if (obj.length > 0) {
-                for (let i = 0; i < obj.length; i++) {
-                    this.datas.push(obj[i]);
+
+    UpdateList($event?) {
+        let local = JSON.parse(localStorage.getItem("filter"));
+        let pageIndex = local.input ? 1 : this.datas.length / 4 + 1;
+        let option = "";
+        if ($event) {
+            option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + $event.StartDate + '&end=' + $event.EndDate;
+            if ($event.fids) option += '&fids=' + $event.fids;
+            if ($event.wsids) option += '&wsids=' + $event.wsids;
+            if ($event.eventid) option += '&eventid=' + $event.eventid;
+        } else {
+            option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + local.start + '&end=' + local.end
+        }
+        if (local.input) option += '&code=' + local.input;
+        this.service.http_get('/api/Schedule/GetProcessPoes?' + option, false).subscribe((data: any) => {
+            if ($event || local.input) {
+                this.datas = data;
+            } else {
+                let obj = data;
+                if (obj.length > 0) {
+                    for (let i = 0; i < obj.length; i++) {
+                        this.datas.push(obj[i]);
+                    }
                 }
             }
+
         })
-    }
-    Select(index) {
-        console.log(index)
-        for (let i = 0; i < this.navigations.length; i++) {
-            if (i == index) {
-                this.navigations[i].state = true;
-            } else {
-                this.navigations[i].state = false;
-            }
-        }
-        this.id = index;
-    }
-    Complete($event) {
-        this.start = $event.StartDate;
-        this.end = $event.EndDate;
-        console.log("收到" + $event);
-        this.service.http_get('/api/Schedule/GetProcessPoes?pageIndex=1&pageSize=4' +
-            // '&fids=' + $event.fids + '&wsids=' +  $event.wsids+ 
-            // '&eventid=' +  $event.eventid+ 
-            '&star=' + $event.StartDate + '&end=' + $event.EndDate, false).subscribe((data: any) => {
-                    this.datas = data;
-                    this.state = false;
-            })
-    }
-    GetTabs($event) {
-        this.navigations = $event;
-        this.navigations[0].state = true;
     }
 
     Link(item) {

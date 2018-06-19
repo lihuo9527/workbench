@@ -12,17 +12,17 @@ export class AllWorkComponent implements OnInit {
     public list = [
         {
             title: "Entry", title2: "录入审核", data: [
-                { url: "/assets/images/a_21.png", text: "Critical Event", text2: "产前事件", link: "/criticalEvent", id: "0", index: "0" },
-                { url: "/assets/images/a_22.png", text: "Daily Progress", text2: "每日进度", link: "/productionDailyProgress", id: "1", index: "0" },
-                { url: "/assets/images/a_23.png", text: "Non-planing Process", text2: "非排产工序", link: "/NonPlaningProcessComponent", id: "2", index: "0" }]
+                { url: "/assets/images/a_21.png", text: "Critical Event", text2: "产前事件", link: "/search", id: "0", index: "0" },
+                { url: "/assets/images/a_22.png", text: "Daily Progress", text2: "每日进度", link: "/search", id: "1", index: "0" },
+                { url: "/assets/images/a_23.png", text: "Non-planing Process", text2: "非排产工序", link: "/search", id: "2", index: "0" }]
         },
         {
             title: "Abnormal Event Reminder", title2: "异常事件提醒", data: [
-                { url: "/assets/images/a_31.png", text: "Delivery Dalay", text2: "交期延误", link: "/deliverDelay", id: "all", index: "0" },
-                { url: "/assets/images/a_32.png", text: "Process Dalay", text2: "进度落后", link: "/processDelay", id: "all", index: "0" },
-                { url: "/assets/images/a_33.png", text: "Start Time Dalay", text2: "开工期延误", link: "/startDelay", id: "all", index: "0" },
-                { url: "/assets/images/a_34.png", text: "Critical Event Dalay", text2: "关键事件延误", link: "/criticalEventDelay", id: "all", index: "0" },
-                { url: "/assets/images/a_35.png", text: "Material Arrival Dalay", text2: "物料到货延误", link: "/materialDalay", id: "all", index: "0" }]
+                { url: "/assets/images/a_31.png", text: "Delivery Delay", text2: "交期延误", link: "/deliverDelay", id: "all", index: "0" },
+                { url: "/assets/images/a_32.png", text: "Process Delay", text2: "进度落后", link: "/processDelay", id: "all", index: "0" },
+                { url: "/assets/images/a_33.png", text: "Start Time Delay", text2: "开工期延误", link: "/startDelay", id: "all", index: "0" },
+                { url: "/assets/images/a_34.png", text: "Critical Event Delay", text2: "关键事件延误", link: "/criticalEventDelay", id: "all", index: "0" },
+                { url: "/assets/images/a_35.png", text: "Material Arrival Delay", text2: "物料到货延误", link: "/materialDelay", id: "all", index: "0" }]
         },
         {
             title: "Material and Key Event Reminder", title2: "物料与关键事件提醒", data: [

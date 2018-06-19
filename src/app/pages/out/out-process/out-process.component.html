@@ -1,8 +1,8 @@
 <div class="container">
     <app-title *ngIf="Language=='en'" [title]="title"></app-title>
     <app-title *ngIf="Language=='cn'" [title]="title"></app-title>
-    <app-search-box (getstate)='state=$event'></app-search-box>
-    <app-filter *ngIf="state" Info="process" (ReturnData)="GetTabs($event)" (back)="state=!state" (envet)="Complete($event)"></app-filter>
+    <app-search-box (OutputValue)='UpdateList()'></app-search-box>
+    <app-filter Info="event" (envet)="UpdateList($event)"></app-filter>
     <div class="container_box">
         <div class="box">
             <ul class="items">

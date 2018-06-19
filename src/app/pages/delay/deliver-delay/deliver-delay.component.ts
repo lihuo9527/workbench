@@ -39,9 +39,9 @@ export class DeliverDelayComponent implements OnInit {
             this.tabs[1].text = "重要";
             this.tabs[2].text = "普通";
         }
-        this.ShowIndex(navid);
+        this.showIndex(navid);
     }
-    GetList(index?) {
+    getList(index?) {
         console.log(index);
         if (index != undefined) {
             if (index == "0") this.id = "6";
@@ -58,7 +58,7 @@ export class DeliverDelayComponent implements OnInit {
 
         })
     }
-    ShowIndex(index) {
+    showIndex(index) {
         for (let i = 0; i < this.tabs.length; i++) {
             if (i == index) {
                 this.tabs[i].show = true;
@@ -67,10 +67,13 @@ export class DeliverDelayComponent implements OnInit {
             }
         }
         this.datas = [];
-        this.GetList(index);
+        this.getList(index);
     }
-    EnterEdit(i) {
-        this.router.navigate(['/eventDalayEdit', JSON.stringify(this.datas[i])]);
+    search(){
+
+    }
+    enterEdit(i) {
+        this.router.navigate(['/eventDelayEdit', JSON.stringify(this.datas[i])]);
         console.log(this.datas[i]);
     }
 }

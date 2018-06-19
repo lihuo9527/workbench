@@ -9,42 +9,38 @@ import { AppService } from '../../../app.service';
 export class ProductionDailyProgressComponent implements OnInit {
 
     constructor(private service: AppService, private routerIonfo: ActivatedRoute, private router: Router) { }
-    public eventId = "-1";
     public datas = [];
-    public id;
     public Language;
-    public state = true;
-    public navigations = [];
-    public start;
-    public end;
-    public filter;
-
     ngOnInit() {
         this.Language = localStorage.getItem("language");
-        this.id = this.routerIonfo.snapshot.params["id"];
-        this.id == "all" ? this.eventId = "-1" : this.eventId = this.id;
-        console.log("id:" + this.id);
+        this.UpdateList();
     }
-    UpdateList() {
-        let pageIndex = Math.ceil(this.datas.length / 4) + 1;
-        this.service.http_get('/api/Schedule/GetPlanPoes?pageIndex=' + pageIndex + '&pageSize=4&star=' + this.start + '&end=' + this.end, false).subscribe((data: any) => {
-            let obj = data;
-            if (obj.length > 0) {
-                for (let i = 0; i < obj.length; i++) {
-                    this.datas.push(obj[i]);
+    UpdateList($event?) {
+        let local = JSON.parse(localStorage.getItem("filter"));
+        let pageIndex = local.input ? 1 : this.datas.length / 4 + 1;
+        let option = "";
+        if ($event) {
+            option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + $event.StartDate + '&end=' + $event.EndDate;
+            if ($event.fids) option += '&fids=' + $event.fids;
+            if ($event.wsids) option += '&wsids=' + $event.wsids;
+            if ($event.eventid) option += '&eventid=' + $event.eventid;
+        } else {
+            option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + local.start + '&end=' + local.end
+        }
+        if (local.input) option += '&code=' + local.input;
+        this.service.http_get('/api/Schedule/GetPlanPoes?' + option, false).subscribe((data: any) => {
+            if ($event || local.input) {
+                this.datas = data;
+            } else {
+                let obj = data;
+                if (obj.length > 0) {
+                    for (let i = 0; i < obj.length; i++) {
+                        this.datas.push(obj[i]);
+                    }
                 }
             }
+
         })
-    }
-    Complete($event) {
-        this.start = $event.StartDate;
-        this.end = $event.EndDate;
-        console.log("收到" + $event);
-        this.service.http_get('/api/Schedule/GetPlanPoes?pageIndex=1&pageSize=4' +
-            '&star=' + $event.StartDate + '&end=' + $event.EndDate, false).subscribe((data: any) => {
-                this.datas = data;
-                this.state = false;
-            })
     }
     Link(item) {
         console.log(item);

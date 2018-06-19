@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 export class TitleComponent implements OnInit {
     @Input() public title: string;
     @Input() public link: any;
+    @Input() public size: any;
     constructor(private router: Router) { }
 
     ngOnInit() {

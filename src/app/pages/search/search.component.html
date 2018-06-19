@@ -2,7 +2,7 @@
     <app-title *ngIf="Language=='en'" [title]="title"></app-title>
     <app-title *ngIf="Language=='cn'" [title]="title"></app-title>
     <section class="searchBox">
-        <input class="searchBut search" type="text" [placeholder]="placeholder">
+        <input class="searchBut search" [(ngModel)]='input' type="text" [placeholder]="placeholder">
     </section>
 
     <aside id="filter">
@@ -13,7 +13,7 @@
                         <strong *ngIf="Language=='en'">{{item.title}}</strong>
                         <strong *ngIf="Language=='cn'">{{item.title2}}</strong>
                         <a *ngIf="item.arrow" (click)="item.rowstate=!item.rowstate" [ngClass]="{'rowDown':item.rowstate,'rowRight':!item.rowstate}"></a>
-                        <a *ngIf="item.but" (click)="On_Off(item.allstate,i)" [ngClass]="{'allOn':item.allstate,'allOff':!item.allstate}"></a>
+                        <a *ngIf="item.but" (click)="on_off(item.allstate,i)" [ngClass]="{'allOn':item.allstate,'allOff':!item.allstate}"></a>
                     </div>
                     <ul class="list" *ngIf="item.rowstate">
                         <li (click)="arr.state=!arr.state" style="overflow: hidden;" *ngFor="let arr of item.list;" [ngClass]="{'on':arr.state}">
@@ -31,8 +31,8 @@
                 </div>
             </div>
             <div class="submitBox">
-                <button *ngIf="Language=='en'" (click)="Query()">Query</button>
-                <button *ngIf="Language=='cn'" (click)="Query()">查询</button>
+                <button *ngIf="Language=='en'" (click)="query()">Query</button>
+                <button *ngIf="Language=='cn'" (click)="query()">查询</button>
             </div>
         </div>
         <app-date *ngIf="state" number="2" (submit)="backDate($event)"></app-date>

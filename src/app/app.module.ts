@@ -14,7 +14,6 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
 import { TabsComponent } from './components/tabs/tabs.component';
 import { EventDelayEditComponent } from './pages/delay/event-delay-edit/event-delay-edit.component';
 import { MaterialDelayComponent } from './pages/delay/material-delay/material-delay.component';
-import { TodayComponent } from './pages/today/today.component';
 import { FilterComponent } from './components/filter/filter.component';
 import { DateComponent } from './components/date/date.component';
 import { AllWorkComponent } from './pages/navigation/all-work/all-work.component';
@@ -28,13 +27,6 @@ import { ProcessEntryComponent } from './pages/entry/process-entry/process-entry
 import { EventEntryComponent } from './pages/entry/event-entry/event-entry.component';
 import { ScheduleEntryComponent } from './pages/entry/schedule-entry/schedule-entry.component';
 import { SearchComponent } from './pages/search/search.component';
-import { JoListComponent } from './pages/produce/jo-list/jo-list.component';
-import { JoTabsComponent } from './pages/produce/jo-tabs/jo-tabs.component';
-import { ResultComparisonComponent } from './pages/produce/result-comparison/result-comparison.component';
-import { ScheduleListComponent } from './pages/produce/schedule-list/schedule-list.component';
-import { ScheduleReportFormsComponent } from './pages/produce/schedule-report-forms/schedule-report-forms.component';
-import { DetailAnalysisListComponent } from './pages/produce/detail-analysis-list/detail-analysis-list.component';
-import { DetailAnalysisComponent } from './pages/produce/detail-analysis/detail-analysis.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './pages/user/login/login.component';
 import { RegisterComponent } from './pages/user/register/register.component';
@@ -63,7 +55,6 @@ import { UnfinishedEntryComponent } from './pages/out/unfinished-entry/unfinishe
         TabsComponent,
         EventDelayEditComponent,
         MaterialDelayComponent,
-        TodayComponent,
         FilterComponent,
         DateComponent,
         AllWorkComponent,
@@ -77,13 +68,6 @@ import { UnfinishedEntryComponent } from './pages/out/unfinished-entry/unfinishe
         EventEntryComponent,
         ScheduleEntryComponent,
         SearchComponent,
-        JoListComponent,
-        JoTabsComponent,
-        ResultComparisonComponent,
-        ScheduleListComponent,
-        ScheduleReportFormsComponent,
-        DetailAnalysisListComponent,
-        DetailAnalysisComponent,
         LoginComponent,
         RegisterComponent,
         ForgotPasswordComponent,

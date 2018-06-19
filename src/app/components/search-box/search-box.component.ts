@@ -6,12 +6,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
     styleUrls: ['./search-box.component.css']
 })
 export class SearchBoxComponent implements OnInit {
-    @Output() public getstate: EventEmitter<any> = new EventEmitter<any>();
+    @Output() public OutputValue: EventEmitter<any> = new EventEmitter<any>();
     constructor() { }
     public placeholder;
     public Language;
     public filter;
     public show: boolean;
+    public input;
     ngOnInit() {
         this.Language = localStorage.getItem("language");
         if (this.Language == "cn") {
@@ -23,7 +24,16 @@ export class SearchBoxComponent implements OnInit {
             this.placeholder = "input number or style to query";
         }
     }
-    ShowFilter() {
-        this.getstate.emit(!this.show)
+    blur() {
+        let obj = JSON.parse(localStorage.getItem("filter"));
+        obj.input = this.input
+        localStorage.setItem("filter", JSON.stringify(obj));
+    }
+    output() {
+        this.OutputValue.emit(this.input)
+    }
+    showFilter() {
+        document.getElementById("shadow").style.left = "0%";
+        document.getElementById("filter").style.left = "0%";
     }
 }

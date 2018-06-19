@@ -1,5 +1,5 @@
 <div class="container">
-    <app-title *ngIf="Language=='en'" title="Production QTY & Total SAH/SAM By Monthly"></app-title>
+    <app-title *ngIf="Language=='en'" size="small" title="Production QTY & Total SAH/SAM By Monthly"></app-title>
     <app-title *ngIf="Language=='cn'" title="每月生产数量和耗时统计"></app-title>
     <p class="row_title">Monthly production quantity and time consuming statistics</p>
     <div echarts [options]="option" class="demo-chart"></div>

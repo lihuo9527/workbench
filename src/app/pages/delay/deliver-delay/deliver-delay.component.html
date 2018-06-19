@@ -1,11 +1,11 @@
 <div class="container">
     <app-title *ngIf="Language=='en'" title="Delivery Delay" [link]="Link"></app-title>
     <app-title *ngIf="Language=='cn'" title="交期延误订单" [link]="Link"></app-title>
-    <app-search-box (getstate)='state=$event'></app-search-box>
-    <app-filter *ngIf="state" Info="event" (back)="state=!state"></app-filter>
-    <app-tabs [tabs]="tabs" (indexchange)="ShowIndex($event)"></app-tabs>
+    <app-search-box (getstate)='state=$event' (search)="search()"></app-search-box>
+    <app-filter [ngClass]="{'filtershow':state,'filterhidden':!state}" Info="event" (back)="state=!state"></app-filter>
+    <app-tabs [tabs]="tabs" (indexchange)="showIndex($event)"></app-tabs>
     <ul class="criticalList" id="deliver">
-        <li *ngFor="let item of datas;let i=index;" (click)="EnterEdit(i)">
+        <li *ngFor="let item of datas;let i=index;" (click)="enterEdit(i)">
             <div class="criticalTop">
                 <h5>{{item.CustomerName}} - {{item.PoCode}}</h5>
                 <span *ngIf="Language=='en'">Handle</span>
@@ -37,6 +37,6 @@
             </div>
         </li>
     </ul>
-    <app-load-more *ngIf="datas.length>3" [language]="Language" (click)="GetList()"></app-load-more>
+    <app-load-more *ngIf="datas.length>3" [language]="Language" (click)="getList()"></app-load-more>
     <p *ngIf="datas.length==0" style="color:#fff;background:#b8b8b8;text-align: center; height:3rem;line-height:3rem;">目前没有查询到更多消息！</p>
 </div>

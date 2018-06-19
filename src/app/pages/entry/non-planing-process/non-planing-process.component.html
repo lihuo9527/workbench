@@ -1,16 +1,9 @@
 <div class="container">
     <app-title *ngIf="Language=='en'" title="Non-Planing Process Entry"></app-title>
     <app-title *ngIf="Language=='cn'" title="非排产工序进度录入"></app-title>
-    <app-search-box (getstate)='state=$event'></app-search-box>
-    <app-filter *ngIf="state" Info="process" (ReturnData)="GetTabs($event)" (back)="state=!state" (envet)="Complete($event)"></app-filter>
+    <app-search-box (OutputValue)='UpdateList()'></app-search-box>
+    <app-filter Info="event" (envet)="UpdateList($event)"></app-filter>
     <div class="container_box">
-        <!-- <div class="select_box">
-            <ul class="select">
-                <li [ngClass]="{'green':item.state}" *ngFor="let item of navigations;let i=index;" (click)="Select(i)">
-                    {{item.text}}
-                </li>
-            </ul>
-        </div> -->
         <div class="box">
             <ul class="lists">
                 <li class="list" *ngFor="let item of datas">

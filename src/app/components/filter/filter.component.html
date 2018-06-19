@@ -8,7 +8,7 @@
                     <strong *ngIf="Language=='en'">{{item.title}}</strong>
                     <strong *ngIf="Language=='cn'">{{item.title2}}</strong>
                     <a *ngIf="item.arrow" (click)="item.rowstate=!item.rowstate" [ngClass]="{'rowDown':item.rowstate,'rowRight':!item.rowstate}"></a>
-                    <a *ngIf="item.but" (click)="On_Off(item.allstate,i)" [ngClass]="{'allOn':item.allstate,'allOff':!item.allstate}"></a>
+                    <a *ngIf="item.but" (click)="on_off(item.allstate,i)" [ngClass]="{'allOn':item.allstate,'allOff':!item.allstate}"></a>
                 </div>
                 <ul class="list" *ngIf="item.rowstate">
                     <li (click)="arr.state=!arr.state" *ngFor="let arr of item.list;" [ngClass]="{'on':arr.state}">
@@ -23,8 +23,8 @@
                 <p (click)="state=true">{{EndDate}}</p>
             </div>
         </div>
-        <button *ngIf="Language=='en'" class="sbmit" (click)="Complete()">Complete</button>
-        <button *ngIf="Language=='cn'" class="sbmit" (click)="Complete()">完成</button>
+        <button *ngIf="Language=='en'" class="sbmit" (click)="complete()">Complete</button>
+        <button *ngIf="Language=='cn'" class="sbmit" (click)="complete()">完成</button>
     </div>
     <div id="shadow"></div>
     <app-date *ngIf="state" number="2" (submit)="backDate($event)"></app-date>

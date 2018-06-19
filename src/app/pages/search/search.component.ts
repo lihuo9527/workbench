@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from '../../app.service';
+import { NgSwitchCase } from '@angular/common';
 @Component({
     selector: 'app-search',
     templateUrl: './search.component.html',
@@ -14,31 +15,13 @@ export class SearchComponent implements OnInit {
     public title;
     public state;
     public placeholder = "输入单号或款号查询";
+    public input;
     public lists = [
         {
             data: [
                 { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                {
-                    title: "Status", title2: "状态", rowstate: false, allstate: false, but: true, arrow: true,
-                    list: [
-                        { text: "Sew Plan Date", text2: "未完成", state: false },
-                        { text: "Delivery Date", text2: "已完成", state: false },
-                        { text: "Order Confirmed date", text2: "已出口", state: false }
-                    ]
-                },
-                {
-                    title: "Firm Order or not", title2: "是否实单", rowstate: true, allstate: false, but: false, arrow: false,
-                    list: [
-                        { text: "Sew Plan Date", text2: "非实单", state: false },
-                        { text: "Delivery Date", text2: "实单", state: false }
-                    ]
-                },
-                {
-                    title: "Group", title2: "分组", rowstate: true, allstate: false, but: false, arrow: false,
-                    list: [
-                        { text: "By Color", text2: "区分颜色", state: false }]
-                },
+                { title: "Critical Event", title2: "关键事件", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 {
                     title: "Date", title2: "日期", rowstate: true, allstate: false, but: false, arrow: false,
                     list: [
@@ -53,17 +36,13 @@ export class SearchComponent implements OnInit {
             data: [
                 { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Lines", title2: "生产线", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+                { title: "Style", title2: "大类", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 {
-                    title: "Sort Order", title2: "排序方式", rowstate: true, allstate: false, but: false, arrow: false,
+                    title: "Production Date", title2: "生产日期", rowstate: true, allstate: false, but: false, arrow: false,
                     list: [
-                        { text: "Ranking", text2: "按名次", state: false },
-                        { text: "Line", text2: "按生产线", state: false }
-                    ]
-                },
-                {
-                    title: "Date", title2: "车缝开始日", rowstate: true, allstate: false, but: false, arrow: false,
-                    list: []
+                        { text: "Sew Plan Date", text2: "车缝开始日", state: false },
+                        { text: "Delivery Date", text2: "交货期", state: false },
+                        { text: "Order Confirmed date", text2: "订单确认日", state: false }]
                 }
             ]
         },
@@ -72,17 +51,8 @@ export class SearchComponent implements OnInit {
             data: [
                 { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                {
-                    title: "Firm Order or not", title2: "是否实单", rowstate: true, allstate: false, but: false, arrow: false,
-                    list: [
-                        { text: "Sew Plan Date", text2: "非实单", state: false },
-                        { text: "Delivery Date", text2: "实单", state: false }
-                    ]
-                },
-                {
-                    title: "Date", title2: "车缝计划时间", rowstate: true, allstate: false, but: false, arrow: false,
-                    list: []
-                }
+                { title: "Process", title2: "工序", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+                { title: "Date", title2: "日期", rowstate: true, allstate: false, but: false, arrow: false, list: [] }
             ]
         },
 
@@ -121,24 +91,24 @@ export class SearchComponent implements OnInit {
             data: [
                 { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Style", title2: "选择大类", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Production Date", title2: "日期", rowstate: true, allstate: false, but: false, arrow: false, list: [] }
+                { title: "Style", title2: "大类", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+                { title: "Production Date", title2: "生产日期", rowstate: true, allstate: false, but: false, arrow: false, list: [] }
             ]
         },
         {
             data: [
                 { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Style", title2: "选择大类", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Production Date", title2: "日期", rowstate: true, allstate: false, but: false, arrow: false, list: [] }
+                { title: "Style", title2: "大类", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+                { title: "Production Date", title2: "生产日期", rowstate: true, allstate: false, but: false, arrow: false, list: [] }
             ]
         },
         {
             data: [
                 { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Style", title2: "选择大类", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Production Date", title2: "日期", rowstate: true, allstate: false, but: false, arrow: false, list: [] }
+                { title: "Style", title2: "大类", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+                { title: "Production Date", title2: "生产日期", rowstate: true, allstate: false, but: false, arrow: false, list: [] }
             ]
         }
     ]
@@ -151,28 +121,24 @@ export class SearchComponent implements OnInit {
     ngOnInit() {
         this.id = this.routerIonfo.snapshot.params["id"];
         this.Language = localStorage.getItem("language");
-        if (this.id == 0 && this.Language == "en") this.title = 'JO Tracking';
-        if (this.id == 0 && this.Language == "cn") this.title = '生产跟催查询';
-        if (this.id == 1 && this.Language == "en") this.title = 'Daily Scheduling Output';
-        if (this.id == 1 && this.Language == "cn") this.title = '日计划产量';
-        if (this.id == 2 && this.Language == "en") this.title = 'Weekly Running Schedule Report';
-        if (this.id == 2 && this.Language == "cn") this.title = '滚动生产排期';
-        if (this.id == 4 && this.Language == "en") this.title = 'JO Details Analysis';
-        if (this.id == 4 && this.Language == "cn") this.title = '生产单明细分析';
-        if (this.id == 3 && this.Language == "en") this.title = 'Line Efficiency';
-        if (this.id == 3 && this.Language == "cn") this.title = '生产线效率';
+        if (this.id == 0 && this.Language == "en") this.title = 'Critical Event';
+        if (this.id == 0 && this.Language == "cn") this.title = '产前事件';
+        if (this.id == 1 && this.Language == "en") this.title = 'Daily Progress';
+        if (this.id == 1 && this.Language == "cn") this.title = '每日进度';
+        if (this.id == 2 && this.Language == "en") this.title = 'Non-planing Process';
+        if (this.id == 2 && this.Language == "cn") this.title = '非排产工序';
         if (this.id == 5 && this.Language == "en") this.title = 'Embroidery Printing Process Plan';
         if (this.id == 5 && this.Language == "cn") this.title = '印绣花工序';
         if (this.id == 6 && this.Language == "en") this.title = 'Sewing Process Plan';
         if (this.id == 6 && this.Language == "cn") this.title = '车缝';
         if (this.id == 7 && this.Language == "en") this.title = 'Washing Process Plan';
         if (this.id == 7 && this.Language == "cn") this.title = '洗水';
-        if (this.id == 4) this.datecontainer = false;
         this.datas = this.lists[this.id].data;
         if (this.Language == "en") this.placeholder = "input number or style to query";
-        this.Init();
+        console.log("id", this.id)
+        this.init();
     }
-    Init() {
+    init() {
         this.service.http_get('/api/BaseData/GetFactoryLines', false).subscribe((data: any) => {
             if (data.length > 0) {
                 for (let i = 0; i < data.length; i++) {
@@ -190,31 +156,39 @@ export class SearchComponent implements OnInit {
                             'text': data[i].Shops[b].ShopName,
                             'state': false
                         };
-                        if (this.id == 1 || this.id == 2) this.datas[1].list.push(floor);
-                        if (this.id == 1 || this.id == 3) {
-                            for (let c = 0; c < data[i].Shops[b].Lines.length; c++) {
-                                let line: any = {
-                                    'id': data[i].Shops[b].Lines[c]['LId'],
-                                    'text2': data[i].Shops[b].Lines[c]['LineName'],
-                                    'text': data[i].Shops[b].Lines[c]['LineName'],
-                                    'state': false
-                                };
-                                this.datas[2].list.push(line);
-                            }
-                        }
+                        this.datas[1].list.push(floor);
                     }
                 }
             }
         })
-        if (this.id == 5 || this.id == 6 || this.id == 7) {
-            this.service.http_get('/api/OuterFactory/GetProductTypes', false).subscribe((data: any) => {
+        if (this.id == 0 || this.id == 2) {
+            let url: string;
+            switch (this.id) {
+                case '0': url = '/api/BaseData/GetEvents';
+                    break;
+                case '2': url = '/api/BaseData/GetProcesses';
+                    break;
+                default: url = "";
+                    break;
+            }
+            console.log(url)
+            this.service.http_get(url, false).subscribe((data: any) => {
                 if (data.length > 0) {
-                    this.datas[2].list = data;
+                    data.forEach(element => {
+                        let json: any = {
+                            'id': element.itemId,
+                            'text': element.itemName,
+                            'text2': element.itemName,
+                            'state': false
+                        };
+                        this.datas[2].list.push(json);
+                    });
+
                 }
             })
         }
     }
-    On_Off(allstate, i) {
+    on_off(allstate, i) {
         this.datas[i].allstate = !this.datas[i].allstate;
         for (let b = 0; b < this.datas[i].list.length; b++) {
             this.datas[i].list[b].state = this.datas[i].allstate;
@@ -230,12 +204,12 @@ export class SearchComponent implements OnInit {
         }
         setTimeout(() => this.state = obj.state, time);
     }
-    Query() {
-        if (this.id == 0) {
-            this.router.navigate(['joList', JSON.stringify({ "start": this.StartDate, "end": this.EndDate })]);
-        }
-        if (this.id == 1) this.router.navigate(['resultComparison']);
-        if (this.id == 2) this.router.navigate(['scheduleList']);
+    query() {
+        localStorage.setItem("datas",JSON.stringify(this.datas));
+        localStorage.setItem("filter", JSON.stringify({ "start": this.StartDate, "end": this.EndDate,"input":this.input }));
+        if (this.id == 0) this.router.navigate(['criticalEvent']);
+        if (this.id == 1) this.router.navigate(['productionDailyProgress']);
+        if (this.id == 2) this.router.navigate(['nonPlaningProcess']);
         if (this.id == 3) { };
         if (this.id == 4) {
             let fids = "";
@@ -253,7 +227,7 @@ export class SearchComponent implements OnInit {
                 fids += fid;
             }
             console.log("fids:" + fids)
-            this.router.navigate(['outProcess', JSON.stringify({ "fids": fids,start:this.StartDate,end:this.EndDate,id:this.id })]);
+            this.router.navigate(['outProcess', JSON.stringify({ "fids": fids, start: this.StartDate, end: this.EndDate, id: this.id })]);
         }
     }
 }

@@ -1,5 +1,5 @@
 <header>
     <a class="reBut" (click)="BackPage()"></a>
-    <h1>{{title}}</h1>
+    <h1 [ngClass]='{"small":size=="small"}'>{{title}}</h1>
 </header>
 <div class="hidden_header"></div>

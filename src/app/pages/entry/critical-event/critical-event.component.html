@@ -1,8 +1,8 @@
 <div class="container">
     <app-title *ngIf="Language=='en'" title="Critical Event"></app-title>
     <app-title *ngIf="Language=='cn'" title="关键事件进度录入"></app-title>
-    <app-search-box (getstate)='state=$event'></app-search-box>
-    <app-filter *ngIf="state" Info="event" (ReturnData)="GetTabs($event)" (back)="state=!state" (envet)="Complete($event)"></app-filter>
+    <app-search-box (OutputValue)='UpdateList()'></app-search-box>
+    <app-filter Info="event" (envet)="UpdateList($event)"></app-filter>
     <div class="container_box">
         <div class="box">
             <ul class="list">

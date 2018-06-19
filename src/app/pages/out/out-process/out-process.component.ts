@@ -28,26 +28,41 @@ export class OutProcessComponent implements OnInit {
         if (this.id == 7 && this.Language == "cn") this.title = '洗水';
         this.UpdateList();
     }
-
-    UpdateList() {
-        let pageIndex = Math.ceil(this.datas.length / 4) + 1;
-        this.service.http_get('/api/OuterFactory/GetPoes?pageIndex=' + pageIndex + '&pageSize=4&star=' + this.data.start + '&end=' + this.data.end + '&productTypeID=' + this.id, false).subscribe((data: any) => {
-            let obj = data;
-            if (obj.length > 0) {
-                for (let i = 0; i < obj.length; i++) {
-                    this.datas.push(obj[i]);
+    UpdateList($event?) {
+        let local = JSON.parse(localStorage.getItem("filter"));
+        let pageIndex = local.input ? 1 : this.datas.length / 4 + 1;
+        let option = "";
+        if ($event) {
+            option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + $event.StartDate + '&end=' + $event.EndDate;
+            if ($event.fids) option += '&fids=' + $event.fids;
+            if ($event.wsids) option += '&wsids=' + $event.wsids;
+            if ($event.eventid) option += '&eventid=' + $event.eventid;
+        } else {
+            option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + local.start + '&end=' + local.end
+        }
+        if (local.input) option += '&code=' + local.input;
+        this.service.http_get('/api/OuterFactory/GetPoes?' + option, false).subscribe((data: any) => {
+            if ($event || local.input) {
+                this.datas = data;
+            } else {
+                let obj = data;
+                if (obj.length > 0) {
+                    for (let i = 0; i < obj.length; i++) {
+                        this.datas.push(obj[i]);
+                    }
                 }
             }
+
         })
     }
     Link(item) {
         this.router.navigate(['planEntry', JSON.stringify({ data: item, title: this.title })]);
     }
     change(item) {
-        let state = item.isEnd== 0? 1 : 0;
+        let state = item.isEnd == 0 ? 1 : 0;
         let option = 'planId=' + item.planId + "&status=" + state;
-        this.service.http_post('/api/OuterFactory/ModifyPlanStatus', option, false, "form").subscribe((data:any)=>{
-            item.isEnd =  state;
+        this.service.http_post('/api/OuterFactory/ModifyPlanStatus', option, false, "form").subscribe((data: any) => {
+            item.isEnd = state;
             alert("修改成功！")
         })
 
