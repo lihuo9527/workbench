@@ -13,13 +13,14 @@
                         <strong *ngIf="Language=='en'">{{item.title}}</strong>
                         <strong *ngIf="Language=='cn'">{{item.title2}}</strong>
                         <a *ngIf="item.arrow" (click)="item.rowstate=!item.rowstate" [ngClass]="{'rowDown':item.rowstate,'rowRight':!item.rowstate}"></a>
-                        <a *ngIf="item.but" (click)="on_off(item.allstate,i)" [ngClass]="{'allOn':item.allstate,'allOff':!item.allstate}"></a>
+                        <a *ngIf="item.but" (click)="on_off(item.allstate,i,item)" [ngClass]="{'allOn':item.allstate,'allOff':!item.allstate}"></a>
                     </div>
                     <ul class="list" *ngIf="item.rowstate">
-                        <li (click)="arr.state=!arr.state" style="overflow: hidden;" *ngFor="let arr of item.list;" [ngClass]="{'on':arr.state}">
+                        <li (click)="change(arr,b,item,i)" style="overflow: hidden;" *ngFor="let arr of item.list;let b=index;" [ngClass]="{'on':arr.state}">
                             <span *ngIf="id == 5 || id == 6 || id == 7">{{arr.itemName}}</span>
                             <span *ngIf="Language=='en'">  {{arr.text}}</span>
-                            <span *ngIf="Language=='cn'">  {{arr.text2}}</span></li>
+                            <span *ngIf="Language=='cn'">  {{arr.text2}}</span>
+                        </li>
                     </ul>
                 </li>
             </ul>

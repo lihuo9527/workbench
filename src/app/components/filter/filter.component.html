@@ -11,7 +11,7 @@
                     <a *ngIf="item.but" (click)="on_off(item.allstate,i)" [ngClass]="{'allOn':item.allstate,'allOff':!item.allstate}"></a>
                 </div>
                 <ul class="list" *ngIf="item.rowstate">
-                    <li (click)="arr.state=!arr.state" *ngFor="let arr of item.list;" [ngClass]="{'on':arr.state}">
+                    <li (click)="change(arr,b,item)" *ngFor="let arr of item.list;let b=index;" [ngClass]="{'on':arr.state}">
                         <span>  {{arr.text}}</span>
                 </ul>
                 </li>

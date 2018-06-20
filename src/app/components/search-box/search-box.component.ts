@@ -33,6 +33,7 @@ export class SearchBoxComponent implements OnInit {
         this.OutputValue.emit(this.input)
     }
     showFilter() {
+        //filter过渡动漫
         document.getElementById("shadow").style.left = "0%";
         document.getElementById("filter").style.left = "0%";
     }

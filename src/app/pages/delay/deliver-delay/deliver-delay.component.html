@@ -7,7 +7,7 @@
     <div class="box">
         <div class="box_row" *ngFor="let item of datas;let i=index;">
             <div class="itemTop">
-                <h5>{{item.CustomerName}} - {{item.PoCode}}</h5>
+                <h4>{{item.CustomerName}} - {{item.PoCode}}</h4>
             </div>
             <ul class="items">
                 <li class="row left">
@@ -21,12 +21,15 @@
                     </div>
                 </li>
                 <li class="row center">
-                    <div class="other">
-                        <em class="slightDelay">
-                                {{item.DelayDays}}
-                            <span style="font-size:1.6rem;color:#fff;" *ngIf="Language=='en'">Days Delay</span>
-                            <span style="font-size:1.6rem;color:#fff;" *ngIf="Language=='cn'">天延误</span>
-                        </em>
+                    <div class="other center">
+                        <div class="slightDelay">
+                            <div class="delay_box">
+                                <span *ngIf="Language=='en'">{{item.DelayDays}} Days </span>
+                                <span *ngIf="Language=='cn'">{{item.DelayDays}} 天</span>
+                                <span *ngIf="Language=='en'">Delay</span>
+                                <span *ngIf="Language=='cn'">延误</span>
+                            </div>
+                        </div>
                     </div>
                 </li>
                 <li class="row right">

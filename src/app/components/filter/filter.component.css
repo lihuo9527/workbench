@@ -120,7 +120,8 @@
 
 #filter .list {
     overflow: hidden;
-    padding: 0.5rem 0;
+    padding: 0;
+    max-height: 120px;
 }
 
 #filter .list li {

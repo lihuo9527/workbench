@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+.box_row {
+    background: #fff;
+}
+
 .items {
     width: 100%;
     border-top: #dbdbdb solid 1px;
@@ -14,16 +18,21 @@
     box-sizing: border-box;
 }
 
+.itemTop h4 {
+    font-size: 1.4rem;
+    padding: 1rem;
+    color: #088c77;
+}
+
 .row {
     flex: 0 0 33.33%;
     display: flex;
-    padding-top: 1rem;
     align-items: flex-start;
     flex-flow: wrap;
 }
 
 .box .other {
-    flex: 0 0 33.33%;
+    flex: 0 0 100%;
     list-style: none;
     font-style: normal;
     color: #333;
@@ -40,12 +49,16 @@
     justify-content: flex-end;
 }
 
+.right span,
+.right p {}
+
 .center {
     justify-content: center;
     align-items: center;
 }
 
 .other p {
+    margin-top: 1rem;
     font-size: 1.4rem;
     line-height: 1.4rem;
     margin-bottom: 0.2rem;
@@ -59,4 +72,29 @@
     font-size: 1rem;
     color: #b2b2b2;
     flex: 0 0 100%;
+}
+
+.slightDelay {
+    background: #ff81dd;
+    width: 6.5rem;
+    height: 6.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    flex-flow: wrap;
+}
+
+.slightDelay span {
+    line-height: 1.5rem;
+    font-size: 1.4rem;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    flex: 0 0 100%;
+}
+
+.delay_box {
+    width: 100%;
+    display: flex;
+    flex-flow: wrap;
 }

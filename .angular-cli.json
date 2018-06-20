@@ -18,8 +18,7 @@
         "testTsconfig": "tsconfig.spec.json",
         "prefix": "app",
         "styles": [
-            "styles.css",
-            "assets/css/DateSelector.css"
+            "styles.css"
         ],
         "scripts": [
             "assets/js/native.js"

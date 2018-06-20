@@ -12,10 +12,11 @@ export class SearchComponent implements OnInit {
     constructor(private routerIonfo: ActivatedRoute, private service: AppService, private router: Router) { }
     public Language;
     public id;
-    public title;
-    public state;
+    public title: string;
+    public state: boolean;
     public placeholder = "输入单号或款号查询";
-    public input;
+    public input: string;
+    public dateType: number;
     public lists = [
         {
             data: [
@@ -37,13 +38,7 @@ export class SearchComponent implements OnInit {
                 { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 { title: "Style", title2: "大类", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                {
-                    title: "Production Date", title2: "生产日期", rowstate: true, allstate: false, but: false, arrow: false,
-                    list: [
-                        { text: "Sew Plan Date", text2: "车缝开始日", state: false },
-                        { text: "Delivery Date", text2: "交货期", state: false },
-                        { text: "Order Confirmed date", text2: "订单确认日", state: false }]
-                }
+                { title: "Production Date", title2: "生产日期", rowstate: true, allstate: false, but: false, arrow: false, list: [] }
             ]
         },
 
@@ -52,7 +47,12 @@ export class SearchComponent implements OnInit {
                 { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 { title: "Process", title2: "工序", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Date", title2: "日期", rowstate: true, allstate: false, but: false, arrow: false, list: [] }
+                {
+                    title: "Date", title2: "日期", rowstate: true, allstate: false, but: false, arrow: false, list: [
+                        { text: "Sew Plan Date", text2: "车缝开始日", state: false },
+                        { text: "Delivery Date", text2: "交货期", state: false },
+                        { text: "Order Confirmed date", text2: "订单确认日", state: false }]
+                }
             ]
         },
 
@@ -118,6 +118,8 @@ export class SearchComponent implements OnInit {
     public EndDate = new Date(this.t).toLocaleDateString();
     public StartDate = this.today.toLocaleDateString();
     public datecontainer = true;
+    public floors = [];
+
     ngOnInit() {
         this.id = this.routerIonfo.snapshot.params["id"];
         this.Language = localStorage.getItem("language");
@@ -149,24 +151,37 @@ export class SearchComponent implements OnInit {
                         'state': false
                     };
                     this.datas[0].list.push(json);
+                    let floors = []
                     for (let b = 0; b < data[i].Shops.length; b++) {
                         let floor: any = {
                             'id': data[i].Shops[b].WId,
                             'text2': data[i].Shops[b].ShopName,
                             'text': data[i].Shops[b].ShopName,
-                            'state': false
+                            'state': false,
+                            'fid': data[i].FId
                         };
-                        this.datas[1].list.push(floor);
+                        floors.push(floor);
                     }
+                    this.floors.push({ id: data[i].FId, data: floors });
+
                 }
             }
         })
-        if (this.id == 0 || this.id == 2) {
+        console.log("floors", this.floors)
+        if (this.id >= 0) {
             let url: string;
             switch (this.id) {
                 case '0': url = '/api/BaseData/GetEvents';
                     break;
+                case '1': url = '/api/BaseData/GetProductTypes';
+                    break;
                 case '2': url = '/api/BaseData/GetProcesses';
+                    break;
+                case '5': url = '/api/BaseData/GetProductTypes';
+                    break;
+                case '6': url = '/api/BaseData/GetProductTypes';
+                    break;
+                case '7': url = '/api/BaseData/GetProductTypes';
                     break;
                 default: url = "";
                     break;
@@ -188,13 +203,57 @@ export class SearchComponent implements OnInit {
             })
         }
     }
-    on_off(allstate, i) {
+    on_off(allstate, i, item) {
+        //全部按钮开关改变状态
         this.datas[i].allstate = !this.datas[i].allstate;
         for (let b = 0; b < this.datas[i].list.length; b++) {
             this.datas[i].list[b].state = this.datas[i].allstate;
         }
+        if (item.title == "Factory" && !allstate) {
+            this.floors.forEach((element) => {
+                element.data.forEach(el => {
+                    this.datas[1].list.push(el);
+                });
+            });
+        }
+        if (item.title == "Factory" && allstate) {
+            this.datas[i + 1].allstate = false;
+            this.datas[i + 1].list = [];
+        }
+    }
+    change(obj, index, items, n1) {
+        //单选改变状态
+        obj.state = !obj.state;
+        this.dateType = index;
+        if (items.title == 'Production Date' || items.title == 'Date') {
+            items.list.forEach((element, i) => {
+                if (index != i) element.state = false;
+            });
+        }
+        if (items.title == 'Factory' && obj.state) {
+            this.floors.forEach((element) => {
+                if (obj.id == element.id) {
+                    element.data.forEach(el => {
+                        this.datas[1].list.push(el);
+                    });
+                }
+            });
+            console.log(this.datas[1].list)
+        }
+        if (items.title == 'Factory' && !obj.state) {
+            //关联工厂删除
+            let k = 0;
+            for (let i = 0; i < this.datas[1].list.length; i++) {
+                console.log(obj.id, this.datas[1].list[i].fid)
+                if (obj.id == this.datas[1].list[i].fid) {
+                    this.datas[1].list.splice(i, 1);
+                    i = i - 1;
+                }
+            }
+        }
     }
     backDate(objs) {
+        //时间组件选择触发赋值
         let obj = JSON.parse(objs);
         let time = 0;
         if (obj.dates) {
@@ -205,27 +264,49 @@ export class SearchComponent implements OnInit {
         setTimeout(() => this.state = obj.state, time);
     }
     query() {
-        localStorage.setItem("datas",JSON.stringify(this.datas));
-        localStorage.setItem("filter", JSON.stringify({ "start": this.StartDate, "end": this.EndDate,"input":this.input }));
-        if (this.id == 0) this.router.navigate(['criticalEvent']);
-        if (this.id == 1) this.router.navigate(['productionDailyProgress']);
-        if (this.id == 2) this.router.navigate(['nonPlaningProcess']);
-        if (this.id == 3) { };
+        //条件查询，先写入localstorage，下个页面根据存储的变量去筛选
+        localStorage.setItem("datas", JSON.stringify(this.datas));
+        let fids = [];
+        this.datas[0].list.forEach((element, i) => {
+            if (element.state == true) fids.push(element.id);
+        });
+        let wsids = [];
+        this.datas[1].list.forEach((element, i) => {
+            if (element.state == true) wsids.push(element.id);
+
+        });
+
+        if (this.id == 0) {
+            //关键事件
+            localStorage.setItem("filter", JSON.stringify({ 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, "dateType": this.dateType, 'fids': fids.toString(), 'wsids': wsids.toString() }));
+            this.router.navigate(['criticalEvent']);
+        }
+        if (this.id == 1) {
+            //每日进度
+            let styles = [];
+            this.datas[2].list.forEach(element => {
+                if (element.state == true) styles.push(element.id);
+            });
+            localStorage.setItem("filter", JSON.stringify({ 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, "styles": styles.toString(), 'fids': fids.toString(), 'wsids': wsids.toString() }));
+            this.router.navigate(['productionDailyProgress']);
+        }
+
+        if (this.id == 2) {
+            //非排产工序
+            let process = [];
+            this.datas[2].list.forEach(element => {
+                if (element.state == true) process.push(element.id);
+            });
+            localStorage.setItem("filter", JSON.stringify({ 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, "process": process.toString(), 'fids': fids.toString(), 'wsids': wsids.toString(), "dateType": this.dateType }));
+            this.router.navigate(['nonPlaningProcess']);
+        };
+
         if (this.id == 4) {
-            let fids = "";
-            for (let i = 0; i < this.datas[0].list.length; i++) {
-                let fid = i == this.datas[0].list.length - 1 ? this.datas[0].list[i].id : this.datas[0].list[i].id + ",";
-                fids += fid;
-            }
             console.log("fids:" + fids)
             this.router.navigate(['detailAnalysisList', JSON.stringify({ "fids": fids })]);
         }
         if (this.id == 5 || this.id == 6 || this.id == 7) {
-            let fids = "";
-            for (let i = 0; i < this.datas[0].list.length; i++) {
-                let fid = i == this.datas[0].list.length - 1 ? this.datas[0].list[i].id : this.datas[0].list[i].id + ",";
-                fids += fid;
-            }
+
             console.log("fids:" + fids)
             this.router.navigate(['outProcess', JSON.stringify({ "fids": fids, start: this.StartDate, end: this.EndDate, id: this.id })]);
         }

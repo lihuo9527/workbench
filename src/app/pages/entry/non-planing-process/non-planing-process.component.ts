@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
     templateUrl: './non-planing-process.component.html',
     styleUrls: ['./non-planing-process.component.css']
 })
+//非排产工序
 export class NonPlaningProcessComponent implements OnInit {
 
     constructor(private service: AppService, private routerIonfo: ActivatedRoute, private router: Router) { }
@@ -21,12 +22,17 @@ export class NonPlaningProcessComponent implements OnInit {
         let pageIndex = local.input ? 1 : this.datas.length / 4 + 1;
         let option = "";
         if ($event) {
-            option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + $event.StartDate + '&end=' + $event.EndDate;
+            option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + $event.start + '&end=' + $event.end;
             if ($event.fids) option += '&fids=' + $event.fids;
             if ($event.wsids) option += '&wsids=' + $event.wsids;
-            if ($event.eventid) option += '&eventid=' + $event.eventid;
+            if ($event.process) option += '&processid=' + $event.process;
+            if ($event.dateType >= 0) option += '&dateType=' + $event.dateType;
         } else {
             option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + local.start + '&end=' + local.end
+            if (local.fids) option += '&fids=' + local.fids;
+            if (local.wsids) option += '&wsids=' + local.wsids;
+            if (local.process) option += '&processid=' + local.process;
+            if (local.dateType >= 0) option += '&dateType=' + local.dateType;
         }
         if (local.input) option += '&code=' + local.input;
         this.service.http_get('/api/Schedule/GetProcessPoes?' + option, false).subscribe((data: any) => {
