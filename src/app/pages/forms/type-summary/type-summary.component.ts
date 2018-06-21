@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from '../../../app.service';
 
 @Component({
     selector: 'app-type-summary',
@@ -7,90 +8,113 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TypeSummaryComponent implements OnInit {
     public Language;
-    constructor() { }
+    constructor(private service: AppService, ) { }
+    public option;
 
     ngOnInit() {
         this.Language = localStorage.getItem("language");
-    }
-    option = {
-        backgroundColor: '#fff',
-        tooltip: {
-            trigger: 'item',
-            formatter: "{a} <br/>{b}: {c} ({d}%)",
+        this.service.http_get('/api/Monitor/GetChartData?vrpcode=RPT100', false).subscribe((data: any) => {
+            // data=[{"Name":null,"ChartNodes":[{"xname":" Men ( fiber ) casual","yvalue1":"3","yvalue2":""},{"xname":" fork legs trousers","yvalue1":"1","yvalue2":""},{"xname":" Shorts singlet X2","yvalue1":"3","yvalue2":""},{"xname":"kShorts","yvalue1":"1","yvalue2":""},{"xname":"( Net color ) Men","yvalue1":"2","yvalue2":""},{"xname":"spleen Bag X1 fork ","yvalue1":"1","yvalue2":""},{"xname":" trousers","yvalue1":"6","yvalue2":""},{"xname":" pull 1/7 bundles","yvalue1":"2","yvalue2":""},{"xname":"casual shorts","yvalue1":"1","yvalue2":""},{"xname":"zippered pocket","yvalue1":"1","yvalue2":""}],"Average":2.1}]
+            let obj = [];
+            let titles = [];
+            let obj2 = [];
+            data[0].ChartNodes.forEach(element => {
+                obj.push({
+                    name: element.xname,
+                    value: element.yvalue1
+                });
+                obj2.push({
+                    name: '',
+                    value: element.yvalue1
+                });
 
-        },
-        grid: {
-            containLabel: true,
-            left: '5%',
-            top: "5%",
-            bottom: "5%",
-        },
-        legend: {
+                titles.push(element.xname);
+            });
 
-            orient: 'horizontal',
-            bottom:"2%",
-            padding: [5, 10, 5,  10],
-            itemWidth: 14,
-            itemHeight: 14,
-            align: 'left',
-            data: ['2D线', '3D线', '资源类', '采集类', '宝宝大全', '2D视频', '3D视频'],
-            textStyle: {
-                color: '#000'
-            }
-        },
-        series: [
-            {
-                name: '访问来源',
-                type: 'pie',
-                hoverAnimation: false,
-                legendHoverLink: false,
-                radius: ['40%', '40%'],
-                
-                color: ['#915872', '#3077b7', '#9a8169', '#3f8797', '#5b8144'],
-                label: {
-                    normal: {
-                        position: 'inner'
+            this.option = {
+                backgroundColor: '#fff',
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b}: {c} ({d}%)",
+
+                },
+                grid: {
+                    zlevel:1,
+                    z:2,
+                    containLabel: true,
+                    left: '0%',
+                    top: "0",
+                },
+                legend: {
+                    orient: 'horizontal',
+                    bottom: "2%",
+                    padding: [5, 10, 5, 10],
+                    itemWidth: 14,
+                    itemHeight: 14,
+                    align: 'left',
+                    data: titles,
+                    textStyle: {
+                        color: '#000'
+                    },
+                    formatter: function(name){
+                        return name.length>50?name.substr(0,50)+"...":name;
                     }
                 },
-                labelLine: {
-                    normal: {
-                        show: false
+                series: [
+                    {
+                        name: '访问来源',
+                        type: 'pie',
+                        hoverAnimation: false,
+                        legendHoverLink: false,
+                        radius: ['40%', '40%'],
+                        center:['50%','25%'],
+                        color: ['#ffd634', '#ffcccb', '#d36ba6', '#89cb4f', '#8c7dd8', '#11ba9d', '#65bcc5', '#4b93df', '#ea6350', '#f6a317','#f78db3','#3dc6a8','#a0dca0','#5aabe2','#269785','#f67517','#ea3544','#5c7bbc','#54bc41','#47bd7a'],
+                        label: {
+                            normal: {
+                                position: 'inner'
+                            }
+                        },
+                        labelLine: {
+                            normal: {
+                                show: false
+                            },
+
+                        },
+                        tooltip: {
+                            show: false,
+
+
+                        },
+
+                        data: obj2
                     },
+                    {
+                        name: '访问来源',
+                        type: 'pie',
+                        radius: ['30%', '55%'],
+                        center:['50%','25%'],
+                        color: ['#ffd634', '#ffcccb', '#d36ba6', '#89cb4f', '#8c7dd8', '#11ba9d', '#65bcc5', '#4b93df', '#ea6350', '#f6a317','#f78db3','#3dc6a8','#a0dca0','#5aabe2','#269785','#f67517','#ea3544','#5c7bbc','#54bc41','#47bd7a'],
+                        itemStyle : {
+                            normal : {
+                                label : {
+                                    show : false   //隐藏标示文字
+                                },
+                                labelLine : {
+                                    show : false   //隐藏标示线
+                                }
+                            }
+                        },
+                        label: {
+                            normal: {
+                                formatter: '{b}\n{d}%'
+                            },
 
-                },
-                tooltip: {
-                    show: false,
-
-
-                },
-
-                data: [
-                    { value: 435, name: '' },
-                    { value: 679, name: '' },
-                    { value: 848, name: '' },
-                    { value: 348, name: '' },
-                    { value: 679, name: '' }
+                        },
+                        data: obj
+                    }
                 ]
-            },
-            {
-                name: '访问来源',
-                type: 'pie',
-                radius: ['30%', '55%'],
-                color: ['#d74e67', '#0092ff', '#eba954', '#21b6b9', '#60a900'],
-                label: {
-                    normal: {
-                        formatter: '{b}\n{d}%'
-                    },
+            };
+        })
+    }
 
-                },
-                data: [
-                    { value: 435, name: '2D线' },
-                    { value: 679, name: '3D线' },
-                    { value: 848, name: '资源类' },
-                    { value: 348, name: '采集类' },
-                    { value: 679, name: '宝宝大全' }
-                ]
-            }
-        ]
-    };
 }

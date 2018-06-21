@@ -163,7 +163,7 @@ export class SearchComponent implements OnInit {
                         floors.push(floor);
                     }
                     this.floors.push({ id: data[i].FId, data: floors });
-
+                    localStorage.setItem("floors", JSON.stringify(this.floors));
                 }
             }
         })

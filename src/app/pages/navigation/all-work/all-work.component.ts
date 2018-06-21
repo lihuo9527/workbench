@@ -38,9 +38,9 @@ export class AllWorkComponent implements OnInit {
                 { url: "/assets/images/a_3.png", text: "Factory Eff% By Monthly", text2: "工厂每月生产效率汇总", link: "/forms/everyMonthEff", id: "" },
                 { url: "/assets/images/a_4.png", text: "Customer Actual Output By Monthly", text2: "当月品牌客户实际生产数量统计", link: "/forms/customerOutput", id: "" },
                 { url: "/assets/images/a_5.png", text: "Daily Line Eff% Summary", text2: "当天生产线效率统计表", link: "/forms/dailyLineEff", id: "" },
-                { url: "/assets/images/a_6.png", text: "Order Production LeadTime Summary", text2: "订单周期生产情况统计", link: "/forms/orderCycleProduction", id: "" },
-                { url: "/assets/images/a_7.png", text: "Production QTY & Total SAH/SAM By Monthly", text2: "每月生产数量和耗时统计", link: "/forms/everyMonthQty", id: "" },
-                { url: "/assets/images/a_8.png", text: "Order LeadTime Summary", text2: "订单周期统计", link: "/forms/orderCycleSummary", id: "" }
+                // { url: "/assets/images/a_6.png", text: "Order Production LeadTime Summary", text2: "订单周期生产情况统计", link: "/forms/orderCycleProduction", id: "" },
+                { url: "/assets/images/a_7.png", text: "Production QTY & Total SAH/SAM By Monthly", text2: "每月生产数量和耗时统计", link: "/forms/everyMonthQty", id: "" }
+                // { url: "/assets/images/a_8.png", text: "Order LeadTime Summary", text2: "订单周期统计", link: "/forms/orderCycleSummary", id: "" }
             ]
         }
     ]

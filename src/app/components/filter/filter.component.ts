@@ -24,6 +24,7 @@ export class FilterComponent implements OnInit {
     public EndDate = this.today.toLocaleDateString();
     public StartDate = new Date(this.t).toLocaleDateString();
     public Language;
+    public floors = JSON.parse(localStorage.getItem("floors"));
     ngOnInit() {
         this.Language = localStorage.getItem("language");
         console.log("INfo", this.Info)
@@ -35,12 +36,7 @@ export class FilterComponent implements OnInit {
         document.getElementById("shadow").style.left = "100%";
         document.getElementById("filter").style.left = "100%";
     }
-    on_off(allstate, i) {
-        this.datas[i].allstate = !this.datas[i].allstate;
-        for (let b = 0; b < this.datas[i].list.length; b++) {
-            this.datas[i].list[b].state = this.datas[i].allstate;
-        }
-    }
+
     backDate(objs) {
         let obj = JSON.parse(objs);
         let time = 0;
@@ -52,9 +48,28 @@ export class FilterComponent implements OnInit {
         setTimeout(() => this.state = obj.state, time);
 
     }
+    on_off(allstate, i, item) {
+        //全部按钮开关改变状态
+        this.datas[i].allstate = !this.datas[i].allstate;
+        for (let b = 0; b < this.datas[i].list.length; b++) {
+            this.datas[i].list[b].state = this.datas[i].allstate;
+        }
+        if (item.title == "Factory" && !allstate) {
+            //关联全部工厂添加车间
+            this.floors.forEach((element) => {
+                element.data.forEach(el => {
+                    this.datas[1].list.push(el);
+                });
+            });
+        }
+        if (item.title == "Factory" && allstate) {
+            //关联全部工厂删除车间
+            this.datas[i + 1].allstate = false;
+            this.datas[i + 1].list = [];
+        }
+    }
 
-    
-    change(obj, index, items) {
+    change(obj, index, items, n1) {
         //单选改变状态
         obj.state = !obj.state;
         this.dateType = index;
@@ -62,6 +77,28 @@ export class FilterComponent implements OnInit {
             items.list.forEach((element, i) => {
                 if (index != i) element.state = false;
             });
+        }
+        if (items.title == 'Factory' && obj.state) {
+            //关联工厂添加车间
+            this.floors.forEach((element) => {
+                if (obj.id == element.id) {
+                    element.data.forEach(el => {
+                        this.datas[1].list.push(el);
+                    });
+                }
+            });
+            console.log(this.datas[1].list)
+        }
+        if (items.title == 'Factory' && !obj.state) {
+            //关联工厂删除车间
+            let k = 0;
+            for (let i = 0; i < this.datas[1].list.length; i++) {
+                console.log(obj.id, this.datas[1].list[i].fid)
+                if (obj.id == this.datas[1].list[i].fid) {
+                    this.datas[1].list.splice(i, 1);
+                    i = i - 1;
+                }
+            }
         }
     }
     complete() {
@@ -76,7 +113,7 @@ export class FilterComponent implements OnInit {
             if (element.state == true) wsids.push(element.id);
 
         });
-        
+
         obj['start'] = this.StartDate;
         obj['end'] = this.EndDate;
         obj['id'] = local.id;

@@ -30,6 +30,11 @@ export class ScheduleEntryComponent implements OnInit {
     public selectstate;
     public processName;
     public processId;
+    public message = {
+        state: false,
+        btnText: "OK",
+        msg: ""
+    }
     ngOnInit() {
         this.data = JSON.parse(this.routerIonfo.snapshot.params["data"]);
         this.Language = localStorage.getItem("language");
@@ -50,11 +55,11 @@ export class ScheduleEntryComponent implements OnInit {
             this.service.http_get('/api/Schedule/GetPoProcess?poId=' + this.data.id, false).subscribe((data: any) => {
                 console.log(data)
                 this.process = data;
-                this.processId = this.process[0].itemId;
-                this.service.http_get('/api/Schedule/GetScheduleData?poid=' + this.data.id + '&processId=' + this.process[0].itemId, false).subscribe((data: any) => {
-                    console.log(data)
-                    this.color_tabs = data;
-                })
+                // this.processId = this.process[0].itemId;
+                // this.service.http_get('/api/Schedule/GetScheduleData?poid=' + this.data.id + '&processId=' + this.process[0].itemId, false).subscribe((data: any) => {
+                //     console.log(data)
+                //     this.color_tabs = data;
+                // })
             })
 
         }
@@ -77,7 +82,7 @@ export class ScheduleEntryComponent implements OnInit {
     InputFocus() {
         this.input.nativeElement.focus();
     }
-    switch(id,name) {
+    switch(id, name) {
         this.processId = id;
         this.processName = name;
         this.selectstate = false;
@@ -87,7 +92,7 @@ export class ScheduleEntryComponent implements OnInit {
         })
     }
     Save() {
-        if(this.data.Pid == "non-process"){
+        if (this.data.Pid == "non-process") {
             if (!this.tabstate) {
                 let IsProCompleted = this.allstate ? 1 : 0;
                 let data = {
@@ -110,19 +115,32 @@ export class ScheduleEntryComponent implements OnInit {
                     }
                 }
                 console.log(JSON.stringify(this.color_tabs))
-                this.service.http_post('/api/Schedule/AddScheduleDaily', JSON.stringify(data), false).subscribe((data: any) => {
-                    if (data.IsSuccess == 1) alert("提交成功！")
-                    console.log(data);
-                })
+                if (this.processId) {
+                    console.log(this.processId)
+                    this.service.http_post('/api/Schedule/AddScheduleDaily', JSON.stringify(data), false).subscribe((data: any) => {
+                        if (data.IsSuccess == 1) this.alert("保存成功！")
+                        console.log(data);
+                    }, error => {
+                        this.alert("提交失败！");
+                    })
+                }else{
+                    this.alert("请先选择工序！");
+                }
+
             } else {
-                let data = "processId=" + this.processId + "&poId=" + this.data.id + "&proDate=" + this.date + "&amount=" + this.number;
-                this.service.http_post('/api/Schedule/AddScheduleByPo', data, false, "form").subscribe((data: any) => {
-                    if (data.IsSuccess == 1) alert("提交成功！")
-                    console.log(data);
-                })
-    
+                if (this.processId) {
+                    let data = "processId=" + this.processId + "&poId=" + this.data.id + "&proDate=" + this.date + "&amount=" + this.number;
+                    this.service.http_post('/api/Schedule/AddScheduleByPo', data, false, "form").subscribe((data: any) => {
+                        if (data.IsSuccess == 1) this.alert("保存成功！")
+                        console.log(data);
+                    }, error => {
+                        this.alert("提交失败！");
+                    })
+                }else{
+                    this.alert("请先选择工序！");
+                }
             }
-        }else{
+        } else {
             if (!this.tabstate) {
                 let IsProCompleted = this.allstate ? 1 : 0;
                 let data = {
@@ -148,19 +166,26 @@ export class ScheduleEntryComponent implements OnInit {
                 }
                 console.log(JSON.stringify(this.color_tabs))
                 this.service.http_post('/api/Schedule/AddPlanScheduleDaily', JSON.stringify(data), false).subscribe((data: any) => {
-                    if (data.IsSuccess == 1) alert("提交成功！")
-                    console.log(data);
+                    if (data.IsSuccess == 1) this.alert("保存成功！");
+                }, error => {
+                    this.alert("提交失败！");
                 })
             } else {
                 let data = "ProductionEventId=" + this.data.ProductionEventID + "&lineId=" + this.data.LineID + "&poId=" + this.data.id + "&proDate=" + this.date + "&amount=" + this.number;
                 this.service.http_post('/api/Schedule/AddPlanScheduleByPo', data, false, "form").subscribe((data: any) => {
-                    if (data.IsSuccess == 1) alert("提交成功！")
-                    console.log(data);
+                    if (data.IsSuccess == 1) this.alert("保存成功！");
+                }, error => {
+                    this.alert("提交失败！");
                 })
-    
+
             }
         }
 
+    }
+    alert(message) {
+        this.message.msg = message;
+        this.message.state = true;
+        this.message.btnText = "OK";
     }
 
 }

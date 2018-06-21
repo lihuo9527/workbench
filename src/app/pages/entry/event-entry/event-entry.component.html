@@ -73,4 +73,5 @@
         <button *ngIf="Language=='cn'" type="submit" (click)="Save()">保存</button>
         <button *ngIf="Language=='en'" type="submit" (click)="Save()">Conserve</button>
     </div>
+    <app-message-box [msg]="message.msg" (event)="message.state=false" [btnText]="message.btnText" [msgShow]="message.state"></app-message-box>
 </div>
