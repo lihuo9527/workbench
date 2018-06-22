@@ -25,6 +25,7 @@ import { UnansweredComponent } from './pages/out/unanswered/unanswered.component
 import { UnfinishedComponent } from './pages/out/unfinished/unfinished.component';
 import { UnansweredEntryComponent } from './pages/out/unanswered-entry/unanswered-entry.component';
 import { UnfinishedEntryComponent } from './pages/out/unfinished-entry/unfinished-entry.component';
+import { NotBindComponent } from './pages/not-bind/not-bind.component';
 export const appRoutes = [
     {
         path: 'home',
@@ -108,7 +109,7 @@ export const appRoutes = [
         component: ForgotPasswordComponent
     },
     {
-        path: 'outProcess/:data',
+        path: 'outProcess',
         component: OutProcessComponent,
     },
     {
@@ -142,6 +143,10 @@ export const appRoutes = [
     {
         path: 'forms',
         loadChildren: 'app/pages/forms/forms.module#FormsModule'
+    },
+    {
+        path: 'not-bind',
+        component:NotBindComponent
     },
     {
         path: '',

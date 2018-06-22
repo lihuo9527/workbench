@@ -61,29 +61,29 @@ export class StartDelayComponent implements OnInit {
     public arrow = false;
     public state;
     ngOnInit() {
+        localStorage.setItem("filter", JSON.stringify({ input: '' }));
         this.Language = localStorage.getItem("language");
-        this.GetList();
+        this.UpdateList();
     }
-    GetList() {
-        this.service.http_get(this.url + 'pageIndex=1&pageSize=4', false).subscribe((data:any) => {
-            let obj = data;
-            if (obj.length > 0) {
-                for (let i = 0; i < obj.length; i++) {
-                    obj[i]["arrow"] = false
-                }
-                this.datas = obj;
-            }
-        })
-    }
-    UpdateList() {
-        let pageIndex = Math.ceil(this.datas.length / 4 + 1);
-        this.service.http_get(this.url + 'pageIndex=' + pageIndex + '&pageSize=4', false).subscribe((data:any) => {
-            let obj = data;
-            if (obj.length > 0) {
-                for (let i = 0; i < obj.length; i++) {
-                    obj[i]["arrow"] = false
-                    this.datas.push(obj[i]);
-                }
+    UpdateList($event?) {
+        let local = JSON.parse(localStorage.getItem("filter"));
+        let pageIndex = $event == 'add' ? Math.ceil(this.datas.length / 4 + 1) : 1;
+        let option = 'pageIndex=' + pageIndex + '&pageSize=4';
+        if ($event) {
+            if ($event.fids) option += '&fids=' + $event.fids;
+        }
+        if (local.input) option += '&code=' + local.input;
+        this.service.http_get('/api/TaskWarn/GetDetailStartDelay?' + option, false).subscribe((data: any) => {
+            if ($event != 'add') {
+                data.forEach(element => {
+                    element["arrow"] = false
+                });
+                this.datas = data;
+            } else {
+                data.forEach(element => {
+                    element["arrow"] = false
+                    this.datas.push(element);
+                });
             }
         })
     }

@@ -22,7 +22,6 @@
                 <span *ngIf="Language=='en'">Line</span>
                 <span *ngIf="Language=='cn'">生产线</span>
             </div>
-
             <div class="other">
                 <p>{{data.code}}</p>
                 <span *ngIf="Language=='en'">JO</span>
@@ -45,11 +44,6 @@
                 <span *ngIf="Language=='en'">Delivery Date</span>
                 <span *ngIf="Language=='cn'">交期</span>
             </div>
-            <div class="other" *ngIf="data.Pid!='non-process'">
-                <p>{{data.deliverydate}}</p>
-                <span *ngIf="Language=='en'">Completion Time</span>
-                <span *ngIf="Language=='cn'">车间交期</span>
-            </div>
             <div class="other" *ngIf="data.Pid=='non-process'">
                 <p>{{data.amount}}</p>
                 <span *ngIf="Language=='en'">Order Amount</span>
@@ -59,6 +53,11 @@
                 <p>{{data.confirmdate}}</p>
                 <span *ngIf="Language=='en'">Order Confirmed Date</span>
                 <span *ngIf="Language=='cn'">订单确认日期</span>
+            </div>
+            <div class="other" *ngIf="data.Pid!='non-process'">
+                <p>{{data.deliverydate}}</p>
+                <span *ngIf="Language=='en'">Completion Time</span>
+                <span *ngIf="Language=='cn'">车间交期</span>
             </div>
             <div class="other" *ngIf="data.Pid!='non-process'">
                 <p>{{data.StarDate}}</p>
@@ -87,32 +86,58 @@
     </ul>
     <div class="tab">
         <a> <span *ngIf="Language=='cn'" [ngClass]="{'green':!tabstate}" (click)="tabstate=false">分颜色尺码录入</span>
-            <span *ngIf="Language=='en'" [ngClass]="{'green':!tabstate}" (click)="tabstate=false">Color/Size Entrt</span> </a>
+            <span *ngIf="Language=='en'" [ngClass]="{'green':!tabstate}" (click)="tabstate=false">Color/Size Entrt</span>
+        </a>
         <a> <span *ngIf="Language=='cn'" [ngClass]="{'green':tabstate}" (click)="tabstate=true">按订单录入</span>
-            <span *ngIf="Language=='en'" [ngClass]="{'green':tabstate}" (click)="tabstate=true">JO Entrt</span></a>
+            <span *ngIf="Language=='en'" [ngClass]="{'green':tabstate}" (click)="tabstate=true">JO Entrt</span>
+        </a>
     </div>
 
     <div class="colrCon" *ngIf="!tabstate">
-        <ul class="colorMenu">
+        <ul class="colorMenu" *ngIf="data.Pid!='non-process'">
             <li *ngFor="let item of color_tabs;let i=index;" [ngClass]="{'big_green':green_show==i}" (click)="green_show=i">
                 <span [ngClass]="{'small_green':green_show==i}">{{item.Color}}</span>
             </li>
         </ul>
-        <div class="colorTab" *ngIf="color_tabs.length>0">
+        <ul class="colorMenu" *ngIf="data.Pid=='non-process'">
+            <li *ngFor="let item of color_tabs.ProDataCompletedList;let i=index;" [ngClass]="{'big_green':green_show==i}" (click)="green_show=i">
+                <span [ngClass]="{'small_green':green_show==i}">{{item.Color}}</span>
+            </li>
+        </ul>
+        <div class="colorTab" *ngIf="data.Pid!='non-process' && color_tabs.length>0">
             <ul>
                 <li class="Tabtitle">
                     <span *ngIf="Language=='cn'">尺码</span>
-                    <span *ngIf="Language=='cn'&&data.Pid!='non-process'">排产数</span>
-                    <span *ngIf="Language=='cn'&&data.Pid=='non-process'">订单数</span>
+                    <span *ngIf="Language=='cn'">排产数</span>
                     <span *ngIf="Language=='cn'">已完成数</span>
                     <span *ngIf="Language=='cn'">本次进度</span>
                     <span *ngIf="Language=='en'">Size</span>
-                    <span *ngIf="Language=='en' && data.Pid!='non-process'">Schd.Qty</span>
-                    <span *ngIf="Language=='en' && data.Pid=='non-process'">Order.Qty</span>
+                    <span *ngIf="Language=='en'">Schd.Qty</span>
                     <span *ngIf="Language=='en'">Completed.Qty</span>
                     <span *ngIf="Language=='en'">Progress</span>
                 </li>
                 <li *ngFor="let item of color_tabs[green_show].SizeCompletes">
+                    <span>{{item.Size}}</span>
+                    <span>{{item.PlanAmount}}</span>
+                    <span>{{item.CompleteAmount}}</span>
+                    <span><input type="text" (change)="change()" style="width:100%;text-align: center;" [(ngModel)]="item.Amount"></span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="colorTab" *ngIf="data.Pid=='non-process' && color_tabs.ProDataCompletedList.length>0 ">
+            <ul>
+                <li class="Tabtitle">
+                    <span *ngIf="Language=='cn'">尺码</span>
+                    <span *ngIf="Language=='cn'">订单数</span>
+                    <span *ngIf="Language=='cn'">已完成数</span>
+                    <span *ngIf="Language=='cn'">本次进度</span>
+                    <span *ngIf="Language=='en'">Size</span>
+                    <span *ngIf="Language=='en'">Order.Qty</span>
+                    <span *ngIf="Language=='en'">Completed.Qty</span>
+                    <span *ngIf="Language=='en'">Progress</span>
+                </li>
+                <li *ngFor="let item of color_tabs.ProDataCompletedList[green_show].SizeCompletes">
                     <span>{{item.Size}}</span>
                     <span>{{item.PlanAmount}}</span>
                     <span>{{item.CompleteAmount}}</span>
@@ -125,7 +150,7 @@
     <div class="date_container" style="margin-bottom:1rem;" *ngIf="tabstate && data.Pid=='non-process'">
         <span *ngIf="Language=='en'" class="select1"> Completed Qty</span>
         <span *ngIf="Language=='cn'" class="select1"> 完成数量</span>
-        <span class="select1"> {{data.CompleteAmount}}</span>
+        <span class="select1"> {{color_tabs.CompleteAmount}}</span>
     </div>
     <div class="date_container" (click)="showDate()">
         <span *ngIf="Language=='cn'" class="select1">生产日期</span>

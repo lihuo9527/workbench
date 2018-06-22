@@ -210,6 +210,7 @@ export class SearchComponent implements OnInit {
             this.datas[i].list[b].state = this.datas[i].allstate;
         }
         if (item.title == "Factory" && !allstate) {
+            this.datas[1].list = [];
             this.floors.forEach((element) => {
                 element.data.forEach(el => {
                     this.datas[1].list.push(el);
@@ -305,10 +306,14 @@ export class SearchComponent implements OnInit {
             console.log("fids:" + fids)
             this.router.navigate(['detailAnalysisList', JSON.stringify({ "fids": fids })]);
         }
-        if (this.id == 5 || this.id == 6 || this.id == 7) {
-
+        if (this.id >= 5) {
+            let styles = [];
+            this.datas[2].list.forEach(element => {
+                if (element.state == true) styles.push(element.id);
+            });
+            localStorage.setItem("filter", JSON.stringify({ 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, 'styles': styles.toString()}));
             console.log("fids:" + fids)
-            this.router.navigate(['outProcess', JSON.stringify({ "fids": fids, start: this.StartDate, end: this.EndDate, id: this.id })]);
+            this.router.navigate(['outProcess']);
         }
     }
 }

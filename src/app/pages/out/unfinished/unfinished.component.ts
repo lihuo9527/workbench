@@ -16,6 +16,10 @@ export class UnfinishedComponent implements OnInit {
     ngOnInit() {
         this.Language = localStorage.getItem("language");
         this.UpdateList();
+        let plan:{ "recordingList": [{
+            "date": "2017-06-05",
+            "count": 24454
+          }],  }
     }
     UpdateList() {
         let pageIndex = Math.ceil(this.datas.length / 4) + 1;

@@ -1,8 +1,8 @@
 <div class="container">
     <app-title *ngIf="Language=='en'" title="Critical Event Delay"></app-title>
     <app-title *ngIf="Language=='cn'" title="关键事件延误"></app-title>
-    <app-search-box (getstate)='state=$event'></app-search-box>
-    <app-filter *ngIf="state" Info="event" (back)="state=!state"></app-filter>
+    <app-search-box (OutputValue)='UpdateList()'></app-search-box>
+    <app-filter Info="delay" (envet)="UpdateList($event)"></app-filter>
 </div>
 <ul class="criticalList" id="deliver">
     <li *ngFor="let item of datas;">
@@ -41,12 +41,4 @@
         </div>
     </li>
 </ul>
-<!-- <div class="processIng">
-        <span class="completed">PPS</span>
-        <span class="completed">Paper Sample</span>
-        <span class="completed">Paper Sample</span>
-        <span class="fault">Paper Sample</span>
-        <span class="nostart">Paper Sample</span>
-        <span class="nostart">Paper Sample</span>
-      </div> -->
-<app-load-more *ngIf="datas.length>3" [language]="Language" (click)="GetList()"></app-load-more>
+<app-load-more *ngIf="datas.length>3" [language]="Language" (click)="UpdateList('add')"></app-load-more>

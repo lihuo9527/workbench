@@ -17,17 +17,14 @@ export class DeliverDelayComponent implements OnInit {
         { text: "Important", show: false, link: "/deliverDelay" },
         { text: "General", show: false, link: "/deliverDelay" }
     ];
-    public datas: any = [
-        //  {CustomerName:"luyixuelai",PoCode:"1317403280",StartTime:"2017-08-06",pattern:"BC322393",DelayDays:"3",FactoryDelivery:"2017-08-06",DeliveryDate:"2017-09-12"},
-        //  {CustomerName:"luyixuelai",PoCode:"1317403280",StartTime:"2017-08-06",pattern:"BC322393",DelayDays:"3",FactoryDelivery:"2017-08-06",DeliveryDate:"2017-09-12"},
-        //  {CustomerName:"luyixuelai",PoCode:"1317403280",StartTime:"2017-08-06",pattern:"BC322393",DelayDays:"3",FactoryDelivery:"2017-08-06",DeliveryDate:"2017-09-12"},
-        //  {CustomerName:"luyixuelai",PoCode:"1317403280",StartTime:"2017-08-06",pattern:"BC322393",DelayDays:"3",FactoryDelivery:"2017-08-06",DeliveryDate:"2017-09-12"}
-    ];
+    public datas: any = [];
     public id;
     public Language;
     public Link;
     public state;
+    public index;
     ngOnInit() {
+        localStorage.setItem("filter",JSON.stringify({input:''}));
         console.log(this.service.get_params());
         console.log('进入')
         let navid;
@@ -41,21 +38,28 @@ export class DeliverDelayComponent implements OnInit {
         }
         this.showIndex(navid);
     }
-    getList(index?) {
-        console.log(index);
-        if (index != undefined) {
-            if (index == "0") this.id = "6";
-            if (index == "1") this.id = "8";
-            if (index == "2") this.id = "10";
-        }
-        let pageIndex = Math.ceil(this.datas.length / 4 + 1);
-        this.service.http_get('/api/TaskWarn/GetDetailDeliveryDelay?pageIndex=' + pageIndex + '&pageSize=4&fids=1&priority=' + this.id, false).subscribe((data:any) => {
-            if (index != undefined) {
-                if (data.length > 0) this.datas = data;
-            } else {
-                this.service.up_date(this.datas, data);
-            }
 
+    UpdateList($event?) {
+        if (this.index != undefined) {
+            if (this.index == "0") this.id = "6";
+            if (this.index == "1") this.id = "8";
+            if (this.index == "2") this.id = "10";
+        }
+        let local = JSON.parse(localStorage.getItem("filter"));
+        let pageIndex = $event == 'add' ? Math.ceil(this.datas.length / 4 + 1) : 1;
+        let option = 'pageIndex=' + pageIndex + '&pageSize=4' + '&priority=' + this.id;
+        if ($event) {
+            if ($event.fids) option += '&fids=' + $event.fids;
+        }
+        if (local.input) option += '&code=' + local.input;
+        this.service.http_get('/api/TaskWarn/GetDetailDeliveryDelay?' + option, false).subscribe((data: any) => {
+            if ($event != 'add') {
+                this.datas = data;
+            } else {
+                data.forEach(element => {
+                    this.datas.push(element);
+              });
+            }
         })
     }
     showIndex(index) {
@@ -67,10 +71,8 @@ export class DeliverDelayComponent implements OnInit {
             }
         }
         this.datas = [];
-        this.getList(index);
-    }
-    search(){
-
+        this.index = index;
+        this.UpdateList();
     }
     enterEdit(i) {
         this.router.navigate(['/eventDelayEdit', JSON.stringify(this.datas[i])]);

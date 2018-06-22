@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../../../app.service';
 import { CookieService } from 'ngx-cookie-service';
+import { ActivatedRoute, Router } from '@angular/router';
+
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
@@ -8,7 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class HomeComponent implements OnInit {
 
-    constructor(private service: AppService,private cookieService:CookieService) { }
+    constructor(private service: AppService, private cookieService: CookieService, private router: Router) { }
     public list: any = [
         {
             TodayHandledCount: "0",
@@ -29,14 +31,14 @@ export class HomeComponent implements OnInit {
         {
             title: "Outsourced process plan", title2: "外发工序计划", TodayHandledCount: "0", TipsCountList: [
                 { Url: "/assets/images/a_44.png", Text: "Embroidery", Name: "印花", Link: "/search", Id: "5", Amount: "0" },
-                { Url: "/assets/images/a_45.png", Text: "Sewing", Name: "车缝", Link: "/search", Id: "6",  Amount: "0" },
+                { Url: "/assets/images/a_45.png", Text: "Sewing", Name: "车缝", Link: "/search", Id: "6", Amount: "0" },
                 { Url: "/assets/images/a_46.png", Text: "Washing", Name: "洗水", Link: "/search", Id: "7", Amount: "0" }]
         },
         {
             title: "Delivery Delay", title2: "交期延误单", TodayHandledCount: "0", TipsCountList: [
-                { Url: "/assets/images/ico_21.png", Text: "Urgency", Name: "紧急单", Link: "/deliverDelay", Id: "0",  Amount: "0" },
+                { Url: "/assets/images/ico_21.png", Text: "Urgency", Name: "紧急单", Link: "/deliverDelay", Id: "0", Amount: "0" },
                 { Url: "/assets/images/ico_22.png", Text: "Important", Name: "重要单", Link: "/deliverDelay", Id: "1", Amount: "0" },
-                { Url: "/assets/images/ico_23.png", Text: "General", Name: "普通单", Link: "/deliverDelay", Id: "2",  Amount: "0" }]
+                { Url: "/assets/images/ico_23.png", Text: "General", Name: "普通单", Link: "/deliverDelay", Id: "2", Amount: "0" }]
         },
         {
             title: "Critical Event Delay", title2: "关键事件延误", TodayHandledCount: "0", TipsCountList: [
@@ -78,16 +80,11 @@ export class HomeComponent implements OnInit {
         //     console.log(data);
         // })
         let obj = new window_obj();
-        console.log(obj.ip());
-        console.log(obj.language());
         this.Language = obj.language();
-        let time :number = 2*60*6000*100000;
-        if(obj.cookies()){
-            console.log("cookies")
-            this.cookieService.set('JSESSIONID', obj.cookies(),new Date(new Date().getTime() + time));
-        }
+        let time: number = 2 * 60 * 6000 * 100000;
+        if (obj.cookies()) this.cookieService.set('JSESSIONID', obj.cookies(), new Date(new Date().getTime() + time));
         localStorage.setItem("language", this.Language);
-        this.service.set_params("true");
+        if (!obj.defaultCompany()) this.router.navigate(['not-bind']);
         let url: string;
         for (let i = 1; i < this.list.length; i++) {
             switch (i) {
@@ -104,7 +101,7 @@ export class HomeComponent implements OnInit {
                 case 6: url = "/api/Main/GetTodayCount";
                     break;
             }
-            this.service.http_get(url, false).subscribe((data:any) => {
+            this.service.http_get(url, false).subscribe((data: any) => {
                 // console.log(JSON.stringify(data))
                 let obj = data;
                 this.list[i].TodayHandledCount = obj.TodayHandledCount;

@@ -1,8 +1,8 @@
 <div class="container">
     <app-title *ngIf="Language=='en'" title="Delivery Delay" [link]="Link"></app-title>
     <app-title *ngIf="Language=='cn'" title="交期延误订单" [link]="Link"></app-title>
-    <app-search-box (getstate)='state=$event' (search)="search()"></app-search-box>
-    <app-filter [ngClass]="{'filtershow':state,'filterhidden':!state}" Info="event" (back)="state=!state"></app-filter>
+    <app-search-box (OutputValue)='UpdateList()'></app-search-box>
+    <app-filter Info="delay" (envet)="UpdateList($event)"></app-filter>
     <app-tabs [tabs]="tabs" (indexchange)="showIndex($event)"></app-tabs>
     <div class="box">
         <div class="box_row" *ngFor="let item of datas;let i=index;">
@@ -45,6 +45,6 @@
             </ul>
         </div>
     </div>
-    <app-load-more *ngIf="datas.length>3" [language]="Language" (click)="getList()"></app-load-more>
+    <app-load-more *ngIf="datas.length>3" [language]="Language" (click)="UpdateList()"></app-load-more>
     <p *ngIf="datas.length==0" style="color:#fff;background:#b8b8b8;text-align: center; height:3rem;line-height:3rem;">目前没有查询到更多消息！</p>
 </div>

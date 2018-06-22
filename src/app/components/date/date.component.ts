@@ -12,7 +12,6 @@ export class DateComponent implements OnInit {
     @Input() public number;
     @Output() public submit: EventEmitter<string> = new EventEmitter();
     public year;
-
     public Language;
     public days = [];
     public today = new Date();

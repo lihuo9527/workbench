@@ -2,10 +2,12 @@
     display: flex;
     flex: 0 0 100%;
     box-sizing: border-box;
+    flex-flow: wrap;
 }
 
 .box_row {
     background: #fff;
+    margin-bottom: 1rem;
 }
 
 .items {

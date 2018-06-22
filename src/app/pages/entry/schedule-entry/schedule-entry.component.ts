@@ -19,7 +19,7 @@ export class ScheduleEntryComponent implements OnInit {
     public date;
     public allstate;
     public state;
-    public color_tabs = [];
+    public color_tabs: any = [];
     public green_show = 0;
     public number;
     public title;
@@ -49,17 +49,13 @@ export class ScheduleEntryComponent implements OnInit {
             })
         }
         if (this.data.Pid == "non-process") {
+            this.color_tabs = { CompleteAmount: '', ProDataCompletedList: [] }
             this.title = "Non-Planing Process Entry";
             this.title2 = "非排产工序进度录入";
 
             this.service.http_get('/api/Schedule/GetPoProcess?poId=' + this.data.id, false).subscribe((data: any) => {
                 console.log(data)
                 this.process = data;
-                // this.processId = this.process[0].itemId;
-                // this.service.http_get('/api/Schedule/GetScheduleData?poid=' + this.data.id + '&processId=' + this.process[0].itemId, false).subscribe((data: any) => {
-                //     console.log(data)
-                //     this.color_tabs = data;
-                // })
             })
 
         }
@@ -102,19 +98,19 @@ export class ScheduleEntryComponent implements OnInit {
                     "IsProCompleted": IsProCompleted,
                     "ProDatas": []
                 }
-                for (let i = 0; i < this.color_tabs.length; i++) {
-                    for (let b = 0; b < this.color_tabs[i].SizeCompletes.length; b++) {
-                        if (this.color_tabs[i].SizeCompletes[b].Amount > 0) {
+                this.color_tabs.ProDataCompletedList.forEach((element, i) => {
+                    element.SizeCompletes.forEach(el => {
+                        if (el.Amount > 0) {
                             let json = {
-                                "Color": this.color_tabs[i].Color,
-                                "Size": this.color_tabs[i].SizeCompletes[b].Size,
-                                "Amount": this.color_tabs[i].SizeCompletes[b].Amount
+                                "Color": element.Color,
+                                "Size": el.Size,
+                                "Amount": el.Amount
                             };
                             data.ProDatas.push(json);
                         }
-                    }
-                }
-                console.log(JSON.stringify(this.color_tabs))
+                    });
+                });
+                console.log(JSON.stringify(data))
                 if (this.processId) {
                     console.log(this.processId)
                     this.service.http_post('/api/Schedule/AddScheduleDaily', JSON.stringify(data), false).subscribe((data: any) => {
@@ -123,7 +119,7 @@ export class ScheduleEntryComponent implements OnInit {
                     }, error => {
                         this.alert("提交失败！");
                     })
-                }else{
+                } else {
                     this.alert("请先选择工序！");
                 }
 
@@ -136,7 +132,7 @@ export class ScheduleEntryComponent implements OnInit {
                     }, error => {
                         this.alert("提交失败！");
                     })
-                }else{
+                } else {
                     this.alert("请先选择工序！");
                 }
             }
@@ -152,18 +148,19 @@ export class ScheduleEntryComponent implements OnInit {
                     "IsProCompleted": IsProCompleted,
                     "ProDatas": []
                 }
-                for (let i = 0; i < this.color_tabs.length; i++) {
-                    for (let b = 0; b < this.color_tabs[i].SizeCompletes.length; b++) {
-                        if (this.color_tabs[i].SizeCompletes[b].Amount > 0) {
+
+                this.color_tabs.forEach((element, i) => {
+                    element.SizeCompletes.forEach(el => {
+                        if (el.Amount > 0) {
                             let json = {
-                                "Color": this.color_tabs[i].Color,
-                                "Size": this.color_tabs[i].SizeCompletes[b].Size,
-                                "Amount": this.color_tabs[i].SizeCompletes[b].Amount
+                                "Color": element.Color,
+                                "Size": el.Size,
+                                "Amount": el.Amount
                             };
                             data.ProDatas.push(json);
                         }
-                    }
-                }
+                    });
+                });
                 console.log(JSON.stringify(this.color_tabs))
                 this.service.http_post('/api/Schedule/AddPlanScheduleDaily', JSON.stringify(data), false).subscribe((data: any) => {
                     if (data.IsSuccess == 1) this.alert("保存成功！");

@@ -14,19 +14,27 @@ export class CriticalEventDelayComponent implements OnInit {
     public Language;
     public state;
     ngOnInit() {
+        localStorage.setItem("filter", JSON.stringify({ input: '' }));
         this.Language = localStorage.getItem("language");
         this.id = this.routerIonfo.snapshot.params["id"];
         this.id == "all" ? this.eventId = "-1" : this.eventId = this.id;
-        this.GetList(1);
+        this.UpdateList();
     }
-
-    GetList(index?) {
-        let pageIndex = Math.ceil(this.datas.length / 4 + 1);
-        this.service.http_get('/api/TaskWarn/GetDetailEventDelay?pageIndex=' + pageIndex + '&pageSize=4&fids=1&eventId=' + this.eventId, false).subscribe((data:any) => {
-            if (index != undefined) {
-                if(data.length > 0) this.datas = data;
+    UpdateList($event?) {
+        let local = JSON.parse(localStorage.getItem("filter"));
+        let pageIndex = $event == 'add' ? Math.ceil(this.datas.length / 4 + 1) : 1;
+        let option = 'pageIndex=' + pageIndex + '&pageSize=4';;
+        if ($event) {
+            if ($event.fids) option += '&fids=' + $event.fids;
+        }
+        if (local.input) option += '&code=' + local.input;
+        this.service.http_get('/api/TaskWarn/GetDetailEventDelay?' + option, false).subscribe((data: any) => {
+            if ($event != 'add') {
+                this.datas = data;
             } else {
-                this.service.up_date(this.datas, data);
+                data.forEach(element => {
+                    this.datas.push(element);
+                });
             }
         })
     }

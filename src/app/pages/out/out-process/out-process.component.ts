@@ -16,7 +16,7 @@ export class OutProcessComponent implements OnInit {
     public datas = [];
     public state;
     ngOnInit() {
-        this.data = JSON.parse(this.routerIonfo.snapshot.params["data"]);
+        this.data = JSON.parse(localStorage.getItem("filter"));
         this.id = this.data.id;
         console.log(this.id)
         this.Language = localStorage.getItem("language");
@@ -30,15 +30,18 @@ export class OutProcessComponent implements OnInit {
     }
     UpdateList($event?) {
         let local = JSON.parse(localStorage.getItem("filter"));
-        let pageIndex = local.input ? 1 : this.datas.length / 4 + 1;
+        let pageIndex = local.input ? 1 : Math.ceil(this.datas.length / 4 + 1);
         let option = "";
         if ($event) {
-            option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + $event.StartDate + '&end=' + $event.EndDate;
+            option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + $event.start + '&end=' + $event.end;
             if ($event.fids) option += '&fids=' + $event.fids;
             if ($event.wsids) option += '&wsids=' + $event.wsids;
-            if ($event.eventid) option += '&eventid=' + $event.eventid;
+            if ($event.styles) option += '&productTypeIds=' + $event.styles;
         } else {
             option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + local.start + '&end=' + local.end
+            if (local.fids) option += '&fids=' + local.fids;
+            if (local.wsids) option += '&wsids=' + local.wsids;
+            if (local.styles) option += '&productTypeIds=' + local.styles;
         }
         if (local.input) option += '&code=' + local.input;
         this.service.http_get('/api/OuterFactory/GetPoes?' + option, false).subscribe((data: any) => {

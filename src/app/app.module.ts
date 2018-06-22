@@ -42,6 +42,7 @@ import { UnansweredComponent } from './pages/out/unanswered/unanswered.component
 import { UnfinishedComponent } from './pages/out/unfinished/unfinished.component';
 import { UnansweredEntryComponent } from './pages/out/unanswered-entry/unanswered-entry.component';
 import { UnfinishedEntryComponent } from './pages/out/unfinished-entry/unfinished-entry.component';
+import { NotBindComponent } from './pages/not-bind/not-bind.component';
 
 @NgModule({
     declarations: [
@@ -81,6 +82,7 @@ import { UnfinishedEntryComponent } from './pages/out/unfinished-entry/unfinishe
         UnfinishedComponent,
         UnansweredEntryComponent,
         UnfinishedEntryComponent,
+        NotBindComponent,
     ],
     imports: [
         BrowserModule,

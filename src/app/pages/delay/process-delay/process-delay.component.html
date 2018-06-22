@@ -1,8 +1,8 @@
 <div class="container">
     <app-title *ngIf="Language=='en'" title="Process Delay"></app-title>
     <app-title *ngIf="Language=='cn'" title="工序延误"></app-title>
-    <app-search-box (getstate)='state=$event'></app-search-box>
-    <app-filter *ngIf="state" Info="non-planing-process" (back)="state=!state"></app-filter>
+    <app-search-box (OutputValue)='UpdateList()'></app-search-box>
+    <app-filter Info="delay" (envet)="UpdateList($event)"></app-filter>
     <ul class="processList">
         <li *ngFor="let item of datas;">
             <div class="listTop">
@@ -33,5 +33,5 @@
             </div>
         </li>
     </ul>
-    <app-load-more *ngIf="datas.length>3" [language]="Language" (click)="GetList()"></app-load-more>
+    <app-load-more *ngIf="datas.length>3" [language]="Language" (click)="UpdateList('add')"></app-load-more>
 </div>

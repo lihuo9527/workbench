@@ -16,7 +16,7 @@
                 </ul>
                 </li>
         </ul>
-        <div class="date_container">
+        <div class="date_container" *ngIf="dateshow">
             <div class="date_item">
                 <p (click)="state=true">{{StartDate}}</p>
                 <p class="bar"></p>

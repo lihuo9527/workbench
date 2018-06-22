@@ -16,8 +16,7 @@ export class FilterComponent implements OnInit {
     public dateType: number;
     public state: boolean = false;
     public datas: object = [
-        { title: "Factory", title2: "工厂", rowstate: true, allstate: false, but: true, arrow: true, list: [] },
-        { title: "Floor", title2: "车间", rowstate: true, allstate: false, but: true, arrow: true, list: [] }
+        { title: "Factory", title2: "工厂", rowstate: true, allstate: false, but: true, arrow: true, list: [] }
     ];
     public today = new Date();
     public t = this.today.getTime() - 1000 * 60 * 60 * 48;
@@ -25,11 +24,28 @@ export class FilterComponent implements OnInit {
     public StartDate = new Date(this.t).toLocaleDateString();
     public Language;
     public floors = JSON.parse(localStorage.getItem("floors"));
+    public dateshow = true;
     ngOnInit() {
         this.Language = localStorage.getItem("language");
         console.log("INfo", this.Info)
-        this.datas = JSON.parse(localStorage.getItem("datas"));
-
+        if (this.Info == "delay") {
+            this.dateshow = false;
+            this.service.http_get('/api/BaseData/GetFactoryLines', false).subscribe((data: any) => {
+                if (data.length > 0) {
+                    for (let i = 0; i < data.length; i++) {
+                        let json: any = {
+                            'id': data[i].FId,
+                            'text': data[i].FName,
+                            'text2': data[i].FName,
+                            'state': false
+                        };
+                        this.datas[0].list.push(json);
+                    }
+                }
+            })
+        } else {
+            this.datas = JSON.parse(localStorage.getItem("datas"));
+        }
     }
     Back() {
         //filter过渡动漫
@@ -38,6 +54,7 @@ export class FilterComponent implements OnInit {
     }
 
     backDate(objs) {
+        //返回时间并关闭窗口
         let obj = JSON.parse(objs);
         let time = 0;
         if (obj.dates) {
@@ -54,15 +71,16 @@ export class FilterComponent implements OnInit {
         for (let b = 0; b < this.datas[i].list.length; b++) {
             this.datas[i].list[b].state = this.datas[i].allstate;
         }
-        if (item.title == "Factory" && !allstate) {
+        if (item.title == "Factory" && !allstate && this.Info != "delay" ) {
             //关联全部工厂添加车间
+            this.datas[1].list = [];
             this.floors.forEach((element) => {
                 element.data.forEach(el => {
                     this.datas[1].list.push(el);
                 });
             });
         }
-        if (item.title == "Factory" && allstate) {
+        if (item.title == "Factory" && allstate && this.Info != "delay") {
             //关联全部工厂删除车间
             this.datas[i + 1].allstate = false;
             this.datas[i + 1].list = [];
@@ -78,7 +96,7 @@ export class FilterComponent implements OnInit {
                 if (index != i) element.state = false;
             });
         }
-        if (items.title == 'Factory' && obj.state) {
+        if (items.title == 'Factory' && obj.state && this.Info != "delay") {
             //关联工厂添加车间
             this.floors.forEach((element) => {
                 if (obj.id == element.id) {
@@ -89,7 +107,7 @@ export class FilterComponent implements OnInit {
             });
             console.log(this.datas[1].list)
         }
-        if (items.title == 'Factory' && !obj.state) {
+        if (items.title == 'Factory' && !obj.state && this.Info != "delay") {
             //关联工厂删除车间
             let k = 0;
             for (let i = 0; i < this.datas[1].list.length; i++) {
@@ -105,48 +123,64 @@ export class FilterComponent implements OnInit {
         let obj: object = {};
         let local = JSON.parse(localStorage.getItem("filter"));
         let fids = [];
-        this.datas[0].list.forEach((element, i) => {
-            if (element.state == true) fids.push(element.id);
-        });
         let wsids = [];
-        this.datas[1].list.forEach((element, i) => {
-            if (element.state == true) wsids.push(element.id);
-
-        });
-
-        obj['start'] = this.StartDate;
-        obj['end'] = this.EndDate;
-        obj['id'] = local.id;
-        if (wsids.toString()) obj['wsids'] = wsids.toString();
-        if (fids.toString()) obj['fids'] = fids.toString();
-        if (local.input) obj['input'] = local.input;
-
-        if (local.id == 0) {
-            let eventid = [];
-            //关键事件
-            this.datas[2].list.forEach(element => {
-                if (element.state == true) eventid.push(element.id);
+        if (this.Info != "delay") {
+            this.datas[0].list.forEach((element, i) => {
+                if (element.state == true) fids.push(element.id);
             });
-            if (this.dateType >= 0 && this.datas[3].list[this.dateType].state) obj['dateType'] = this.dateType;
-            if (eventid.toString()) obj['eventid'] = eventid.toString();
-        }
-        if (local.id == 1) {
-            //每日进度
-            let styles = [];
-            this.datas[2].list.forEach((element, i) => {
-                if (element.state == true) styles.push(element.id);
+            this.datas[1].list.forEach((element, i) => {
+                if (element.state == true) wsids.push(element.id);
+
             });
-            if (styles.toString()) obj['styles'] = styles.toString();
-        }
-        if (local.id == 2) {
-            //非排产工序
-            let process = [];
-            this.datas[2].list.forEach(element => {
-                if (element.state == true) process.push(element.id);
+            obj['start'] = this.StartDate;
+            obj['end'] = this.EndDate;
+            obj['id'] = local.id;
+            if (wsids.toString()) obj['wsids'] = wsids.toString();
+            if (fids.toString()) obj['fids'] = fids.toString();
+            if (local.input) obj['input'] = local.input;
+            if (local.id == 0) {
+                let eventid = [];
+                //关键事件
+                this.datas[2].list.forEach(element => {
+                    if (element.state == true) eventid.push(element.id);
+                });
+                if (this.dateType >= 0 && this.datas[3].list[this.dateType].state) obj['dateType'] = this.dateType;
+                if (eventid.toString()) obj['eventid'] = eventid.toString();
+            }
+            if (local.id == 1) {
+                //每日进度
+                let styles = [];
+                this.datas[2].list.forEach((element, i) => {
+                    if (element.state == true) styles.push(element.id);
+                });
+                if (styles.toString()) obj['styles'] = styles.toString();
+            }
+            if (local.id == 2) {
+                //非排产工序
+                let process = [];
+                this.datas[2].list.forEach(element => {
+                    if (element.state == true) process.push(element.id);
+                });
+                if (this.dateType >= 0 && this.datas[3].list[this.dateType].state) obj['dateType'] = this.dateType;
+                if (process.toString()) obj['process'] = process.toString();
+            }
+            if (local.id >= 5) {
+                //外发工序
+                let styles = [];
+                this.datas[2].list.forEach(element => {
+                    if (element.state == true) styles.push(element.id);
+                });
+                if (styles.toString()) obj['styles'] = styles.toString();
+            }
+        } else {
+            this.datas[0].list.forEach((element, i) => {
+                if (element.state == true) fids.push(element.id);
             });
-            if (this.dateType >= 0 && this.datas[3].list[this.dateType].state) obj['dateType'] = this.dateType;
-            if (process.toString()) obj['process'] = process.toString();
+            if (local.input) obj['input'] = local.input;
+            if (fids.toString()) obj['fids'] = fids.toString();
+
         }
+
         console.log(JSON.stringify(obj))
         localStorage.setItem("filter", JSON.stringify(obj));
         this.envet.emit(obj);

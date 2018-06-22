@@ -1,8 +1,8 @@
 <div class="container">
     <app-title *ngIf="Language=='en'" title="Start Time Delay"></app-title>
     <app-title *ngIf="Language=='cn'" title="开工期延误订单"></app-title>
-    <app-search-box (getstate)='state=$event'></app-search-box>
-    <app-filter *ngIf="state" (back)="state=!state"></app-filter>
+    <app-search-box (OutputValue)='UpdateList()'></app-search-box>
+    <app-filter Info="delay" (envet)="UpdateList($event)"></app-filter>
 
     <ul class="materList">
         <li *ngFor="let item of datas;"><i></i>
@@ -67,5 +67,5 @@
             </ul>
         </li>
     </ul>
-    <app-load-more *ngIf="datas.length>3" [language]="Language" (click)="UpdateList()"></app-load-more>
+    <app-load-more *ngIf="datas.length>3" [language]="Language" (click)="UpdateList('add')"></app-load-more>
 </div>

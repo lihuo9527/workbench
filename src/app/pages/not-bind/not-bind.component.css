@@ -1,0 +1,41 @@
+header {
+    background-color: #088c77;
+    width: 100%;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 3;
+    left: 0;
+    top: 0;
+}
+
+header h1 {
+    color: #ffffff !important;
+    font-size: 1.8rem;
+}
+
+.box {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: wrap;
+}
+
+.box .item {
+    flex: 0 0 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: wrap;
+}
+
+.box .item p {
+    flex: 0 0 100%;
+    padding-top: 2rem;
+    text-align: center;
+}
