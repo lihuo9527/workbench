@@ -21,8 +21,8 @@ export class DateComponent implements OnInit {
     public start_date;
     public end_date;
     public state;
-    public dates = [
-    ]
+    public dates = [];
+    public message = { state: false, btnText: "OK", msg: "" };
     ngOnInit() {
         for (let i = 0; i < 24; i++) {
             let myDate = new Date(this.last_year + "," + this.month + "," + "01");
@@ -127,7 +127,7 @@ export class DateComponent implements OnInit {
                 let arr1 = new Date(this.start_date);
                 let arr2 = new Date(text);
                 if (arr1 > arr2) {
-                    alert("结束时间不能小于当前时间！");
+                    this.alert("结束时间不能小于当前时间！");
                     return;
                 }
                 console.log(arr1, arr2)
@@ -147,7 +147,7 @@ export class DateComponent implements OnInit {
                 return;
             }
             this.start_date = this.dates[index].year + "-" + this.dates[index].month + "-" + day;
-            setTimeout(()=>this.backDate(),500);
+            setTimeout(() => this.backDate(), 500);
         }
 
     }
@@ -160,5 +160,9 @@ export class DateComponent implements OnInit {
         this.end_date = false;
         this.state = false;
     }
-
+    alert(message) {
+        this.message.msg = message;
+        this.message.state = true;
+        this.message.btnText = "OK";
+    }
 }

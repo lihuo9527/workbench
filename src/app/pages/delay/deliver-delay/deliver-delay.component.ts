@@ -48,7 +48,7 @@ export class DeliverDelayComponent implements OnInit {
         let local = JSON.parse(localStorage.getItem("filter"));
         let pageIndex = $event == 'add' ? Math.ceil(this.datas.length / 4 + 1) : 1;
         let option = 'pageIndex=' + pageIndex + '&pageSize=4' + '&priority=' + this.id;
-        if ($event.fids) option += '&fids=' + $event.fids;
+        if ($event && $event.fids) option += '&fids=' + $event.fids;
         if (local.input) option += '&code=' + local.input;
         this.service.http_get('/api/TaskWarn/GetDetailDeliveryDelay?' + option, false).subscribe((data: any) => {
             if ($event != 'add') {
