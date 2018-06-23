@@ -32,30 +32,20 @@ export class OutProcessComponent implements OnInit {
         let local = JSON.parse(localStorage.getItem("filter"));
         let pageIndex = local.input ? 1 : Math.ceil(this.datas.length / 4 + 1);
         let option = "";
-        if ($event) {
-            option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + $event.start + '&end=' + $event.end;
-            if ($event.fids) option += '&fids=' + $event.fids;
-            if ($event.wsids) option += '&wsids=' + $event.wsids;
-            if ($event.styles) option += '&productTypeIds=' + $event.styles;
-        } else {
-            option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + local.start + '&end=' + local.end
-            if (local.fids) option += '&fids=' + local.fids;
-            if (local.wsids) option += '&wsids=' + local.wsids;
-            if (local.styles) option += '&productTypeIds=' + local.styles;
-        }
+        let object = $event ? $event : local;
+        option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + object.start + '&end=' + object.end
+        if (object.fids) option += '&fids=' + object.fids;
+        if (object.wsids) option += '&wsids=' + object.wsids;
+        if (object.styles) option += '&styles=' + object.styles;
         if (local.input) option += '&code=' + local.input;
         this.service.http_get('/api/OuterFactory/GetPoes?' + option, false).subscribe((data: any) => {
             if ($event || local.input) {
                 this.datas = data;
             } else {
-                let obj = data;
-                if (obj.length > 0) {
-                    for (let i = 0; i < obj.length; i++) {
-                        this.datas.push(obj[i]);
-                    }
-                }
+                data.forEach(element => {
+                    this.datas.push(element);
+                });
             }
-
         })
     }
     Link(item) {

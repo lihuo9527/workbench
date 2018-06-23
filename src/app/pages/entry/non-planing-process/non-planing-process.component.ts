@@ -21,32 +21,21 @@ export class NonPlaningProcessComponent implements OnInit {
         let local = JSON.parse(localStorage.getItem("filter"));
         let pageIndex = local.input ? 1 : this.datas.length / 4 + 1;
         let option = "";
-        if ($event) {
-            option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + $event.start + '&end=' + $event.end;
-            if ($event.fids) option += '&fids=' + $event.fids;
-            if ($event.wsids) option += '&wsids=' + $event.wsids;
-            if ($event.process) option += '&processid=' + $event.process;
-            if ($event.dateType >= 0) option += '&dateType=' + $event.dateType;
-        } else {
-            option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + local.start + '&end=' + local.end
-            if (local.fids) option += '&fids=' + local.fids;
-            if (local.wsids) option += '&wsids=' + local.wsids;
-            if (local.process) option += '&processid=' + local.process;
-            if (local.dateType >= 0) option += '&dateType=' + local.dateType;
-        }
+        let object = $event ? $event : local;
+        option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + object.start + '&end=' + object.end
+        if (object.fids) option += '&fids=' + object.fids;
+        if (object.wsids) option += '&wsids=' + object.wsids;
+        if (object.process) option += '&processid=' + object.process;
+        if (object.dateType >= 0) option += '&dateType=' + object.dateType;
         if (local.input) option += '&code=' + local.input;
         this.service.http_get('/api/Schedule/GetProcessPoes?' + option, false).subscribe((data: any) => {
             if ($event || local.input) {
                 this.datas = data;
             } else {
-                let obj = data;
-                if (obj.length > 0) {
-                    for (let i = 0; i < obj.length; i++) {
-                        this.datas.push(obj[i]);
-                    }
-                }
+                data.forEach(element => {
+                    this.datas.push(element);
+                });
             }
-
         })
     }
 

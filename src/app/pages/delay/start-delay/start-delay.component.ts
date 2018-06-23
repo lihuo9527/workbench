@@ -9,52 +9,7 @@ import { AppService } from '../../../app.service';
 export class StartDelayComponent implements OnInit {
 
     constructor(private service: AppService, private routerIonfo: ActivatedRoute, ) { }
-    public datas = [
-        {
-            "ProductionEventID": 0,
-            "LineName": "string",
-            "Amount": "string",
-            "PlanAmount": 0,
-            "DeliveryDate": "2018-03-24T16:48:23.218Z",
-            "PlanStart": "2018-03-24T16:48:23.218Z",
-            "EarliestStartDate": "2018-03-24T16:48:23.218Z",
-            "DelayDays": 0,
-            "MasterMatFinishDate": "string",
-            "NotMasterMatFinishDate": "string",
-            "PreProductionEventDate": "string",
-            "PoCode": "string",
-            "CustomerName": "string",
-            "CustomerStyleNO": "string",
-            "Pattern": "string",
-            "ProductTypeName": "string",
-            "Merchandiser": "string",
-            "Description": "string",
-            "FactoryID": 0,
-            "arrow": false
-        },
-        {
-            "ProductionEventID": 0,
-            "LineName": "string",
-            "Amount": "string",
-            "PlanAmount": 0,
-            "DeliveryDate": "2018-03-24T16:48:23.218Z",
-            "PlanStart": "2018-03-24T16:48:23.218Z",
-            "EarliestStartDate": "2018-03-24T16:48:23.218Z",
-            "DelayDays": 0,
-            "MasterMatFinishDate": "string",
-            "NotMasterMatFinishDate": "string",
-            "PreProductionEventDate": "string",
-            "PoCode": "string",
-            "CustomerName": "string",
-            "CustomerStyleNO": "string",
-            "Pattern": "string",
-            "ProductTypeName": "string",
-            "Merchandiser": "string",
-            "Description": "string",
-            "FactoryID": 0,
-            "arrow": false
-        }
-    ]
+    public datas: any = [];
     public id;
     public Language;
     public url = '/api/TaskWarn/GetDetailStartDelay?';
@@ -69,9 +24,7 @@ export class StartDelayComponent implements OnInit {
         let local = JSON.parse(localStorage.getItem("filter"));
         let pageIndex = $event == 'add' ? Math.ceil(this.datas.length / 4 + 1) : 1;
         let option = 'pageIndex=' + pageIndex + '&pageSize=4';
-        if ($event) {
-            if ($event.fids) option += '&fids=' + $event.fids;
-        }
+        if ($event.fids) option += '&fids=' + $event.fids;
         if (local.input) option += '&code=' + local.input;
         this.service.http_get('/api/TaskWarn/GetDetailStartDelay?' + option, false).subscribe((data: any) => {
             if ($event != 'add') {

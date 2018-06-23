@@ -15,7 +15,7 @@ export class FilterComponent implements OnInit {
     public rowstate: boolean;
     public dateType: number;
     public state: boolean = false;
-    public datas: object = [
+    public datas: any = [
         { title: "Factory", title2: "工厂", rowstate: true, allstate: false, but: true, arrow: true, list: [] }
     ];
     public today = new Date();
@@ -71,7 +71,7 @@ export class FilterComponent implements OnInit {
         for (let b = 0; b < this.datas[i].list.length; b++) {
             this.datas[i].list[b].state = this.datas[i].allstate;
         }
-        if (item.title == "Factory" && !allstate && this.Info != "delay" ) {
+        if (item.title == "Factory" && !allstate && this.Info != "delay") {
             //关联全部工厂添加车间
             this.datas[1].list = [];
             this.floors.forEach((element) => {
@@ -120,7 +120,7 @@ export class FilterComponent implements OnInit {
         }
     }
     complete() {
-        let obj: object = {};
+        let obj: any = {};
         let local = JSON.parse(localStorage.getItem("filter"));
         let fids = [];
         let wsids = [];

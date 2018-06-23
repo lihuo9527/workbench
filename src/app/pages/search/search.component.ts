@@ -17,7 +17,7 @@ export class SearchComponent implements OnInit {
     public placeholder = "输入单号或款号查询";
     public input: string;
     public dateType: number;
-    public lists = [
+    public lists :any = [
         {
             data: [
                 { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
@@ -56,37 +56,9 @@ export class SearchComponent implements OnInit {
             ]
         },
 
-        {
-            data: [
-                { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Line", title2: "生产线", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                {
-                    title: "Grouping condition", title2: "分组条件", rowstate: true, allstate: false, but: false, arrow: true,
-                    list: [
-                        { text: "Factory", text2: "工厂", state: false },
-                        { text: "Floor", text2: "车间", state: false },
-                        { text: "Line", text2: "生产线", state: false },
-                        { text: "Line+Rank", text2: "生产线+班次分组", state: false },
-                        { text: "+Fty Style", text2: "+本厂款号", state: false }
-                    ]
-                },
-                {
-                    title: "Display Mode", title2: "显示方式", rowstate: true, allstate: false, but: false, arrow: true,
-                    list: [
-                        { text: "Date", text2: "按日期", state: false },
-                        { text: "Month", text2: "按月份", state: false }
-                    ]
-                },
-                { title: "Date", title2: "日期", rowstate: true, allstate: false, but: false, arrow: false, list: [] }
-            ]
-        },
+        {},
 
-        {
-            data: [
-                { title: "Factory", title2: "工厂", rowstate: true, allstate: false, but: true, arrow: true, list: [] },
-            ]
-        },
+        {},
         {
             data: [
                 { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
@@ -301,17 +273,13 @@ export class SearchComponent implements OnInit {
             localStorage.setItem("filter", JSON.stringify({ 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, "process": process.toString(), 'fids': fids.toString(), 'wsids': wsids.toString(), "dateType": this.dateType }));
             this.router.navigate(['nonPlaningProcess']);
         };
-
-        if (this.id == 4) {
-            console.log("fids:" + fids)
-            this.router.navigate(['detailAnalysisList', JSON.stringify({ "fids": fids })]);
-        }
         if (this.id >= 5) {
+            //外发工序
             let styles = [];
             this.datas[2].list.forEach(element => {
                 if (element.state == true) styles.push(element.id);
             });
-            localStorage.setItem("filter", JSON.stringify({ 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, 'styles': styles.toString()}));
+            localStorage.setItem("filter", JSON.stringify({ 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, 'styles': styles.toString() }));
             console.log("fids:" + fids)
             this.router.navigate(['outProcess']);
         }
