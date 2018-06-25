@@ -20,14 +20,6 @@ export class HomeComponent implements OnInit {
                 { Url: "/assets/images/a_23.png", Text: "Non-planing Process", Name: "非排产工序", Link: "/search", Id: "2", Amount: "0" },
                 { Url: "/assets/images/ico_04.png", Text: "All", Name: "全部", Link: "/all", Id: "3", Amount: "0" }]
         },
-        // {
-        //     TodayHandledCount: "0",
-        //     TipsCountList: [
-        //         { Url: "/assets/images/a_21.png", Text: "Critical Event", Name: "产前事件", Link: "/criticalEvent", Id: "0", Amount: "0" },
-        //         { Url: "/assets/images/a_22.png", Text: "Daily Progress", Name: "每日进度", Link: "/productionDailyProgress", Id: "1", Amount: "0" },
-        //         { Url: "/assets/images/a_23.png", Text: "Non-planing Process", Name: "非排产工序", Link: "/NonPlaningProcessComponent", Id: "2", Amount: "0" },
-        //         { Url: "/assets/images/ico_04.png", Text: "All", Name: "全部", Link: "/all", Id: "3", Amount: "0" }]
-        // },
         {
             title: "Outsourced process plan", title2: "外发工序计划", TodayHandledCount: "0", TipsCountList: [
                 { Url: "/assets/images/a_44.png", Text: "Embroidery", Name: "印花", Link: "/search", Id: "5", Amount: "0" },
@@ -42,48 +34,36 @@ export class HomeComponent implements OnInit {
         },
         {
             title: "Critical Event Delay", title2: "关键事件延误", TodayHandledCount: "0", TipsCountList: [
-                { Url: "/assets/images/ico_31.png", Text: "AD", Name: "", Link: "/criticalEventDelay", Id: "0", Amount: "0" },
-                { Url: "/assets/images/ico_32.png", Text: "Counter Sample", Name: "", Link: "/criticalEventDelay", Id: "1", Amount: "0" },
-                { Url: "/assets/images/ico_33.png", Text: "Trim Card", Name: "", Link: "/criticalEventDelay", Id: "2", Amount: "0" },
-                { Url: "/assets/images/ico_34.png", Text: "Marker", Name: "", Link: "/criticalEventDelay", Id: "3", Amount: "0" }]
+                { Url: "/assets/images/ico_31.png", Text: "", Name: "", Link: "/criticalEventDelay", Id: "0", Amount: "0" },
+                { Url: "/assets/images/ico_32.png", Text: "", Name: "", Link: "/criticalEventDelay", Id: "1", Amount: "0" },
+                { Url: "/assets/images/ico_33.png", Text: "", Name: "", Link: "/criticalEventDelay", Id: "2", Amount: "0" },
+                { Url: "/assets/images/ico_34.png", Text: "", Name: "", Link: "/criticalEventDelay", Id: "3", Amount: "0" }]
         },
         {
             title: "Process Delay", title2: "进度延误", TodayHandledCount: "0", TipsCountList: [
-                { Url: "/assets/images/ico_41.png", Text: "Sewing", Name: "", Link: "/processDelay", Id: "0", Amount: "0" },
-                { Url: "/assets/images/ico_42.png", Text: "Packing", Name: "", Link: "/processDelay", Id: "1", Amount: "0" },
-                { Url: "/assets/images/ico_43.png", Text: "Cutting", Name: "", Link: "/processDelay", Id: "2", Amount: "0" },
-                { Url: "/assets/images/ico_44.png", Text: "Printing", Name: "", Link: "/processDelay", Id: "3", Amount: "0" },
-                { Url: "/assets/images/ico_45.png", Text: "EmbroIdery", Name: "", Link: "/processDelay", Id: "4", Amount: "0" },
-                { Url: "/assets/images/ico_46.png", Text: "Heat Transfer", Name: "", Link: "/processDelay", Id: "5", Amount: "0" }]
+                { Url: "/assets/images/ico_41.png", Text: "", Name: "", Link: "/processDelay", Id: "0", Amount: "0" },
+                { Url: "/assets/images/ico_42.png", Text: "", Name: "", Link: "/processDelay", Id: "1", Amount: "0" },
+                { Url: "/assets/images/ico_43.png", Text: "", Name: "", Link: "/processDelay", Id: "2", Amount: "0" },
+                { Url: "/assets/images/ico_44.png", Text: "", Name: "", Link: "/processDelay", Id: "3", Amount: "0" },
+                { Url: "/assets/images/ico_45.png", Text: "", Name: "", Link: "/processDelay", Id: "4", Amount: "0" },
+                { Url: "/assets/images/ico_46.png", Text: "", Name: "", Link: "/processDelay", Id: "5", Amount: "0" }]
         },
         {
             title: "Material Delay", title2: "物料延误", TodayHandledCount: "0", TipsCountList: [
                 { Url: "/assets/images/ico_51.png", Text: "Fabric", Name: "面料", Link: "/materialDelay", Id: "0", Amount: "0" },
                 { Url: "/assets/images/ico_52.png", Text: "Accessories", Name: "辅料", Link: "/materialDelay", Id: "1", Amount: "0" }]
-        },
-        // {
-        //     title: "Today", title2: "今日工作", TodayHandledCount: "0", TipsCountList: [
-        //         { Url: "/assets/images/ico_61.png", Text: "Critical Event", Name: "关键事件", Link: "/today", Id: "1", Amount: "0" },
-        //         { Url: "/assets/images/ico_62.png", Text: "Production", Name: "生产", Link: "/today", Id: "2", Amount: "0" },
-        //         { Url: "/assets/images/ico_63.png", Text: "Material purchase", Name: "物料采购", Link: "/today", Id: "3", Amount: "0" }]
-        // }
+        }
     ]
     public language_state;
     public Language;
 
 
     ngOnInit() {
-        // this.service.http_get("http://127.0.0.1:3000/app.js?name=li&password=123456&router=login2",true).subscribe(data=>{
-        //     console.log(data);
-        // })
-        // this.service.http_post("http://127.0.0.1:3000/app.js","name=li&password=123456&router=login",true).subscribe(data=>{
-        //     console.log(data);
-        // })
         let obj = new window_obj();
         this.Language = obj.language();
         let time: number = 2 * 60 * 6000 * 100000;
-        if (obj.cookies()) this.cookieService.set('JSESSIONID', obj.cookies(), new Date(new Date().getTime() + time));
         localStorage.setItem("language", this.Language);
+        if (obj.cookies()) this.cookieService.set('JSESSIONID', obj.cookies(), new Date(new Date().getTime() + time));
         if (!obj.defaultCompany()) this.router.navigate(['not-bind']);
         let url: string;
         for (let i = 1; i < this.list.length; i++) {
@@ -102,7 +82,6 @@ export class HomeComponent implements OnInit {
                     break;
             }
             this.service.http_get(url, false).subscribe((data: any) => {
-                // console.log(JSON.stringify(data))
                 let obj = data;
                 this.list[i].TodayHandledCount = obj.TodayHandledCount;
                 if (obj.TipsCountList.length > 0) {

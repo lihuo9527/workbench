@@ -32,20 +32,22 @@ export class AppService {
         if (boolean) {
             ip = url;
         }
-        return this.http.get(ip);
+        return this.http.get(ip, { withCredentials: true });
     };
-    http_post(url: string, body: any, boolean?: boolean,contentType?:string) {
+    http_post(url: string, body: any, boolean?: boolean, contentType?: string) {
         let httpOptions;
-        if(contentType){
+        if (contentType) {
             httpOptions = {
-                headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' })
+                headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }),
+                withCredentials: true
             }
-        }else{
+        } else {
             httpOptions = {
-                headers: new HttpHeaders({ 'Content-Type': 'application/json;charset=utf-8' })
+                headers: new HttpHeaders({ 'Content-Type': 'application/json;charset=utf-8' }),
+                withCredentials: true
             }
         }
-  
+
         let ip = this.ip() + url;
         if (boolean) {
             ip = url;
@@ -53,13 +55,13 @@ export class AppService {
         // console.log("body", body);
         return this.http.post(ip, body, httpOptions);
     };
-    getStrLength(str){
+    getStrLength(str) {
         if (str == null) return 0;
-        if (typeof str != "string"){
-              str += "";
+        if (typeof str != "string") {
+            str += "";
         }
-        return str.replace(/[^x00-xff]/g,"01").length;
-      };
+        return str.replace(/[^x00-xff]/g, "01").length;
+    };
     isPoneAvailable(pone) {
         let myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
         if (!myreg.test(pone)) {
@@ -68,7 +70,7 @@ export class AppService {
             return true;
         }
     }
-    MessageBox(){
+    MessageBox() {
 
     }
 }
