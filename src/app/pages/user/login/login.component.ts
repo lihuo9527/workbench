@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from '../../../app.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
@@ -10,7 +9,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class LoginComponent implements OnInit {
 
-    constructor(private service: AppService, private router: Router,private cookieService:CookieService) { }
+    constructor(private service: AppService, private router: Router, ) { }
     public Language;
     public message = {
         state: false,
@@ -31,7 +30,7 @@ export class LoginComponent implements OnInit {
         this.message.btnText = "OK";
     }
     login() {
-        let reg=/^[a-zA-Z0-9]{1,20}$/;
+        let reg = /^[a-zA-Z0-9]{1,20}$/;
         if (!this.items[0].input || !this.items[1].input) {
             this.alert("用户名或密码不能为空！")
             return;
@@ -49,17 +48,19 @@ export class LoginComponent implements OnInit {
         this.service.http_post('/users/verifyUser', "loginname=" + this.items[0].input + "&password=" + this.items[1].input, false, "form").subscribe((data: any) => {
             this.loading = false;
             if (data.msg == "success") {
-                let time :number = 2*60*6000*100000;
-                this.cookieService.set('JSESSIONID',data.result.userInfo.JSESSIONID,new Date(new Date().getTime() + time))
+                let time: number = 2 * 60 * 6000 * 100000;
+                sessionStorage.setItem('JSESSIONID', data.result.userInfo.JSESSIONID);
+                sessionStorage.setItem('defaultCompany', data.result.userInfo.defaultCompany);
+                sessionStorage.setItem('typeCode', data.result.userInfo.typeCode);
                 this.router.navigate(['/home']);
                 this.alert("登录成功！");
             } else {
                 this.alert(data.result.failedMsg);
             }
-        },error=>{
+        }, error => {
             this.loading = false;
             this.alert("登录超时!");
-            })
+        })
     }
 
 

@@ -61,10 +61,8 @@ export class HomeComponent implements OnInit {
     ngOnInit() {
         let obj = new window_obj();
         this.Language = obj.language();
-        let time: number = 2 * 60 * 6000 * 100000;
         localStorage.setItem("language", this.Language);
-        if (obj.cookies()) this.cookieService.set('JSESSIONID', obj.cookies(), new Date(new Date().getTime() + time));
-        if (!obj.defaultCompany()) this.router.navigate(['not-bind']);
+        if (this.accessControl(obj)) return;
         let url: string;
         for (let i = 1; i < this.list.length; i++) {
             switch (i) {
@@ -97,6 +95,21 @@ export class HomeComponent implements OnInit {
                 })
 
         }
+    }
+    accessControl(obj) {
+        let time: number = 2 * 60 * 6000 * 100000;
+        if (obj.cookies()) {
+            this.cookieService.set('JSESSIONID', obj.cookies(), new Date(new Date().getTime() + time));
+        }
+        if (!obj.defaultCompany() || obj.typeCode() == "provider" || obj.typeCode() == "customor" || !obj.typeCode() || obj.defaultCompany() == 'null' || obj.typeCode() == 'null') {
+            this.router.navigate(['not-bind']);
+            return true;
+        }
+        if (obj.defaultCompany() && obj.typeCode() == "outsourcing") {
+            this.router.navigate(['outSourcing']);
+            return true;
+        }
+        return false;
     }
 
 }
