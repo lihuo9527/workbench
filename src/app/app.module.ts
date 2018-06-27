@@ -16,7 +16,6 @@ import { CriticalEventComponent } from './pages/entry/critical-event/critical-ev
 import { ProductionDailyProgressComponent } from './pages/entry/production-daily-progress/production-daily-progress.component';
 import { LoadMoreModule } from './components/load-more/load-more.module';
 import { NonPlaningProcessComponent } from './pages/entry/non-planing-process/non-planing-process.component';
-import { SevenDayComponent } from './pages/seven-day/seven-day.component';
 import { StartDelayComponent } from './pages/delay/start-delay/start-delay.component';
 import { ProcessEntryComponent } from './pages/entry/process-entry/process-entry.component';
 import { EventEntryComponent } from './pages/entry/event-entry/event-entry.component';
@@ -60,7 +59,6 @@ import { HttpClientModule } from '@angular/common/http';
         CriticalEventComponent,
         ProductionDailyProgressComponent,
         NonPlaningProcessComponent,
-        SevenDayComponent,
         StartDelayComponent,
         ProcessEntryComponent,
         EventEntryComponent,

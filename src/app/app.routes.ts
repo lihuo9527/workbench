@@ -9,7 +9,6 @@ import { AllWorkComponent } from './pages/navigation/all-work/all-work.component
 import { CriticalEventComponent } from './pages/entry/critical-event/critical-event.component';
 import { ProductionDailyProgressComponent } from './pages/entry/production-daily-progress/production-daily-progress.component';
 import { NonPlaningProcessComponent } from './pages/entry/non-planing-process/non-planing-process.component';
-import { SevenDayComponent } from './pages/seven-day/seven-day.component';
 import { StartDelayComponent } from './pages/delay/start-delay/start-delay.component';
 import { EventEntryComponent } from './pages/entry/event-entry/event-entry.component';
 import { ScheduleEntryComponent } from './pages/entry/schedule-entry/schedule-entry.component';
@@ -66,10 +65,6 @@ export const appRoutes = [
     {
         path: 'nonPlaningProcess',
         component: NonPlaningProcessComponent
-    },
-    {
-        path: 'sevenDay/:id',
-        component: SevenDayComponent
     },
     {
         path: 'startDelay/:id',
