@@ -47,14 +47,21 @@
                             <div class="other item">
                                 <p (click)="item.arrow=!item.arrow" [ngClass]="{'arrow_down':!item.arrow,'arrow_up':item.arrow}">更多</p>
                             </div>
-                            <div class="box" style="display: flex;">
-                                <div class="other" *ngIf="item.arrow">
-                                    <p>{{item.LastProDate}}</p>
+                            <div class="box" style="display: flex;" *ngIf="item.arrow">
+                                <div class="other">
+                                    <p style="margin-top: 1rem;">{{item.LastProDate}}</p>
                                     <span *ngIf="Language=='en'">Purchasing Date</span>
                                     <span *ngIf="Language=='cn'">最迟生产日</span>
-                                    <p>{{item.ProductTypeName}}</p>
+                                    <p style="margin-top: 1rem;">{{item.ProductTypeName}}</p>
                                     <span *ngIf="Language=='en'">Material Code</span>
                                     <span *ngIf="Language=='cn'">产品分类</span>
+                                </div>
+                                <div class="other" *ngFor="let other of item.JaProcessList">
+                                    <p style="margin-top: 1rem;">{{other.Amount}}</p>
+                                    <span>{{other.ProcessName}}</span>
+                                    <p style="margin-top: 1rem;">{{other.TotalAmount}}</p>
+                                    <span *ngIf="Language=='en'">Cumulative {{other.ProcessName}}</span>
+                                    <span *ngIf="Language=='cn'">{{other.ProcessName}}累计</span>
                                 </div>
                             </div>
                         </li>

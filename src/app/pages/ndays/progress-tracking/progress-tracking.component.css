@@ -78,8 +78,6 @@
     line-height: 1.4rem;
     margin-bottom: 0.2rem;
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     min-height: 1.4rem;
     width: 100%;
 }
@@ -107,6 +105,7 @@
     text-decoration: none;
     display: flex;
     flex-flow: wrap;
+    width: 33.33%;
 }
 
 .container_box {
