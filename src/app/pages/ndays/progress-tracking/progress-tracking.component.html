@@ -3,63 +3,65 @@
     <app-title *ngIf="Language=='cn'" title="7天内进度跟踪"></app-title>
     <app-search-box (OutputValue)='UpdateList()'></app-search-box>
     <app-filter Info="delay" (envet)="UpdateList($event)"></app-filter>
-    <ul *ngIf="this.id==2" class="materList">
-        <li *ngFor="let item of datas;"><i></i>
-            <h3>JO</h3>
-            <em>{{item.Code}}</em>
-            <ul class="marterInfo">
-                <li>
-                    <p>{{item.Pattern}}</p>
-                    <span>Fty Style</span></li>
-                <li>
-                    <p>{{item.CustomerName}}</p>
-                    <span>Customer Name</span></li>
-                <li>
-                    <p>{{item.CustomerStyleNO}}</p>
-                    <span>Cuse Style</span></li>
-                <li>
-                    <p>{{item.Amount}}</p>
-                    <span>Amount</span></li>
-                <li class="item" (click)="item.arrow=!item.arrow">
-                    <p>更多</p>
-                    <i [ngClass]="{'arrow_down':!item.arrow,'arrow_up':item.arrow}"></i></li>
-                <li *ngIf="item.arrow">
-                    <p>{{item.Amount}}</p>
-                    <span>Material Code</span></li>
-                <li *ngIf="item.arrow">
-                    <p>{{item.Amount}}</p>
-                    <span>Sewing</span></li>
-                <li *ngIf="item.arrow">
-                    <p>{{item.Amount}}</p>
-                    <span>Cutting</span></li>
-                <li *ngIf="item.arrow">
-                    <p>{{item.Amount}}</p>
-                    <span>Material Name</span></li>
-                <li *ngIf="item.arrow">
-                    <p>{{item.Amount}}</p>
-                    <span>Cumulative Sewing</span></li>
-                <li *ngIf="item.arrow">
-                    <p>{{item.Amount}}</p>
-                    <span>Cumulative Cutting</span></li>
-                <li *ngIf="item.arrow">
-                    <p>{{item.Amount}}</p>
-                    <span>Printing</span></li>
-                <li *ngIf="item.arrow">
-                    <p>{{item.Amount}}</p>
-                    <span>Packing</span></li>
-                <li *ngIf="item.arrow">
-                    <p>{{item.Amount}}</p>
-                    <span>Shipping</span></li>
-                <li *ngIf="item.arrow">
-                    <p>{{item.Amount}}</p>
-                    <span>Cumulative Printing</span></li>
-                <li *ngIf="item.arrow">
-                    <p>{{item.Amount}}</p>
-                    <span>Cumulative Packing</span></li>
-                <li *ngIf="item.arrow">
-                    <p>{{item.Amount}}</p>
-                    <span>Cumulative Shipping</span></li>
+
+    <div class="container_box">
+        <div class="box">
+            <ul class="items">
+                <li class="list" *ngFor="let item of datas">
+                    <div class="list_title">
+                        <div class="i">
+                            <p></p>
+                        </div>
+                        <div class="jo_container">
+                            <span *ngIf="Language=='en'">JO</span>
+                            <span *ngIf="Language=='cn'">生产单号</span>
+                            <span>{{item.PoCode}}</span>
+                        </div>
+                    </div>
+                    <ul class="items">
+                        <li class="row">
+                            <div class="other">
+                                <p>{{item.Pattern}}</p>
+                                <span *ngIf="Language=='en'">Fty Style</span>
+                                <span *ngIf="Language=='cn'">本厂款号 </span>
+                            </div>
+                            <div class="other">
+                                <p>{{item.CustomerName}}</p>
+                                <span *ngIf="Language=='en'">Customer Name</span>
+                                <span *ngIf="Language=='cn'">客户名称</span>
+                            </div>
+                            <div class="other">
+                                <p>{{item.CustomerStyleNO}}</p>
+                                <span *ngIf="Language=='en'">Cuse Style</span>
+                                <span *ngIf="Language=='cn'">客户款号</span>
+                            </div>
+                        </li>
+                        <li class="row">
+                            <div class="other">
+                                <p>{{item.Amount}}</p>
+                                <span *ngIf="Language=='en'">Amount</span>
+                                <span *ngIf="Language=='cn'">数量</span>
+                            </div>
+                            <div class="other">
+                            </div>
+                            <div class="other item">
+                                <p (click)="item.arrow=!item.arrow" [ngClass]="{'arrow_down':!item.arrow,'arrow_up':item.arrow}">更多</p>
+                            </div>
+                            <div class="box" style="display: flex;">
+                                <div class="other" *ngIf="item.arrow">
+                                    <p>{{item.LastProDate}}</p>
+                                    <span *ngIf="Language=='en'">Purchasing Date</span>
+                                    <span *ngIf="Language=='cn'">最迟生产日</span>
+                                    <p>{{item.ProductTypeName}}</p>
+                                    <span *ngIf="Language=='en'">Material Code</span>
+                                    <span *ngIf="Language=='cn'">产品分类</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
             </ul>
-        </li>
-    </ul>
+        </div>
+    </div>
+    <app-load-more *ngIf="datas.length>3" [language]="Language" (click)="UpdateList('add')"></app-load-more>
 </div>

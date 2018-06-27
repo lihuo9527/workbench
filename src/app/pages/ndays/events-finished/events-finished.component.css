@@ -1,27 +1,103 @@
-.item {
+.container_box {
+    background: #f3f4f6;
     display: flex;
-    justify-content: flex-end;
+    flex: 1;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.lists {
+    display: flex;
+    width: 100%;
+    flex-flow: wrap;
+}
+
+.list {
+    display: flex;
+    flex-flow: wrap;
+    margin-bottom: 1rem;
+    background: #fff;
+}
+
+.list .list_title {
+    display: flex;
+    flex: 0 0 100%;
+    justify-content: flex-start;
     align-items: center;
-    width: 66%;
 }
 
-.item p {
-    color: #088c77;
-    padding: 0.5rem 1rem 0.5rem 1rem;
-    font-weight: 600;
-}
-
-.item i {
-    width: 1.5rem;
+.list .list_title .i p {
     height: 3rem;
+    width: 6px;
+    background: #9eb4d8;
 }
 
-.arrow_down {
-    background: url(/assets/images/arrow_down.png) no-repeat center;
-    background-size: 1.4rem;
+.list .list_title .i {
+    flex: 0 0 4%;
+    height: 3rem;
+    width: 6px;
 }
 
-.arrow_up {
-    background: url(/assets/images/arrow_up.png) no-repeat center;
-    background-size: 1.4rem;
+.jo_container {
+    flex: 0 0 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.jo_container span {
+    font-size: 1.4rem;
+}
+
+.row {
+    display: flex;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    align-items: flex-start;
+}
+
+.other p {
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    margin-bottom: 0.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-height: 1.4rem;
+    width: 100%;
+}
+
+.other span {
+    line-height: 1.5rem;
+    font-size: 1rem;
+    color: #b2b2b2;
+    flex: 0 0 100%;
+}
+
+.items {
+    width: 100%;
+    clear: both;
+    overflow: hidden;
+    border-top: #dbdbdb solid 1px;
+    margin-bottom: 1rem;
+}
+
+.box .list .other {
+    flex: 0 0 33.33%;
+    list-style: none;
+    font-style: normal;
+    color: #333;
+    text-decoration: none;
+    display: flex;
+    flex-flow: wrap;
+}
+
+.container_box {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.box {
+    flex: 0 0 100%;
 }

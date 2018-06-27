@@ -186,7 +186,7 @@ input::-webkit-input-placeholder {
     padding: 0.5rem 0;
 }
 
-#filter .list li.on {
+#filter .list li .on {
     background: #ddf6f2 url(/assets/images/selected.png) no-repeat right bottom;
     color: #088c77;
     background-size: 2rem;

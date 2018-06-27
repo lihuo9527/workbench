@@ -3,23 +3,18 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppService } from './app.service';
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './pages/navigation/home/home.component';
 import { ListTitleComponent } from './components/list-title/list-title.component';
 import { DeliverDelayComponent } from './pages/delay/deliver-delay/deliver-delay.component';
 import { CriticalEventDelayComponent } from './pages/delay/critical-event-delay/critical-event-delay.component';
-import { TitleModule } from './components/title/title.module';
 import { ProcessDelayComponent } from './pages/delay/process-delay/process-delay.component';
-import { SearchBoxComponent } from './components/search-box/search-box.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { EventDelayEditComponent } from './pages/delay/event-delay-edit/event-delay-edit.component';
 import { MaterialDelayComponent } from './pages/delay/material-delay/material-delay.component';
-import { FilterComponent } from './components/filter/filter.component';
-import { DateComponent } from './components/date/date.component';
 import { AllWorkComponent } from './pages/navigation/all-work/all-work.component';
 import { CriticalEventComponent } from './pages/entry/critical-event/critical-event.component';
 import { ProductionDailyProgressComponent } from './pages/entry/production-daily-progress/production-daily-progress.component';
-import { LoadMoreComponent } from './components/load-more/load-more.component';
+import { LoadMoreModule } from './components/load-more/load-more.module';
 import { NonPlaningProcessComponent } from './pages/entry/non-planing-process/non-planing-process.component';
 import { SevenDayComponent } from './pages/seven-day/seven-day.component';
 import { StartDelayComponent } from './pages/delay/start-delay/start-delay.component';
@@ -27,11 +22,9 @@ import { ProcessEntryComponent } from './pages/entry/process-entry/process-entry
 import { EventEntryComponent } from './pages/entry/event-entry/event-entry.component';
 import { ScheduleEntryComponent } from './pages/entry/schedule-entry/schedule-entry.component';
 import { SearchComponent } from './pages/search/search.component';
-import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './pages/user/login/login.component';
 import { RegisterComponent } from './pages/user/register/register.component';
 import { ForgotPasswordComponent } from './pages/user/forgot-password/forgot-password.component';
-import { MessageBoxComponent } from './components/message-box/message-box.component';
 import { CookieService } from 'ngx-cookie-service';
 import { LoadingComponent } from './components/loading/loading.component';
 import { OutProcessComponent } from './pages/out/out-process/out-process.component';
@@ -43,9 +36,14 @@ import { UnfinishedComponent } from './pages/out/unfinished/unfinished.component
 import { UnansweredEntryComponent } from './pages/out/unanswered-entry/unanswered-entry.component';
 import { UnfinishedEntryComponent } from './pages/out/unfinished-entry/unfinished-entry.component';
 import { NotBindComponent } from './pages/not-bind/not-bind.component';
-import { MaterialArrivalComponent } from './pages/ndays/material-arrival/material-arrival.component';
-import { EventsFinishedComponent } from './pages/ndays/events-finished/events-finished.component';
-import { ProgressTrackingComponent } from './pages/ndays/progress-tracking/progress-tracking.component';
+import { TitleModule } from './components/title/title.module';
+import { FilterModule } from './components/filter/filter.module';
+import { DateModule } from './components/date/date.module';
+import { AppRoutingModule } from './/app-routing.module';
+import { SearchBoxModule } from './components/search-box/search-box.module';
+import { MessageBoxModule } from './components/message-box/message-box.module';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
     declarations: [
@@ -55,16 +53,12 @@ import { ProgressTrackingComponent } from './pages/ndays/progress-tracking/progr
         DeliverDelayComponent,
         CriticalEventDelayComponent,
         ProcessDelayComponent,
-        SearchBoxComponent,
         TabsComponent,
         EventDelayEditComponent,
         MaterialDelayComponent,
-        FilterComponent,
-        DateComponent,
         AllWorkComponent,
         CriticalEventComponent,
         ProductionDailyProgressComponent,
-        LoadMoreComponent,
         NonPlaningProcessComponent,
         SevenDayComponent,
         StartDelayComponent,
@@ -75,7 +69,6 @@ import { ProgressTrackingComponent } from './pages/ndays/progress-tracking/progr
         LoginComponent,
         RegisterComponent,
         ForgotPasswordComponent,
-        MessageBoxComponent,
         LoadingComponent,
         OutProcessComponent,
         PlanEntryComponent,
@@ -86,9 +79,6 @@ import { ProgressTrackingComponent } from './pages/ndays/progress-tracking/progr
         UnansweredEntryComponent,
         UnfinishedEntryComponent,
         NotBindComponent,
-        MaterialArrivalComponent,
-        EventsFinishedComponent,
-        ProgressTrackingComponent,
     ],
     imports: [
         BrowserModule,
@@ -96,7 +86,11 @@ import { ProgressTrackingComponent } from './pages/ndays/progress-tracking/progr
         FormsModule,
         HttpClientModule,
         TitleModule,
-
+        SearchBoxModule,
+        FilterModule,
+        DateModule,
+        MessageBoxModule,
+        LoadMoreModule,
     ],
     providers: [AppService, CookieService],
     bootstrap: [AppComponent],

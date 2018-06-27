@@ -87,11 +87,6 @@ export const appRoutes = [
         path: 'search/:id',
         component: SearchComponent
     },
-    // {
-    //     path: 'echarts',
-    //     // component: EchartsComponent
-    //     loadChildren: './components/echarts/echarts.module#EchartsModule'
-    // },
     {
         path: 'login',
         component: LoginComponent
@@ -100,10 +95,6 @@ export const appRoutes = [
         path: 'register',
         component: RegisterComponent
     },
-    // {
-    // 	path:'scheduleEntry',
-    // 	loadChildren: 'app/schedule-entry/schedule-entry.module#ScheduleEntryModule'
-    // },
     {
         path: 'forgot-password',
         component: ForgotPasswordComponent
@@ -143,6 +134,10 @@ export const appRoutes = [
     {
         path: 'forms',
         loadChildren: 'app/pages/forms/forms.module#FormsModule'
+    },
+    {
+        path: 'ndays',
+        loadChildren: 'app/pages/ndays/ndays.module#NdaysModule'
     },
     {
         path: 'not-bind',

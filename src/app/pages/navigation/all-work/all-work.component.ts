@@ -26,9 +26,9 @@ export class AllWorkComponent implements OnInit {
         },
         {
             title: "Material and Key Event Reminder", title2: "物料与关键事件提醒", data: [
-                { url: "/assets/images/a_41.png", text: "Material Arrival (within 7 days)", text2: "7天内到货物料", link: "/sevenDay", id: "0", index: "0" },
-                { url: "/assets/images/a_42.png", text: "Events Finished (within 7 days)", text2: "7天内完成事件", link: "/sevenDay", id: "1", index: "0" },
-                { url: "/assets/images/a_43.png", text: "Progress Tracking (within 7 days)", text2: "7天内进度跟踪", link: "/sevenDay", id: "2", index: "0" }]
+                { url: "/assets/images/a_41.png", text: "Material Arrival (within N days)", text2: "N天内到货物料", link: "/ndays/selectType", id: "all", index: "0" },
+                { url: "/assets/images/a_42.png", text: "Events Finished (within N days)", text2: "N天内完成事件", link: "/ndays/eventsFinished", id: "all", index: "0" },
+                { url: "/assets/images/a_43.png", text: "Progress Tracking (within N days)", text2: "N天内进度跟踪", link: "/ndays/progressTracking", id: "all", index: "0" }]
         },
         {
             title: "Analysis Report", title2: "分析报表", data: [

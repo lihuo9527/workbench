@@ -1,0 +1,121 @@
+.item p {
+    color: #088c77;
+    padding: 0.5rem 2rem 0.5rem 1rem;
+    text-align: right;
+}
+
+.arrow_down {
+    background: url(/assets/images/arrow_down_green.png) no-repeat right;
+    background-size: 1.4rem;
+}
+
+.arrow_up {
+    background: url(/assets/images/arrow_up_green.png) no-repeat right;
+    background-size: 1.4rem;
+}
+
+.container_box {
+    background: #f3f4f6;
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.lists {
+    display: flex;
+    width: 100%;
+    flex-flow: wrap;
+}
+
+.list {
+    display: flex;
+    flex-flow: wrap;
+    margin-bottom: 1rem;
+    background: #fff;
+}
+
+.list .list_title {
+    display: flex;
+    flex: 0 0 100%;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.list .list_title .i p {
+    height: 3rem;
+    width: 6px;
+    background: #9eb4d8;
+}
+
+.list .list_title .i {
+    flex: 0 0 4%;
+    height: 3rem;
+    width: 6px;
+}
+
+.jo_container {
+    flex: 0 0 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.jo_container span {
+    font-size: 1.4rem;
+}
+
+.row {
+    display: flex;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    align-items: flex-start;
+    padding-right: 1rem;
+    flex-flow: wrap;
+}
+
+.other p {
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    margin-bottom: 0.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-height: 1.4rem;
+    width: 100%;
+}
+
+.other span {
+    line-height: 1.5rem;
+    font-size: 1rem;
+    color: #b2b2b2;
+    flex: 0 0 100%;
+}
+
+.items {
+    width: 100%;
+    clear: both;
+    overflow: hidden;
+    border-top: #dbdbdb solid 1px;
+    margin-bottom: 1rem;
+}
+
+.box .list .other {
+    flex: 0 0 33.33%;
+    list-style: none;
+    font-style: normal;
+    color: #333;
+    text-decoration: none;
+    display: flex;
+    flex-flow: wrap;
+}
+
+.container_box {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.box {
+    flex: 0 0 100%;
+}

@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from '../../app.service';
-import { NgSwitchCase } from '@angular/common';
 @Component({
     selector: 'app-search',
     templateUrl: './search.component.html',
@@ -17,7 +16,7 @@ export class SearchComponent implements OnInit {
     public placeholder = "输入单号或款号查询";
     public input: string;
     public dateType: number;
-    public lists :any = [
+    public lists: any = [
         {
             data: [
                 { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
@@ -95,6 +94,7 @@ export class SearchComponent implements OnInit {
     ngOnInit() {
         this.id = this.routerIonfo.snapshot.params["id"];
         this.Language = localStorage.getItem("language");
+        if (this.Language == "en") this.placeholder = "input number or style to query";
         if (this.id == 0 && this.Language == "en") this.title = 'Critical Event';
         if (this.id == 0 && this.Language == "cn") this.title = '产前事件';
         if (this.id == 1 && this.Language == "en") this.title = 'Daily Progress';
@@ -107,10 +107,11 @@ export class SearchComponent implements OnInit {
         if (this.id == 6 && this.Language == "cn") this.title = '车缝';
         if (this.id == 7 && this.Language == "en") this.title = 'Washing Process Plan';
         if (this.id == 7 && this.Language == "cn") this.title = '洗水';
-        this.datas = this.lists[this.id].data;
-        if (this.Language == "en") this.placeholder = "input number or style to query";
-        console.log("id", this.id)
-        this.init();
+        if (this.id >= 0) {
+            this.datas = this.lists[this.id].data;
+            this.init();
+        }
+        console.log("id", this.id);
     }
     init() {
         this.service.http_get('/api/BaseData/GetFactoryLines', false).subscribe((data: any) => {
@@ -248,7 +249,6 @@ export class SearchComponent implements OnInit {
             if (element.state == true) wsids.push(element.id);
 
         });
-
         if (this.id == 0) {
             //关键事件
             localStorage.setItem("filter", JSON.stringify({ 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, "dateType": this.dateType, 'fids': fids.toString(), 'wsids': wsids.toString() }));

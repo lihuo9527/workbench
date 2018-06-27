@@ -1,14 +1,10 @@
 <div class="container">
-    <app-title *ngIf="Language=='en'&&this.id==0" title="Material Arrival Within N Days"></app-title>
-    <app-title *ngIf="Language=='cn'&&this.id==0" title="7天内到货物料"></app-title>
-    <app-title *ngIf="Language=='en'&&this.id==1" title="Events Finished Within N Days"></app-title>
-    <app-title *ngIf="Language=='cn'&&this.id==1" title="7天内完成事件"></app-title>
-    <app-title *ngIf="Language=='en'&&this.id==2" title="Progress Tracking"></app-title>
-    <app-title *ngIf="Language=='cn'&&this.id==2" title="7天内进度跟踪"></app-title>
+    <app-title *ngIf="Language=='en'" title="Material Arrival Within N Days"></app-title>
+    <app-title *ngIf="Language=='cn'" title="7天内到货物料"></app-title>
     <app-search-box (OutputValue)='UpdateList()'></app-search-box>
     <app-filter Info="delay" (envet)="UpdateList($event)"></app-filter>
 
-    <ul *ngIf="this.id==0" class="materList">
+    <ul class="materList">
         <li *ngFor="let item of datas;"><i></i>
             <h3>JO</h3>
             <em>{{item.PoCode}}</em>

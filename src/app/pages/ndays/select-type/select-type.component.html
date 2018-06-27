@@ -1,0 +1,19 @@
+<div class="container">
+    <app-title *ngIf="Language=='en'" title="Material Arrival (within N days)"></app-title>
+    <app-title *ngIf="Language=='cn'" title="N天内到货物料"></app-title>
+    <section class="searchBox">
+        <input class="searchBut search" [(ngModel)]='input' type="text" [placeholder]="placeholder">
+    </section>
+    <div class="select_box">
+        <div>
+            <button class="but" (click)="select(0)" [ngClass]="{'on':selectType==0}">主料</button>
+        </div>
+        <div>
+            <button class="but" (click)="select(1)" [ngClass]="{'on':selectType==1}">辅料</button>
+        </div>
+    </div>
+    <div class="submitBox">
+        <button *ngIf="Language=='en'" (click)="query()">Query</button>
+        <button *ngIf="Language=='cn'" (click)="query()">查询</button>
+    </div>
+</div>
