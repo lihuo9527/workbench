@@ -5,7 +5,8 @@
     <app-title *ngIf="Language=='cn'&&this.id==1" title="7天内完成事件"></app-title>
     <app-title *ngIf="Language=='en'&&this.id==2" title="Progress Tracking"></app-title>
     <app-title *ngIf="Language=='cn'&&this.id==2" title="7天内进度跟踪"></app-title>
-    <app-search-box></app-search-box>
+    <app-search-box (OutputValue)='UpdateList()'></app-search-box>
+    <app-filter Info="delay" (envet)="UpdateList($event)"></app-filter>
 
     <ul *ngIf="this.id==0" class="materList">
         <li *ngFor="let item of datas;"><i></i>

@@ -1,0 +1,29 @@
+<div class="container">
+    <app-title *ngIf="Language=='en'&&this.id==1" title="Events Finished Within N Days"></app-title>
+    <app-title *ngIf="Language=='cn'&&this.id==1" title="7天内完成事件"></app-title>
+    <app-search-box (OutputValue)='UpdateList()'></app-search-box>
+    <app-filter Info="delay" (envet)="UpdateList($event)"></app-filter>
+    <ul class="materList">
+        <li *ngFor="let item of datas;"><i></i>
+            <h3>JO</h3>
+            <em>{{item.PoCode}}</em>
+            <ul class="marterInfo">
+                <li>
+                    <p>{{item.Pattern}}</p>
+                    <span>Fty Style</span></li>
+                <li>
+                    <p>{{item.EventName}}</p>
+                    <span>Critical Event Name</span></li>
+                <li>
+                    <p>{{item.Merchandiser}}</p>
+                    <span>Merchandiser</span></li>
+                <li>
+                    <p>{{item.MakeDayStartTime}}</p>
+                    <span>Schedule Start Date</span></li>
+                <li>
+                    <p>{{item.StartDate}}</p>
+                    <span>Expected Completion Date</span></li>
+            </ul>
+        </li>
+    </ul>
+</div>

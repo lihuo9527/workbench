@@ -43,6 +43,9 @@ import { UnfinishedComponent } from './pages/out/unfinished/unfinished.component
 import { UnansweredEntryComponent } from './pages/out/unanswered-entry/unanswered-entry.component';
 import { UnfinishedEntryComponent } from './pages/out/unfinished-entry/unfinished-entry.component';
 import { NotBindComponent } from './pages/not-bind/not-bind.component';
+import { MaterialArrivalComponent } from './pages/ndays/material-arrival/material-arrival.component';
+import { EventsFinishedComponent } from './pages/ndays/events-finished/events-finished.component';
+import { ProgressTrackingComponent } from './pages/ndays/progress-tracking/progress-tracking.component';
 
 @NgModule({
     declarations: [
@@ -83,6 +86,9 @@ import { NotBindComponent } from './pages/not-bind/not-bind.component';
         UnansweredEntryComponent,
         UnfinishedEntryComponent,
         NotBindComponent,
+        MaterialArrivalComponent,
+        EventsFinishedComponent,
+        ProgressTrackingComponent,
     ],
     imports: [
         BrowserModule,

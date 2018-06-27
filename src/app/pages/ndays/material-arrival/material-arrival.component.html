@@ -1,0 +1,46 @@
+<div class="container">
+    <app-title *ngIf="Language=='en'&&this.id==0" title="Material Arrival Within N Days"></app-title>
+    <app-title *ngIf="Language=='cn'&&this.id==0" title="7天内到货物料"></app-title>
+    <app-title *ngIf="Language=='en'&&this.id==1" title="Events Finished Within N Days"></app-title>
+    <app-title *ngIf="Language=='cn'&&this.id==1" title="7天内完成事件"></app-title>
+    <app-title *ngIf="Language=='en'&&this.id==2" title="Progress Tracking"></app-title>
+    <app-title *ngIf="Language=='cn'&&this.id==2" title="7天内进度跟踪"></app-title>
+    <app-search-box (OutputValue)='UpdateList()'></app-search-box>
+    <app-filter Info="delay" (envet)="UpdateList($event)"></app-filter>
+
+    <ul *ngIf="this.id==0" class="materList">
+        <li *ngFor="let item of datas;"><i></i>
+            <h3>JO</h3>
+            <em>{{item.PoCode}}</em>
+            <ul class="marterInfo">
+                <li>
+                    <p>{{item.Pattern}}</p>
+                    <span>Fty Style</span></li>
+                <li>
+                    <p>{{item.MPNO}}</p>
+                    <span>Purchasing JO</span></li>
+                <li>
+                    <p>{{item.MPDate}}</p>
+                    <span>Purchasing Date</span></li>
+                <li>
+                    <p>{{item.MaterialCode}}</p>
+                    <span>Material Code</span></li>
+                <li>
+                    <p>{{item.MaterialColor}}</p>
+                    <span>Color</span></li>
+                <li>
+                    <p>{{item.MaterialSize}}</p>
+                    <span>Size</span></li>
+                <li>
+                    <p>{{item.MPAmount}}</p>
+                    <span>Purchasing qty</span></li>
+                <li>
+                    <p>{{item.ExpectedReciveDate}}</p>
+                    <span>Expected Arrival Date</span></li>
+                <li>
+                    <p>{{item.NeedDate}}</p>
+                    <span>Required Date</span></li>
+            </ul>
+        </li>
+    </ul>
+</div>
