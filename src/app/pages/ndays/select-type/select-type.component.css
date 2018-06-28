@@ -3,6 +3,7 @@
     overflow: hidden;
     display: flex;
     flex: 1;
+    background: #f3f4f6;
 }
 
 .container {

@@ -13,12 +13,16 @@ import { EveryMonthQtyComponent } from './every-month-qty/every-month-qty.compon
 import { NgxEchartsModule } from 'ngx-echarts';
 import { FormsComponent } from './forms.component';
 import { TitleModule } from '../../components/title/title.module';
+import { MacroCapacityComponent } from './macro-capacity/macro-capacity.component';
+import { DateModule } from '../../components/date/date.module';
+import { CapacityFilterComponent } from './capacity-filter/capacity-filter.component';
 @NgModule({
     imports: [
         CommonModule,
         RouterModule.forChild(FormsRoutes),
         NgxEchartsModule,
         TitleModule,
+        DateModule,
 
     ],
     declarations: [
@@ -32,6 +36,8 @@ import { TitleModule } from '../../components/title/title.module';
         OrderCycleProductionComponent,
         EveryMonthQtyComponent,
         FormsComponent,
+        MacroCapacityComponent,
+        CapacityFilterComponent,
 
     ],
     exports: [RouterModule],

@@ -97,6 +97,7 @@ export class CustomerOutputComponent implements OnInit {
                         },
                         data: obj,
                         barCategoryGap: "40%",
+                        barMaxWidth:'30%',
                     }
                 ]
 

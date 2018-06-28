@@ -10,7 +10,7 @@ export const NdaysRoutes: Routes = [
         component: NdaysComponent,
         children: [
             {
-                path: 'materialArrival/:id',
+                path: 'materialArrival',
                 component: MaterialArrivalComponent,
             },
             {

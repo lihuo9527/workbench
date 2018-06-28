@@ -16,8 +16,7 @@ export class CriticalEventDelayComponent implements OnInit {
     ngOnInit() {
         localStorage.setItem("filter", JSON.stringify({ input: '' }));
         this.Language = localStorage.getItem("language");
-        this.id = this.routerIonfo.snapshot.params["id"];
-        this.id == "all" ? this.eventId = "-1" : this.eventId = this.id;
+        this.id = this.routerIonfo.snapshot.params["id"] == "all" ? "-1" : this.routerIonfo.snapshot.params["id"];
         this.UpdateList();
     }
     UpdateList($event?) {

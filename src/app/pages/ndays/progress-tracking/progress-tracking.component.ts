@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { AppService } from '../../../app.service';
 @Component({
     selector: 'app-progress-tracking',
@@ -8,7 +7,7 @@ import { AppService } from '../../../app.service';
 })
 export class ProgressTrackingComponent implements OnInit {
 
-    constructor(private service: AppService, private routerIonfo: ActivatedRoute, ) { }
+    constructor(private service: AppService ) { }
     public datas = [];
     public id;
     public Language;

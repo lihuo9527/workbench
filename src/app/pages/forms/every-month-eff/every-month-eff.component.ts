@@ -114,6 +114,7 @@ export class EveryMonthEffComponent implements OnInit {
                     stack: '产量',
                     data: bar,
                     barCategoryGap: "30%",
+                    barMaxWidth:'30%',
                 },
                 ]
             }

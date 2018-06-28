@@ -8,6 +8,7 @@ import { DailyLineEffComponent } from './daily-line-eff/daily-line-eff.component
 import { OrderCycleProductionComponent } from './order-cycle-production/order-cycle-production.component';
 import { EveryMonthQtyComponent } from './every-month-qty/every-month-qty.component';
 import { OrderCycleSummaryComponent } from './order-cycle-summary/order-cycle-summary.component';
+import { MacroCapacityComponent } from './macro-capacity/macro-capacity.component';
 
 export const FormsRoutes : Routes = [
     {
@@ -45,6 +46,10 @@ export const FormsRoutes : Routes = [
             {
                 path: 'everyMonthQty',
                 component: EveryMonthQtyComponent,
+            },
+            {
+                path: 'macroCapacity',
+                component: MacroCapacityComponent,
             }
         ]
     }

@@ -10,7 +10,6 @@ export class SelectTypeComponent implements OnInit {
 
     constructor(private routerIonfo: ActivatedRoute, private service: AppService, private router: Router) { }
     public Language;
-    public id;
     public title: string;
     public state: boolean;
     public placeholder = "输入单号或款号查询";
@@ -18,19 +17,20 @@ export class SelectTypeComponent implements OnInit {
     public datecontainer = true;
     public selectType = -1;
     public datas = [
-        { name: "主料", name2: "主料", state: false },
-        { name: "辅料", name2: "辅料", state: false }
+        { text: "Fabric", text2: "主料", state: false },
+        { text: "Accessories", text2: "辅料", state: false }
     ];
     ngOnInit() {
         this.Language = localStorage.getItem("language");
-        console.log("id", this.id);
-    }
-    select(Type) {
-        this.selectType = this.selectType == Type ? -1 : Type;
+        if (this.Language == "en") this.placeholder = "input number or style to query";
+        localStorage.setItem("filter", JSON.stringify({ input: '' }));
     }
     query() {
-        localStorage.setItem("filter", JSON.stringify({ 'id': this.id, "input": this.input }));
-        this.router.navigate(['ndays/materialArrival', this.selectType]);
-
+        if (this.datas[0].state && this.datas[1].state || !this.datas[0].state && !this.datas[1].state) this.selectType = -1;
+        if (this.datas[0].state && this.datas[1].state == false) this.selectType = 1;
+        if (this.datas[0].state == false && this.datas[1].state) this.selectType = 0;
+        localStorage.setItem("datas", JSON.stringify([{ title: "Material", title2: "物料", rowstate: true, allstate: false, but: true, arrow: true, list: this.datas }]));
+        localStorage.setItem("filter", JSON.stringify({ 'id': 'material', "input": this.input, "type": this.selectType.toString() }));
+        this.router.navigate(['ndays/materialArrival']);
     }
 }

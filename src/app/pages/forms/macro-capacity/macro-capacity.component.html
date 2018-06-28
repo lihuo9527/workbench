@@ -1,0 +1,13 @@
+<div class="container">
+    <app-title *ngIf="Language=='en'" title="Macro Capacity"></app-title>
+    <app-title *ngIf="Language=='cn'" title="宏观产能"></app-title>
+    <section class="searchBox">
+        <button *ngIf="Language=='en'"> Enable date:</button>
+        <button *ngIf="Language=='cn'"> 启用日期</button>
+        <p (click)="state=true">{{date}}</p>
+        <input (click)="output()" type="button" class="searchBut">
+        <input (click)="showFilter()" type="button" class="detail" [value]="filter">
+    </section>
+    <app-capacity-filter (envet)="UpdateList($event)"></app-capacity-filter>
+    <app-date *ngIf="state" number="1" (submit)="backDate($event)"></app-date>
+</div>

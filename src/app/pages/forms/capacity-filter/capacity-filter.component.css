@@ -1,5 +1,3 @@
-/* filter */
-
 #filter {
     transition: 0.7s;
     width: 100%;
@@ -133,33 +131,6 @@
     background-size: 2rem;
 }
 
-#filter .date {
-    overflow: hidden;
-    background: #f3f4f6;
-    padding: 1rem 0 1rem 1rem;
-    margin: 0 1.5rem 0 0.3rem;
-    border-radius: 5px;
-}
-
-#filter .date .dateBar {
-    background: #fff;
-    width: 12rem;
-    float: left;
-    height: 3rem;
-    border-radius: 5px;
-    font-size: 1.4rem;
-    line-height: 3rem;
-}
-
-#filter .date .bar {
-    display: block;
-    float: left;
-    width: 1.5rem;
-    margin: 1.2rem 0.5rem;
-    background: #aaa;
-    height: 0.5rem;
-}
-
 #filter .sbmit {
     background: #ff5a52;
     height: 4rem;
@@ -168,34 +139,30 @@
     font-size: 1.8rem;
 }
 
-.bar {
-    width: 40%;
-    margin: 1.2rem 0.2rem;
-    background: #aaa;
-    height: 0.3rem;
-    flex: 0 0 10%;
-    display: block;
-    padding: 0 !important;
-}
-
-.date_container {
+.x {
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
-    padding: 1.3rem;
+    flex: 0 0 8.33%;
+    border-bottom: 3px solid #eee;
+    box-sizing: border-box;
+    height: 9px;
 }
 
-.date_item {
+.green {
+    border-bottom: 3px solid #088c77;
+}
+
+.number {
     width: 100%;
-    background: #f3f4f6;
+    height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex: 1;
-    border-radius: 3px;
-    padding: 0.3rem;
+    justify-content: flex-start;
+    flex: 0 0 8.33%;
 }
 
-.date_item p {
-    padding: 0.5rem;
+.nowidth {
+    width: 1px;
+    border-bottom: none;
 }

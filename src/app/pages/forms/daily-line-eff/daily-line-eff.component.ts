@@ -118,6 +118,7 @@ export class DailyLineEffComponent implements OnInit {
                     stack: '产量',
                     data: bar,
                     barCategoryGap: "30%",
+                    barMaxWidth:'30%',
                 },
                 ]
             }

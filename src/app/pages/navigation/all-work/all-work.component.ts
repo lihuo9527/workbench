@@ -32,7 +32,7 @@ export class AllWorkComponent implements OnInit {
         },
         {
             title: "Analysis Report", title2: "分析报表", data: [
-                { url: "/assets/images/a_9.png", text: "Macro Capacity", text2: "宏观产能", link: "", id: ""  },
+                { url: "/assets/images/a_9.png", text: "Macro Capacity", text2: "宏观产能", link: "/forms/macroCapacity", id: "" },
                 { url: "/assets/images/a_1.png", text: "Line Product Type Summary", text2: "工厂当月生产线产品类别统计", link: "/forms/typeSummary", id: "" },
                 { url: "/assets/images/a_2.png", text: "Factory Eff% By Current Monthly", text2: "当月工厂效率汇总统计", link: "/forms/theMonthEff", id: "" },
                 { url: "/assets/images/a_3.png", text: "Factory Eff% By Monthly", text2: "工厂每月生产效率汇总", link: "/forms/everyMonthEff", id: "" },

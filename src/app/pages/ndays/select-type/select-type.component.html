@@ -5,11 +5,9 @@
         <input class="searchBut search" [(ngModel)]='input' type="text" [placeholder]="placeholder">
     </section>
     <div class="select_box">
-        <div>
-            <button class="but" (click)="select(0)" [ngClass]="{'on':selectType==0}">主料</button>
-        </div>
-        <div>
-            <button class="but" (click)="select(1)" [ngClass]="{'on':selectType==1}">辅料</button>
+        <div *ngFor="let item of datas;">
+            <button *ngIf="Language=='en'" class="but" (click)="item.state = !item.state" [ngClass]="{'on':item.state}">{{item.text}}</button>
+            <button *ngIf="Language=='cn'" class="but" (click)="item.state = !item.state" [ngClass]="{'on':item.state}">{{item.text2}}</button>
         </div>
     </div>
     <div class="submitBox">

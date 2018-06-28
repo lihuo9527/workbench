@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { AppService } from '../../app.service';
 @Component({
     selector: 'app-filter',
@@ -9,8 +8,7 @@ import { AppService } from '../../app.service';
 export class FilterComponent implements OnInit {
     @Output() public envet: EventEmitter<any> = new EventEmitter<any>();
     @Input() public Info: string;
-    constructor(private service: AppService,
-        private routerIonfo: ActivatedRoute, ) { }
+    constructor(private service: AppService,) { }
     public allstate: boolean;
     public rowstate: boolean;
     public dateType: number;
@@ -46,6 +44,7 @@ export class FilterComponent implements OnInit {
         } else {
             this.datas = JSON.parse(localStorage.getItem("datas"));
         }
+        if (this.Info == "delay" || this.Info == "material") this.dateshow = false;
     }
     Back() {
         //filter过渡动漫
@@ -124,7 +123,7 @@ export class FilterComponent implements OnInit {
         let local = JSON.parse(localStorage.getItem("filter"));
         let fids = [];
         let wsids = [];
-        if (this.Info != "delay") {
+        if (this.Info != "delay" && this.Info != "material") {
             this.datas[0].list.forEach((element, i) => {
                 if (element.state == true) fids.push(element.id);
             });
@@ -172,15 +171,21 @@ export class FilterComponent implements OnInit {
                 });
                 if (styles.toString()) obj['styles'] = styles.toString();
             }
-        } else {
+        } else if(this.Info == "delay"){
             this.datas[0].list.forEach((element, i) => {
                 if (element.state == true) fids.push(element.id);
             });
             if (local.input) obj['input'] = local.input;
             if (fids.toString()) obj['fids'] = fids.toString();
 
+        }else if(this.Info == "material"){
+            let type;
+            if (this.datas[0].list[0].state && this.datas[0].list[1].state || !this.datas[0].list[0].state && !this.datas[0].list[1].state) type = -1;
+            if (this.datas[0].list[0].state && this.datas[0].list[1].state == false) type = 1;
+            if (this.datas[0].list[0].state == false && this.datas[0].list[1].state) type = 0;
+            if (local.input) obj['input'] = local.input;
+            if (type.toString()) obj['type'] = type.toString();
         }
-
         console.log(JSON.stringify(obj))
         localStorage.setItem("filter", JSON.stringify(obj));
         this.envet.emit(obj);

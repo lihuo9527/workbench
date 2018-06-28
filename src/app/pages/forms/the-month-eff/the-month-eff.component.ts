@@ -89,7 +89,7 @@ export class TheMonthEffComponent implements OnInit {
                         position: 'right'
                     }],
                 series: [
-                    {
+                    {   
                         name: '效率',
                         type: 'line',
                         stack: '效率',
@@ -117,6 +117,7 @@ export class TheMonthEffComponent implements OnInit {
                         stack: '产量',
                         data: bar,
                         barCategoryGap: "30%",
+                        barMaxWidth:'30%',
                     },
                 ]
             }
