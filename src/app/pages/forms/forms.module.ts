@@ -16,6 +16,7 @@ import { TitleModule } from '../../components/title/title.module';
 import { MacroCapacityComponent } from './macro-capacity/macro-capacity.component';
 import { DateModule } from '../../components/date/date.module';
 import { CapacityFilterComponent } from './capacity-filter/capacity-filter.component';
+import { CapacityFilterDirective } from './capacity-filter/capacity-filter.directive';
 @NgModule({
     imports: [
         CommonModule,
@@ -38,6 +39,7 @@ import { CapacityFilterComponent } from './capacity-filter/capacity-filter.compo
         FormsComponent,
         MacroCapacityComponent,
         CapacityFilterComponent,
+        CapacityFilterDirective,
 
     ],
     exports: [RouterModule],

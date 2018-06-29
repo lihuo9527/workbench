@@ -84,9 +84,9 @@ export class HomeComponent implements OnInit {
                 this.list[i].TodayHandledCount = obj.TodayHandledCount;
                 if (obj.TipsCountList.length > 0) {
                     for (let b = 0; b < this.list[i].TipsCountList.length; b++) {
-                        if (i == 3 || i == 4) {
+                       
                             this.list[i].TipsCountList = obj.TipsCountList;
-                        }
+                        
                     }
                 }
             }

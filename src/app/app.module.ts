@@ -41,7 +41,7 @@ import { DateModule } from './components/date/date.module';
 import { AppRoutingModule } from './/app-routing.module';
 import { SearchBoxModule } from './components/search-box/search-box.module';
 import { MessageBoxModule } from './components/message-box/message-box.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HttpClient } from '@angular/common/http';
 
 
 @NgModule({
