@@ -7,13 +7,9 @@
 <div class="container">
     <div *ngFor="let items of list;let i=index;">
         <div>
-            <app-list-title *ngIf="Language=='en'&& i>1" text="orders" [title]="items.title" [number]="items.TodayHandledCount" orders="true"></app-list-title>
-            <app-list-title *ngIf="Language=='cn'&& i>1" text="单已处理" [title]="items.title2" [number]="items.TodayHandledCount" orders="true"></app-list-title>
-            <div *ngIf="Language=='cn'&& i==1" class="list_title">
-                <h2>{{items.title2}}</h2>
-            </div>
-            <div *ngIf="Language=='en'&& i==1" class="list_title">
-                <h2>{{items.title}}</h2>
+            <div class="list_title">
+                <h2 *ngIf="Language=='cn'">{{items.title2}}</h2>
+                <h2 *ngIf="Language=='en'">{{items.title2}}</h2>
             </div>
             <ul class="list_1">
                 <li *ngFor="let item of items.TipsCountList;let b=index;">

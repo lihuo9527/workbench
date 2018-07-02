@@ -22,9 +22,9 @@ export class HomeComponent implements OnInit {
         },
         {
             title: "Outsourced process plan", title2: "外发工序计划", TodayHandledCount: "0", TipsCountList: [
-                { Url: "/assets/images/a_44.png", Text: "Embroidery", Name: "印花", Link: "/search", Id: "5", Amount: "0" },
-                { Url: "/assets/images/a_45.png", Text: "Sewing", Name: "车缝", Link: "/search", Id: "6", Amount: "0" },
-                { Url: "/assets/images/a_46.png", Text: "Washing", Name: "洗水", Link: "/search", Id: "7", Amount: "0" }]
+                { Url: "/assets/images/a_44.png", Text: "", Name: "", Link: "/search", Id: "5", Amount: "0" },
+                { Url: "/assets/images/a_45.png", Text: "", Name: "", Link: "/search", Id: "6", Amount: "0" },
+                { Url: "/assets/images/a_46.png", Text: "", Name: "", Link: "/search", Id: "7", Amount: "0" }]
         },
         {
             title: "Delivery Delay", title2: "交期延误单", TodayHandledCount: "0", TipsCountList: [
@@ -84,9 +84,7 @@ export class HomeComponent implements OnInit {
                 this.list[i].TodayHandledCount = obj.TodayHandledCount;
                 if (obj.TipsCountList.length > 0) {
                     for (let b = 0; b < this.list[i].TipsCountList.length; b++) {
-                       
                             this.list[i].TipsCountList = obj.TipsCountList;
-                        
                     }
                 }
             }

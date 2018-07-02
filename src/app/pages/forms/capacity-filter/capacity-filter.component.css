@@ -140,11 +140,10 @@
 }
 
 .x {
-    width: 100%;
+    width: 0;
     height: 100%;
     display: flex;
     justify-content: flex-start;
-    flex: 0 0 8.33%;
     border-bottom: 3px solid #d1d1d1;
     box-sizing: border-box;
     height: 3px;
@@ -188,6 +187,8 @@
     flex-flow: wrap;
     box-sizing: border-box;
     align-items: center;
+    position: relative;
+    height: 2.3rem;
 }
 
 .xleft {
@@ -234,17 +235,18 @@
 }
 
 .water {
-    flex: 0 0 8.33%;
+    width: 8.33%;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
 }
 
 .water a {
     background: url(/assets/images/icon_water.png) no-repeat center;
-    width: 2rem;
+    width: 88%;
     height: 2.3rem;
-    background-size: 2rem;
+    background-size: 88%;
     display: flex;
     justify-content: center;
     align-items: center;

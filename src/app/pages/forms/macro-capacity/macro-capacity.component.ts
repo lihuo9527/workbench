@@ -33,6 +33,12 @@ export class MacroCapacityComponent implements OnInit {
         }
         this.state = false;
     }
+    UpdateList($event){
+        
+    }
+    output(){
+
+    }
     showFilter() {
         //filter过渡动漫
         document.getElementById("shadow").style.left = "0%";

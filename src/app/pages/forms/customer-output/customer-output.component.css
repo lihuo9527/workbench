@@ -5,6 +5,11 @@
     background: #fff;
 }
 
+.container {
+    height: 100%;
+    background: #fff;
+}
+
 .row_title {
     color: #088c77;
     padding: 1rem;

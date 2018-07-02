@@ -19,7 +19,7 @@
                 <div style="width: 100%;display: flex;padding-right:1rem;box-sizing: border-box;flex-flow: wrap; margin-bottom:1rem;" *ngIf="i==0">
                     <p *ngIf="Language=='cn'" style="margin-top:1rem;font-size: 1.6rem;flex: 0 0 100%;">周期</p>
                     <div class="icon_container">
-                        <div class="water" appCapacityFilter>
+                        <div class="water" (CapacityFilterDirective)="backDate($event)">
                             <a>1</a>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <div class="xbox">
-                        <div class="x green"></div>
+                        <div id="progress" class="x green"></div>
                         <div class="xleft"></div>
                         <div class="xright"></div>
                     </div>
