@@ -55,10 +55,10 @@
 }
 
 .other p {
+    width: 100%;
     font-size: 1.4rem;
     line-height: 1.4rem;
     margin-bottom: 0.2rem;
-    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     min-height: 1.4rem;

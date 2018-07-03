@@ -16,73 +16,6 @@ export class SearchComponent implements OnInit {
     public placeholder = "输入单号或款号查询";
     public input: string;
     public dateType: number;
-    public lists: any = [
-        {
-            data: [
-                { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Critical Event", title2: "关键事件", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                {
-                    title: "Date", title2: "日期", rowstate: true, allstate: false, but: false, arrow: false,
-                    list: [
-                        { text: "Sew Plan Date", text2: "车缝开始日", state: false },
-                        { text: "Delivery Date", text2: "交货期", state: false },
-                        { text: "Order Confirmed date", text2: "订单确认日", state: false }]
-                }
-            ]
-        },
-
-        {
-            data: [
-                { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Style", title2: "大类", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Production Date", title2: "生产日期", rowstate: true, allstate: false, but: false, arrow: false, list: [] }
-            ]
-        },
-
-        {
-            data: [
-                { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Process", title2: "工序", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                {
-                    title: "Date", title2: "日期", rowstate: true, allstate: false, but: false, arrow: false, list: [
-                        { text: "Sew Plan Date", text2: "车缝开始日", state: false },
-                        { text: "Delivery Date", text2: "交货期", state: false },
-                        { text: "Order Confirmed date", text2: "订单确认日", state: false }]
-                }
-            ]
-        },
-
-        {},
-
-        {},
-        {
-            data: [
-                { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Style", title2: "大类", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Production Date", title2: "生产日期", rowstate: true, allstate: false, but: false, arrow: false, list: [] }
-            ]
-        },
-        {
-            data: [
-                { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Style", title2: "大类", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Production Date", title2: "生产日期", rowstate: true, allstate: false, but: false, arrow: false, list: [] }
-            ]
-        },
-        {
-            data: [
-                { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Style", title2: "大类", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Production Date", title2: "生产日期", rowstate: true, allstate: false, but: false, arrow: false, list: [] }
-            ]
-        }
-    ]
     public datas = [];
     public today = new Date();
     public t = this.today.getTime() + 1000 * 60 * 60 * 720;
@@ -90,28 +23,62 @@ export class SearchComponent implements OnInit {
     public StartDate = this.today.toLocaleDateString();
     public datecontainer = true;
     public floors = [];
-
+    public index;
     ngOnInit() {
-        this.id = this.routerIonfo.snapshot.params["id"];
         this.Language = localStorage.getItem("language");
         if (this.Language == "en") this.placeholder = "input number or style to query";
-        if (this.id == 0 && this.Language == "en") this.title = 'Critical Event';
-        if (this.id == 0 && this.Language == "cn") this.title = '产前事件';
-        if (this.id == 1 && this.Language == "en") this.title = 'Daily Progress';
-        if (this.id == 1 && this.Language == "cn") this.title = '每日进度';
-        if (this.id == 2 && this.Language == "en") this.title = 'Non-planing Process';
-        if (this.id == 2 && this.Language == "cn") this.title = '非排产工序';
-        if (this.id == 5 && this.Language == "en") this.title = 'Embroidery Printing Process Plan';
-        if (this.id == 5 && this.Language == "cn") this.title = '印绣花工序';
-        if (this.id == 6 && this.Language == "en") this.title = 'Sewing Process Plan';
-        if (this.id == 6 && this.Language == "cn") this.title = '车缝';
-        if (this.id == 7 && this.Language == "en") this.title = 'Washing Process Plan';
-        if (this.id == 7 && this.Language == "cn") this.title = '洗水';
-        if (this.id >= 0) {
-            this.datas = this.lists[this.id].data;
-            this.init();
+        let data = JSON.parse(this.routerIonfo.snapshot.params["id"]);
+        this.id = data.id;
+        this.title = data.t;
+        this.index = data.i;
+        if (this.index == 0 && this.id == '0') {
+            this.datas = [
+                { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+                { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+                { title: "Critical Event", title2: "关键事件", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+                {
+                    title: "Date", title2: "日期", rowstate: true, allstate: false, but: false, arrow: false,
+                    list: [
+                        { text: "Sew Plan Date", text2: "车缝计划日", state: false },
+                        { text: "Delivery Date", text2: "交货期", state: false },
+                        { text: "Order Confirmed date", text2: "订单确认日", state: false }]
+                }
+            ];
+
+        }
+        if (this.index == 0 && this.id == '1') {
+            this.datas = [
+                { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+                { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+                { title: "Style", title2: "大类", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+                { title: "Production Date", title2: "生产日期", rowstate: true, allstate: false, but: false, arrow: false, list: [] }
+            ];
+
+        }
+        if (this.index == 0 && this.id == '2') {
+            this.datas = [
+                { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+                { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+                { title: "Process", title2: "工序", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+                {
+                    title: "Date", title2: "日期", rowstate: true, allstate: false, but: false, arrow: false, list: [
+                        { text: "Sew Plan Date", text2: "车缝计划日", state: false },
+                        { text: "Delivery Date", text2: "交货期", state: false },
+                        { text: "Order Confirmed date", text2: "订单确认日", state: false }]
+                }
+            ];
+
+        }
+        if (this.index == 1) {
+            this.datas = [
+                { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+                { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+                { title: "Style", title2: "大类", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+                { title: "Production Date", title2: "生产日期", rowstate: true, allstate: false, but: false, arrow: false, list: [] }
+            ];
         }
         console.log("id", this.id);
+        this.init();
     }
     init() {
         this.service.http_get('/api/BaseData/GetFactoryLines', false).subscribe((data: any) => {
@@ -141,24 +108,12 @@ export class SearchComponent implements OnInit {
             }
         })
         console.log("floors", this.floors)
+
         if (this.id >= 0) {
             let url: string;
-            switch (this.id) {
-                case '0': url = '/api/BaseData/GetEvents';
-                    break;
-                case '1': url = '/api/BaseData/GetProductTypes';
-                    break;
-                case '2': url = '/api/BaseData/GetProcesses';
-                    break;
-                case '5': url = '/api/BaseData/GetProductTypes';
-                    break;
-                case '6': url = '/api/BaseData/GetProductTypes';
-                    break;
-                case '7': url = '/api/BaseData/GetProductTypes';
-                    break;
-                default: url = "";
-                    break;
-            }
+            if (this.index == 1 || this.index == 0 || this.id == 1) url = '/api/BaseData/GetProductTypes';
+            if (this.index == 0 || this.id == 0) url = '/api/BaseData/GetEvents';
+            if (this.index == 0 || this.id == 2) url = '/api/BaseData/GetProcesses';
             console.log(url)
             this.service.http_get(url, false).subscribe((data: any) => {
                 if (data.length > 0) {
@@ -249,12 +204,16 @@ export class SearchComponent implements OnInit {
             if (element.state == true) wsids.push(element.id);
 
         });
-        if (this.id == 0) {
+        if (this.id == 0 && this.index == 0) {
             //关键事件
-            localStorage.setItem("filter", JSON.stringify({ 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, "dateType": this.dateType, 'fids': fids.toString(), 'wsids': wsids.toString() }));
+            let events = [];
+            this.datas[2].list.forEach(element => {
+                if (element.state == true) events.push(element.id);
+            });
+            localStorage.setItem("filter", JSON.stringify({ 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, "dateType": this.dateType, 'fids': fids.toString(), 'wsids': wsids.toString(), eventid: events.toString() }));
             this.router.navigate(['criticalEvent']);
         }
-        if (this.id == 1) {
+        if (this.id == 1 && this.index == 0) {
             //每日进度
             let styles = [];
             this.datas[2].list.forEach(element => {
@@ -264,7 +223,7 @@ export class SearchComponent implements OnInit {
             this.router.navigate(['productionDailyProgress']);
         }
 
-        if (this.id == 2) {
+        if (this.id == 2 && this.index == 0) {
             //非排产工序
             let process = [];
             this.datas[2].list.forEach(element => {
@@ -273,7 +232,7 @@ export class SearchComponent implements OnInit {
             localStorage.setItem("filter", JSON.stringify({ 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, "process": process.toString(), 'fids': fids.toString(), 'wsids': wsids.toString(), "dateType": this.dateType }));
             this.router.navigate(['nonPlaningProcess']);
         };
-        if (this.id >= 5) {
+        if (this.index == 1) {
             //外发工序
             let styles = [];
             this.datas[2].list.forEach(element => {
@@ -281,7 +240,7 @@ export class SearchComponent implements OnInit {
             });
             localStorage.setItem("filter", JSON.stringify({ 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, 'styles': styles.toString() }));
             console.log("fids:" + fids)
-            this.router.navigate(['outProcess']);
+            this.router.navigate(['outProcess', this.title]);
         }
     }
 }

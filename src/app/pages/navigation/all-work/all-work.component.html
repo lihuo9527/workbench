@@ -1,5 +1,5 @@
-<app-title *ngIf="Language=='en'" [link]="Link" title="All Applications"></app-title>
-<app-title *ngIf="Language=='cn'" [link]="Link" title="全部应用"></app-title>
+<app-title *ngIf="language=='en'" [link]="link" title="All Applications"></app-title>
+<app-title *ngIf="language=='cn'" [link]="link" title="全部应用"></app-title>
 <div class="container">
     <!--list-->
     <div *ngFor="let items of list;let i=index;">
@@ -7,26 +7,16 @@
             <app-list-title *ngIf="Language=='en'" [title]="items.title"></app-list-title>
             <app-list-title *ngIf="Language=='cn'" [title]="items.title2"></app-list-title>
             <ul class="list">
-                <li *ngFor="let item of items.data;let i=index;">
-                    <a *ngIf="!item.id" [routerLink]="[item.link]" routerLinkActive="active">
+                <li *ngFor="let item of items.data;let b=index;">
+                    <a (click)="routerlink(item,i)">
                         <div>
                             <div class="icon">
                                 <img [src]="item.url">
                                 <i *ngIf="item.index>0">{{item.index}}</i>
                             </div>
                         </div>
-                        <span *ngIf="Language=='en'">{{item.text}}</span>
-                        <span *ngIf="Language=='cn'">{{item.text2}}</span>
-                    </a>
-                    <a *ngIf="item.id" [routerLink]="[item.link,item.id]" routerLinkActive="active">
-                        <div>
-                            <div class="icon">
-                                <img [src]="item.url">
-                                <i *ngIf="item.index>0">{{item.index}}</i>
-                            </div>
-                        </div>
-                        <span *ngIf="Language=='en'">{{item.text}}</span>
-                        <span *ngIf="Language=='cn'">{{item.text2}}</span>
+                        <span *ngIf="language=='en'">{{item.text}}</span>
+                        <span *ngIf="language=='cn'">{{item.text2}}</span>
                     </a>
                 </li>
             </ul>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
     selector: 'app-all-work',
     templateUrl: './all-work.component.html',
@@ -7,12 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllWorkComponent implements OnInit {
 
-    constructor() { }
-    public Link = ["/home"]
+    constructor(private router: Router) { }
+    public link = ["/home"]
     public list = [
         {
             title: "Entry", title2: "录入审核", data: [
-                { url: "/assets/images/a_21.png", text: "Critical Event", text2: "产前事件", link: "/search", id: "0", index: "0" },
+                { url: "/assets/images/a_21.png", text: "Critical Event", text2: "关键事件", link: "/search", id: "0", index: "0" },
                 { url: "/assets/images/a_22.png", text: "Daily Progress", text2: "每日进度", link: "/search", id: "1", index: "0" },
                 { url: "/assets/images/a_23.png", text: "Non-planing Process", text2: "非排产工序", link: "/search", id: "2", index: "0" }]
         },
@@ -44,9 +44,15 @@ export class AllWorkComponent implements OnInit {
             ]
         }
     ]
-    public Language;
+    public language;
     ngOnInit() {
-        this.Language = localStorage.getItem("language");
+        this.language = localStorage.getItem("language");
+    }
+    routerlink(item, index) {
+        console.log(index);
+        let title = this.language == 'en' ? item.text : item.text2;
+        if (index == 0) this.router.navigate([item.link, JSON.stringify({ id: item.id, t: title, i: index })]);
+        if (index != 0) this.router.navigate([item.link,item.id]);
     }
 
 }

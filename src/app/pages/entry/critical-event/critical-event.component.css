@@ -70,7 +70,6 @@
 .ListOther {
     border-bottom: #f0f0f0 solid 1px;
     height: 3rem;
-    padding: 0 1rem;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -96,6 +95,7 @@
     min-height: 1.4rem;
     margin-left: 1rem;
     font-size: 1.4rem;
+    margin-bottom: 0.3rem;
 }
 
 .box .list .other span {
@@ -104,12 +104,29 @@
     color: #808080;
 }
 
+.i p {
+    height: 3rem;
+    width: 6px;
+    background: #9eb4d8;
+}
+
+.jo_container {
+    flex: 0 0 97%;
+}
+
+.i {
+    flex: 0 0 3%;
+    height: 3rem;
+    width: 6px;
+}
+
 .other {
     padding-top: 1rem;
     padding-bottom: 1rem;
     display: flex;
     align-items: flex-start;
     flex-flow: wrap;
+    flex: 0 0 100%;
 }
 
 .btn {
@@ -117,9 +134,8 @@
 }
 
 .entry {
+    margin-left: 1rem;
     background: #088c77;
-    float: right;
-    margin: 1rem;
     color: #fff;
     text-align: center;
     line-height: 3rem;

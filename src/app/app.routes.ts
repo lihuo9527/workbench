@@ -51,7 +51,7 @@ export const appRoutes = [
         component: MaterialDelayComponent
     },
     {
-        path: 'all/:id',
+        path: 'all',
         component: AllWorkComponent
     },
     {
@@ -95,7 +95,7 @@ export const appRoutes = [
         component: ForgotPasswordComponent
     },
     {
-        path: 'outProcess',
+        path: 'outProcess/:title',
         component: OutProcessComponent,
     },
     {
@@ -136,7 +136,7 @@ export const appRoutes = [
     },
     {
         path: 'not-bind',
-        component:NotBindComponent
+        component: NotBindComponent
     },
     {
         path: '',

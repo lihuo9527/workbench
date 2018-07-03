@@ -1,8 +1,8 @@
 <div class="container">
-    <app-title *ngIf="Language=='en'" [title]="title"></app-title>
-    <app-title *ngIf="Language=='cn'" [title]="title"></app-title>
-    <app-search-box (OutputValue)='UpdateList()'></app-search-box>
-    <app-filter Info="event" (envet)="UpdateList($event)"></app-filter>
+    <app-title *ngIf="language=='en'" [title]="title"></app-title>
+    <app-title *ngIf="language=='cn'" [title]="title"></app-title>
+    <app-search-box (OutputValue)='updateList()'></app-search-box>
+    <app-filter Info="event" (envet)="updateList($event)"></app-filter>
     <div class="container_box">
         <div class="box">
             <ul class="items">
@@ -12,50 +12,50 @@
                             <p></p>
                         </div>
                         <div class="jo_container">
-                            <span *ngIf="Language=='en'">JO:{{item.code}}</span>
-                            <span *ngIf="Language=='cn'">生产单号:{{item.code}}</span>
+                            <span *ngIf="language=='en'">JO:{{item.code}}</span>
+                            <span *ngIf="language=='cn'">生产单号:{{item.code}}</span>
                         </div>
                         <div class="entry_container">
-                            <button *ngIf="Language=='en' && item.plan=='Yes'" (click)="Link(item)" class="entry">View</button>
-                            <button *ngIf="Language=='cn' && item.plan=='Yes'" (click)="Link(item)" class="entry">查看</button>
-                            <button *ngIf="Language=='en' && item.plan=='No'" (click)="Link(item)" class="entry">Entry</button>
-                            <button *ngIf="Language=='cn' && item.plan=='No'" (click)="Link(item)" class="entry">录入</button>
+                            <button *ngIf="language=='en' && item.plan=='Yes'" (click)="link(item)" class="entry">View</button>
+                            <button *ngIf="language=='cn' && item.plan=='Yes'" (click)="link(item)" class="entry">查看</button>
+                            <button *ngIf="language=='en' && item.plan=='No'" (click)="link(item)" class="entry">Entry</button>
+                            <button *ngIf="language=='cn' && item.plan=='No'" (click)="link(item)" class="entry">录入</button>
                         </div>
                     </div>
                     <ul class="items">
                         <li class="row">
                             <div class="other">
                                 <p>{{item.plan}}</p>
-                                <span *ngIf="Language=='en'">Have Plan</span>
-                                <span *ngIf="Language=='cn'">是否有计划</span>
+                                <span *ngIf="language=='en'">Have Plan</span>
+                                <span *ngIf="language=='cn'">是否有计划</span>
                             </div>
                             <div class="other">
                                 <p>{{item.amount}}</p>
-                                <span *ngIf="Language=='en'">Order.Qty</span>
-                                <span *ngIf="Language=='cn'">订单数量</span>
+                                <span *ngIf="language=='en'">Order.Qty</span>
+                                <span *ngIf="language=='cn'">订单数量</span>
                             </div>
                             <div class="other">
                                 <p>{{item.StartDate}}</p>
-                                <span *ngIf="Language=='en'">Start Date</span>
-                                <span *ngIf="Language=='cn'">开始日期</span>
+                                <span *ngIf="language=='en'">Start Date</span>
+                                <span *ngIf="language=='cn'">开始日期</span>
                             </div>
                         </li>
                         <li class="row">
                             <div class="other">
                                 <p>{{item.EndDate}}</p>
-                                <span *ngIf="Language=='en'">End Date</span>
-                                <span *ngIf="Language=='cn'">结束日期</span>
+                                <span *ngIf="language=='en'">End Date</span>
+                                <span *ngIf="language=='cn'">结束日期</span>
                             </div>
                             <div class="other">
                                 <p>{{item.CuttingAmount}}</p>
-                                <span *ngIf="Language=='en'">Cutting Qty</span>
-                                <span *ngIf="Language=='cn'">裁床数</span>
+                                <span *ngIf="language=='en'">Cutting Qty</span>
+                                <span *ngIf="language=='cn'">裁床数</span>
                             </div>
                             <div class="other">
-                                <button *ngIf="Language=='en' && item.plan=='Yes' && item.isEnd==0" (click)="change(item)" class="end">End</button>
-                                <button *ngIf="Language=='cn' && item.plan=='Yes' && item.isEnd==0" (click)="change(item)" class="end">结束</button>
-                                <button *ngIf="Language=='en' && item.plan=='Yes' && item.isEnd==1" (click)="change(item)" class="end">cancel</button>
-                                <button *ngIf="Language=='cn' && item.plan=='Yes' && item.isEnd==1" (click)="change(item)" class="end">取消</button>
+                                <button *ngIf="language=='en' && item.plan=='Yes' && item.isEnd==0" (click)="change(item)" class="end">End</button>
+                                <button *ngIf="language=='cn' && item.plan=='Yes' && item.isEnd==0" (click)="change(item)" class="end">结束</button>
+                                <button *ngIf="language=='en' && item.plan=='Yes' && item.isEnd==1" (click)="change(item)" class="end">cancel</button>
+                                <button *ngIf="language=='cn' && item.plan=='Yes' && item.isEnd==1" (click)="change(item)" class="end">取消</button>
                             </div>
                         </li>
                     </ul>
@@ -63,5 +63,5 @@
             </ul>
         </div>
     </div>
-    <app-load-more *ngIf="datas.length>3" [language]="Language" (click)="UpdateList()"></app-load-more>
+    <app-load-more *ngIf="datas.length>3" [language]="language" (click)="updateList()"></app-load-more>
 </div>

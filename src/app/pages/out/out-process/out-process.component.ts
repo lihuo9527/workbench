@@ -11,24 +11,19 @@ export class OutProcessComponent implements OnInit {
     constructor(private routerIonfo: ActivatedRoute, private service: AppService, private router: Router) { }
     public data;
     public id;
-    public Language;
+    public language;
     public title;
     public datas = [];
     public state;
     ngOnInit() {
         this.data = JSON.parse(localStorage.getItem("filter"));
         this.id = this.data.id;
-        console.log(this.id)
-        this.Language = localStorage.getItem("language");
-        if (this.id == 5 && this.Language == "en") this.title = 'Embroidery Printing Process Plan';
-        if (this.id == 5 && this.Language == "cn") this.title = '印绣花工序';
-        if (this.id == 6 && this.Language == "en") this.title = 'Sewing Process Plan';
-        if (this.id == 6 && this.Language == "cn") this.title = '车缝';
-        if (this.id == 7 && this.Language == "en") this.title = 'Washing Process Plan';
-        if (this.id == 7 && this.Language == "cn") this.title = '洗水';
-        this.UpdateList();
+        this.language = localStorage.getItem("language");
+        this.title = this.routerIonfo.snapshot.params["title"];
+        console.log(this.routerIonfo.snapshot.params["title"])
+        this.updateList();
     }
-    UpdateList($event?) {
+    updateList($event?) {
         let local = JSON.parse(localStorage.getItem("filter"));
         let pageIndex = local.input ? 1 : Math.ceil(this.datas.length / 4 + 1);
         let option = "";
@@ -48,7 +43,7 @@ export class OutProcessComponent implements OnInit {
             }
         })
     }
-    Link(item) {
+    link(item) {
         this.router.navigate(['planEntry', JSON.stringify({ data: item, title: this.title })]);
     }
     change(item) {

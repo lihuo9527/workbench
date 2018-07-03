@@ -15,16 +15,13 @@ export class HomeComponent implements OnInit {
         {
             TodayHandledCount: "0",
             TipsCountList: [
-                { Url: "/assets/images/a_21.png", Text: "Critical Event", Name: "产前事件", Link: "/search", Id: "0", Amount: "0" },
+                { Url: "/assets/images/a_21.png", Text: "Critical Event", Name: "关键事件", Link: "/search", Id: "0", Amount: "0" },
                 { Url: "/assets/images/a_22.png", Text: "Daily Progress", Name: "每日进度", Link: "/search", Id: "1", Amount: "0" },
                 { Url: "/assets/images/a_23.png", Text: "Non-planing Process", Name: "非排产工序", Link: "/search", Id: "2", Amount: "0" },
                 { Url: "/assets/images/ico_04.png", Text: "All", Name: "全部", Link: "/all", Id: "3", Amount: "0" }]
         },
         {
-            title: "Outsourced process plan", title2: "外发工序计划", TodayHandledCount: "0", TipsCountList: [
-                { Url: "/assets/images/a_44.png", Text: "", Name: "", Link: "/search", Id: "5", Amount: "0" },
-                { Url: "/assets/images/a_45.png", Text: "", Name: "", Link: "/search", Id: "6", Amount: "0" },
-                { Url: "/assets/images/a_46.png", Text: "", Name: "", Link: "/search", Id: "7", Amount: "0" }]
+            title: "Outsourced process plan", title2: "外发工序计划", TodayHandledCount: "0", TipsCountList: []
         },
         {
             title: "Delivery Delay", title2: "交期延误单", TodayHandledCount: "0", TipsCountList: [
@@ -33,20 +30,10 @@ export class HomeComponent implements OnInit {
                 { Url: "/assets/images/ico_23.png", Text: "General", Name: "普通单", Link: "/deliverDelay", Id: "2", Amount: "0" }]
         },
         {
-            title: "Critical Event Delay", title2: "关键事件延误", TodayHandledCount: "0", TipsCountList: [
-                { Url: "/assets/images/ico_31.png", Text: "", Name: "", Link: "/criticalEventDelay", Id: "0", Amount: "0" },
-                { Url: "/assets/images/ico_32.png", Text: "", Name: "", Link: "/criticalEventDelay", Id: "1", Amount: "0" },
-                { Url: "/assets/images/ico_33.png", Text: "", Name: "", Link: "/criticalEventDelay", Id: "2", Amount: "0" },
-                { Url: "/assets/images/ico_34.png", Text: "", Name: "", Link: "/criticalEventDelay", Id: "3", Amount: "0" }]
+            title: "Critical Event Delay", title2: "关键事件延误", TodayHandledCount: "0", TipsCountList: []
         },
         {
-            title: "Process Delay", title2: "进度延误", TodayHandledCount: "0", TipsCountList: [
-                { Url: "/assets/images/ico_41.png", Text: "", Name: "", Link: "/processDelay", Id: "0", Amount: "0" },
-                { Url: "/assets/images/ico_42.png", Text: "", Name: "", Link: "/processDelay", Id: "1", Amount: "0" },
-                { Url: "/assets/images/ico_43.png", Text: "", Name: "", Link: "/processDelay", Id: "2", Amount: "0" },
-                { Url: "/assets/images/ico_44.png", Text: "", Name: "", Link: "/processDelay", Id: "3", Amount: "0" },
-                { Url: "/assets/images/ico_45.png", Text: "", Name: "", Link: "/processDelay", Id: "4", Amount: "0" },
-                { Url: "/assets/images/ico_46.png", Text: "", Name: "", Link: "/processDelay", Id: "5", Amount: "0" }]
+            title: "Process Delay", title2: "进度延误", TodayHandledCount: "0", TipsCountList: []
         },
         {
             title: "Material Delay", title2: "物料延误", TodayHandledCount: "0", TipsCountList: [
@@ -55,13 +42,13 @@ export class HomeComponent implements OnInit {
         }
     ]
     public language_state;
-    public Language;
+    public language;
 
 
     ngOnInit() {
         let obj = new window_obj();
-        this.Language = obj.language();
-        localStorage.setItem("language", this.Language);
+        this.language = obj.language();
+        localStorage.setItem("language", this.language);
         if (this.accessControl(obj)) return;
         let url: string;
         for (let i = 1; i < this.list.length; i++) {
@@ -76,16 +63,12 @@ export class HomeComponent implements OnInit {
                     break;
                 case 5: url = "/api/Main/GetMaterialDelayCount";
                     break;
-                case 6: url = "/api/Main/GetTodayCount";
-                    break;
             }
             this.service.http_get(url, false).subscribe((data: any) => {
                 let obj = data;
                 this.list[i].TodayHandledCount = obj.TodayHandledCount;
                 if (obj.TipsCountList.length > 0) {
-                    for (let b = 0; b < this.list[i].TipsCountList.length; b++) {
-                            this.list[i].TipsCountList = obj.TipsCountList;
-                    }
+                    this.list[i].TipsCountList = obj.TipsCountList;
                 }
             }
                 , error => {
@@ -93,6 +76,17 @@ export class HomeComponent implements OnInit {
                 })
 
         }
+    }
+    link(item, items, index) {
+        console.log("index",index, item.Id);
+        if (index == 0 && item.Id == "3") {
+            this.router.navigate([item.Link])
+            return;
+        }
+        let title = this.language == 'en' ? item.Text : item.Name;
+        if (index == 0 || index == 1) this.router.navigate([item.Link, JSON.stringify({ id: item.Id, t: title, i: index })]);
+        if (index != 0 && index != 1) this.router.navigate([item.Link, item.Id]);
+
     }
     accessControl(obj) {
         let time: number = 2 * 60 * 6000 * 100000;

@@ -14,13 +14,13 @@ export class CriticalEventComponent implements OnInit {
         private router: Router,
     ) { }
     public datas = [];
-    public Language;
+    public language;
     ngOnInit() {
-        this.Language = localStorage.getItem("language");
-        this.UpdateList();
+        this.language = localStorage.getItem("language");
+        this.updateList();
 
     }
-    UpdateList($event?) {
+    updateList($event?) {
         let local = JSON.parse(localStorage.getItem("filter"));
         let pageIndex = local.input ? 1 : this.datas.length / 4 + 1;
         let option = "";
@@ -41,7 +41,7 @@ export class CriticalEventComponent implements OnInit {
             }
         })
     }
-    Link(item) {
+    link(item) {
         console.log(item);
         this.router.navigate(["eventEntry", JSON.stringify(item)]);
     }

@@ -84,7 +84,25 @@
     overflow: hidden;
 }
 
-.allOff {
+.allOff_cn {
+    background: url(/assets/images/cn_off.png) no-repeat center;
+    width: 4.5rem;
+    height: 2.1rem;
+    background-size: 4.5rem 2.1rem;
+    float: right;
+    margin: 0.5rem 1rem;
+}
+
+.allOn_cn {
+    background: url(/assets/images/cn_on.png) no-repeat center;
+    width: 4.5rem;
+    height: 2.1rem;
+    background-size: 4.5rem 2.1rem;
+    float: right;
+    margin: 0.5rem 1rem;
+}
+
+.allOff_en {
     background: url(/assets/images/filter_off.png) no-repeat center;
     width: 4rem;
     height: 2rem;
@@ -93,7 +111,7 @@
     margin: 0.5rem 1rem;
 }
 
-.allOn {
+.allOn_en {
     background: url(/assets/images/filter_on.png) no-repeat center;
     width: 4rem;
     height: 2rem;

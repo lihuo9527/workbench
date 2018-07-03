@@ -11,15 +11,15 @@ export class CriticalEventDelayComponent implements OnInit {
     public eventId = "-1";
     public datas = [];
     public id;
-    public Language;
+    public language;
     public state;
     ngOnInit() {
-        localStorage.setItem("filter", JSON.stringify({ input: '' }));
-        this.Language = localStorage.getItem("language");
+        localStorage.setItem("filter", JSON.stringify({ input: '' }));  
+        this.language = localStorage.getItem("language");
         this.id = this.routerIonfo.snapshot.params["id"] == "all" ? "-1" : this.routerIonfo.snapshot.params["id"];
-        this.UpdateList();
+        this.updateList();
     }
-    UpdateList($event?) {
+    updateList($event?) {
         let local = JSON.parse(localStorage.getItem("filter"));
         let pageIndex = $event == 'add' ? Math.ceil(this.datas.length / 4 + 1) : 1;
         let option = 'pageIndex=' + pageIndex + '&pageSize=4' + '&eventId=' + this.id;

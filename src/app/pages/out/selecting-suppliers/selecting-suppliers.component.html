@@ -4,7 +4,7 @@
     <div style="display: flex;background: #fff;margin-top:0.5rem; ">
         <div class="imgs">
             <div style="display: flex;padding-left:0.5rem;padding-right: 0.5rem; " *ngFor="let item of userface;">
-                <img style="max-width: 3rem;max-height: 3rem;" [src]="item.headPortrait" alt="">
+                <img style="max-width: 3rem;max-height: 3rem;border-radius: 50%;" [src]="item.headPortrait" alt="">
             </div>
 
         </div>
@@ -17,7 +17,7 @@
         <div class="row" *ngFor="let item of datas.result.contactsList;let i = index;" (click)="show(item,i)">
             <div class="group">
                 <p [ngClass]="{'rows_on':item.state,'rows_off':!item.state}">
-                    {{item.role}} &nbsp; ({{datas.result.contactsList.length}})
+                    {{item.role}} &nbsp; ({{item.contacts.length}})
                 </p>
             </div>
             <div *ngIf="item.state">
@@ -34,7 +34,7 @@
                                 <img [src]="user.headPortrait" style="max-width:3rem;max-height:3rem;border-radius: 50%;" alt="">
                             </div>
                             <div class="name_box">
-                                <span style="max-width: 3rem;">{{user.name}}</span>
+                                <span>{{user.name}}</span>
                             </div>
                         </div>
                     </div>
