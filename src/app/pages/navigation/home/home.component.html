@@ -7,7 +7,7 @@
 <div class="container">
     <div *ngFor="let items of list;let i=index;">
         <div>
-            <div class="list_title">
+            <div [ngClass]="{'list_title':i!=0}">
                 <h2 *ngIf="language=='cn'">{{items.title2}}</h2>
                 <h2 *ngIf="language=='en'">{{items.title2}}</h2>
             </div>
@@ -24,7 +24,17 @@
                         <span *ngIf="language=='cn'">{{item.Name}}</span>
                     </a>
                 </li>
+                <li class="notdata" *ngIf="i==1 && items.TipsCountList.length<=0 || i==3 && items.TipsCountList.length<=0 || i==4 && items.TipsCountList.length<=0">
+                    <img src="/assets/images/notdata.png" alt="">
+                    <p *ngIf="language=='cn' && i==1 ">暂无定义外发工序！</p>
+                    <p *ngIf="language=='en' && i==1 ">Not define any process currently !</p>
+                    <p *ngIf="language=='cn' && i==3 ">暂无关键时间延误,再接再厉！</p>
+                    <p *ngIf="language=='en' && i==3 ">Not critical event delays,please continue !</p>
+                    <p *ngIf="language=='cn' && i==4 ">暂无进度延误！</p>
+                    <p *ngIf="language=='en' && i==4 ">Not process delays!</p>
+                </li>
             </ul>
+
         </div>
     </div>
 </div>

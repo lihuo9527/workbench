@@ -1,6 +1,6 @@
 <div class="container">
     <app-title *ngIf="Language=='en'" title="Line Product Type Summary"></app-title>
-    <app-title *ngIf="Language=='cn'" title="工厂当月生产线产品类别统计"></app-title>
-    <p class="row_title">Product line product category distribution</p>
+    <app-title *ngIf="Language=='cn'" title="工厂当天生产线产品类别统计"></app-title>
+    <!-- <p class="row_title">Product line product category distribution</p> -->
     <div echarts [options]="option" class="demo-chart"></div>
 </div>

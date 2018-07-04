@@ -113,15 +113,17 @@ export class DateComponent implements OnInit {
     }
     selectDate(index, day) {
         if (this.number == 2) {
-            this.nowdate = this.dates[index].year + "-" + this.dates[index].month + "-" + day;
-            this.backDate();
             if (day == "今天") day = this.today.getDate();
+            let month = this.dates[index].month < 10 ? "0" + this.dates[index].month : this.dates[index].month.toString();
+            let nowday = day < 10 ? "0" + day : day.toString();
+            // this.nowdate = this.dates[index].year + "-" + month + "-" + nowday;
+            this.backDate();
             if (day > 0) {
                 console.log(this.dates[index].year + "年" + this.dates[index].month + "月" + day + "日");
             } else {
                 return;
             }
-            let text = this.dates[index].year + "-" + this.dates[index].month + "-" + day;
+            let text = this.dates[index].year + "-" + month + "-" + nowday;
             if (this.start_date && this.start_date != text) {
                 let arr1 = new Date(this.start_date);
                 let arr2 = new Date(text);
@@ -130,22 +132,26 @@ export class DateComponent implements OnInit {
                     return;
                 }
                 console.log(arr1, arr2)
-                this.end_date = this.dates[index].year + "-" + this.dates[index].month + "-" + day
+                this.end_date = text;
                 this.backDate();
             } else if (!this.start_date && !this.end_date) {
                 this.state = !this.state;
                 if (day == "今天") day = this.today.getDate();
-                this.start_date = this.dates[index].year + "-" + this.dates[index].month + "-" + day
+                let month = this.dates[index].month < 10 ? "0" + this.dates[index].month : this.dates[index].month.toString();
+                let nowday = day < 10 ? "0" + day : day.toString();
+                this.start_date = this.dates[index].year + "-" + month + "-" + nowday;
             }
         } else if (this.number == 1) {
-            this.nowdate = this.dates[index].year + "-" + this.dates[index].month + "-" + day;
             if (day == "今天") day = this.today.getDate();
+            let month = this.dates[index].month < 10 ? "0" + this.dates[index].month : this.dates[index].month.toString();
+            let nowday = day < 10 ? "0" + day : day.toString();
+            // this.nowdate = this.dates[index].year + "-" + month + "-" + nowday;
             if (day > 0) {
-                console.log(this.dates[index].year + "年" + this.dates[index].month + "月" + day + "日");
+                console.log(this.dates[index].year + "年" + month + "月" + nowday + "日");
             } else {
                 return;
             }
-            this.start_date = this.dates[index].year + "-" + this.dates[index].month + "-" + day;
+            this.start_date = this.dates[index].year + "-" + month + "-" + nowday;
             setTimeout(() => this.backDate(), 500);
         }
 

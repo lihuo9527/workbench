@@ -10,14 +10,18 @@ export class SelectingSuppliersComponent implements OnInit {
 
     constructor(private service: AppService, private routerIonfo: ActivatedRoute, private router: Router) { }
     public Language;
-    public title;
-    public datas;
+    public datas: any = { result: { contactsList: [] } };
     public userface = [];
     public data;
+    public id = JSON.parse(localStorage.getItem("filter")).id;
+    public message = {
+        state: false,
+        btnText: "OK",
+        msg: ""
+    }
     ngOnInit() {
         this.data = JSON.parse(this.routerIonfo.snapshot.params["data"]);
         this.Language = localStorage.getItem("language");
-        this.title = "Selecting Suppliers";
         this.service.http_get('/api/OuterFactory/GetContacts', false).subscribe((data: any) => {
             if (data.msg == "success") {
                 this.datas = data;
@@ -43,7 +47,7 @@ export class SelectingSuppliersComponent implements OnInit {
         } else {
             this.userface.forEach((element, index) => {
                 if (user.uid == element.uid) {
-                    this.userface.splice(index,1);
+                    this.userface.splice(index, 1);
                     return;
                 }
             });
@@ -52,21 +56,34 @@ export class SelectingSuppliersComponent implements OnInit {
     }
     send() {
         let fids = [];
-        this.userface.forEach((element)=>{
+        this.userface.forEach((element) => {
             fids.push(element.uid);
         })
-        let option = {
-            totalCount:this.data.total,
-            startTime:this.data.date,
-            dayCount:this.data.dayAmount,
-            code:this.data.code,
-            ofids:fids
+        if (fids.length <= 0) {
+            this.alert("您还没有选择供应商！");
+            return;
         }
-        this.service.http_post("/api/OuterFactory/EntryPlan", option,false).subscribe((data:any)=>{
-            if(data.msg=="录入成功"){
-               window.history.go(-2);
+        let option = {
+            totalCount: this.data.total,
+            startTime: this.data.date,
+            dayCount: this.data.dayAmount,
+            code: this.data.code,
+            ofids: fids.toString(),
+            nodeId: this.id
+        }
+        this.service.http_post("/api/OuterFactory/EntryPlan", option, false).subscribe((data: any) => {
+            if (data.msg == "success") {
+                this.alert("录入成功！");
+                setTimeout(() => window.history.go(-2), 1500);
+            } else {
+                this.alert(data.msg);
             }
         })
+    }
+    alert(message) {
+        this.message.msg = message;
+        this.message.state = true;
+        this.message.btnText = "OK";
     }
 
 }

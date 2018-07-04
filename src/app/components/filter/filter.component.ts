@@ -8,7 +8,7 @@ import { AppService } from '../../app.service';
 export class FilterComponent implements OnInit {
     @Output() public envet: EventEmitter<any> = new EventEmitter<any>();
     @Input() public Info: string;
-    constructor(private service: AppService,) { }
+    constructor(private service: AppService, ) { }
     public allstate: boolean;
     public rowstate: boolean;
     public dateType: number;
@@ -16,15 +16,15 @@ export class FilterComponent implements OnInit {
     public datas: any = [
         { title: "Factory", title2: "工厂", rowstate: true, allstate: false, but: true, arrow: true, list: [] }
     ];
-    public today = new Date();
-    public t = this.today.getTime() - 1000 * 60 * 60 * 48;
-    public EndDate = this.today.toLocaleDateString();
-    public StartDate = new Date(this.t).toLocaleDateString();
+    public EndDate;
+    public StartDate;
     public Language;
     public floors = JSON.parse(localStorage.getItem("floors"));
     public dateshow = true;
+    public local;
     ngOnInit() {
         this.Language = localStorage.getItem("language");
+        this.local = JSON.parse(localStorage.getItem("filter"));
         console.log("INfo", this.Info)
         if (this.Info == "delay") {
             this.dateshow = false;
@@ -42,9 +42,14 @@ export class FilterComponent implements OnInit {
                 }
             })
         } else {
+            this.StartDate = this.local.start;
+        }
+        if (this.Info == "delay" || this.Info == "material") {
+            this.dateshow = false;
+        } else {
+            this.EndDate = this.local.end;
             this.datas = JSON.parse(localStorage.getItem("datas"));
         }
-        if (this.Info == "delay" || this.Info == "material") this.dateshow = false;
     }
     Back() {
         //filter过渡动漫
@@ -72,17 +77,21 @@ export class FilterComponent implements OnInit {
         }
         if (item.title == "Factory" && !allstate && this.Info != "delay") {
             //关联全部工厂添加车间
-            this.datas[1].list = [];
-            this.floors.forEach((element) => {
-                element.data.forEach(el => {
-                    this.datas[1].list.push(el);
+            if (this.local.id != 0 && this.local.index == 0 && this.local.id != 2 || this.local.index != 0) {
+                this.datas[1].list = [];
+                this.floors.forEach((element) => {
+                    element.data.forEach(el => {
+                        this.datas[1].list.push(el);
+                    });
                 });
-            });
+            }
         }
         if (item.title == "Factory" && allstate && this.Info != "delay") {
             //关联全部工厂删除车间
-            this.datas[i + 1].allstate = false;
-            this.datas[i + 1].list = [];
+            if (this.local.id != 0 && this.local.index == 0 && this.local.id != 2 || this.local.index != 0) {
+                this.datas[i + 1].allstate = false;
+                this.datas[i + 1].list = [];
+            }
         }
     }
 
@@ -120,33 +129,35 @@ export class FilterComponent implements OnInit {
     }
     complete() {
         let obj: any = {};
-        let local = JSON.parse(localStorage.getItem("filter"));
         let fids = [];
         let wsids = [];
         if (this.Info != "delay" && this.Info != "material") {
             this.datas[0].list.forEach((element, i) => {
                 if (element.state == true) fids.push(element.id);
             });
-            this.datas[1].list.forEach((element, i) => {
-                if (element.state == true) wsids.push(element.id);
-
-            });
             obj['start'] = this.StartDate;
             obj['end'] = this.EndDate;
-            obj['id'] = local.id;
-            if (wsids.toString()) obj['wsids'] = wsids.toString();
+            obj['id'] = this.local.id;
+            obj['index'] = this.local.index;
+            if (this.local.index == 1 || this.local.index == 0 && this.local.id == 1) {
+                this.datas[1].list.forEach((element, i) => {
+                    if (element.state == true) wsids.push(element.id);
+
+                });
+                if (wsids.toString()) obj['wsids'] = wsids.toString();
+            }
             if (fids.toString()) obj['fids'] = fids.toString();
-            if (local.input) obj['input'] = local.input;
-            if (local.id == 0) {
+            if (this.local.input) obj['input'] = this.local.input;
+            if (this.local.id == 0 && this.local.index == 0) {
                 let eventid = [];
                 //关键事件
-                this.datas[2].list.forEach(element => {
+                this.datas[1].list.forEach(element => {
                     if (element.state == true) eventid.push(element.id);
                 });
-                if (this.dateType >= 0 && this.datas[3].list[this.dateType].state) obj['dateType'] = this.dateType;
+                if (this.dateType >= 0) obj['dateType'] = this.dateType;
                 if (eventid.toString()) obj['eventid'] = eventid.toString();
             }
-            if (local.id == 1) {
+            if (this.local.id == 1 && this.local.index == 0) {
                 //每日进度
                 let styles = [];
                 this.datas[2].list.forEach((element, i) => {
@@ -154,16 +165,16 @@ export class FilterComponent implements OnInit {
                 });
                 if (styles.toString()) obj['styles'] = styles.toString();
             }
-            if (local.id == 2) {
+            if (this.local.id == 2 && this.local.index == 0) {
                 //非排产工序
                 let process = [];
                 this.datas[2].list.forEach(element => {
                     if (element.state == true) process.push(element.id);
                 });
-                if (this.dateType >= 0 && this.datas[3].list[this.dateType].state) obj['dateType'] = this.dateType;
+                if (this.dateType >= 0) obj['dateType'] = this.dateType;
                 if (process.toString()) obj['process'] = process.toString();
             }
-            if (local.id >= 5) {
+            if (this.local.id >= 0 && this.local.index == 1) {
                 //外发工序
                 let styles = [];
                 this.datas[2].list.forEach(element => {
@@ -171,19 +182,19 @@ export class FilterComponent implements OnInit {
                 });
                 if (styles.toString()) obj['styles'] = styles.toString();
             }
-        } else if(this.Info == "delay"){
+        } else if (this.Info == "delay") {
             this.datas[0].list.forEach((element, i) => {
                 if (element.state == true) fids.push(element.id);
             });
-            if (local.input) obj['input'] = local.input;
+            if (this.local.input) obj['input'] = this.local.input;
             if (fids.toString()) obj['fids'] = fids.toString();
 
-        }else if(this.Info == "material"){
+        } else if (this.Info == "material") {
             let type;
             if (this.datas[0].list[0].state && this.datas[0].list[1].state || !this.datas[0].list[0].state && !this.datas[0].list[1].state) type = -1;
             if (this.datas[0].list[0].state && this.datas[0].list[1].state == false) type = 1;
             if (this.datas[0].list[0].state == false && this.datas[0].list[1].state) type = 0;
-            if (local.input) obj['input'] = local.input;
+            if (this.local.input) obj['input'] = this.local.input;
             if (type.toString()) obj['type'] = type.toString();
         }
         console.log(JSON.stringify(obj))

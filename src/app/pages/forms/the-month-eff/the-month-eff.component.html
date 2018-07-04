@@ -1,6 +1,5 @@
 <div class="container">
     <app-title *ngIf="Language=='en'" title="Factory Eff% By Current Monthly"></app-title>
     <app-title *ngIf="Language=='cn'" title="当月工厂效率汇总统计"></app-title>
-    <p class="row_title">Factory production efficiency statistics in April 2018</p>
     <div echarts [options]="option" class="demo-chart"></div>
 </div>

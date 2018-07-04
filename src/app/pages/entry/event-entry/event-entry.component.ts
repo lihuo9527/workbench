@@ -36,17 +36,17 @@ export class EventEntryComponent implements OnInit {
             "PoId": this.data.id,
             "Events": []
         };
-        for (let i = 0; i < this.list.length; i++) {
+        this.list.forEach(element => {
             let json = {};
-            json["EventId"] = this.list[i].id;
-            json["ExpectTime"] = this.list[i].startdate;
-            json["EndTime"] = this.list[i].enddate;
+            json["EventFlowNodeId"] = element.eventflownodeid;
+            json["ExpectTime"] = element.startdate;
+            json["EndTime"] = element.enddate;
             data.Events.push(json);
-        }
+        });
         this.service.http_post('/api/Schedule/UpdateEventsDate', data, false).subscribe((data: any) => {
             if (data.IsSuccess == 1) this.alert("保存成功！");
             console.log(data);
-        },error=>{
+        }, error => {
             this.alert("保存失败！");
         })
     }

@@ -1,8 +1,8 @@
 <div class="container">
-    <app-title *ngIf="Language=='en'" title="Delivery Delay" [link]="Link"></app-title>
-    <app-title *ngIf="Language=='cn'" title="交期延误订单" [link]="Link"></app-title>
-    <app-search-box (OutputValue)='UpdateList()'></app-search-box>
-    <app-filter Info="delay" (envet)="UpdateList($event)"></app-filter>
+    <app-title *ngIf="language=='en'" title="Delivery Delay" [link]="link"></app-title>
+    <app-title *ngIf="language=='cn'" title="交期延误订单" [link]="link"></app-title>
+    <app-search-box (OutputValue)='updateList()'></app-search-box>
+    <app-filter Info="delay" (envet)="updateList($event)"></app-filter>
     <app-tabs [tabs]="tabs" (indexchange)="showIndex($event)"></app-tabs>
     <div class="box">
         <div class="box_row" *ngFor="let item of datas;let i=index;">
@@ -13,38 +13,38 @@
                 <li class="row left">
                     <div class="other">
                         <p>{{item.StartTime}}</p>
-                        <span *ngIf="Language=='en'">Recommended date</span>
-                        <span *ngIf="Language=='cn'">开始日期</span>
+                        <span *ngIf="language=='en'">Start Date</span>
+                        <span *ngIf="language=='cn'">开始日期</span>
                         <p>{{item.pattern}}</p>
-                        <span *ngIf="Language=='en'">Fty Style</span>
-                        <span *ngIf="Language=='cn'">本厂款号</span>
+                        <span *ngIf="language=='en'">Fty Style</span>
+                        <span *ngIf="language=='cn'">本厂款号</span>
                     </div>
                 </li>
                 <li class="row center">
                     <div class="other center">
                         <div class="slightDelay">
                             <div class="delay_box">
-                                <span *ngIf="Language=='en'">{{item.DelayDays}} Days </span>
-                                <span *ngIf="Language=='cn'">{{item.DelayDays}} 天</span>
-                                <span *ngIf="Language=='en'">Delay</span>
-                                <span *ngIf="Language=='cn'">延误</span>
+                                <span *ngIf="language=='en'">{{item.DelayDays}} Days </span>
+                                <span *ngIf="language=='cn'">{{item.DelayDays}} 天</span>
+                                <span *ngIf="language=='en'">Delay</span>
+                                <span *ngIf="language=='cn'">延误</span>
                             </div>
                         </div>
                     </div>
                 </li>
                 <li class="row right">
                     <div class="other">
+                        <p>{{item.EndTime}}</p>
+                        <span *ngIf="language=='en'">End Date</span>
+                        <span *ngIf="language=='cn'">结束日期</span>
                         <p>{{item.DeliveryDate}}</p>
-                        <span *ngIf="Language=='en'">Delivery date</span>
-                        <span *ngIf="Language=='cn'">结束日期</span>
-                        <p>{{item.FactoryDelivery}}</p>
-                        <span *ngIf="Language=='en'">FactoryDelivery Date</span>
-                        <span *ngIf="Language=='cn'">交货期</span>
+                        <span *ngIf="language=='en'">DeliveryDate Date</span>
+                        <span *ngIf="language=='cn'">交货期</span>
                     </div>
                 </li>
             </ul>
         </div>
     </div>
-    <app-load-more *ngIf="datas.length>3" [language]="Language" (click)="UpdateList()"></app-load-more>
+    <app-load-more *ngIf="datas.length>3" [language]="language" (click)="updateList()"></app-load-more>
     <p *ngIf="datas.length==0" style="color:#fff;background:#b8b8b8;text-align: center; height:3rem;line-height:3rem;">目前没有查询到更多消息！</p>
 </div>

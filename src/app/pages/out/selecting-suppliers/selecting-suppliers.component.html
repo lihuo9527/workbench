@@ -1,6 +1,6 @@
 <div class="container">
-    <app-title *ngIf="Language=='en'" [title]="title"></app-title>
-    <app-title *ngIf="Language=='cn'" [title]="title"></app-title>
+    <app-title *ngIf="Language=='en'" title="Selecting Suppliers"></app-title>
+    <app-title *ngIf="Language=='cn'" title="选择供应商"></app-title>
     <div style="display: flex;background: #fff;margin-top:0.5rem; ">
         <div class="imgs">
             <div style="display: flex;padding-left:0.5rem;padding-right: 0.5rem; " *ngFor="let item of userface;">
@@ -12,12 +12,13 @@
             <button (click)="send()">确定&nbsp;({{userface.length}})</button>
         </div>
     </div>
-    <div class="items">
-        <p style="padding: 1rem;"> My Enterprise</p>
+    <div class="items" *ngIf="datas.result.contactsList.length>0">
+        <p style="padding: 1rem;" *ngIf="Language=='en'"> My Enterprise</p>
+        <p style="padding: 1rem;" *ngIf="Language=='cn'"> 我的企业</p>
         <div class="row" *ngFor="let item of datas.result.contactsList;let i = index;" (click)="show(item,i)">
             <div class="group">
                 <p [ngClass]="{'rows_on':item.state,'rows_off':!item.state}">
-                    {{item.role}} &nbsp; ({{item.contacts.length}})
+                    {{item.role}} &nbsp; ({{item.count}})
                 </p>
             </div>
             <div *ngIf="item.state">
@@ -40,7 +41,7 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
+    <app-message-box [msg]="message.msg" (event)="message.state=false" [btnText]="message.btnText" [msgShow]="message.state"></app-message-box>
 </div>

@@ -68,7 +68,7 @@ export class TheMonthEffComponent implements OnInit {
 
                         },
                         type: 'value',
-                        name: '效率',
+                        name: '效率(%)',
                         min: 0,
                         max: 200,
                         position: 'left',

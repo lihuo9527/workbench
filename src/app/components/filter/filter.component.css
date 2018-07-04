@@ -121,7 +121,7 @@
 }
 
 #filter .list {
-    overflow: hidden;
+    overflow: auto;
     padding: 0;
     max-height: 120px;
 }

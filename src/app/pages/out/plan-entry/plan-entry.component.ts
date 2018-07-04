@@ -19,12 +19,18 @@ export class PlanEntryComponent implements OnInit {
     public total2;
     public dayAmount;
     public Plan = { "msg": "", "result": { "sumBackFactory": "", "dayCount": "", "canDayCount": "", "supplier": "", "produceTime": "", "recording": [], "startTime": "", "totalCount": "", "sumOutgoingCount": "" }, "status": "" };
+    public message = {
+        state: false,
+        btnText: "OK",
+        msg: ""
+    }
     ngOnInit() {
         this.Language = localStorage.getItem("language");
         this.datas = JSON.parse(this.routerIonfo.snapshot.params["data"]);
         this.title = this.datas.title;
         this.data = this.datas.data;
         console.log(this.datas);
+        if (this.Language == "cn") this.date = "请选择开始时间";
         this.getPlan();
 
     }
@@ -57,7 +63,7 @@ export class PlanEntryComponent implements OnInit {
         if (this.total > 0 && this.dayAmount > 0 && parseInt(this.date) > 0) {
             this.router.navigate(['selectingSuppliers', JSON.stringify({ total: this.total, date: this.date, dayAmount: this.dayAmount, code: this.data.code })])
         } else {
-            alert("请填写完整信息！")
+            this.alert("请填写完整信息！")
         }
     }
     submit() {
@@ -66,9 +72,11 @@ export class PlanEntryComponent implements OnInit {
             this.service.http_post("/api/OuterFactory/EntryDayOutSchedule", option, false, "form").subscribe((data: any) => {
                 if (data.msg == "success") {
                     this.getPlan();
-                    alert("录入成功")
+                    this.alert("录入成功!")
                 }
             })
+        }else{
+
         }
     }
     backDate($event) {
@@ -83,9 +91,14 @@ export class PlanEntryComponent implements OnInit {
         let option = 'planId=' + item.planId + "&status=" + state;
         this.service.http_post('/api/OuterFactory/ModifyPlanStatus', option, false, "form").subscribe((data: any) => {
             item.isEnd = state;
-            alert("修改成功！")
+            this.alert("修改成功！")
             console.log(this.data)
         })
 
+    }
+    alert(message) {
+        this.message.msg = message;
+        this.message.state = true;
+        this.message.btnText = "OK";
     }
 }

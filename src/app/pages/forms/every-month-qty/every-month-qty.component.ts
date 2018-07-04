@@ -13,7 +13,6 @@ export class EveryMonthQtyComponent implements OnInit {
     public option;
     ngOnInit() {
         this.Language = localStorage.getItem("language");
-        this.Language = localStorage.getItem("language");
         this.service.http_get('/api/Monitor/GetChartData?vrpcode=RPT105', false).subscribe((data: any) => {
             let titles = [];
             let bar = [];
@@ -40,7 +39,7 @@ export class EveryMonthQtyComponent implements OnInit {
                     y2: 140
                 },
                 legend: {
-                    data: ['效率', '产量'],
+                    data: ['耗时', '产量'],
                     top: "0",
                 },
                 xAxis: [{
@@ -67,9 +66,8 @@ export class EveryMonthQtyComponent implements OnInit {
 
                     },
                     type: 'value',
-                    name: '效率',
+                    name: '耗时(h)',
                     min: 0,
-                    max: 200,
                     position: 'left',
                     axisLabel: {
                         formatter: '{value}'
@@ -88,9 +86,9 @@ export class EveryMonthQtyComponent implements OnInit {
                     position: 'right'
                 }],
                 series: [{
-                    name: '效率',
+                    name: '耗时',
                     type: 'line',
-                    stack: '效率',
+                    stack: '耗时',
                     itemStyle: {
                         color: "#3384d5"
                     },

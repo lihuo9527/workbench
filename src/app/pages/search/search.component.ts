@@ -34,7 +34,6 @@ export class SearchComponent implements OnInit {
         if (this.index == 0 && this.id == '0') {
             this.datas = [
                 { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 { title: "Critical Event", title2: "关键事件", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 {
                     title: "Date", title2: "日期", rowstate: true, allstate: false, but: false, arrow: false,
@@ -58,7 +57,6 @@ export class SearchComponent implements OnInit {
         if (this.index == 0 && this.id == '2') {
             this.datas = [
                 { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 { title: "Process", title2: "工序", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 {
                     title: "Date", title2: "日期", rowstate: true, allstate: false, but: false, arrow: false, list: [
@@ -111,9 +109,19 @@ export class SearchComponent implements OnInit {
 
         if (this.id >= 0) {
             let url: string;
-            if (this.index == 1 || this.index == 0 || this.id == 1) url = '/api/BaseData/GetProductTypes';
-            if (this.index == 0 || this.id == 0) url = '/api/BaseData/GetEvents';
-            if (this.index == 0 || this.id == 2) url = '/api/BaseData/GetProcesses';
+            let i = 1;
+            if (this.index == 1 || this.index == 0 && this.id == 1) {
+                i = 2;
+                url = '/api/BaseData/GetProductTypes';
+            }
+            if (this.index == 0 && this.id == 0) {
+                url = '/api/BaseData/GetEvents';
+
+            }
+            if (this.index == 0 && this.id == 2) {
+                url = '/api/BaseData/GetProcesses';
+
+            }
             console.log(url)
             this.service.http_get(url, false).subscribe((data: any) => {
                 if (data.length > 0) {
@@ -124,7 +132,7 @@ export class SearchComponent implements OnInit {
                             'text2': element.itemName,
                             'state': false
                         };
-                        this.datas[2].list.push(json);
+                        this.datas[i].list.push(json);
                     });
 
                 }
@@ -138,16 +146,20 @@ export class SearchComponent implements OnInit {
             this.datas[i].list[b].state = this.datas[i].allstate;
         }
         if (item.title == "Factory" && !allstate) {
-            this.datas[1].list = [];
-            this.floors.forEach((element) => {
-                element.data.forEach(el => {
-                    this.datas[1].list.push(el);
+            if (this.id != 0 && this.index == 0 && this.id != 2 || this.index != 0) {
+                this.datas[1].list = [];
+                this.floors.forEach((element) => {
+                    element.data.forEach(el => {
+                        this.datas[1].list.push(el);
+                    });
                 });
-            });
+            }
         }
         if (item.title == "Factory" && allstate) {
-            this.datas[i + 1].allstate = false;
-            this.datas[i + 1].list = [];
+            if (this.id != 0 && this.index == 0 && this.id != 2 || this.index != 0) {
+                this.datas[i + 1].allstate = false;
+                this.datas[i + 1].list = [];
+            }
         }
     }
     change(obj, index, items, n1) {
@@ -200,17 +212,19 @@ export class SearchComponent implements OnInit {
             if (element.state == true) fids.push(element.id);
         });
         let wsids = [];
-        this.datas[1].list.forEach((element, i) => {
-            if (element.state == true) wsids.push(element.id);
+        if (this.index == 1 || this.index == 0 && this.id == 1) {
+            this.datas[1].list.forEach((element, i) => {
+                if (element.state == true) wsids.push(element.id);
 
-        });
+            });
+        }
         if (this.id == 0 && this.index == 0) {
             //关键事件
             let events = [];
-            this.datas[2].list.forEach(element => {
+            this.datas[1].list.forEach(element => {
                 if (element.state == true) events.push(element.id);
             });
-            localStorage.setItem("filter", JSON.stringify({ 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, "dateType": this.dateType, 'fids': fids.toString(), 'wsids': wsids.toString(), eventid: events.toString() }));
+            localStorage.setItem("filter", JSON.stringify({ 'index': this.index, 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, "dateType": this.dateType, 'fids': fids.toString(), eventid: events.toString() }));
             this.router.navigate(['criticalEvent']);
         }
         if (this.id == 1 && this.index == 0) {
@@ -219,17 +233,17 @@ export class SearchComponent implements OnInit {
             this.datas[2].list.forEach(element => {
                 if (element.state == true) styles.push(element.id);
             });
-            localStorage.setItem("filter", JSON.stringify({ 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, "styles": styles.toString(), 'fids': fids.toString(), 'wsids': wsids.toString() }));
+            localStorage.setItem("filter", JSON.stringify({ 'index': this.index, 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, "styles": styles.toString(), 'fids': fids.toString(), 'wsids': wsids.toString() }));
             this.router.navigate(['productionDailyProgress']);
         }
 
         if (this.id == 2 && this.index == 0) {
             //非排产工序
             let process = [];
-            this.datas[2].list.forEach(element => {
+            this.datas[1].list.forEach(element => {
                 if (element.state == true) process.push(element.id);
             });
-            localStorage.setItem("filter", JSON.stringify({ 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, "process": process.toString(), 'fids': fids.toString(), 'wsids': wsids.toString(), "dateType": this.dateType }));
+            localStorage.setItem("filter", JSON.stringify({ 'index': this.index, 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, "process": process.toString(), 'fids': fids.toString(), "dateType": this.dateType }));
             this.router.navigate(['nonPlaningProcess']);
         };
         if (this.index == 1) {
@@ -238,7 +252,7 @@ export class SearchComponent implements OnInit {
             this.datas[2].list.forEach(element => {
                 if (element.state == true) styles.push(element.id);
             });
-            localStorage.setItem("filter", JSON.stringify({ 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, 'styles': styles.toString() }));
+            localStorage.setItem("filter", JSON.stringify({ 'index': this.index, 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, 'styles': styles.toString() }));
             console.log("fids:" + fids)
             this.router.navigate(['outProcess', this.title]);
         }

@@ -12,9 +12,11 @@
                 </div>
                 <ul class="list" *ngIf="item.rowstate">
                     <li (click)="change(arr,b,item,i)" *ngFor="let arr of item.list;let b=index;" [ngClass]="{'on':arr.state}">
-                        <span>  {{arr.text}}</span>
+                        <span *ngIf="Language=='en'">  {{arr.text}}</span>
+                        <span *ngIf="Language=='cn'">  {{arr.text2}}</span>
+                    </li>
                 </ul>
-                </li>
+            </li>
         </ul>
         <div class="date_container" *ngIf="dateshow">
             <div class="date_item">

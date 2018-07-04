@@ -62,7 +62,7 @@ export class TypeSummaryComponent implements OnInit {
                 },
                 series: [
                     {
-                        name: '访问来源',
+                        name: '',
                         type: 'pie',
                         hoverAnimation: false,
                         legendHoverLink: false,
@@ -89,7 +89,7 @@ export class TypeSummaryComponent implements OnInit {
                         data: obj2
                     },
                     {
-                        name: '访问来源',
+                        name: '',
                         type: 'pie',
                         radius: ['30%', '55%'],
                         center:['50%','25%'],

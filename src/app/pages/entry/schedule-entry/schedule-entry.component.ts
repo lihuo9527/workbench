@@ -114,7 +114,11 @@ export class ScheduleEntryComponent implements OnInit {
                 if (this.processId) {
                     console.log(this.processId)
                     this.service.http_post('/api/Schedule/AddScheduleDaily', JSON.stringify(data), false).subscribe((data: any) => {
-                        if (data.IsSuccess == 1) this.alert("保存成功！")
+                        if (data.IsSuccess == 1) {
+                            this.alert("保存成功！");
+                        } else {
+                            this.alert(data.ErrMessage);
+                        }
                         console.log(data);
                     }, error => {
                         this.alert("提交失败！");
@@ -127,7 +131,11 @@ export class ScheduleEntryComponent implements OnInit {
                 if (this.processId) {
                     let data = "processId=" + this.processId + "&poId=" + this.data.id + "&proDate=" + this.date + "&amount=" + this.number;
                     this.service.http_post('/api/Schedule/AddScheduleByPo', data, false, "form").subscribe((data: any) => {
-                        if (data.IsSuccess == 1) this.alert("保存成功！")
+                        if (data.IsSuccess == 1) {
+                            this.alert("保存成功！");
+                        } else {
+                            this.alert(data.ErrMessage);
+                        }
                         console.log(data);
                     }, error => {
                         this.alert("提交失败！");
@@ -155,7 +163,7 @@ export class ScheduleEntryComponent implements OnInit {
                             let json = {
                                 "Color": element.Color,
                                 "Size": el.Size,
-                                "Amount": el.Amount
+                                "Amount": parseInt(el.Amount)
                             };
                             data.ProDatas.push(json);
                         }
@@ -163,14 +171,22 @@ export class ScheduleEntryComponent implements OnInit {
                 });
                 console.log(JSON.stringify(this.color_tabs))
                 this.service.http_post('/api/Schedule/AddPlanScheduleDaily', JSON.stringify(data), false).subscribe((data: any) => {
-                    if (data.IsSuccess == 1) this.alert("保存成功！");
+                    if (data.IsSuccess == 1) {
+                        this.alert("保存成功！");
+                    } else {
+                        this.alert(data.ErrMessage);
+                    }
                 }, error => {
                     this.alert("提交失败！");
                 })
             } else {
                 let data = "ProductionEventId=" + this.data.ProductionEventID + "&lineId=" + this.data.LineID + "&poId=" + this.data.id + "&proDate=" + this.date + "&amount=" + this.number;
                 this.service.http_post('/api/Schedule/AddPlanScheduleByPo', data, false, "form").subscribe((data: any) => {
-                    if (data.IsSuccess == 1) this.alert("保存成功！");
+                    if (data.IsSuccess == 1) {
+                        this.alert("保存成功！");
+                    } else {
+                        this.alert(data.ErrMessage);
+                    }
                 }, error => {
                     this.alert("提交失败！");
                 })

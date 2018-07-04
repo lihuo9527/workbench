@@ -25,15 +25,16 @@ export class HomeComponent implements OnInit {
         },
         {
             title: "Delivery Delay", title2: "交期延误单", TodayHandledCount: "0", TipsCountList: [
-                { Url: "/assets/images/ico_21.png", Text: "Urgency", Name: "紧急单", Link: "/deliverDelay", Id: "0", Amount: "0" },
+                { Url: "/assets/images/ico_23.png", Text: "General", Name: "普通单", Link: "/deliverDelay", Id: "0", Amount: "0" },
                 { Url: "/assets/images/ico_22.png", Text: "Important", Name: "重要单", Link: "/deliverDelay", Id: "1", Amount: "0" },
-                { Url: "/assets/images/ico_23.png", Text: "General", Name: "普通单", Link: "/deliverDelay", Id: "2", Amount: "0" }]
+                { Url: "/assets/images/ico_21.png", Text: "Urgency", Name: "紧急单", Link: "/deliverDelay", Id: "2", Amount: "0" }
+            ]
         },
         {
             title: "Critical Event Delay", title2: "关键事件延误", TodayHandledCount: "0", TipsCountList: []
         },
         {
-            title: "Process Delay", title2: "进度延误", TodayHandledCount: "0", TipsCountList: []
+            title: "Process Delay", title2: "工序延误", TodayHandledCount: "0", TipsCountList: []
         },
         {
             title: "Material Delay", title2: "物料延误", TodayHandledCount: "0", TipsCountList: [
@@ -78,7 +79,7 @@ export class HomeComponent implements OnInit {
         }
     }
     link(item, items, index) {
-        console.log("index",index, item.Id);
+        console.log("index", index, item.Id);
         if (index == 0 && item.Id == "3") {
             this.router.navigate([item.Link])
             return;
@@ -89,19 +90,31 @@ export class HomeComponent implements OnInit {
 
     }
     accessControl(obj) {
-        let time: number = 2 * 60 * 6000 * 100000;
         if (obj.cookies()) {
-            this.cookieService.set('JSESSIONID', obj.cookies(), new Date(new Date().getTime() + time));
+            let exdate = new Date();
+            exdate.setDate(exdate.getDate() + 2000);
+            this.clearAllCookie();
+            this.cookieService.set('JSESSIONID', obj.cookies(), exdate);
+            // alert(obj.cookies());
+            // alert("已经写入：" + this.cookieService.get('JSESSIONID'));
         }
-        if (!obj.defaultCompany() || obj.typeCode() == "provider" || obj.typeCode() == "customor" || !obj.typeCode() || obj.defaultCompany() == 'null' || obj.typeCode() == 'null') {
+        if (!obj.defaultCompany() || obj.typeCode() == "provider" || obj.typeCode() == "customor" || !obj.typeCode() || obj.defaultCompany() == 'null' || obj.typeCode() == 'null' || obj.typeCode() == 'outsourcing') {
             this.router.navigate(['not-bind']);
             return true;
         }
-        if (obj.defaultCompany() && obj.typeCode() == "outsourcing") {
+        if (obj.defaultCompany() && obj.typeCode() == "outsourcing_provider") {
             this.router.navigate(['outSourcing']);
             return true;
         }
         return false;
     }
+    clearAllCookie() {
+        let keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+        if (keys) {
+            for (let i = keys.length; i--;)
+                document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
+        }
+    }
+
 
 }

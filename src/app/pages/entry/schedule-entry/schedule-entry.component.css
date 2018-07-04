@@ -171,36 +171,18 @@ td input {
     font-size: 1.2rem;
 }
 
-.cn_off {
-    margin-right: 1.5rem;
-    background: url(/assets/images/cn_off.png) no-repeat right;
-    background-size: 5rem;
-    width: 5rem;
-    height: 2rem;
-}
-
-.cn_on {
-    margin-right: 1.5rem;
-    background: url(/assets/images/cn_on.png) no-repeat right;
-    background-size: 5rem;
-    width: 5rem;
-    height: 2rem;
-}
-
-.en_off {
-    margin-right: 1.5rem;
-    background: url(/assets/images/filter_off.png) no-repeat right;
+.off {
+    background: url(/assets/images/off.png) no-repeat right;
     background-size: 4rem;
     width: 4rem;
-    height: 2rem;
+    height: 2.2rem;
 }
 
-.en_on {
-    margin-right: 1.5rem;
-    background: url(/assets/images/filter_on.png) no-repeat right;
+.on {
+    background: url(/assets/images/on.png) no-repeat right;
     background-size: 4rem;
     width: 4rem;
-    height: 2rem;
+    height: 2.2rem;
 }
 
 .non-process {

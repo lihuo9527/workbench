@@ -19,8 +19,8 @@ export class DeliverDelayComponent implements OnInit {
     ];
     public datas: any = [];
     public id;
-    public Language;
-    public Link;
+    public language;
+    public link;
     public state;
     public index;
     ngOnInit() {
@@ -28,18 +28,18 @@ export class DeliverDelayComponent implements OnInit {
         console.log(this.service.get_params());
         console.log('进入')
         let navid;
-        this.Link = this.routerIonfo.snapshot.params["id"] == "all" ? ['/all', "3"] : ['/home'];
+        this.link = this.routerIonfo.snapshot.params["id"] == "all" ? ['/all', "3"] : ['/home'];
         navid = this.routerIonfo.snapshot.params["id"] != "all" ? this.routerIonfo.snapshot.params["id"] : "0";
-        this.Language = localStorage.getItem("language");
-        if (this.Language == "cn") {
-            this.tabs[0].text = "紧急";
+        this.language = localStorage.getItem("language");
+        if (this.language == "cn") {
+            this.tabs[0].text = "普通";
             this.tabs[1].text = "重要";
-            this.tabs[2].text = "普通";
+            this.tabs[2].text = "紧急";
         }
         this.showIndex(navid);
     }
 
-    UpdateList($event?) {
+    updateList($event?) {
         if (this.index != undefined) {
             if (this.index == "0") this.id = "6";
             if (this.index == "1") this.id = "8";
@@ -70,7 +70,7 @@ export class DeliverDelayComponent implements OnInit {
         }
         this.datas = [];
         this.index = index;
-        this.UpdateList();
+        this.updateList();
     }
     enterEdit(i) {
         this.router.navigate(['/eventDelayEdit', JSON.stringify(this.datas[i])]);

@@ -52,23 +52,30 @@
         </li>
     </ul>
     <div *ngIf="data.plan=='No'" class="submit_form">
-        <p class="form_title"> Plan Requirements</p>
+        <p class="form_title" *ngIf="Language=='en'"> Plan Requirements</p>
+        <p class="form_title" *ngIf="Language=='cn'"> 计划要求</p>
         <p class="form_row">
-            <span>Amount</span>
-            <input type="text" name="total" [(ngModel)]="total" placeholder="input completed qty">
+            <span *ngIf="Language=='en'">Total Amount</span>
+            <span *ngIf="Language=='cn'">总数量</span>
+            <input *ngIf="Language=='cn'" type="text" name="total" [(ngModel)]="total" placeholder="输入数量">
+            <input *ngIf="Language=='en'" type="text" name="total" [(ngModel)]="total" placeholder="input qty">
         </p>
         <p class="form_row" (click)="state=true">
-            <span>Start</span>
+            <span *ngIf="Language=='en'">Start</span>
+            <span *ngIf="Language=='cn'">开始日期</span>
             <i class="date">{{date}}</i>
         </p>
         <p class="form_row">
-            <span>Daily Quantity</span>
-            <input type="text" [(ngModel)]="dayAmount" placeholder="input completed qty">
+            <span *ngIf="Language=='en'">Daily Quantity</span>
+            <span *ngIf="Language=='cn'">每日数量</span>
+            <input *ngIf="Language=='en'" type="text" [(ngModel)]="dayAmount" placeholder="input qty">
+            <input *ngIf="Language=='cn'" type="text" [(ngModel)]="dayAmount" placeholder="输入数量">
         </p>
     </div>
 
     <div *ngIf="data.plan=='Yes'">
-        <p class="row_title"> Plan Requirements</p>
+        <p class="row_title" *ngIf="Language=='en'"> Plan Requirements</p>
+        <p class="row_title" *ngIf="Language=='cn'"> 计划要求</p>
         <ul class="items">
             <li class="row">
                 <div class="other">
@@ -153,4 +160,5 @@
         <button class="end" *ngIf="Language=='en'" (click)="change(data)">Cancel the end</button>
     </div>
     <app-date *ngIf="state" number="1" (submit)="backDate($event)"></app-date>
+    <app-message-box [msg]="message.msg" (event)="message.state=false" [btnText]="message.btnText" [msgShow]="message.state"></app-message-box>
 </div>

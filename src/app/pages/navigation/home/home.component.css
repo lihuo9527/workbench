@@ -154,3 +154,26 @@ h2 {
 .list_title {
     margin-top: 1rem;
 }
+
+.notdata {
+    display: flex !important;
+    flex: 0 0 100% !important;
+    justify-content: center;
+    align-items: center;
+    flex-flow: wrap;
+    margin-top: 0 !important;
+    height: 8rem !important;
+}
+
+.notdata img {
+    width: 10rem;
+}
+
+.notdata p {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    flex: 0 0 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
