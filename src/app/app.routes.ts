@@ -111,11 +111,11 @@ export const appRoutes = [
         component: OutSourcingComponent,
     },
     {
-        path: 'unanswered',
+        path: 'unanswered/:id',
         component: UnansweredComponent,
     },
     {
-        path: 'unfinished',
+        path: 'unfinished/:id',
         component: UnfinishedComponent,
     },
     {

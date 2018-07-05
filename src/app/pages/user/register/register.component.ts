@@ -8,7 +8,7 @@ import { AppService } from '../../../app.service';
 export class RegisterComponent implements OnInit {
 
     constructor(private service: AppService) { }
-    public Language;
+    public language;
     public state = false;
     public username;
     public password;
@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
         msg: ""
     }
     ngOnInit() {
-        this.Language = localStorage.getItem("language");
+        this.language = localStorage.getItem("language");
     }
     ngAfterViewInit() {
 
@@ -36,28 +36,23 @@ export class RegisterComponent implements OnInit {
     lookEnd() {
         document.querySelector('#password')['type'] = "password";
     }
-    alert(message) {
-        this.message.msg = message;
-        this.message.state = true;
-        this.message.btnText = "OK";
-    }
     register() {
-        let reg=/^[a-zA-Z0-9]{1,20}$/;
+        let reg = /^[a-zA-Z0-9]{1,20}$/;
         if (!this.username || !this.password) {
-            this.alert("用户名或密码不能为空！")
+            this.service.messageBox(this.message, "用户名或密码不能为空！")
             return;
         }
         if (!reg.test(this.username)) {
-            this.alert("输入的用户名不合法！")
+            this.service.messageBox(this.message, "输入的用户名不合法！")
             return;
 
         }
         if (this.service.getStrLength(this.password) < 6) {
-            this.alert("密码长度不能少于6位！")
+            this.service.messageBox(this.message, "密码长度不能少于6位！")
             return;
         }
         if (this.password != this.password2) {
-            this.alert("密码2次输入的结果不一致！")
+            this.service.messageBox(this.message, "密码2次输入的结果不一致！")
             return;
         }
         let obj = {
@@ -68,43 +63,14 @@ export class RegisterComponent implements OnInit {
         this.service.http_post("/users/addUser", JSON.stringify(obj), false).subscribe((data: any) => {
             this.loading = false;
             if (data.msg == "success") {
-                this.alert("注册成功！");
+                this.service.messageBox(this.message, "注册成功！");
             } else {
-                this.alert(data.result.failedMsg);
+                this.service.messageBox(this.message, data.result.failedMsg);
             }
-        },error=>{
+        }, error => {
             this.loading = false;
-            this.alert("连接失败...");
-         }
+            this.service.messageBox(this.message, "连接失败...");
+        }
         )
     }
-    // getCode() {
-    //     if (!this.username) {
-    //         this.alert("手机号不能为空！")
-    //         return;
-    //     }
-    //     if (!this.service.isPoneAvailable(this.username)) {
-    //         this.alert("输入的手机号不合法！")
-    //         return;
-    //     }
-    //     if (this.codestate == true) {
-    //         this.codestate = false;
-    //         this.service.http_get("/users/verifycode/" + this.username, false).subscribe((data: any) => {
-    //             if (data.msg == "success") {
-    //                 this.time = 60
-    //                 this.timer = setInterval(() => {
-    //                     if (this.time <= 1) {
-    //                         this.codestate = true;
-    //                         this.time = null;
-    //                         clearInterval(this.timer);
-    //                         return;
-    //                     }
-    //                     this.time = this.time - 1;
-    //                 }, 1000)
-    //             } else {
-    //                 this.codestate = true;
-    //             }
-    //         })
-    //     }
-    // }
 }

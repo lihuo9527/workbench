@@ -11,10 +11,10 @@ export class PlanEntryComponent implements OnInit {
     constructor(private routerIonfo: ActivatedRoute, private service: AppService, private router: Router) { }
     public datas;
     public data;
-    public Language;
+    public language;
     public title;
     public state;
-    public date = "Select start date";
+    public date;
     public total;
     public total2;
     public dayAmount;
@@ -24,13 +24,15 @@ export class PlanEntryComponent implements OnInit {
         btnText: "OK",
         msg: ""
     }
+    public amount;
     ngOnInit() {
-        this.Language = localStorage.getItem("language");
+        this.language = localStorage.getItem("language");
         this.datas = JSON.parse(this.routerIonfo.snapshot.params["data"]);
         this.title = this.datas.title;
         this.data = this.datas.data;
         console.log(this.datas);
-        if (this.Language == "cn") this.date = "请选择开始时间";
+        this.date = this.language == "cn" ? "请选择开始时间" : "Select start date";
+        this.amount = this.language == "cn" ? "总数量" : "Total";
         this.getPlan();
 
     }
@@ -47,8 +49,10 @@ export class PlanEntryComponent implements OnInit {
                         totaloutgoing += Number(element.outgoingCount);
                         totalreturn += Number(element.backFactory);
                     });
+                    if (!totaloutgoing) totaloutgoing = 0;
+                    if (!totalreturn) totalreturn = 0;
                     this.Plan.result.recording.push({
-                        date: "Total",
+                        date: this.amount,
                         outgoingCount: totaloutgoing,
                         backFactory: totalreturn,
                         reduce: "-" + (totaloutgoing - totalreturn)
@@ -63,7 +67,7 @@ export class PlanEntryComponent implements OnInit {
         if (this.total > 0 && this.dayAmount > 0 && parseInt(this.date) > 0) {
             this.router.navigate(['selectingSuppliers', JSON.stringify({ total: this.total, date: this.date, dayAmount: this.dayAmount, code: this.data.code })])
         } else {
-            this.alert("请填写完整信息！")
+            this.service.messageBox(this.message, "请填写完整信息！")
         }
     }
     submit() {
@@ -72,10 +76,10 @@ export class PlanEntryComponent implements OnInit {
             this.service.http_post("/api/OuterFactory/EntryDayOutSchedule", option, false, "form").subscribe((data: any) => {
                 if (data.msg == "success") {
                     this.getPlan();
-                    this.alert("录入成功!")
+                    this.service.messageBox(this.message, "录入成功!")
                 }
             })
-        }else{
+        } else {
 
         }
     }
@@ -91,14 +95,10 @@ export class PlanEntryComponent implements OnInit {
         let option = 'planId=' + item.planId + "&status=" + state;
         this.service.http_post('/api/OuterFactory/ModifyPlanStatus', option, false, "form").subscribe((data: any) => {
             item.isEnd = state;
-            this.alert("修改成功！")
+            this.service.messageBox(this.message, "修改成功！");
             console.log(this.data)
         })
 
     }
-    alert(message) {
-        this.message.msg = message;
-        this.message.state = true;
-        this.message.btnText = "OK";
-    }
+
 }

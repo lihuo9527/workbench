@@ -70,7 +70,9 @@ export class AppService {
             return true;
         }
     }
-    MessageBox() {
-
+    messageBox(obj, message) {
+        obj.msg = message;
+        obj.state = true;
+        obj.btnText = "OK";
     }
 }

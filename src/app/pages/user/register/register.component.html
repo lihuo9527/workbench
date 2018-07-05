@@ -1,6 +1,6 @@
 <div class="register_container">
-    <app-title *ngIf="Language=='en'" title="Register"></app-title>
-    <app-title *ngIf="Language=='cn'" title="注册"></app-title>
+    <app-title *ngIf="language=='en'" title="Register"></app-title>
+    <app-title *ngIf="language=='cn'" title="注册"></app-title>
 
     <div class="item">
         <div class="item_container">
@@ -36,19 +36,6 @@
             </div>
         </div>
     </div>
-    <!-- <div class="item">
-        <div class="item_container">
-            <div class="img_container">
-                <img src="assets/images/email.png">
-            </div>
-            <div class="input3_container">
-                <input minlength="6" maxlength="6" class="input" type="text" [(ngModel)]="code" placeholder="Verification Code">
-            </div>
-            <div class="code_container">
-                <button [ngClass]="{'code_gray':!codestate,'code_green':codestate}" (click)="getCode()">Get the verifying code{{time}}</button>
-            </div>
-        </div>
-    </div> -->
     <img src="assets/images/radio_right.png" style="display: none;" alt="">
     <img src="assets/images/loading.gif" style="display: none;" alt="">
 

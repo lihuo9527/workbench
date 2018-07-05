@@ -10,8 +10,9 @@ export class EventEntryComponent implements OnInit {
 
     constructor(
         private service: AppService,
-        private routerIonfo: ActivatedRoute, ) { }
-    public Language;
+        private routerIonfo: ActivatedRoute,
+    ) { }
+    public language;
     public data;
     public list;
     public DateState = false;
@@ -25,7 +26,7 @@ export class EventEntryComponent implements OnInit {
     }
     ngOnInit() {
         this.data = JSON.parse(this.routerIonfo.snapshot.params["data"]);
-        this.Language = localStorage.getItem("language");
+        this.language = localStorage.getItem("language");
         console.log(this.data)
         this.service.http_get('/api/Schedule/GetPoEvents?poId=' + this.data.id, false).subscribe((data: any) => {
             if (data.length > 0) this.list = data;
@@ -44,10 +45,10 @@ export class EventEntryComponent implements OnInit {
             data.Events.push(json);
         });
         this.service.http_post('/api/Schedule/UpdateEventsDate', data, false).subscribe((data: any) => {
-            if (data.IsSuccess == 1) this.alert("保存成功！");
+            if (data.IsSuccess == 1) this.service.messageBox(this.message, "保存成功！");
             console.log(data);
         }, error => {
-            this.alert("保存失败！");
+            this.service.messageBox(this.message, "保存失败！");
         })
     }
     backDate($event) {
@@ -61,10 +62,5 @@ export class EventEntryComponent implements OnInit {
         this.state = true;
         this.index = i;
         this.DateName = event;
-    }
-    alert(message) {
-        this.message.msg = message;
-        this.message.state = true;
-        this.message.btnText = "OK";
     }
 }

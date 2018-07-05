@@ -1,6 +1,6 @@
 <div class="container">
-    <app-title *ngIf="Language=='en'" size="small" title="Order Production LeadTime Summary"></app-title>
-    <app-title *ngIf="Language=='cn'" title="订单周期生产情况统计"></app-title>
+    <app-title *ngIf="language=='en'" size="small" title="Order Production LeadTime Summary"></app-title>
+    <app-title *ngIf="language=='cn'" title="订单周期生产情况统计"></app-title>
     <p class="row_title"> Order Cycle Production Statistics</p>
     <div echarts [options]="option" class="demo-chart"></div>
 </div>

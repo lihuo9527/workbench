@@ -1,12 +1,12 @@
 <aside id="filter">
     <div id="filterBox">
-        <h3 *ngIf="Language=='en'">Filter<span (click)="Back()">Back</span></h3>
-        <h3 *ngIf="Language=='cn'">筛选<span (click)="Back()">返回</span></h3>
+        <h3 *ngIf="language=='en'">Filter<span (click)="Back()">Back</span></h3>
+        <h3 *ngIf="language=='cn'">筛选<span (click)="Back()">返回</span></h3>
         <ul class="filter">
             <li *ngFor="let item of datas;let i=index;" style="border-bottom: 1px solid #eee;">
                 <div class="filterTit">
-                    <strong *ngIf="Language=='en'">{{item.title}}</strong>
-                    <strong *ngIf="Language=='cn'">{{item.title2}}</strong>
+                    <strong *ngIf="language=='en'">{{item.title}}</strong>
+                    <strong *ngIf="language=='cn'">{{item.title2}}</strong>
                     <a *ngIf="item.arrow" (click)="item.rowstate=!item.rowstate" [ngClass]="{'rowDown':item.rowstate,'rowRight':!item.rowstate}"></a>
                     <a *ngIf="item.but" (click)="on_off(item.allstate,i,item)" [ngClass]="{'allOn':item.allstate,'allOff':!item.allstate}"></a>
                 </div>
@@ -17,7 +17,7 @@
                 </ul>
                 <hr *ngIf="i==0">
                 <div style="width: 100%;display: flex;padding-right:1rem;box-sizing: border-box;flex-flow: wrap; margin-bottom:1rem;" *ngIf="i==0">
-                    <p *ngIf="Language=='cn'" style="margin-top:1rem;font-size: 1.6rem;flex: 0 0 100%;">周期</p>
+                    <p *ngIf="language=='cn'" style="margin-top:1rem;font-size: 1.6rem;flex: 0 0 100%;">周期</p>
                     <div class="icon_container">
                         <div class="water" (CapacityFilterDirective)="backDate($event)">
                             <a>1</a>
@@ -39,8 +39,8 @@
                 </div>
             </li>
         </ul>
-        <button *ngIf="Language=='en'" class="sbmit" (click)="complete()">Complete</button>
-        <button *ngIf="Language=='cn'" class="sbmit" (click)="complete()">完成</button>
+        <button *ngIf="language=='en'" class="sbmit" (click)="complete()">Complete</button>
+        <button *ngIf="language=='cn'" class="sbmit" (click)="complete()">完成</button>
     </div>
     <div id="shadow"></div>
 </aside>

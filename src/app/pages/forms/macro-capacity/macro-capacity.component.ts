@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./macro-capacity.component.css']
 })
 export class MacroCapacityComponent implements OnInit {
-    public Language;
+    public language;
     public input;
     public filter;
     public placeholder;
@@ -15,12 +15,12 @@ export class MacroCapacityComponent implements OnInit {
     constructor() { }
     ngOnInit() {
 
-        this.Language = localStorage.getItem("language");
-        if (this.Language == "cn") {
+        this.language = localStorage.getItem("language");
+        if (this.language == "cn") {
             this.filter = "筛选";
             this.placeholder = "输入单号或款号查询";
         }
-        if (this.Language == "en") {
+        if (this.language == "en") {
             this.filter = "filter";
             this.placeholder = "input number or style to query";
         }

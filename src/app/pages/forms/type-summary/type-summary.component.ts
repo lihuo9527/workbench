@@ -7,12 +7,12 @@ import { AppService } from '../../../app.service';
     styleUrls: ['./type-summary.component.css']
 })
 export class TypeSummaryComponent implements OnInit {
-    public Language;
+    public language;
     constructor(private service: AppService, ) { }
     public option;
 
     ngOnInit() {
-        this.Language = localStorage.getItem("language");
+        this.language = localStorage.getItem("language");
         this.service.http_get('/api/Monitor/GetChartData?vrpcode=RPT100', false).subscribe((data: any) => {
             // data=[{"Name":null,"ChartNodes":[{"xname":" Men ( fiber ) casual","yvalue1":"3","yvalue2":""},{"xname":" fork legs trousers","yvalue1":"1","yvalue2":""},{"xname":" Shorts singlet X2","yvalue1":"3","yvalue2":""},{"xname":"kShorts","yvalue1":"1","yvalue2":""},{"xname":"( Net color ) Men","yvalue1":"2","yvalue2":""},{"xname":"spleen Bag X1 fork ","yvalue1":"1","yvalue2":""},{"xname":" trousers","yvalue1":"6","yvalue2":""},{"xname":" pull 1/7 bundles","yvalue1":"2","yvalue2":""},{"xname":"casual shorts","yvalue1":"1","yvalue2":""},{"xname":"zippered pocket","yvalue1":"1","yvalue2":""}],"Average":2.1}]
             let obj = [];

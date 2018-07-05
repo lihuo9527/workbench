@@ -13,14 +13,14 @@ export class ProcessDelayComponent implements OnInit {
     public state = false;
     public datas = [];
     public id;
-    public Language;
+    public language;
     ngOnInit() {
         localStorage.setItem("filter", JSON.stringify({ input: '' }));
-        this.Language = localStorage.getItem("language");
+        this.language = localStorage.getItem("language");
         this.id = this.routerIonfo.snapshot.params["id"] == 'all' ? -1 : this.routerIonfo.snapshot.params["id"];
-        this.UpdateList();
+        this.updateList();
     }
-    UpdateList($event?) {
+    updateList($event?) {
         let local = JSON.parse(localStorage.getItem("filter"));
         let pageIndex = $event == 'add' ? Math.ceil(this.datas.length / 4 + 1) : 1;
         let option = 'pageIndex=' + pageIndex + '&pageSize=4' + '&processId=' + this.id;

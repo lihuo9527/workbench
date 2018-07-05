@@ -8,9 +8,9 @@ import { ActivatedRoute } from '@angular/router';
 export class EventDelayEditComponent implements OnInit {
 
     constructor(private routerIonfo: ActivatedRoute) { }
-    public Language;
+    public language;
     ngOnInit() {
-        this.Language = localStorage.getItem("language");
+        this.language = localStorage.getItem("language");
         this.routerIonfo.params.subscribe(data => console.log(data))
     }
 

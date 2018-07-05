@@ -111,37 +111,37 @@ export class ScheduleEntryComponent implements OnInit {
                     });
                 });
                 console.log(JSON.stringify(data))
-                if (this.processId) {
+                if (this.processId && parseInt(this.date) > 0) {
                     console.log(this.processId)
                     this.service.http_post('/api/Schedule/AddScheduleDaily', JSON.stringify(data), false).subscribe((data: any) => {
                         if (data.IsSuccess == 1) {
-                            this.alert("保存成功！");
+                            this.service.messageBox(this.message, "保存成功！");
                         } else {
-                            this.alert(data.ErrMessage);
+                            this.service.messageBox(this.message, data.ErrMessage);
                         }
                         console.log(data);
                     }, error => {
-                        this.alert("提交失败！");
+                        this.service.messageBox(this.message, "提交失败！");
                     })
                 } else {
-                    this.alert("请先选择工序！");
+                    this.service.messageBox(this.message, "请先选择工序或日期！");
                 }
 
             } else {
-                if (this.processId) {
+                if (this.processId && parseInt(this.date) > 0) {
                     let data = "processId=" + this.processId + "&poId=" + this.data.id + "&proDate=" + this.date + "&amount=" + this.number;
                     this.service.http_post('/api/Schedule/AddScheduleByPo', data, false, "form").subscribe((data: any) => {
                         if (data.IsSuccess == 1) {
-                            this.alert("保存成功！");
+                            this.service.messageBox(this.message, "保存成功！");
                         } else {
-                            this.alert(data.ErrMessage);
+                            this.service.messageBox(this.message, data.ErrMessage);
                         }
                         console.log(data);
                     }, error => {
-                        this.alert("提交失败！");
+                        this.service.messageBox(this.message, "提交失败！");
                     })
                 } else {
-                    this.alert("请先选择工序！");
+                    this.service.messageBox(this.message, "请先选择工序或日期！");
                 }
             }
         } else {
@@ -172,33 +172,27 @@ export class ScheduleEntryComponent implements OnInit {
                 console.log(JSON.stringify(this.color_tabs))
                 this.service.http_post('/api/Schedule/AddPlanScheduleDaily', JSON.stringify(data), false).subscribe((data: any) => {
                     if (data.IsSuccess == 1) {
-                        this.alert("保存成功！");
+                        this.service.messageBox(this.message, "保存成功！");
                     } else {
-                        this.alert(data.ErrMessage);
+                        this.service.messageBox(this.message, data.ErrMessage);
                     }
                 }, error => {
-                    this.alert("提交失败！");
+                    this.service.messageBox(this.message, "提交失败！");
                 })
             } else {
                 let data = "ProductionEventId=" + this.data.ProductionEventID + "&lineId=" + this.data.LineID + "&poId=" + this.data.id + "&proDate=" + this.date + "&amount=" + this.number;
                 this.service.http_post('/api/Schedule/AddPlanScheduleByPo', data, false, "form").subscribe((data: any) => {
                     if (data.IsSuccess == 1) {
-                        this.alert("保存成功！");
+                        this.service.messageBox(this.message, "保存成功！");
                     } else {
-                        this.alert(data.ErrMessage);
+                        this.service.messageBox(this.message, data.ErrMessage);
                     }
                 }, error => {
-                    this.alert("提交失败！");
+                    this.service.messageBox(this.message, "提交失败！");
                 })
 
             }
         }
 
     }
-    alert(message) {
-        this.message.msg = message;
-        this.message.state = true;
-        this.message.btnText = "OK";
-    }
-
 }

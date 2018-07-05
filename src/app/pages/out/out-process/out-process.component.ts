@@ -28,7 +28,7 @@ export class OutProcessComponent implements OnInit {
         let pageIndex = local.input ? 1 : Math.ceil(this.datas.length / 4 + 1);
         let option = "";
         let object = $event ? $event : local;
-        option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + object.start + '&end=' + object.end
+        option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + object.start + '&end=' + object.end + "&nodeId=" + this.id;
         if (object.fids) option += '&fids=' + object.fids;
         if (object.wsids) option += '&wsids=' + object.wsids;
         if (object.styles) option += '&styles=' + object.styles;

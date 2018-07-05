@@ -1,6 +1,6 @@
 <header>
-    <h1 *ngIf="Language=='en'">Workbench</h1>
-    <h1 *ngIf="Language=='cn'">工作台</h1>
+    <h1 *ngIf="language=='en'">Workbench</h1>
+    <h1 *ngIf="language=='cn'">工作台</h1>
 </header>
 <div class="hidden_header"></div>
 <div class="container">
@@ -8,14 +8,15 @@
     <div class="box">
         <div *ngFor="let item of plans" class="plan">
             <p class="row_title"><i></i>{{item.title}}</p>
-            <div class="item" *ngFor="let data of item.data" (click)="link(data.link)">
+            <div class="item" *ngFor="let data of item.data" (click)="link(data.link,item.nodeId)">
                 <div class="icon_box">
                     <div style="width: 40%;position: relative;">
                         <img [src]="data.icon" style="width: 100%;" alt="">
-                        <button>10</button>
+                        <button *ngIf="data.number>0">{{data.number}}</button>
                     </div>
                 </div>
-                <p>{{data.title}}</p>
+                <p *ngIf="language=='en'">{{data.title}}</p>
+                <p *ngIf="language=='cn'">{{data.title2}}</p>
             </div>
         </div>
     </div>

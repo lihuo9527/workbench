@@ -1,6 +1,6 @@
 <div class="container">
-    <app-title *ngIf="Language=='en'" title="Selecting Suppliers"></app-title>
-    <app-title *ngIf="Language=='cn'" title="选择供应商"></app-title>
+    <app-title *ngIf="language=='en'" title="Selecting Suppliers"></app-title>
+    <app-title *ngIf="language=='cn'" title="选择供应商"></app-title>
     <div style="display: flex;background: #fff;margin-top:0.5rem; ">
         <div class="imgs">
             <div style="display: flex;padding-left:0.5rem;padding-right: 0.5rem; " *ngFor="let item of userface;">
@@ -13,8 +13,8 @@
         </div>
     </div>
     <div class="items" *ngIf="datas.result.contactsList.length>0">
-        <p style="padding: 1rem;" *ngIf="Language=='en'"> My Enterprise</p>
-        <p style="padding: 1rem;" *ngIf="Language=='cn'"> 我的企业</p>
+        <p style="padding: 1rem;" *ngIf="language=='en'"> My Enterprise</p>
+        <p style="padding: 1rem;" *ngIf="language=='cn'"> 我的企业</p>
         <div class="row" *ngFor="let item of datas.result.contactsList;let i = index;" (click)="show(item,i)">
             <div class="group">
                 <p [ngClass]="{'rows_on':item.state,'rows_off':!item.state}">

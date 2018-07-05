@@ -1,0 +1,14 @@
+{
+    "HomePage": {
+        "title": "workbenck",
+        "event": {
+            "TodayHandledCount": "0",
+            "TipsCountList": [
+                { "Url": "/assets/images/a_21.png", "Name": "Critical Event", "Link": "/search", "Id": "0", "Amount": "0" },
+                { "Url": "/assets/images/a_22.png", "Name": "Daily Progress", "Link": "/search", "Id": "1", "Amount": "0" },
+                { "Url": "/assets/images/a_23.png", "Name": "Non-planing Process", "Link": "/search", "Id": "2", "Amount": "0" },
+                { "Url": "/assets/images/ico_04.png", "Name": "All", "Link": "/all", "Id": "3", "Amount": "0" }
+            ]
+        }
+    }
+}

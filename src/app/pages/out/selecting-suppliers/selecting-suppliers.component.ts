@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class SelectingSuppliersComponent implements OnInit {
 
     constructor(private service: AppService, private routerIonfo: ActivatedRoute, private router: Router) { }
-    public Language;
+    public language;
     public datas: any = { result: { contactsList: [] } };
     public userface = [];
     public data;
@@ -21,7 +21,7 @@ export class SelectingSuppliersComponent implements OnInit {
     }
     ngOnInit() {
         this.data = JSON.parse(this.routerIonfo.snapshot.params["data"]);
-        this.Language = localStorage.getItem("language");
+        this.language = localStorage.getItem("language");
         this.service.http_get('/api/OuterFactory/GetContacts', false).subscribe((data: any) => {
             if (data.msg == "success") {
                 this.datas = data;
@@ -60,7 +60,7 @@ export class SelectingSuppliersComponent implements OnInit {
             fids.push(element.uid);
         })
         if (fids.length <= 0) {
-            this.alert("您还没有选择供应商！");
+            this.service.messageBox(this.message,"您还没有选择供应商！");
             return;
         }
         let option = {
@@ -73,17 +73,13 @@ export class SelectingSuppliersComponent implements OnInit {
         }
         this.service.http_post("/api/OuterFactory/EntryPlan", option, false).subscribe((data: any) => {
             if (data.msg == "success") {
-                this.alert("录入成功！");
+                this.service.messageBox(this.message,"录入成功！");
                 setTimeout(() => window.history.go(-2), 1500);
             } else {
-                this.alert(data.msg);
+                this.service.messageBox(this.message,data.msg);
             }
         })
     }
-    alert(message) {
-        this.message.msg = message;
-        this.message.state = true;
-        this.message.btnText = "OK";
-    }
+
 
 }

@@ -8,9 +8,9 @@ import { AppService } from '../../../app.service'
 export class OrderCycleSummaryComponent implements OnInit {
 
     constructor(private service: AppService) { }
-    public Language;
+    public language;
     ngOnInit() {
-        this.Language = localStorage.getItem("language");
+        this.language = localStorage.getItem("language");
     }
 
     option = {

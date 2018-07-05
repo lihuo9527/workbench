@@ -59,9 +59,9 @@
     font-size: 1.4rem;
     line-height: 1.4rem;
     margin-bottom: 0.2rem;
-    overflow: hidden;
+    /* overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: nowrap; */
     min-height: 1.4rem;
     width: 100%;
 }

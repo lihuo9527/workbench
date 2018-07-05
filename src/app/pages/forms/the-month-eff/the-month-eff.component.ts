@@ -9,10 +9,10 @@ import { AppService } from '../../../app.service';
 export class TheMonthEffComponent implements OnInit {
 
     constructor(private service: AppService) { }
-    public Language;
+    public language;
     public option;
     ngOnInit() {
-        this.Language = localStorage.getItem("language");
+        this.language = localStorage.getItem("language");
         this.service.http_get('/api/Monitor/GetChartData?vrpcode=RPT102', false).subscribe((data: any) => {
             let titles = [];
             let bar = [];
@@ -84,7 +84,7 @@ export class TheMonthEffComponent implements OnInit {
 
                         },
                         type: 'value',
-                        name: '产量',
+                        name: '产量(件)',
                         min: 0,
                         position: 'right'
                     }],

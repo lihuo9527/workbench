@@ -1,6 +1,6 @@
 <div class="container">
-    <app-title *ngIf="Language=='en'" [title]="title"></app-title>
-    <app-title *ngIf="Language=='cn'" [title]="title"></app-title>
+    <app-title *ngIf="language=='en'" [title]="title"></app-title>
+    <app-title *ngIf="language=='cn'" [title]="title"></app-title>
     <section class="searchBox">
         <input class="searchBut search" [(ngModel)]='input' type="text" [placeholder]="placeholder">
     </section>
@@ -9,16 +9,16 @@
             <ul class="filter">
                 <li *ngFor="let item of datas;let i=index;">
                     <div class="filterTit">
-                        <strong *ngIf="Language=='en'">{{item.title}}</strong>
-                        <strong *ngIf="Language=='cn'">{{item.title2}}</strong>
+                        <strong *ngIf="language=='en'">{{item.title}}</strong>
+                        <strong *ngIf="language=='cn'">{{item.title2}}</strong>
                         <a *ngIf="item.arrow" (click)="item.rowstate=!item.rowstate" [ngClass]="{'rowDown':item.rowstate,'rowRight':!item.rowstate}"></a>
-                        <a *ngIf="item.but" (click)="on_off(item.allstate,i,item)" [ngClass]="{'allOn_en':item.allstate && Language=='en','allOff_en':!item.allstate && Language=='en','allOn_cn':item.allstate && Language=='cn','allOff_cn':!item.allstate && Language=='cn'}"></a>
+                        <a *ngIf="item.but" (click)="on_off(item.allstate,i,item)" [ngClass]="{'allOn_en':item.allstate && language=='en','allOff_en':!item.allstate && language=='en','allOn_cn':item.allstate && language=='cn','allOff_cn':!item.allstate && language=='cn'}"></a>
                     </div>
                     <ul class="list" *ngIf="item.rowstate">
                         <li (click)="change(arr,b,item,i)" style="overflow: hidden;" *ngFor="let arr of item.list;let b=index;" [ngClass]="{'on':arr.state}">
                             <!-- <span *ngIf="id == 5 || id == 6 || id == 7">{{arr.itemName}}</span> -->
-                            <span *ngIf="Language=='en'">  {{arr.text}}</span>
-                            <span *ngIf="Language=='cn'">  {{arr.text2}}</span>
+                            <span *ngIf="language=='en'">  {{arr.text}}</span>
+                            <span *ngIf="language=='cn'">  {{arr.text2}}</span>
                         </li>
                     </ul>
                 </li>
@@ -31,8 +31,8 @@
                 </div>
             </div>
             <div class="submitBox">
-                <button *ngIf="Language=='en'" (click)="query()">Query</button>
-                <button *ngIf="Language=='cn'" (click)="query()">查询</button>
+                <button *ngIf="language=='en'" (click)="query()">Query</button>
+                <button *ngIf="language=='cn'" (click)="query()">查询</button>
             </div>
         </div>
         <app-date *ngIf="state" number="2" (submit)="backDate($event)"></app-date>

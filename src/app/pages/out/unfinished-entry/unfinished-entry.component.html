@@ -1,40 +1,40 @@
 <div class="container">
-    <app-title *ngIf="Language=='en'" [title]="title"></app-title>
-    <app-title *ngIf="Language=='cn'" [title]="title"></app-title>
+    <app-title *ngIf="language=='en'" [title]="title"></app-title>
+    <app-title *ngIf="language=='cn'" [title]="title"></app-title>
 
     <ul class="items">
         <li class="row">
             <div class="other">
                 <p>{{data.code}}</p>
-                <span *ngIf="Language=='en'">PO/JO</span>
-                <span *ngIf="Language=='cn'">生产单号</span>
+                <span *ngIf="language=='en'">PO/JO</span>
+                <span *ngIf="language=='cn'">生产单号</span>
             </div>
             <div class="other">
                 <p>{{data.styleNo}}</p>
-                <span *ngIf="Language=='en'">Style No</span>
-                <span *ngIf="Language=='cn'">款号</span>
+                <span *ngIf="language=='en'">Style No</span>
+                <span *ngIf="language=='cn'">款号</span>
             </div>
             <div class="other">
                 <p>{{data.deliveryDate}}</p>
-                <span *ngIf="Language=='en'">Delivery Date</span>
-                <span *ngIf="Language=='cn'">交货期</span>
+                <span *ngIf="language=='en'">Delivery Date</span>
+                <span *ngIf="language=='cn'">交货期</span>
             </div>
         </li>
         <li class="row">
             <div class="other">
                 <p>{{data.StarDate}}</p>
-                <span *ngIf="Language=='en'">Start Date</span>
-                <span *ngIf="Language=='cn'">开始时间</span>
+                <span *ngIf="language=='en'">Start Date</span>
+                <span *ngIf="language=='cn'">开始时间</span>
             </div>
             <div class="other">
                 <p>{{data.EndDate}}</p>
-                <span *ngIf="Language=='en'">End Date</span>
-                <span *ngIf="Language=='cn'">结束时间</span>
+                <span *ngIf="language=='en'">End Date</span>
+                <span *ngIf="language=='cn'">结束时间</span>
             </div>
             <div class="other">
                 <p>{{data.orderQty}}</p>
-                <span *ngIf="Language=='en'">Order</span>
-                <span *ngIf="Language=='cn'">订单数</span>
+                <span *ngIf="language=='en'">Order</span>
+                <span *ngIf="language=='cn'">订单数</span>
             </div>
         </li>
     </ul>
@@ -44,43 +44,46 @@
             <li class="row">
                 <div class="other">
                     <p>{{data.totalCount}}</p>
-                    <span *ngIf="Language=='en'">Total Quantity</span>
-                    <span *ngIf="Language=='cn'">总数量</span>
+                    <span *ngIf="language=='en'">Total Quantity</span>
+                    <span *ngIf="language=='cn'">总数量</span>
                 </div>
                 <div class="other">
                     <p>{{data.startTime}}</p>
-                    <span *ngIf="Language=='en'">Start Date</span>
-                    <span *ngIf="Language=='cn'">开始日期</span>
+                    <span *ngIf="language=='en'">Start Date</span>
+                    <span *ngIf="language=='cn'">开始日期</span>
                 </div>
                 <div class="other">
                     <p>{{data.dayCount}}</p>
-                    <span *ngIf="Language=='en'">Daily Quantity</span>
-                    <span *ngIf="Language=='cn'">每日数量</span>
+                    <span *ngIf="language=='en'">Daily Quantity</span>
+                    <span *ngIf="language=='cn'">每日数量</span>
                 </div>
             </li>
             <li class="row">
                 <div class="other">
                     <p>{{data.outTime}}</p>
-                    <span *ngIf="Language=='en'">Output Date</span>
-                    <span *ngIf="Language=='cn'">出产量日期</span>
+                    <span *ngIf="language=='en'">Output Date</span>
+                    <span *ngIf="language=='cn'">出产量日期</span>
                 </div>
                 <div class="other">
                     <p>{{data.canDayCount}}</p>
-                    <span *ngIf="Language=='en'">Daily Output</span>
-                    <span *ngIf="Language=='cn'">可供日产量</span>
+                    <span *ngIf="language=='en'">Daily Output</span>
+                    <span *ngIf="language=='cn'">可供日产量</span>
                 </div>
             </li>
         </ul>
 
         <div class="entry_box" *ngIf="Plan.result.listInfo.length>0">
             <div class="entry_title">
-                <span style="color: #088c77;">Daily External Records</span>
-                <span style="color: #088c77;">Analysis Chart</span>
+                <span *ngIf="language=='en'" style="color: #088c77;">Daily External Records</span>
+                <span *ngIf="language=='cn'" style="color: #088c77;">每日外发记录</span>
             </div>
             <div class="entry_title2">
-                <span style="flex:0 0 20%;color: #088c77;">Date</span>
-                <span style="flex:0 0 35%;color: #088c77;text-align: center;">Receiving</span>
-                <span style="flex:0 0 25%;color: #088c77;text-align: center;">Emit number</span>
+                <span *ngIf="language=='en'" style="flex:0 0 20%;color: #088c77;">Date</span>
+                <span *ngIf="language=='en'" style="flex:0 0 35%;color: #088c77;text-align: center;">Receiving</span>
+                <span *ngIf="language=='en'" style="flex:0 0 25%;color: #088c77;text-align: center;">Emit number</span>
+                <span *ngIf="language=='cn'" style="flex:0 0 20%;color: #088c77;">日期</span>
+                <span *ngIf="language=='cn'" style="flex:0 0 35%;color: #088c77;text-align: center;">接收数</span>
+                <span *ngIf="language=='cn'" style="flex:0 0 25%;color: #088c77;text-align: center;">发出数</span>
                 <span style="flex:0 0 20%;color: #088c77;text-align: center;"></span>
             </div>
             <div *ngFor="let item of Plan.result.listInfo;let i=index" [ngClass]="{'background-white':i%2==0,'background-green':i%2!=0}" class="row_box">
@@ -90,23 +93,27 @@
                 <span class="row4"> {{item.reduce}}</span>
             </div>
         </div>
-
-        <p class="row_title"> Daily External Records Input</p>
+        <p class="row_title" *ngIf="data.isEnd==0 && language=='en'"> Daily External Records Input</p>
+        <p class="row_title" *ngIf="data.isEnd==0 && language=='cn'"> 每日外发记录输入</p>
         <div class="submit_form">
             <p class="form_row" (click)="state=true">
-                <span>Date</span>
+                <span *ngIf="language=='en'">Date</span>
+                <span *ngIf="language=='cn'">日期</span>
                 <i class="date">{{date}}</i>
             </p>
             <p class="form_row">
-                <span>Amount</span>
-                <input type="text" name="day" [(ngModel)]="total" placeholder="input qty">
+                <span *ngIf="language=='en'">Amount</span>
+                <span *ngIf="language=='cn'">数量</span>
+                <input *ngIf="language=='en'" type="text" name="day" [(ngModel)]="total" placeholder="input qty">
+                <input *ngIf="language=='cn'" type="text" name="day" [(ngModel)]="total" placeholder="输入数量">
             </p>
         </div>
     </div>
 
     <div class="submitBox">
-        <button *ngIf="Language=='cn'" (click)="submit()">提交</button>
-        <button *ngIf="Language=='en'" (click)="submit()">Submit</button>
+        <button *ngIf="language=='cn'" (click)="submit()">提交</button>
+        <button *ngIf="language=='en'" (click)="submit()">Submit</button>
     </div>
     <app-date *ngIf="state" number="1" (submit)="backDate($event)"></app-date>
+    <app-message-box [msg]="message.msg" (event)="message.state=false" [btnText]="message.btnText" [msgShow]="message.state"></app-message-box>
 </div>

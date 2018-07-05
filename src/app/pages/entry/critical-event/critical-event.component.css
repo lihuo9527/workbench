@@ -112,6 +112,14 @@
 
 .jo_container {
     flex: 0 0 97%;
+    height: 1.4rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.jo_container span {
+    font-size: 1.4rem;
 }
 
 .i {

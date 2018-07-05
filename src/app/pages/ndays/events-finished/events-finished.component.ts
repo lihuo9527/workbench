@@ -11,14 +11,14 @@ export class EventsFinishedComponent implements OnInit {
     constructor(private service: AppService ) { }
     public datas = [];
     public id;
-    public Language;
+    public language;
     public url;
     ngOnInit() {
         localStorage.setItem("filter", JSON.stringify({ input: '' }));
-        this.Language = localStorage.getItem("language");
-        this.UpdateList();
+        this.language = localStorage.getItem("language");
+        this.updateList();
     }
-    UpdateList($event?) {
+    updateList($event?) {
         let local = JSON.parse(localStorage.getItem("filter"));
         let pageIndex = $event == 'add' ? Math.ceil(this.datas.length / 4 + 1) : 1;
         let option = 'pageIndex=' + pageIndex + '&pageSize=4';

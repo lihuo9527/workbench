@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from '../../../app.service';
 import { CookieService } from 'ngx-cookie-service';
 import { ActivatedRoute, Router } from '@angular/router';
-
+// import { TranslateService } from '@ngx-translate/core';
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
@@ -10,7 +10,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-    constructor(private service: AppService, private cookieService: CookieService, private router: Router) { }
+    constructor(
+        private service: AppService,
+        private cookieService: CookieService,
+        private router: Router,
+        //  private translate: TranslateService
+    ) { }
     public list: any = [
         {
             TodayHandledCount: "0",
@@ -51,6 +56,13 @@ export class HomeComponent implements OnInit {
         this.language = obj.language();
         localStorage.setItem("language", this.language);
         if (this.accessControl(obj)) return;
+        // this.translate.addLangs(["zh", "en"]);
+        // this.translate.setDefaultLang("zh");
+        // this.translate.use("zh");
+        // this.translate.get('HomePage.event', { value: 'event' }).subscribe((res: string) => {
+        //     this.list[0] = res;
+        //     console.log(res);
+        // });
         let url: string;
         for (let i = 1; i < this.list.length; i++) {
             switch (i) {
@@ -95,8 +107,6 @@ export class HomeComponent implements OnInit {
             exdate.setDate(exdate.getDate() + 2000);
             this.clearAllCookie();
             this.cookieService.set('JSESSIONID', obj.cookies(), exdate);
-            // alert(obj.cookies());
-            // alert("已经写入：" + this.cookieService.get('JSESSIONID'));
         }
         if (!obj.defaultCompany() || obj.typeCode() == "provider" || obj.typeCode() == "customor" || !obj.typeCode() || obj.defaultCompany() == 'null' || obj.typeCode() == 'null' || obj.typeCode() == 'outsourcing') {
             this.router.navigate(['not-bind']);

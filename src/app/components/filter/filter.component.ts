@@ -18,12 +18,12 @@ export class FilterComponent implements OnInit {
     ];
     public EndDate;
     public StartDate;
-    public Language;
+    public language;
     public floors = JSON.parse(localStorage.getItem("floors"));
     public dateshow = true;
     public local;
     ngOnInit() {
-        this.Language = localStorage.getItem("language");
+        this.language = localStorage.getItem("language");
         this.local = JSON.parse(localStorage.getItem("filter"));
         console.log("INfo", this.Info)
         if (this.Info == "delay") {
@@ -51,7 +51,7 @@ export class FilterComponent implements OnInit {
             this.datas = JSON.parse(localStorage.getItem("datas"));
         }
     }
-    Back() {
+    back() {
         //filter过渡动漫
         document.getElementById("shadow").style.left = "100%";
         document.getElementById("filter").style.left = "100%";
@@ -200,6 +200,6 @@ export class FilterComponent implements OnInit {
         console.log(JSON.stringify(obj))
         localStorage.setItem("filter", JSON.stringify(obj));
         this.envet.emit(obj);
-        this.Back();
+        this.back();
     }
 }

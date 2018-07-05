@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
+import { AppService } from '../../../app.service';
 @Component({
     selector: 'app-out-sourcing',
     templateUrl: './out-sourcing.component.html',
@@ -7,30 +8,17 @@ import { Router } from '@angular/router'
 })
 export class OutSourcingComponent implements OnInit {
 
-    constructor(private router: Router) { }
-    public Language;
-    public plans = [
-        {
-            title: "Printing and Embroidery",
-            data: [
-                { title: "Unanswered Plan", number: 0, icon: "assets/images/icon_ucp.png", link: "unanswered" },
-                { title: "Unfinished Plan", number: 0, icon: "assets/images/icon_unp.png", link: "unfinished" },
-            ]
-        },
-       
-        {
-            title: "Sewing",
-            data: [
-                { title: "Unanswered Plan", number: 0, icon: "assets/images/icon_ucp.png", link: "unanswered" },
-                { title: "Unfinished Plan", number: 0, icon: "assets/images/icon_unp.png", link: "unfinished" },
-            ]
-        }
-    ]
-
+    constructor(private router: Router, private service: AppService) { }
+    public language;
+    public plans = [];
     ngOnInit() {
-        this.Language = localStorage.getItem("language");
+        this.language = localStorage.getItem("language");
+        this.service.http_get("/api/OuterFactory/PlanCount", false).subscribe((data: any) => {
+            if (data.result.resultInfo.length > 0) this.plans = data.result.resultInfo;
+            console.log(data);
+        })
     }
-    link(link) {
-        this.router.navigate([link])
+    link(link, id) {
+        this.router.navigate([link, id])
     }
 }

@@ -45,6 +45,6 @@
             </ul>
         </div>
     </div>
-    <app-load-more *ngIf="datas.length>3" [language]="language" (click)="updateList()"></app-load-more>
+    <app-load-more *ngIf="datas.length>3" [language]="language" (click)="updateList('add')"></app-load-more>
     <p *ngIf="datas.length==0" style="color:#fff;background:#b8b8b8;text-align: center; height:3rem;line-height:3rem;">目前没有查询到更多消息！</p>
 </div>

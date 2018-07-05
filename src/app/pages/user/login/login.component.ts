@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
     constructor(private service: AppService, private router: Router, ) { }
-    public Language;
+    public language;
     public message = {
         state: false,
         btnText: "OK",
@@ -22,26 +22,21 @@ export class LoginComponent implements OnInit {
     ];
     public loading = false;
     ngOnInit() {
-        this.Language = localStorage.getItem("language");
-    }
-    alert(message) {
-        this.message.msg = message;
-        this.message.state = true;
-        this.message.btnText = "OK";
+        this.language = localStorage.getItem("language");
     }
     login() {
         let reg = /^[a-zA-Z0-9]{1,20}$/;
         if (!this.items[0].input || !this.items[1].input) {
-            this.alert("用户名或密码不能为空！")
+            this.service.messageBox(this.message, "用户名或密码不能为空！")
             return;
         }
         if (!reg.test(this.items[0].input)) {
-            this.alert("输入的用户名不合法！")
+            this.service.messageBox(this.message, "输入的用户名不合法！")
             return;
 
         }
         if (this.service.getStrLength(this.items[1].input) < 6) {
-            this.alert("密码长度不能少于6位！")
+            this.service.messageBox(this.message, "密码长度不能少于6位！")
             return;
         }
         this.loading = true;
@@ -53,13 +48,13 @@ export class LoginComponent implements OnInit {
                 sessionStorage.setItem('defaultCompany', data.result.userInfo.defaultCompany);
                 sessionStorage.setItem('typeCode', data.result.userInfo.typeCode);
                 this.router.navigate(['/home']);
-                this.alert("登录成功！");
+                this.service.messageBox(this.message, "登录成功！");
             } else {
-                this.alert(data.result.failedMsg);
+                this.service.messageBox(this.message, data.result.failedMsg);
             }
         }, error => {
             this.loading = false;
-            this.alert("登录超时!");
+            this.service.messageBox(this.message, "登录超时!");
         })
     }
 

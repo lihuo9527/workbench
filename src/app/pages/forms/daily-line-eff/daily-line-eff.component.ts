@@ -10,10 +10,10 @@ export class DailyLineEffComponent implements OnInit {
 
     constructor(private service: AppService) { }
 
-    public Language;
+    public language;
     public option;
     ngOnInit() {
-        this.Language = localStorage.getItem("language");
+        this.language = localStorage.getItem("language");
         this.service.http_get('/api/Monitor/GetChartData?vrpcode=RPT104', false).subscribe((data: any) => {
             let titles = [];
             let bar = [];
@@ -66,7 +66,7 @@ export class DailyLineEffComponent implements OnInit {
 
                     },
                     type: 'value',
-                    name: '效率',
+                    name: '效率(%)',
                     min: 0,
                     max: 200,
                     position: 'left',
@@ -82,7 +82,7 @@ export class DailyLineEffComponent implements OnInit {
 
                     },
                     type: 'value',
-                    name: '产量',
+                    name: '产量(件)',
                     min: 0,
                     position: 'right'
                 }],

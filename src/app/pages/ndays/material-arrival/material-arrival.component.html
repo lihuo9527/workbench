@@ -1,41 +1,51 @@
 <div class="container">
-    <app-title *ngIf="Language=='en'" title="Material Arrival Within N Days"></app-title>
-    <app-title *ngIf="Language=='cn'" title="7天内到货物料"></app-title>
-    <app-search-box (OutputValue)='UpdateList()'></app-search-box>
-    <app-filter Info="material" (envet)="UpdateList($event)"></app-filter>
+    <app-title *ngIf="language=='en'" title="Material Arrival Within N Days"></app-title>
+    <app-title *ngIf="language=='cn'" title="N天内到货物料"></app-title>
+    <app-search-box (OutputValue)='updateList()'></app-search-box>
+    <app-filter Info="material" (envet)="updateList($event)"></app-filter>
 
     <ul class="materList">
         <li *ngFor="let item of datas;"><i></i>
-            <h3>JO</h3>
+            <h3 *ngIf="language=='en'">JO</h3>
+            <h3 *ngIf="language=='cn'">生产单号</h3>
             <em>{{item.PoCode}}</em>
             <ul class="marterInfo">
                 <li>
                     <p>{{item.Pattern}}</p>
-                    <span>Fty Style</span></li>
+                    <span *ngIf="language=='en'">Fty Style</span>
+                    <span *ngIf="language=='cn'">本厂款号</span></li>
                 <li>
                     <p>{{item.MPNO}}</p>
-                    <span>Purchasing JO</span></li>
+                    <span *ngIf="language=='en'">Purchasing JO</span>
+                    <span *ngIf="language=='cn'">采购单号</span></li>
                 <li>
                     <p>{{item.MPDate}}</p>
-                    <span>Purchasing Date</span></li>
+                    <span *ngIf="language=='en'">Purchasing Date</span>
+                    <span *ngIf="language=='cn'">采购日期</span></li>
                 <li>
                     <p>{{item.MaterialCode}}</p>
-                    <span>Material Code</span></li>
+                    <span *ngIf="language=='en'">Material Code</span>
+                    <span *ngIf="language=='cn'">物料编号</span></li>
                 <li>
                     <p>{{item.MaterialColor}}</p>
-                    <span>Color</span></li>
+                    <span *ngIf="language=='en'">Color</span>
+                    <span *ngIf="language=='cn'">颜色</span></li>
                 <li>
                     <p>{{item.MaterialSize}}</p>
-                    <span>Size</span></li>
+                    <span *ngIf="language=='en'">Size</span>
+                    <span *ngIf="language=='cn'">规格</span></li>
                 <li>
                     <p>{{item.MPAmount}}</p>
-                    <span>Purchasing qty</span></li>
+                    <span *ngIf="language=='en'">Purchasing qty</span>
+                    <span *ngIf="language=='cn'">采购数量</span></li>
                 <li>
                     <p>{{item.ExpectedReciveDate}}</p>
-                    <span>Expected Arrival Date</span></li>
+                    <span *ngIf="language=='en'">Expected Arrival Date</span>
+                    <span *ngIf="language=='cn'">预计到货日期</span></li>
                 <li>
                     <p>{{item.NeedDate}}</p>
-                    <span>Required Date</span></li>
+                    <span *ngIf="language=='en'">Required Date</span>
+                    <span *ngIf="language=='cn'">需求日期</span></li>
             </ul>
         </li>
     </ul>

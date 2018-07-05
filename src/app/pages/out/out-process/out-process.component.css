@@ -43,13 +43,17 @@
 }
 
 .list .list_title .i {
-    flex: 0 0 5%;
+    flex: 0 0 3%;
     height: 4rem;
     width: 6px;
 }
 
 .jo_container {
-    flex: 0 0 61.66%;
+    flex: 0 0 63.66%;
+    height: 1.4rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .jo_container span {

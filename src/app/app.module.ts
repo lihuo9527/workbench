@@ -17,7 +17,6 @@ import { ProductionDailyProgressComponent } from './pages/entry/production-daily
 import { LoadMoreModule } from './components/load-more/load-more.module';
 import { NonPlaningProcessComponent } from './pages/entry/non-planing-process/non-planing-process.component';
 import { StartDelayComponent } from './pages/delay/start-delay/start-delay.component';
-import { ProcessEntryComponent } from './pages/entry/process-entry/process-entry.component';
 import { EventEntryComponent } from './pages/entry/event-entry/event-entry.component';
 import { ScheduleEntryComponent } from './pages/entry/schedule-entry/schedule-entry.component';
 import { SearchComponent } from './pages/search/search.component';
@@ -44,6 +43,15 @@ import { MessageBoxModule } from './components/message-box/message-box.module';
 import { HttpClientModule,HttpClient } from '@angular/common/http';
 
 
+
+// import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+// import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+// 使用TranslateHttpLoader加载项目的本地语言json配置文件
+// function createTranslateLoader(http: HttpClient) {
+//     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+// }
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -60,7 +68,6 @@ import { HttpClientModule,HttpClient } from '@angular/common/http';
         ProductionDailyProgressComponent,
         NonPlaningProcessComponent,
         StartDelayComponent,
-        ProcessEntryComponent,
         EventEntryComponent,
         ScheduleEntryComponent,
         SearchComponent,
@@ -89,6 +96,13 @@ import { HttpClientModule,HttpClient } from '@angular/common/http';
         DateModule,
         MessageBoxModule,
         LoadMoreModule,
+        // TranslateModule.forRoot({
+        //     loader: {
+        //         provide: TranslateLoader,
+        //         useFactory: (createTranslateLoader),
+        //         deps: [ HttpClient ]
+        //     }
+        // }),
     ],
     providers: [AppService, CookieService],
     bootstrap: [AppComponent],

@@ -14,10 +14,10 @@ export class NonPlaningProcessComponent implements OnInit {
     public Language;
     ngOnInit() {
         this.Language = localStorage.getItem("language");
-        this.UpdateList();
+        this.updateList();
     }
 
-    UpdateList($event?) {
+    updateList($event?) {
         let local = JSON.parse(localStorage.getItem("filter"));
         let pageIndex = local.input ? 1 : this.datas.length / 4 + 1;
         let option = "";
@@ -39,7 +39,7 @@ export class NonPlaningProcessComponent implements OnInit {
         })
     }
 
-    Link(item) {
+    link(item) {
         console.log(item);
         item["Pid"] = "non-process";
         this.router.navigate(['scheduleEntry', JSON.stringify(item)])

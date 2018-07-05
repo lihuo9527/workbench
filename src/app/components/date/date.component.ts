@@ -11,7 +11,7 @@ export class DateComponent implements OnInit {
     @Input() public number;
     @Output() public submit: EventEmitter<string> = new EventEmitter();
     public year;
-    public Language;
+    public language;
     public days = [];
     public today = new Date();
     public last_year = this.today.getFullYear() - 1;
@@ -44,7 +44,7 @@ export class DateComponent implements OnInit {
 
         }
 
-        this.Language = localStorage.getItem("language");
+        this.language = localStorage.getItem("language");
     }
     ngAfterViewInit() {
         let dates_box = document.querySelectorAll(".dates_box")[0];

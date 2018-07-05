@@ -3,7 +3,8 @@
     <app-title *ngIf="Language=='cn'" [title]="title2"></app-title>
     <div class="non-process" *ngIf="data.Pid=='non-process'">
         <div class="select-container" (click)="selectstate=!selectstate">
-            <span class="select_p">Please select the process</span>
+            <span *ngIf="Language=='en'" class="select_p">Please select the process</span>
+            <span *ngIf="Language=='cn'" class="select_p">请选择工序</span>
             <span class="select_name">{{processName}}</span>
             <span class="arrow">></span>
         </div>

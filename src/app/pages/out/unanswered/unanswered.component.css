@@ -117,3 +117,32 @@
 .box {
     flex: 0 0 100%;
 }
+
+.searchBox {
+    padding: 1rem 1rem 1rem 1rem;
+    overflow: hidden;
+    display: flex;
+    flex: 1;
+    background: #f3f4f6;
+}
+
+.searchBox .search {
+    background: #fff;
+    border: 0;
+    border-radius: 3px 0 0 3px;
+    height: 1.5rem;
+    padding: 1rem;
+    float: left;
+    flex: 0 0 80%;
+    box-shadow: 0 0 5px #e3e8ea;
+    font-size: 1.3rem;
+    color: #333;
+}
+
+.searchBox .searchBut {
+    background: #fff url(/assets/images/i_search.png) no-repeat center;
+    height: 3.5rem;
+    width: 4rem;
+    background-size: 2rem;
+    border-radius: 0 3px 3px 0;
+}

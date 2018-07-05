@@ -1,8 +1,8 @@
 <div class="container">
     <app-title *ngIf="Language=='en'" title="Production Daily Progress"></app-title>
     <app-title *ngIf="Language=='cn'" title="生产日进度"></app-title>
-    <app-search-box (OutputValue)='UpdateList()'></app-search-box>
-    <app-filter Info="event" (envet)="UpdateList($event)"></app-filter>
+    <app-search-box (OutputValue)='updateList()'></app-search-box>
+    <app-filter Info="event" (envet)="updateList($event)"></app-filter>
     <div class="container_box">
         <div class="box">
             <ul class="items">
@@ -16,8 +16,8 @@
                             <span *ngIf="Language=='cn'">生产单号:{{item.code}}</span>
                         </div>
                         <div class="entry_container">
-                            <button *ngIf="Language=='en'" (click)="Link(item)" class="entry">Entry</button>
-                            <button *ngIf="Language=='cn'" (click)="Link(item)" class="entry">录入</button>
+                            <button *ngIf="Language=='en'" (click)="link(item)" class="entry">Entry</button>
+                            <button *ngIf="Language=='cn'" (click)="link(item)" class="entry">录入</button>
                         </div>
                     </div>
                     <ul class="items">
@@ -60,5 +60,5 @@
             </ul>
         </div>
     </div>
-    <app-load-more *ngIf="datas.length>3" [language]="Language" (click)="UpdateList()"></app-load-more>
+    <app-load-more *ngIf="datas.length>3" [language]="Language" (click)="updateList()"></app-load-more>
 </div>

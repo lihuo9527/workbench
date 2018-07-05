@@ -9,7 +9,7 @@ import { AppService } from '../../../app.service';
 export class SelectTypeComponent implements OnInit {
 
     constructor(private routerIonfo: ActivatedRoute, private service: AppService, private router: Router) { }
-    public Language;
+    public language;
     public title: string;
     public state: boolean;
     public placeholder = "输入单号或款号查询";
@@ -21,8 +21,8 @@ export class SelectTypeComponent implements OnInit {
         { text: "Accessories", text2: "辅料", state: false }
     ];
     ngOnInit() {
-        this.Language = localStorage.getItem("language");
-        if (this.Language == "en") this.placeholder = "input number or style to query";
+        this.language = localStorage.getItem("language");
+        if (this.language == "en") this.placeholder = "input number or style to query";
         localStorage.setItem("filter", JSON.stringify({ input: '' }));
     }
     query() {

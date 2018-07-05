@@ -1,17 +1,17 @@
 <header>
-    <h1 *ngIf="Language=='en'">Workbench</h1>
-    <h1 *ngIf="Language=='cn'">工作台</h1>
+    <h1 *ngIf="language=='en'">Workbench</h1>
+    <h1 *ngIf="language=='cn'">工作台</h1>
 </header>
 <div class="box">
     <div class="item">
         <img src="/assets/images/404.png" style="width: 10rem;" alt="">
-        <p *ngIf="Language=='cn'">您还没有绑定APS企业,请先绑定。</p>
-        <p *ngIf="Language=='cn'" style="color: #cccccc; ">您可以选择以下任一角色进行绑定： </p>
-        <p *ngIf="Language=='cn'" style="color: #cccccc; ">1、客户 &nbsp;&nbsp;2、外协厂 </p>
-        <p *ngIf="Language=='en'">NO Access !</p>
-        <p *ngIf="Language=='en'" style="color: #000; font-size: 1.3rem;">You have not yet bound the APS company. </p>
-        <p *ngIf="Language=='en'" style="color: #000; font-size: 1.3rem;">Please bind first </p>
-        <p *ngIf="Language=='en'" style="color: #cccccc; ">Yon can choose any of the following roles for binding: </p>
-        <p *ngIf="Language=='en'" style="color: #088c77; ">1、customers &nbsp;&nbsp;2、outsourcing factory </p>
+        <p *ngIf="language=='cn'">您还没有绑定APS企业,请先绑定。</p>
+        <p *ngIf="language=='cn'" style="color: #cccccc; ">您可以选择以下任一角色进行绑定： </p>
+        <p *ngIf="language=='cn'" style="color: #cccccc; ">1、客户 &nbsp;&nbsp;2、外协厂 </p>
+        <p *ngIf="language=='en'">NO Access !</p>
+        <p *ngIf="language=='en'" style="color: #000; font-size: 1.3rem;">You have not yet bound the APS company. </p>
+        <p *ngIf="language=='en'" style="color: #000; font-size: 1.3rem;">Please bind first </p>
+        <p *ngIf="language=='en'" style="color: #cccccc; ">Yon can choose any of the following roles for binding: </p>
+        <p *ngIf="language=='en'" style="color: #088c77; ">1、customers &nbsp;&nbsp;2、outsourcing factory </p>
     </div>
 </div>

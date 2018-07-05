@@ -7,12 +7,12 @@ import { AppService } from '../../../app.service';
 })
 // 当月品牌客户实际生产产量统计图
 export class CustomerOutputComponent implements OnInit {
-    public Language;
+    public language;
     public option;
     constructor(private service: AppService) { }
 
     ngOnInit() {
-        this.Language = localStorage.getItem("language");
+        this.language = localStorage.getItem("language");
         this.service.http_get('/api/Monitor/GetChartData?vrpcode=RPT101', false).subscribe((data: any) => { 
             let obj = [];
             let titles = [];
@@ -30,7 +30,7 @@ export class CustomerOutputComponent implements OnInit {
             this.option = {
    
                 title: {
-                    text: "unit(ten thousand)",
+                    text: "产量(件)",
                     textStyle: {
                         color: "#34474f",
                         fontSize: "14",

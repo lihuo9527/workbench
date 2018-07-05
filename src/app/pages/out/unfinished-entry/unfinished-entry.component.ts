@@ -12,18 +12,26 @@ export class UnfinishedEntryComponent implements OnInit {
     constructor(private routerIonfo: ActivatedRoute, private service: AppService, private router: Router) { }
     public datas;
     public data;
-    public Language;
+    public language;
     public title;
     public state;
-    public date = "Select start date";
+    public date: string;
     public total;
     public total2;
     public dayAmount;
+    public amount: string;
     public Plan = { "msg": "", "result": { "sumBackFactory": "", "dayCount": "", "canDayCount": "", "supplier": "", "produceTime": "", "listInfo": [], "startTime": "", "totalCount": "", "sumOutgoingCount": "" }, "status": "" };
+    public message = {
+        state: false,
+        btnText: "OK",
+        msg: ""
+    };
     ngOnInit() {
-        this.Language = localStorage.getItem("language");
+        this.language = localStorage.getItem("language");
         this.datas = JSON.parse(this.routerIonfo.snapshot.params["data"]);
-        this.title = this.datas.title + " Entry";
+        this.title = this.language == "en" ? this.datas.title + " Entry" : this.datas.title + "录入";
+        this.date = this.language == "en" ? "Select start date" : "选择开始日期";
+        this.amount = this.language == "cn" ? "总数量" : "Total";
         this.data = this.datas.data;
         console.log(this.datas);
         this.getPlan();
@@ -40,8 +48,10 @@ export class UnfinishedEntryComponent implements OnInit {
                 totaloutgoing += Number(element.receiveCount);
                 totalreturn += Number(element.issueCount);
             });
+            if (!totaloutgoing) totaloutgoing = 0;
+            if (!totalreturn) totalreturn = 0;
             this.Plan.result.listInfo.push({
-                date: "Total",
+                date: this.amount,
                 receiveCount: totaloutgoing,
                 issueCount: totalreturn,
                 reduce: "-" + (totaloutgoing - totalreturn)
@@ -51,13 +61,15 @@ export class UnfinishedEntryComponent implements OnInit {
     }
     submit() {
         if (this.total > 0 && parseInt(this.date) > 0) {
-            let option = "count=" + this.total + "&outTime=" + this.date  + "&planId=" + this.data.planId
+            let option = "count=" + this.total + "&outTime=" + this.date + "&planId=" + this.data.planId
             this.service.http_post("/api/OuterFactory/UndonePlanEntry", option, false, "form").subscribe((data: any) => {
                 if (data.msg == "success") {
                     this.getPlan();
-                    alert("录入成功")
+                    this.service.messageBox(this.message, "录入成功！")
                 }
             })
+        } else {
+            this.service.messageBox(this.message, "请填写完整信息再提交！")
         }
     }
     backDate($event) {

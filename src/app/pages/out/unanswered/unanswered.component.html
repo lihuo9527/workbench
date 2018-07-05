@@ -1,8 +1,10 @@
 <div class="container">
-    <app-title *ngIf="Language=='en'" [title]="title"></app-title>
-    <app-title *ngIf="Language=='cn'" [title]="title"></app-title>
-    <app-search-box (getstate)='state=$event'></app-search-box>
-    <app-filter *ngIf="state" (ReturnData)="GetTabs($event)" (back)="state=!state" (envet)="Complete($event)"></app-filter>
+    <app-title *ngIf="language=='en'" title="Unanswered Plan"></app-title>
+    <app-title *ngIf="language=='cn'" title="未回复的计划"></app-title>
+    <section class="searchBox">
+        <input class="search" [(ngModel)]='input' type="text" [placeholder]="placeholder">
+        <input (click)="updateList('search')" type="button" class="searchBut">
+    </section>
     <div class="container_box">
         <div class="box">
             <ul class="items">
@@ -12,8 +14,8 @@
                             <p></p>
                         </div>
                         <div class="jo_container">
-                            <span *ngIf="Language=='en'">JO</span>
-                            <span *ngIf="Language=='cn'">生产单号</span>
+                            <span *ngIf="language=='en'">JO</span>
+                            <span *ngIf="language=='cn'">生产单号</span>
                             <span>{{item.code}}</span>
                         </div>
                         <div class="entry_container">
@@ -23,31 +25,31 @@
                         <li class="row">
                             <div class="other">
                                 <p>{{item.isReply}}</p>
-                                <span *ngIf="Language=='en'">Reply or not</span>
-                                <span *ngIf="Language=='cn'">是否回复</span>
+                                <span *ngIf="language=='en'">Reply or not</span>
+                                <span *ngIf="language=='cn'">是否回复</span>
                             </div>
                             <div class="other">
                                 <p>{{item.totalCount}}</p>
-                                <span *ngIf="Language=='en'">Total Qty</span>
-                                <span *ngIf="Language=='cn'">总数量</span>
+                                <span *ngIf="language=='en'">Total Qty</span>
+                                <span *ngIf="language=='cn'">总数量</span>
                             </div>
                             <div class="other">
                                 <p>{{item.startTime}}</p>
-                                <span *ngIf="Language=='en'">Start Date</span>
-                                <span *ngIf="Language=='cn'">开始日期</span>
+                                <span *ngIf="language=='en'">Start Date</span>
+                                <span *ngIf="language=='cn'">开始日期</span>
                             </div>
                         </li>
                         <li class="row">
                             <div class="other">
                                 <p>{{item.dayCount}}</p>
-                                <span *ngIf="Language=='en'">Daily Output</span>
-                                <span *ngIf="Language=='cn'">每日产量</span>
+                                <span *ngIf="language=='en'">Daily Output</span>
+                                <span *ngIf="language=='cn'">每日产量</span>
                             </div>
                             <div class="other">
                             </div>
                             <div class="other">
-                                <button *ngIf="Language=='en'" (click)="Link(item)" class="entry">Reply</button>
-                                <button *ngIf="Language=='cn'" (click)="Link(item)" class="entry">回复计划</button>
+                                <button *ngIf="language=='en'" (click)="Link(item)" class="entry">Reply</button>
+                                <button *ngIf="language=='cn'" (click)="Link(item)" class="entry">回复计划</button>
                             </div>
                         </li>
                     </ul>
@@ -55,5 +57,5 @@
             </ul>
         </div>
     </div>
-    <app-load-more *ngIf="datas.length>3" [language]="Language" (click)="UpdateList()"></app-load-more>
+    <app-load-more *ngIf="datas.length>3" [language]="language" (click)="updateList('add')"></app-load-more>
 </div>

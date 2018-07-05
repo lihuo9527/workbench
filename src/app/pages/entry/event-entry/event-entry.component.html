@@ -1,65 +1,65 @@
 <div class="container">
-    <app-title *ngIf="Language=='en'" title="Progress of Critical Event"></app-title>
-    <app-title *ngIf="Language=='cn'" title="关键事件进度录入"></app-title>
+    <app-title *ngIf="language=='en'" title="Progress of Critical Event"></app-title>
+    <app-title *ngIf="language=='cn'" title="关键事件进度录入"></app-title>
     <ul class="items">
         <li class="row">
             <div class="other">
                 <p>{{data.code}}</p>
-                <span *ngIf="Language=='en'">JO</span>
-                <span *ngIf="Language=='cn'">生产单号</span>
+                <span *ngIf="language=='en'">JO</span>
+                <span *ngIf="language=='cn'">生产单号</span>
             </div>
             <div class="other">
                 <p>{{data.deliverydate}}</p>
-                <span *ngIf="Language=='en'">Delivery Date</span>
-                <span *ngIf="Language=='cn'">交货期</span>
+                <span *ngIf="language=='en'">Delivery Date</span>
+                <span *ngIf="language=='cn'">交货期</span>
             </div>
             <div class="other">
                 <p>{{data.StarDate}}</p>
-                <span *ngIf="Language=='en'">Production Date</span>
-                <span *ngIf="Language=='cn'">生产日期</span>
+                <span *ngIf="language=='en'">Production Date</span>
+                <span *ngIf="language=='cn'">生产日期</span>
             </div>
         </li>
         <li class="row">
             <div class="other">
                 <p>{{data.pattern}}</p>
-                <span *ngIf="Language=='en'">Fty Style</span>
-                <span *ngIf="Language=='cn'">本厂款号</span>
+                <span *ngIf="language=='en'">Fty Style</span>
+                <span *ngIf="language=='cn'">本厂款号</span>
             </div>
             <div class="other">
                 <p>{{data.customername}}</p>
-                <span *ngIf="Language=='en'">Cust Name</span>
-                <span *ngIf="Language=='cn'">客户名称</span>
+                <span *ngIf="language=='en'">Cust Name</span>
+                <span *ngIf="language=='cn'">客户名称</span>
             </div>
             <div class="other">
                 <p>{{data.MainMaterielArriveDate}}</p>
-                <span *ngIf="Language=='en'">Fabric Arrival Date</span>
-                <span *ngIf="Language=='cn'">主料到货日期</span>
+                <span *ngIf="language=='en'">Fabric Arrival Date</span>
+                <span *ngIf="language=='cn'">主料到厂日期</span>
             </div>
         </li>
 
         <li class="row">
             <div class="other">
                 <p>{{data.OthMaterielArriveDate}}</p>
-                <span *ngIf="Language=='en'">Accessories Arrival Date</span>
-                <span *ngIf="Language=='cn'">辅料到货日期</span>
+                <span *ngIf="language=='en'">Accessories Arrival Date</span>
+                <span *ngIf="language=='cn'">辅料到厂日期</span>
             </div>
             <div class="other">
                 <p>{{data.EventFlowName}}</p>
-                <span *ngIf="Language=='en'">Critical Event Flow</span>
-                <span *ngIf="Language=='cn'">关键事件流程</span>
+                <span *ngIf="language=='en'">Critical Event Flow</span>
+                <span *ngIf="language=='cn'">关键事件流程</span>
             </div>
         </li>
     </ul>
     <section class="editrEcord">
         <ul class="entryEdit">
-            <li *ngIf="Language=='en'">Critical Event</li>
-            <li *ngIf="Language=='en'">Recommended Date</li>
-            <li *ngIf="Language=='en'">Expect Date</li>
-            <li *ngIf="Language=='en'">Completion Date</li>
-            <li *ngIf="Language=='cn'">关键事件</li>
-            <li *ngIf="Language=='cn'">推荐日期</li>
-            <li *ngIf="Language=='cn'">预期日期</li>
-            <li *ngIf="Language=='cn'">完成日期</li>
+            <li *ngIf="language=='en'">Critical Event</li>
+            <li *ngIf="language=='en'">Recommended Date</li>
+            <li *ngIf="language=='en'">Expect Date</li>
+            <li *ngIf="language=='en'">Completion Date</li>
+            <li *ngIf="language=='cn'">关键事件</li>
+            <li *ngIf="language=='cn'">推荐日期</li>
+            <li *ngIf="language=='cn'">预期日期</li>
+            <li *ngIf="language=='cn'">完成日期</li>
         </ul>
         <ul class="entryEdit" *ngFor="let item of list;let i=index;">
             <li>{{item.eventflownodeName}}</li>
@@ -70,8 +70,8 @@
     </section>
     <app-date *ngIf="state" number="1" (submit)="backDate($event)"></app-date>
     <div class="submitBox">
-        <button *ngIf="Language=='cn'" type="submit" (click)="Save()">保存</button>
-        <button *ngIf="Language=='en'" type="submit" (click)="Save()">Conserve</button>
+        <button *ngIf="language=='cn'" type="submit" (click)="Save()">保存</button>
+        <button *ngIf="language=='en'" type="submit" (click)="Save()">Conserve</button>
     </div>
     <app-message-box [msg]="message.msg" (event)="message.state=false" [btnText]="message.btnText" [msgShow]="message.state"></app-message-box>
 </div>

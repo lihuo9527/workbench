@@ -1,17 +1,17 @@
 <div class="container">
-    <app-title *ngIf="Language=='en'" title="Material Arrival (within N days)"></app-title>
-    <app-title *ngIf="Language=='cn'" title="N天内到货物料"></app-title>
+    <app-title *ngIf="language=='en'" title="Material Arrival (within N days)"></app-title>
+    <app-title *ngIf="language=='cn'" title="N天内到货物料"></app-title>
     <section class="searchBox">
         <input class="searchBut search" [(ngModel)]='input' type="text" [placeholder]="placeholder">
     </section>
     <div class="select_box">
         <div *ngFor="let item of datas;">
-            <button *ngIf="Language=='en'" class="but" (click)="item.state = !item.state" [ngClass]="{'on':item.state}">{{item.text}}</button>
-            <button *ngIf="Language=='cn'" class="but" (click)="item.state = !item.state" [ngClass]="{'on':item.state}">{{item.text2}}</button>
+            <button *ngIf="language=='en'" class="but" (click)="item.state = !item.state" [ngClass]="{'on':item.state}">{{item.text}}</button>
+            <button *ngIf="language=='cn'" class="but" (click)="item.state = !item.state" [ngClass]="{'on':item.state}">{{item.text2}}</button>
         </div>
     </div>
     <div class="submitBox">
-        <button *ngIf="Language=='en'" (click)="query()">Query</button>
-        <button *ngIf="Language=='cn'" (click)="query()">查询</button>
+        <button *ngIf="language=='en'" (click)="query()">Query</button>
+        <button *ngIf="language=='cn'" (click)="query()">查询</button>
     </div>
 </div>

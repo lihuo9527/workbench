@@ -1,5 +1,5 @@
 <div class="container">
-    <app-title *ngIf="Language=='en'" title="Factory Eff% By Current Monthly"></app-title>
-    <app-title *ngIf="Language=='cn'" title="当月工厂效率汇总统计"></app-title>
+    <app-title *ngIf="language=='en'" title="Factory Eff% By Current Monthly"></app-title>
+    <app-title *ngIf="language=='cn'" title="当月工厂效率汇总统计"></app-title>
     <div echarts [options]="option" class="demo-chart"></div>
 </div>

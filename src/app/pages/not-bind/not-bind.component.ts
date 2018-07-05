@@ -6,11 +6,11 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./not-bind.component.css']
 })
 export class NotBindComponent implements OnInit {
-    public Language;
+    public language;
     constructor() { }
 
     ngOnInit() {
-        this.Language = localStorage.getItem("language");
+        this.language = localStorage.getItem("language");
     }
 
 }

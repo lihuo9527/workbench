@@ -18,10 +18,10 @@ export class CapacityFilterComponent implements OnInit {
         { title: "Factory", title2: "工厂", rowstate: true, allstate: false, but: true, arrow: true, list: [] }
     ];
     public dates = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
-    public Language;
+    public language;
     public dateshow = true;
     ngOnInit() {
-        this.Language = localStorage.getItem("language");
+        this.language = localStorage.getItem("language");
         this.dateshow = false;
         this.service.http_get('/api/BaseData/GetFactorys', false).subscribe((data: any) => {
             if (data.length > 0) {

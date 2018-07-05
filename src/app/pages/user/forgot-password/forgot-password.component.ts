@@ -8,15 +8,15 @@ import { AppService } from '../../../app.service';
 export class ForgotPasswordComponent implements OnInit {
 
     constructor(private service: AppService) { }
-    public Language;
+    public language;
     public codestate = true;
     public time;
     public timer;
     public username;
     public items = [
-        { text:"Verification Code",value:"",url:"assets/images/key.png",type:"text"},
-        { text: "New Password" ,value:"",url:"assets/images/password2.png",type:"password"},
-        { text: "Confirm Password",value:"",url:"assets/images/password2.png",type:"password"}
+        { text: "Verification Code", value: "", url: "assets/images/key.png", type: "text" },
+        { text: "New Password", value: "", url: "assets/images/password2.png", type: "password" },
+        { text: "Confirm Password", value: "", url: "assets/images/password2.png", type: "password" }
     ];
     public message = {
         state: false,
@@ -25,20 +25,15 @@ export class ForgotPasswordComponent implements OnInit {
     };
     public loading = false;
     ngOnInit() {
-        this.Language = localStorage.getItem("language");
-    }
-    alert(message) {
-        this.message.msg = message;
-        this.message.state = true;
-        this.message.btnText = "OK";
+        this.language = localStorage.getItem("language");
     }
     getCode() {
         if (!this.username) {
-            this.alert("手机号不能为空！")
+            this.service.messageBox(this.message, "手机号不能为空！")
             return;
         }
         if (!this.service.isPoneAvailable(this.username)) {
-            this.alert("输入的手机号不合法！")
+            this.service.messageBox(this.message, "输入的手机号不合法！")
             return;
         }
         if (this.codestate == true) {
@@ -61,43 +56,43 @@ export class ForgotPasswordComponent implements OnInit {
             })
         }
     }
-    confirm(){
+    confirm() {
         if (!this.username) {
-            this.alert("手机号不能为空！")
+            this.service.messageBox(this.message, "手机号不能为空！")
             return;
         }
         if (!this.service.isPoneAvailable(this.username)) {
-            this.alert("输入的手机号不合法！")
+            this.service.messageBox(this.message, "输入的手机号不合法！")
             return;
         }
         if (this.service.getStrLength(this.items[0].value) != 6) {
-            this.alert("验证码长度输入有误！")
+            this.service.messageBox(this.message, "验证码长度输入有误！")
             return;
         }
         if (this.service.getStrLength(this.items[1].value) < 6) {
-            this.alert("密码长度不能少于6位！")
+            this.service.messageBox(this.message, "密码长度不能少于6位！")
             return;
         }
         if (this.items[1].value != this.items[2].value) {
-            this.alert("密码2次输入的结果不一致！")
+            this.service.messageBox(this.message, "密码2次输入的结果不一致！")
             return;
         }
-        let obj={
-            phone:this.username,
-            newPwd:this.items[1].value,
-            code:this.items[0].value
+        let obj = {
+            phone: this.username,
+            newPwd: this.items[1].value,
+            code: this.items[0].value
         }
         this.loading = true;
-        this.service.http_post('/users/modifyPasswordWithCode', "phone=" + this.username+ "&newPwd=" + this.items[1].value + "&code=" + this.items[0].value , false,"form").subscribe((data: any) => {
+        this.service.http_post('/users/modifyPasswordWithCode', "phone=" + this.username + "&newPwd=" + this.items[1].value + "&code=" + this.items[0].value, false, "form").subscribe((data: any) => {
             this.loading = false;
             if (data.msg == "success") {
-                this.alert("修改成功！");
+                this.service.messageBox(this.message, "修改成功！");
             } else {
-                this.alert(data.result.failedMsg);
+                this.service.messageBox(this.message, data.result.failedMsg);
             }
-        },error=>{
+        }, error => {
             this.loading = false;
-            this.alert("连接失败！");
+            this.service.messageBox(this.message, "连接失败！");
         })
     }
 }

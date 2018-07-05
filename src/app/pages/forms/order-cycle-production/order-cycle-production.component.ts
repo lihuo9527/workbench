@@ -8,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class OrderCycleProductionComponent implements OnInit {
 
     constructor() { }
-    public Language;
+    public language;
     ngOnInit() {
-        this.Language = localStorage.getItem("language");
+        this.language = localStorage.getItem("language");
     }
 
     option = {

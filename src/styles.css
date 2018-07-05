@@ -154,9 +154,9 @@ html {
     font-size: 1.4rem;
     line-height: 1.4rem;
     margin-bottom: 0.2rem;
-    overflow: hidden;
+    /* overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: nowrap; */
 }
 
 .marterInfo li span {
@@ -183,7 +183,7 @@ html {
     height: 4rem;
     padding: 0 1rem;
     overflow: hidden;
-    background: url(assets/images/arrow_right.png) no-repeat right center;
+    /* background: url(assets/images/arrow_right.png) no-repeat right center; */
     background-size: 1.5rem;
 }
 
@@ -243,6 +243,7 @@ html {
 .processList li .listCon .processBar {
     background: #ff5a52;
     height: 0.5rem;
+    max-width: 100%;
 }
 
 .processList li .listCon .begin,

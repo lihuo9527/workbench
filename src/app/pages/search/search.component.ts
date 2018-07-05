@@ -9,7 +9,7 @@ import { AppService } from '../../app.service';
 export class SearchComponent implements OnInit {
 
     constructor(private routerIonfo: ActivatedRoute, private service: AppService, private router: Router) { }
-    public Language;
+    public language;
     public id;
     public title: string;
     public state: boolean;
@@ -25,13 +25,14 @@ export class SearchComponent implements OnInit {
     public floors = [];
     public index;
     ngOnInit() {
-        this.Language = localStorage.getItem("language");
-        if (this.Language == "en") this.placeholder = "input number or style to query";
+        this.language = localStorage.getItem("language");
+        if (this.language == "en") this.placeholder = "input number or style to query";
         let data = JSON.parse(this.routerIonfo.snapshot.params["id"]);
         this.id = data.id;
         this.title = data.t;
         this.index = data.i;
         if (this.index == 0 && this.id == '0') {
+            //关键事件
             this.datas = [
                 { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 { title: "Critical Event", title2: "关键事件", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
@@ -46,6 +47,7 @@ export class SearchComponent implements OnInit {
 
         }
         if (this.index == 0 && this.id == '1') {
+             //每日进度
             this.datas = [
                 { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
@@ -55,6 +57,7 @@ export class SearchComponent implements OnInit {
 
         }
         if (this.index == 0 && this.id == '2') {
+            //非排产工序
             this.datas = [
                 { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 { title: "Process", title2: "工序", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
@@ -68,11 +71,12 @@ export class SearchComponent implements OnInit {
 
         }
         if (this.index == 1) {
+            //外发工序
             this.datas = [
                 { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 { title: "Style", title2: "大类", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Production Date", title2: "生产日期", rowstate: true, allstate: false, but: false, arrow: false, list: [] }
+                { title: "Delivery Date", title2: "交货期", rowstate: true, allstate: false, but: false, arrow: false, list: [] }
             ];
         }
         console.log("id", this.id);
@@ -119,7 +123,7 @@ export class SearchComponent implements OnInit {
 
             }
             if (this.index == 0 && this.id == 2) {
-                url = '/api/BaseData/GetProcesses';
+                url = '/api/BaseData/GetOthProcesses';
 
             }
             console.log(url)
