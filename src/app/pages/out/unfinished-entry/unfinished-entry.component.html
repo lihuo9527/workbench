@@ -39,7 +39,8 @@
         </li>
     </ul>
     <div>
-        <p class="row_title"> Plan </p>
+        <p *ngIf="language=='en'" class="row_title"> Plan </p>
+        <p *ngIf="language=='cn'" class="row_title"> 计划 </p>
         <ul class="items">
             <li class="row">
                 <div class="other">

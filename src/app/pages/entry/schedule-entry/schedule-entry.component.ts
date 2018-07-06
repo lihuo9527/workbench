@@ -12,7 +12,7 @@ export class ScheduleEntryComponent implements OnInit {
     constructor(
         private service: AppService,
         private routerIonfo: ActivatedRoute, ) { }
-    public Language;
+    public language;
     public data;
     public tabstate;
     public DateState;
@@ -37,9 +37,9 @@ export class ScheduleEntryComponent implements OnInit {
     }
     ngOnInit() {
         this.data = JSON.parse(this.routerIonfo.snapshot.params["data"]);
-        this.Language = localStorage.getItem("language");
-        this.placeholder = this.Language == 'cn' ? "输入完成数量" : "Input completed qty";
-        this.date = this.Language == 'cn' ? "选择生产日期" : "Select production date";
+        this.language = localStorage.getItem("language");
+        this.placeholder = this.language == 'cn' ? "输入完成数量" : "Input completed qty";
+        this.date = this.language == 'cn' ? "选择生产日期" : "Select production date";
         if (this.data.Pid == "progress") {
             this.title = "Production Daily Progress";
             this.title2 = "日进度数录入";

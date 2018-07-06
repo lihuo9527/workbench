@@ -1,7 +1,7 @@
 <div class="container">
     <app-title *ngIf="language=='en'" title="Critical Event"></app-title>
     <app-title *ngIf="language=='cn'" title="关键事件"></app-title>
-    <app-search-box (OutputValue)='updateList()'></app-search-box>
+    <app-search-box (OutputValue)="updateList('search')"></app-search-box>
     <app-filter Info="event" (envet)="updateList($event)"></app-filter>
     <div class="container_box">
         <div class="box">
@@ -39,7 +39,7 @@
                     </div>
                     <div class="left-content">
                         <div class="other">
-                            <p>{{item.EndDate}}</p>
+                            <p>{{item.deliverydate}}</p>
                             <span *ngIf="language=='en'">Delivery Date</span>
                             <span *ngIf="language=='cn'">交货期</span></div>
                         <div class="other">
@@ -48,7 +48,7 @@
                     </div>
                 </li>
             </ul>
-            <app-load-more *ngIf="datas.length>3" [language]="language" (click)="updateList()"></app-load-more>
+            <app-load-more *ngIf="datas.length>3" [language]="language" (click)="updateList('add')"></app-load-more>
         </div>
     </div>
 </div>

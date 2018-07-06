@@ -1,7 +1,7 @@
 <div class="container">
-    <app-title *ngIf="Language=='en'" title="Non-Planing Process Entry"></app-title>
-    <app-title *ngIf="Language=='cn'" title="非排产工序进度录入"></app-title>
-    <app-search-box (OutputValue)='updateList()'></app-search-box>
+    <app-title *ngIf="language=='en'" title="Non-Planing Process Entry"></app-title>
+    <app-title *ngIf="language=='cn'" title="非排产工序进度录入"></app-title>
+    <app-search-box (OutputValue)="updateList('search')"></app-search-box>
     <app-filter Info="event" (envet)="updateList($event)"></app-filter>
     <div class="container_box">
         <div class="box">
@@ -12,54 +12,54 @@
                             <p></p>
                         </div>
                         <div class="jo_container">
-                            <span *ngIf="Language=='en'">JO:{{item.code}}</span>
-                            <span *ngIf="Language=='cn'">生产单号:{{item.code}}</span>
+                            <span *ngIf="language=='en'">JO:{{item.code}}</span>
+                            <span *ngIf="language=='cn'">生产单号:{{item.code}}</span>
                         </div>
                         <div class="entry_container">
-                            <button *ngIf="Language=='en'" (click)="link(item)" class="entry">Entry</button>
-                            <button *ngIf="Language=='cn'" (click)="link(item)" class="entry">录入</button>
+                            <button *ngIf="language=='en'" (click)="link(item)" class="entry">Entry</button>
+                            <button *ngIf="language=='cn'" (click)="link(item)" class="entry">录入</button>
                         </div>
                     </div>
                     <ul class="items">
                         <li class="row">
                             <div class="other">
                                 <p>{{item.customername}}</p>
-                                <span *ngIf="Language=='en'">Customer Name</span>
-                                <span *ngIf="Language=='cn'">客户名称</span>
+                                <span *ngIf="language=='en'">Customer Name</span>
+                                <span *ngIf="language=='cn'">客户名称</span>
                             </div>
                             <div class="other">
                                 <p>{{item.customerPattern}}</p>
-                                <span *ngIf="Language=='en'">Customer pattern</span>
-                                <span *ngIf="Language=='cn'">客户款号</span>
+                                <span *ngIf="language=='en'">Customer pattern</span>
+                                <span *ngIf="language=='cn'">客户款号</span>
                             </div>
                             <div class="other">
                                 <p>{{item.deliverydate}}</p>
-                                <span *ngIf="Language=='en'">Delivery Date</span>
-                                <span *ngIf="Language=='cn'">交货期</span>
+                                <span *ngIf="language=='en'">Delivery Date</span>
+                                <span *ngIf="language=='cn'">交货期</span>
                             </div>
                         </li>
                         <li class="row">
                             <div class="other">
                                 <p>{{item.amount}}</p>
-                                <span *ngIf="Language=='en'">Schd.Qty</span>
-                                <span *ngIf="Language=='cn'">订单数量</span>
+                                <span *ngIf="language=='en'">Schd.Qty</span>
+                                <span *ngIf="language=='cn'">订单数量</span>
                             </div>
                             <div class="other">
                                 <p>{{item.confirmdate}}</p>
-                                <span *ngIf="Language=='en'">Confirm Date</span>
-                                <span *ngIf="Language=='cn'">订单日期</span>
+                                <span *ngIf="language=='en'">Confirm Date</span>
+                                <span *ngIf="language=='cn'">订单日期</span>
                             </div>
                             <div class="other">
                                 <p>{{item.pattern}}</p>
-                                <span *ngIf="Language=='en'">Fty.Style</span>
-                                <span *ngIf="Language=='cn'">本厂款号</span>
+                                <span *ngIf="language=='en'">Fty.Style</span>
+                                <span *ngIf="language=='cn'">本厂款号</span>
                             </div>
                         </li>
 
                     </ul>
                 </li>
             </ul>
-            <app-load-more *ngIf="datas.length>3" [language]="Language" (click)="updateList()"></app-load-more>
+            <app-load-more *ngIf="datas.length>3" [language]="language" (click)="updateList('add')"></app-load-more>
         </div>
     </div>
 </div>

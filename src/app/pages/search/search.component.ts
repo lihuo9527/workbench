@@ -47,7 +47,7 @@ export class SearchComponent implements OnInit {
 
         }
         if (this.index == 0 && this.id == '1') {
-             //每日进度
+            //每日进度
             this.datas = [
                 { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
@@ -169,11 +169,11 @@ export class SearchComponent implements OnInit {
     change(obj, index, items, n1) {
         //单选改变状态
         obj.state = !obj.state;
-        this.dateType = index;
         if (items.title == 'Production Date' || items.title == 'Date') {
             items.list.forEach((element, i) => {
                 if (index != i) element.state = false;
             });
+            this.dateType = obj.state ? index : undefined;
         }
         if (items.title == 'Factory' && obj.state) {
             this.floors.forEach((element) => {

@@ -98,11 +98,11 @@ export class FilterComponent implements OnInit {
     change(obj, index, items, n1) {
         //单选改变状态
         obj.state = !obj.state;
-        this.dateType = index;
         if (items.title == 'Production Date' || items.title == 'Date') {
             items.list.forEach((element, i) => {
                 if (index != i) element.state = false;
             });
+            this.dateType = obj.state ? index : undefined;
         }
         if (items.title == 'Factory' && obj.state && this.Info != "delay") {
             //关联工厂添加车间

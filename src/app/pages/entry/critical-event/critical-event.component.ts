@@ -17,22 +17,22 @@ export class CriticalEventComponent implements OnInit {
     public language;
     ngOnInit() {
         this.language = localStorage.getItem("language");
-        this.updateList();
+        this.updateList('init');
 
     }
     updateList($event?) {
         let local = JSON.parse(localStorage.getItem("filter"));
-        let pageIndex = local.input ? 1 : this.datas.length / 4 + 1;
+        let pageIndex = $event == 'add' ? Math.ceil(this.datas.length / 4 + 1) : 1;
+        let object = $event == 'add' || $event == 'search' || $event == 'init' ? local : $event;
         let option = "";
-        let object = $event ? $event : local;
-        option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + object.start + '&end=' + object.end
+        option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + object.start + '&end=' + object.end;
         if (object.fids) option += '&fids=' + object.fids;
         if (object.wsids) option += '&wsids=' + object.wsids;
         if (object.eventid) option += '&eventid=' + object.eventid;
         if (object.dateType >= 0) option += '&dateType=' + object.dateType;
         if (local.input) option += '&code=' + local.input;
         this.service.http_get('/api/Schedule/GetEventPoes?' + option, false).subscribe((data: any) => {
-            if ($event || local.input) {
+            if ($event != 'add') {
                 this.datas = data;
             } else {
                 data.forEach(element => {
