@@ -128,6 +128,7 @@ export class FilterComponent implements OnInit {
         }
     }
     complete() {
+        //完成筛选返回条件
         let obj: any = {};
         let fids = [];
         let wsids = [];
