@@ -25,7 +25,7 @@ export class FilterComponent implements OnInit {
     ngOnInit() {
         this.language = localStorage.getItem("language");
         this.local = JSON.parse(localStorage.getItem("filter"));
-        console.log("INfo", this.Info)
+        console.log("INfo", this.Info,this.local.input);
         if (this.Info == "delay") {
             this.dateshow = false;
             this.service.http_get('/api/BaseData/GetFactoryLines', false).subscribe((data: any) => {
@@ -147,6 +147,7 @@ export class FilterComponent implements OnInit {
                 if (wsids.toString()) obj['wsids'] = wsids.toString();
             }
             if (fids.toString()) obj['fids'] = fids.toString();
+            console.log("input",this.local.input);
             if (this.local.input) obj['input'] = this.local.input;
             if (this.local.id == 0 && this.local.index == 0) {
                 let eventid = [];
