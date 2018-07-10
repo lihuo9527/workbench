@@ -49,10 +49,13 @@
 
 .right {
     justify-content: flex-end;
+    align-items: flex-end;
 }
 
 .right span,
-.right p {}
+.right p {
+    text-align: right;
+}
 
 .center {
     justify-content: center;

@@ -1,6 +1,6 @@
 <div class="container">
     <app-title *ngIf="language=='en'" title="Critical Event"></app-title>
-    <app-title *ngIf="language=='cn'" title="关键事件"></app-title>
+    <app-title *ngIf="language=='cn'" title="关键事件进度"></app-title>
     <app-search-box (OutputValue)="updateList('search')"></app-search-box>
     <app-filter Info="event" (envet)="updateList($event)"></app-filter>
     <div class="container_box">

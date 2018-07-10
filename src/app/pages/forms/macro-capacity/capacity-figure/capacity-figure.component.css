@@ -1,0 +1,34 @@
+h5 {
+    line-height: 1.8rem;
+    color:#58bc58
+}
+.demo-chart {
+    width: 80%;
+    height:10rem;
+}
+ul li {
+    height: 1.5rem;display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ul li span:first-child {
+    width: 12%;
+    height: 0.8rem;
+    background:  rgb(75 146 222);
+    text-indent: -2em;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: bottom;
+}
+ul li:nth-child(2) span:first-child {
+    background: rgb(234 52 67);
+}
+ul li:nth-child(3) span:first-child {
+    background: rgb(255 255 0);
+}
+ul li span:nth-child(2) {
+    display: inline-block;
+    width: 35%;
+    padding-left: 0.2rem;
+    text-align: left;
+}

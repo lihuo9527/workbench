@@ -45,14 +45,14 @@
 }
 
 .colorMenu li {
-    line-height: 4rem;
+    line-height: 3rem;
     text-align: center;
     font-size: 1.6rem;
     background: #f3f4f6;
 }
 
 .colorMenu li span {
-    line-height: 4rem;
+    line-height: 3rem;
     text-align: center;
     font-size: 1.6rem;
     width: 100%;
@@ -197,6 +197,37 @@ td input {
 .select-container {
     display: flex;
     flex: 0 0 100%;
+}
+
+.select-container li{
+    flex: 0 0 33%;display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid #ddd;
+    
+}
+.select-container li.active{
+    color:#088c77;
+    
+}
+.select-container li:last-child{
+    border-right: 0 none;
+}
+
+.select-container li span{
+    display:inline-block;
+    width: 10%;
+    padding: 0.3rem;
+    background: url(/assets/images/arrow_down.png) no-repeat right;
+    background-size: 1rem;
+}
+.select-container li span.active{
+    background: url(/assets/images/arrow_up_green.png) no-repeat right;
+    background-size: 1rem;
+}
+
+.select-container li span img{
+    width:100%;
 }
 
 .select_name {

@@ -20,9 +20,9 @@ export class HomeComponent implements OnInit {
         {
             TodayHandledCount: "0",
             TipsCountList: [
-                { Url: "/assets/images/a_21.png", Text: "Critical Event", Name: "关键事件", Link: "/search", Id: "0", Amount: "0" },
-                { Url: "/assets/images/a_22.png", Text: "Daily Progress", Name: "每日进度", Link: "/search", Id: "1", Amount: "0" },
-                { Url: "/assets/images/a_23.png", Text: "Non-planing Process", Name: "非排产工序", Link: "/search", Id: "2", Amount: "0" },
+                { Url: "/assets/images/a_21.png", Text: "Critical Event", Name: "关键事件进度", Link: "/search", Id: "0", Amount: "0" },
+                { Url: "/assets/images/a_22.png", Text: "Daily Progress", Name: "生产日进度", Link: "/search", Id: "1", Amount: "0" },
+                { Url: "/assets/images/a_23.png", Text: "Non-planing Process", Name: "非排产工序日进度", Link: "/search", Id: "2", Amount: "0" },
                 { Url: "/assets/images/ico_04.png", Text: "All", Name: "全部", Link: "/all", Id: "3", Amount: "0" }]
         },
         {

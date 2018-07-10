@@ -10,4 +10,16 @@
     </section>
     <app-capacity-filter (envet)="UpdateList($event)"></app-capacity-filter>
     <app-date *ngIf="state" number="1" (submit)="backDate($event)"></app-date>
+    <section class="content">
+        <div class="contentItem" *ngFor="let item of datas;">
+            <h3>{{item.factoryName}}</h3>
+            <div class="figure">
+                <div *ngFor="let obj of item.list; let key=index;">
+                    <h4>{{obj.month}}</h4>
+                    <app-capacity-figure [dataA]="obj.typeA"  [dataB]="obj.typeB"></app-capacity-figure>
+                </div>
+            </div>
+        </div>
+        
+    </section>
 </div>

@@ -12,7 +12,7 @@ export class ScheduleEntryComponent implements OnInit {
     constructor(
         private service: AppService,
         private routerIonfo: ActivatedRoute, ) { }
-    public language;
+    public Language;
     public data;
     public tabstate;
     public DateState;
@@ -28,8 +28,17 @@ export class ScheduleEntryComponent implements OnInit {
     public DateName;
     public process;
     public selectstate;
+    public floorselectstate = false;
+    public lineselectstate;
     public processName;
+    public floorName;
+    public lineName;
     public processId;
+    public floorData;
+    public lineData;
+    public floorId;
+    public lineId;
+    public shops;
     public message = {
         state: false,
         btnText: "OK",
@@ -37,12 +46,11 @@ export class ScheduleEntryComponent implements OnInit {
     }
     ngOnInit() {
         this.data = JSON.parse(this.routerIonfo.snapshot.params["data"]);
-        this.language = localStorage.getItem("language");
-        this.placeholder = this.language == 'cn' ? "输入完成数量" : "Input completed qty";
-        this.date = this.language == 'cn' ? "选择生产日期" : "Select production date";
+        this.Language = localStorage.getItem("language");
+        this.placeholder = this.Language == 'cn' ? "输入完成数量" : "Input completed qty";
+        this.date = this.Language == 'cn' ? "选择生产日期" : "Select production date";
         if (this.data.Pid == "progress") {
-            this.title = "Production Daily Progress";
-            this.title2 = "日进度数录入";
+            this.title = this.Language == 'cn' ? "生产日进度" : "Production Daily Progress";
             this.service.http_get('/api/Schedule/GetPlanScheduleData?poid=' + this.data.id + '&planId=' + this.data.ProductionEventID, false).subscribe((data: any) => {
                 console.log(data)
                 this.color_tabs = data;
@@ -50,17 +58,20 @@ export class ScheduleEntryComponent implements OnInit {
         }
         if (this.data.Pid == "non-process") {
             this.color_tabs = { CompleteAmount: '', ProDataCompletedList: [] }
-            this.title = "Non-Planing Process Entry";
-            this.title2 = "非排产工序进度录入";
-
+            this.title = this.Language == 'cn' ? "非排产工序日进度" : "Non-Planing Process Entry";
+            this.processName = this.Language == 'cn' ? "工序" : "Process";
+            this.floorName = this.Language == 'cn' ? "车间" : "Floor";
+            this.lineName = this.Language == 'cn' ? "产线" : "Line";
             this.service.http_get('/api/Schedule/GetPoProcess?poId=' + this.data.id, false).subscribe((data: any) => {
-                console.log(data)
                 this.process = data;
             })
+            this.service.http_get('/api/Schedule/GetScheduleWorkshop?poid=' + this.data.id, false)
+                .subscribe((data: any) => {
+                    this.shops = data;
+                    this.floorData = this.shops.Shops;
+                });
 
         }
-        console.log(this.data)
-
     }
     change() {
         console.log(this.color_tabs)
@@ -83,9 +94,8 @@ export class ScheduleEntryComponent implements OnInit {
         this.processName = name;
         this.selectstate = false;
         this.service.http_get('/api/Schedule/GetScheduleData?poid=' + this.data.id + '&processId=' + id, false).subscribe((data: any) => {
-            console.log(data)
             this.color_tabs = data;
-        })
+        });
     }
     Save() {
         if (this.data.Pid == "non-process") {
@@ -96,7 +106,9 @@ export class ScheduleEntryComponent implements OnInit {
                     "PoId": this.data.id,
                     "ProDate": this.date,
                     "IsProCompleted": IsProCompleted,
-                    "ProDatas": []
+                    "ProDatas": [],
+                    "WorkShopId": this.floorId,
+                    "LineId": this.lineId
                 }
                 this.color_tabs.ProDataCompletedList.forEach((element, i) => {
                     element.SizeCompletes.forEach(el => {
@@ -194,5 +206,31 @@ export class ScheduleEntryComponent implements OnInit {
             }
         }
 
+    }
+    alert(message) {
+        this.message.msg = message;
+        this.message.state = true;
+        this.message.btnText = "OK";
+    }
+    getProcess() {
+        this.selectstate = !this.selectstate;
+        this.floorselectstate = false;
+        this.lineselectstate = false;
+    }
+    getFloor() {
+        this.selectstate = false;
+        this.lineselectstate = false;
+        this.floorselectstate = !this.floorselectstate;
+    }
+    getLines() {
+        this.lineselectstate = !this.lineselectstate;
+        this.selectstate = false;
+        this.floorselectstate = false;
+    }
+    showLines(shopName, key, id) {
+        this.floorselectstate = !this.floorselectstate;
+        this.floorName = shopName;
+        this.floorId = id;
+        this.lineData = this.shops.Shops[key].Lines;
     }
 }

@@ -46,7 +46,7 @@
 }
 
 #filter .filter>li {
-    border: #f3f4f6 solid 1px;
+    border-bottom: 1px solid #eee;
     padding: 0.5rem 0 0.5rem 1rem;
 }
 
@@ -140,7 +140,6 @@
 }
 
 .x {
-    width: 0;
     height: 100%;
     display: flex;
     justify-content: flex-start;
@@ -178,7 +177,19 @@
     box-sizing: border-box;
     margin-top: 0.5rem;
 }
-
+.checkMonth {
+    width: 100%;
+    display: flex;
+    padding-right:1rem;
+    box-sizing: border-box;
+    flex-flow: wrap; 
+    margin-bottom:1rem;
+}
+.checkMonthTitle {
+    margin-top:1rem;
+    font-size: 1.6rem;
+    flex: 0 0 100%;
+}
 .icon_container {
     width: 100%;
     margin-top: 1rem;
@@ -251,4 +262,8 @@
     justify-content: center;
     align-items: center;
     color: #fff;
+}
+.beseSize {
+    width: 45%;
+    float: left;
 }

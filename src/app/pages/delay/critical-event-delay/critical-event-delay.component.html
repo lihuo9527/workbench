@@ -4,41 +4,49 @@
     <app-search-box (OutputValue)='updateList()'></app-search-box>
     <app-filter Info="delay" (envet)="updateList($event)"></app-filter>
 </div>
-<ul class="criticalList" id="deliver">
-    <li *ngFor="let item of datas;">
-        <div class="criticalCon">
-            <div class="left">
-                <p>{{item.PoCode}}</p>
-                <span *ngIf="language=='en'">JO</span>
-                <span *ngIf="language=='cn'">生产单号</span>
-                <p>{{item.Pattern}}</p>
-                <span *ngIf="language=='en'">Fty Style</span>
-                <span *ngIf="language=='cn'">本厂款号</span>
-                <p>{{item.CustomerName}}</p>
-                <span *ngIf="language=='en'">Customer Name</span>
-                <span *ngIf="language=='cn'">客户名称</span>
-            </div>
-            <div class="centre">
-                <em class="slightDelay">
-                    <span style="font-size:1.6rem;color:#fff;">{{item.EventName}}</span>
-              </em>
-            </div>
-            <div class="right">
-                <p>{{item.DeliveryDate}}</p>
-                <span *ngIf="language=='en'">Delivery</span>
-                <span *ngIf="language=='cn'">交货期</span>
-                <p>{{item.ExpectFinishDate}}</p>
-                <span *ngIf="language=='en'">Recommended Date</span>
-                <span *ngIf="language=='cn'">推荐日期</span>
-                <p>
-                    <span class="red">{{item.DelayDays}} </span>
-                    <span class="red" *ngIf="language=='en'">Days </span>
-                    <span class="red" *ngIf="language=='cn'">天</span></p>
-                <span *ngIf="language=='en'">Dalay</span>
-                <span *ngIf="language=='cn'">延误</span>
-                <!-- <i class="arrow_right"></i> -->
-            </div>
-        </div>
-    </li>
-</ul>
+
+<div class="box">
+    <div class="box_row" *ngFor="let item of datas;let i=index;">
+        <ul class="items">
+            <li class="row left">
+                <div class="other">
+                    <p>{{item.PoCode}}</p>
+                    <span *ngIf="language=='en'">JO</span>
+                    <span *ngIf="language=='cn'">生产单号</span>
+                    <p>{{item.Pattern}}</p>
+                    <span *ngIf="language=='en'">Fty Style</span>
+                    <span *ngIf="language=='cn'">本厂款号</span>
+                    <p>{{item.CustomerName}}</p>
+                    <span *ngIf="language=='en'">Customer Name</span>
+                    <span *ngIf="language=='cn'">客户名称</span>
+                </div>
+            </li>
+            <li class="row center">
+                <div class="other center">
+                    <div class="slightDelay">
+                        <div class="delay_box">
+                            <span>{{item.EventName}}</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="row right">
+                <div class="other">
+                    <p>{{item.DeliveryDate}}</p>
+                    <span *ngIf="language=='en'">Delivery</span>
+                    <span *ngIf="language=='cn'">交货期</span>
+                    <p>{{item.ExpectFinishDate}}</p>
+                    <span *ngIf="language=='en'">Recommended Date</span>
+                    <span *ngIf="language=='cn'">推荐日期</span>
+                    <p>
+                        <span class="red">{{item.DelayDays}} </span>
+                        <span class="red" *ngIf="language=='en'">Days </span>
+                        <span class="red" *ngIf="language=='cn'">天</span></p>
+                    <span *ngIf="language=='en'">Dalay</span>
+                    <span *ngIf="language=='cn'">延误</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
 <app-load-more *ngIf="datas.length>3" [language]="language" (click)="updateList('add')"></app-load-more>

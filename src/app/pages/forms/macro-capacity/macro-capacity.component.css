@@ -86,3 +86,29 @@ button {
     margin: 0em;
     font: 400 13.3333px Arial;
 }
+
+.content .contentItem{
+    background-color: #fff;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+}
+
+.content .contentItem h3{
+    height: 4rem;
+    line-height: 4rem;
+    padding: 0 1rem;
+    font-size: 1.4rem;
+}
+.content .figure{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+}
+.content .figure >div{
+    flex:0 0 24%;
+}
+.content .figure >div h4{
+    text-align: center;
+    line-height: 2rem;
+    font-size: 1.3rem;
+}

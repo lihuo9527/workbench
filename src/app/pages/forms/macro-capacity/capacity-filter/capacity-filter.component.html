@@ -3,24 +3,27 @@
         <h3 *ngIf="language=='en'">Filter<span (click)="Back()">Back</span></h3>
         <h3 *ngIf="language=='cn'">筛选<span (click)="Back()">返回</span></h3>
         <ul class="filter">
-            <li *ngFor="let item of datas;let i=index;" style="border-bottom: 1px solid #eee;">
+            <li *ngFor="let item of datas;let i=index;" [ngClass]="{'beseSize': item.list.length == 1}">
+
                 <div class="filterTit">
                     <strong *ngIf="language=='en'">{{item.title}}</strong>
                     <strong *ngIf="language=='cn'">{{item.title2}}</strong>
                     <a *ngIf="item.arrow" (click)="item.rowstate=!item.rowstate" [ngClass]="{'rowDown':item.rowstate,'rowRight':!item.rowstate}"></a>
                     <a *ngIf="item.but" (click)="on_off(item.allstate,i,item)" [ngClass]="{'allOn':item.allstate,'allOff':!item.allstate}"></a>
                 </div>
+                <h4 *ngIf="item.tips" [ngStyle]="{'color': '#088c77'}">{{item.tips}}</h4>
                 <ul class="list" *ngIf="item.rowstate">
-                    <li (click)="change(arr,b,item,i)" *ngFor="let arr of item.list;let b=index;" [ngClass]="{'on':arr.state}">
-                        <span>  {{arr.text}}</span>
+                    <li (click)="change(arr,b,item,i)" *ngFor="let arr of item.list;let b=index;" [ngClass]="{'on':arr.state}" [ngStyle]="{ 'width': item.list.length <= 1 ? '50%': '30%' }">
+                        <span *ngIf="language=='en'">  {{arr.text}}</span>
+                        <span *ngIf="language=='cn'">  {{arr.text2}}</span>
                     </li>
                 </ul>
                 <hr *ngIf="i==0">
-                <div style="width: 100%;display: flex;padding-right:1rem;box-sizing: border-box;flex-flow: wrap; margin-bottom:1rem;" *ngIf="i==0">
-                    <p *ngIf="language=='cn'" style="margin-top:1rem;font-size: 1.6rem;flex: 0 0 100%;">周期</p>
+                <div class="checkMonth" *ngIf="i==0">
+                    <p *ngIf="language=='cn'" class="checkMonthTitle">周期</p>
                     <div class="icon_container">
-                        <div class="water" (CapacityFilterDirective)="backDate($event)">
-                            <a>1</a>
+                        <div class="water" (CapacityFilterDirective)="backDate($event)" [ngStyle]="{'left': waterLeft}">
+                            <a>{{month}}</a>
                         </div>
                     </div>
                     <div class="xborder">
@@ -29,7 +32,7 @@
                         </div>
                     </div>
                     <div class="xbox">
-                        <div id="progress" class="x green"></div>
+                        <div id="progress" class="x green" [ngStyle]="{'width': progressWidth}"></div>
                         <div class="xleft"></div>
                         <div class="xright"></div>
                     </div>
