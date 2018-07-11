@@ -214,6 +214,28 @@
     padding: 0.3rem;
 }
 
-.date_item p {
+.date_container2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.3rem;
+    border: 1px solid #e5e5e5;
+}
+
+.date_container2 strong {
+    font-size: 1.6rem;
+}
+
+.date_item2 {
+    background: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 3px;
+    padding: 0.5rem 2rem 0.5rem 2rem;
+}
+
+.date_item p,
+.date_item2 p {
     padding: 0.5rem;
 }

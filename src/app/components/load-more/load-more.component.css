@@ -1,7 +1,14 @@
-
-#listMore {
+.listMore {
     text-align: center;
     background: #fff;
+    line-height: 3rem;
+    display: block;
+}
+
+.notMore {
+    color: #fff;
+    text-align: center;
+    background: #b8b8b8;
     line-height: 3rem;
     display: block;
 }

@@ -38,7 +38,10 @@
                     <span *ngIf="language=='en'">Material Name</span>
                     <span *ngIf="language=='cn'">物料名称</span></li>
                 <li>
-                    <p>{{item.MaterialStyle}}</p>
+                    <p *ngIf="language=='en' && item.MaterialStyle==1">Accessories</p>
+                    <p *ngIf="language=='en' && item.MaterialStyle==0">Fabric</p>
+                    <p *ngIf="language=='cn' && item.MaterialStyle==1">辅料</p>
+                    <p *ngIf="language=='cn' && item.MaterialStyle==0">主料</p>
                     <span *ngIf="language=='en'">Material Style</span>
                     <span *ngIf="language=='cn'">物料类型</span></li>
                 <li>
@@ -69,5 +72,5 @@
             </ul>
         </li>
     </ul>
-    <app-load-more *ngIf="datas.length>3" [language]="language" (click)="updateList('add')"></app-load-more>
+    <app-load-more *ngIf="datas.length>0 && datas.length>3 || datas.length==0" [type]="type" (click)="updateList('add')"></app-load-more>
 </div>

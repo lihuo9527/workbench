@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
         },
         {
             title: "Material Delay", title2: "物料延误", TodayHandledCount: "0", TipsCountList: [
-                { Url: "/assets/images/ico_51.png", Text: "Fabric", Name: "面料", Link: "/materialDelay", Id: "0", Amount: "0" },
+                { Url: "/assets/images/ico_51.png", Text: "Fabric", Name: "主料", Link: "/materialDelay", Id: "0", Amount: "0" },
                 { Url: "/assets/images/ico_52.png", Text: "Accessories", Name: "辅料", Link: "/materialDelay", Id: "1", Amount: "0" }]
         }
     ]

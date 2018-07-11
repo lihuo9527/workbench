@@ -12,21 +12,24 @@ export class ProductionDailyProgressComponent implements OnInit {
     constructor(private service: AppService, private routerIonfo: ActivatedRoute, private router: Router) { }
     public datas = [];
     public language;
+    public type;
     ngOnInit() {
         this.language = localStorage.getItem("language");
         this.updateList('init');
     }
     updateList($event?) {
+        if (this.type == 2 && $event == 'add') return;
         let local = JSON.parse(localStorage.getItem("filter"));
         let pageIndex = $event == 'add' ? Math.ceil(this.datas.length / 4 + 1) : 1;
         let option = "";
         let object = $event == 'add' || $event == 'search' || $event == 'init' ? local : $event;
-        option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + object.start + '&end=' + object.end
+        option = 'pageIndex=' + pageIndex + '&pageSize=4&planTime=' + object.start
         if (object.fids) option += '&fids=' + object.fids;
         if (object.wsids) option += '&wsids=' + object.wsids;
         if (object.styles) option += '&styles=' + object.styles;
         if (local.input) option += '&code=' + local.input;
         this.service.http_get('/api/Schedule/GetPlanPoes?' + option, false).subscribe((data: any) => {
+            this.type = data.length > 0 ? 1 : 2;
             if ($event != 'add') {
                 this.datas = data;
             } else {

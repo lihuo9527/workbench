@@ -55,7 +55,7 @@ export class PlanEntryComponent implements OnInit {
                         date: this.amount,
                         outgoingCount: totaloutgoing,
                         backFactory: totalreturn,
-                        reduce: "-" + (totaloutgoing - totalreturn)
+                        reduce:totalreturn - totaloutgoing
                     })
                 }
 

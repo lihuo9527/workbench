@@ -16,6 +16,7 @@ export class UnfinishedComponent implements OnInit {
     public state;
     public placeholder;
     public input;
+    public type;
     ngOnInit() {
         this.language = localStorage.getItem("language");
         this.title = this.language == "cn" ? "未完成的计划" : "Uncompleted Plan";
@@ -24,11 +25,13 @@ export class UnfinishedComponent implements OnInit {
         this.updateList();
     }
     updateList($event?) {
+        if (this.type == 2 && $event == 'add') return;
         if ($event == 'search' && !this.input) return;
         let pageIndex = Math.ceil(this.datas.length / 4) + 1;
         let option = 'pageIndex=' + pageIndex + '&pageSize=4' + "&nodeId=" + this.id;
         if (this.input) option += "&code=" + this.input;
         this.service.http_get('/api/OuterFactory/UndonePlanList?' + option, false).subscribe((data: any) => {
+            this.type = data.length > 0 ? 1 : 2;
             if (data.msg == "success") {
                 if ($event == "add") {
                     let obj = data.result.listInfo;

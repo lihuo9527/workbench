@@ -27,8 +27,8 @@ export class SelectTypeComponent implements OnInit {
     }
     query() {
         if (this.datas[0].state && this.datas[1].state || !this.datas[0].state && !this.datas[1].state) this.selectType = -1;
-        if (this.datas[0].state && this.datas[1].state == false) this.selectType = 1;
-        if (this.datas[0].state == false && this.datas[1].state) this.selectType = 0;
+        if (this.datas[0].state && this.datas[1].state == false) this.selectType = 0;
+        if (this.datas[0].state == false && this.datas[1].state) this.selectType = 1;
         localStorage.setItem("datas", JSON.stringify([{ title: "Material", title2: "物料", rowstate: true, allstate: false, but: true, arrow: true, list: this.datas }]));
         localStorage.setItem("filter", JSON.stringify({ 'id': 'material', "input": this.input, "type": this.selectType.toString() }));
         this.router.navigate(['ndays/materialArrival']);

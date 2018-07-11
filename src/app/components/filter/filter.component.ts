@@ -22,10 +22,15 @@ export class FilterComponent implements OnInit {
     public floors = JSON.parse(localStorage.getItem("floors"));
     public dateshow = true;
     public local;
+    public number: number = 2;
     ngOnInit() {
         this.language = localStorage.getItem("language");
         this.local = JSON.parse(localStorage.getItem("filter"));
-        console.log("INfo", this.Info,this.local.input);
+        console.log("INfo", this.Info, this.local.input);
+        if (this.local.id == 1 && this.local.index == 0) {
+            this.number = 1;
+            this.dateshow = false;
+        }
         if (this.Info == "delay") {
             this.dateshow = false;
             this.service.http_get('/api/BaseData/GetFactoryLines', false).subscribe((data: any) => {
@@ -44,6 +49,9 @@ export class FilterComponent implements OnInit {
         } else {
             this.StartDate = this.local.start;
         }
+        if (this.Info == "event" && this.local.dateType >= 0) {
+            this.dateType = this.local.dateType;
+        }
         if (this.Info == "delay" || this.Info == "material") {
             this.dateshow = false;
         } else {
@@ -61,13 +69,17 @@ export class FilterComponent implements OnInit {
         //返回时间并关闭窗口
         let obj = JSON.parse(objs);
         let time = 0;
-        if (obj.dates) {
-            this.StartDate = obj.dates[0];
-            this.EndDate = obj.dates[1];
-            time = 1000;
+        if (this.local.id == 1 && this.local.index == 0) {
+            this.StartDate = obj.date;
+            time = 500;
+        } else {
+            if (obj.dates) {
+                this.StartDate = obj.dates[0];
+                this.EndDate = obj.dates[1];
+                time = 500;
+            }
         }
         setTimeout(() => this.state = obj.state, time);
-
     }
     on_off(allstate, i, item) {
         //全部按钮开关改变状态
@@ -148,7 +160,7 @@ export class FilterComponent implements OnInit {
                 if (wsids.toString()) obj['wsids'] = wsids.toString();
             }
             if (fids.toString()) obj['fids'] = fids.toString();
-            console.log("input",this.local.input);
+            console.log("input", this.local.input);
             if (this.local.input) obj['input'] = this.local.input;
             if (this.local.id == 0 && this.local.index == 0) {
                 let eventid = [];

@@ -15,12 +15,14 @@ export class CriticalEventComponent implements OnInit {
     ) { }
     public datas = [];
     public language;
+    public type;
     ngOnInit() {
         this.language = localStorage.getItem("language");
         this.updateList('init');
 
     }
     updateList($event?) {
+        if (this.type == 2 && $event == 'add') return;
         let local = JSON.parse(localStorage.getItem("filter"));
         let pageIndex = $event == 'add' ? Math.ceil(this.datas.length / 4 + 1) : 1;
         let object = $event == 'add' || $event == 'search' || $event == 'init' ? local : $event;
@@ -32,6 +34,7 @@ export class CriticalEventComponent implements OnInit {
         if (object.dateType >= 0) option += '&dateType=' + object.dateType;
         if (local.input) option += '&code=' + local.input;
         this.service.http_get('/api/Schedule/GetEventPoes?' + option, false).subscribe((data: any) => {
+            this.type = data.length > 0 ? 1 : 2;
             if ($event != 'add') {
                 this.datas = data;
             } else {

@@ -16,6 +16,7 @@ export class UnansweredComponent implements OnInit {
     public id;
     public placeholder;
     public input;
+    public type;
     ngOnInit() {
         this.language = localStorage.getItem("language");
         this.id = this.routerIonfo.snapshot.params["id"];
@@ -24,11 +25,13 @@ export class UnansweredComponent implements OnInit {
         this.updateList();
     }
     updateList($event?) {
+        if (this.type == 2 && $event == 'add') return;
         if ($event == 'search' && !this.input) return;
         let pageIndex = Math.ceil(this.datas.length / 4) + 1;
         let option = 'pageIndex=' + pageIndex + '&pageSize=4' + "&nodeId=" + this.id;
         if (this.input) option += "&code=" + this.input;
         this.service.http_get('/api/OuterFactory/UnansweredPlanList?' + option, false).subscribe((data: any) => {
+            this.type = data.length > 0 ? 1 : 2;
             console.log(data);
             if (data.msg == "success") {
                 if ($event == "add") {

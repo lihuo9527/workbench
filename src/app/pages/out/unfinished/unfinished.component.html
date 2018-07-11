@@ -63,5 +63,5 @@
             </ul>
         </div>
     </div>
-    <app-load-more *ngIf="datas.length>3" [language]="language" (click)="updateList('add')"></app-load-more>
+    <app-load-more *ngIf="datas.length>0 && datas.length>3 || datas.length==0" [type]="type" (click)="updateList('add')"></app-load-more>
 </div>

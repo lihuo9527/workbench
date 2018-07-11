@@ -25,9 +25,16 @@
                 <p (click)="state=true">{{EndDate}}</p>
             </div>
         </div>
+        <div class="date_container2" *ngIf="local.index == 0 && local.id == 1">
+            <strong *ngIf="language=='en'">Production Date Includes</strong>
+            <strong *ngIf="language=='cn'">生产日期包含</strong>
+            <div class="date_item2">
+                <p (click)="state=true">{{StartDate}}</p>
+            </div>
+        </div>
         <button *ngIf="language=='en'" class="sbmit" (click)="complete()">Complete</button>
         <button *ngIf="language=='cn'" class="sbmit" (click)="complete()">完成</button>
     </div>
     <div id="shadow"></div>
-    <app-date *ngIf="state" number="2" (submit)="backDate($event)"></app-date>
+    <app-date *ngIf="state" [number]="number" (submit)="backDate($event)"></app-date>
 </aside>

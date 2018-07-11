@@ -23,8 +23,9 @@ export class DeliverDelayComponent implements OnInit {
     public link;
     public state;
     public index;
+    public type;
     ngOnInit() {
-        localStorage.setItem("filter",JSON.stringify({input:''}));
+        localStorage.setItem("filter", JSON.stringify({ input: '' }));
         console.log(this.service.get_params());
         console.log('进入')
         let navid;
@@ -40,6 +41,7 @@ export class DeliverDelayComponent implements OnInit {
     }
 
     updateList($event?) {
+        if (this.type == 2 && $event == 'add') return;
         if (this.index != undefined) {
             if (this.index == "0") this.id = "6";
             if (this.index == "1") this.id = "8";
@@ -51,12 +53,13 @@ export class DeliverDelayComponent implements OnInit {
         if ($event && $event.fids) option += '&fids=' + $event.fids;
         if (local.input) option += '&code=' + local.input;
         this.service.http_get('/api/TaskWarn/GetDetailDeliveryDelay?' + option, false).subscribe((data: any) => {
+            this.type = data.length > 0 ? 1 : 2;
             if ($event != 'add') {
                 this.datas = data;
             } else {
                 data.forEach(element => {
                     this.datas.push(element);
-              });
+                });
             }
         })
     }

@@ -12,7 +12,7 @@ export class ScheduleEntryComponent implements OnInit {
     constructor(
         private service: AppService,
         private routerIonfo: ActivatedRoute, ) { }
-    public Language;
+    public language;
     public data;
     public tabstate;
     public DateState;
@@ -39,6 +39,14 @@ export class ScheduleEntryComponent implements OnInit {
     public floorId;
     public lineId;
     public shops;
+    public time;
+    public peoples;
+    public rate;
+    public inputs = [
+        { name: "Time Consuming", name2: "消耗工时", placeholder: "input the time", placeholder2: "输入工时", number: "" },
+        { name: "Number of people", name2: "人数", placeholder: "input the number", placeholder2: "输入人数", number: "" },
+        { name: "Qualification Rate", name2: "合格率", placeholder: "input the rate", placeholder2: "输入合格率(百分比)", number: "" }
+    ];
     public message = {
         state: false,
         btnText: "OK",
@@ -46,22 +54,22 @@ export class ScheduleEntryComponent implements OnInit {
     }
     ngOnInit() {
         this.data = JSON.parse(this.routerIonfo.snapshot.params["data"]);
-        this.Language = localStorage.getItem("language");
-        this.placeholder = this.Language == 'cn' ? "输入完成数量" : "Input completed qty";
-        this.date = this.Language == 'cn' ? "选择生产日期" : "Select production date";
+        this.language = localStorage.getItem("language");
+        this.placeholder = this.language == 'cn' ? "输入完成数量" : "Input completed qty";
+        this.date = this.language == 'cn' ? "选择生产日期" : "Select production date";
+        this.color_tabs = { CompleteAmount: '', ProDataCompletedList: [] };
         if (this.data.Pid == "progress") {
-            this.title = this.Language == 'cn' ? "生产日进度" : "Production Daily Progress";
+            this.title = this.language == 'cn' ? "生产日进度" : "Production Daily Progress";
             this.service.http_get('/api/Schedule/GetPlanScheduleData?poid=' + this.data.id + '&planId=' + this.data.ProductionEventID, false).subscribe((data: any) => {
                 console.log(data)
                 this.color_tabs = data;
             })
         }
         if (this.data.Pid == "non-process") {
-            this.color_tabs = { CompleteAmount: '', ProDataCompletedList: [] }
-            this.title = this.Language == 'cn' ? "非排产工序日进度" : "Non-Planing Process Entry";
-            this.processName = this.Language == 'cn' ? "工序" : "Process";
-            this.floorName = this.Language == 'cn' ? "车间" : "Floor";
-            this.lineName = this.Language == 'cn' ? "产线" : "Line";
+            this.title = this.language == 'cn' ? "非排产工序日进度" : "Non-Planing Process Entry";
+            this.processName = this.language == 'cn' ? "工序" : "Process";
+            this.floorName = this.language == 'cn' ? "车间" : "Floor";
+            this.lineName = this.language == 'cn' ? "产线" : "Line";
             this.service.http_get('/api/Schedule/GetPoProcess?poId=' + this.data.id, false).subscribe((data: any) => {
                 this.process = data;
             })
@@ -72,9 +80,6 @@ export class ScheduleEntryComponent implements OnInit {
                 });
 
         }
-    }
-    change() {
-        console.log(this.color_tabs)
     }
     backDate($event) {
         let obj = JSON.parse($event);
@@ -122,6 +127,14 @@ export class ScheduleEntryComponent implements OnInit {
                         }
                     });
                 });
+                let submitstate = false;
+                data.ProDatas.forEach(element => {
+                    if (element.Amount > 0) submitstate = true;
+                })
+                if (submitstate == false) {
+                    this.service.messageBox(this.message, "提交失败,请填写完整信息！");
+                    return;
+                }
                 console.log(JSON.stringify(data))
                 if (this.processId && parseInt(this.date) > 0) {
                     console.log(this.processId)
@@ -168,20 +181,27 @@ export class ScheduleEntryComponent implements OnInit {
                     "IsProCompleted": IsProCompleted,
                     "ProDatas": []
                 }
-
                 this.color_tabs.forEach((element, i) => {
-                    element.SizeCompletes.forEach(el => {
+                    element.SizeCompletes.forEach((el, index) => {
                         if (el.Amount > 0) {
                             let json = {
                                 "Color": element.Color,
                                 "Size": el.Size,
                                 "Amount": parseInt(el.Amount)
-                            };
+                            }
                             data.ProDatas.push(json);
-                        }
+                        };
                     });
                 });
-                console.log(JSON.stringify(this.color_tabs))
+                let submitstate = false;
+                data.ProDatas.forEach(element => {
+                    if (element.Amount > 0) submitstate = true;
+                })
+                if (submitstate == false) {
+                    this.service.messageBox(this.message, "提交失败,请填写完整信息！");
+                    return;
+                }
+                // console.log(JSON.stringify(this.color_tabs))
                 this.service.http_post('/api/Schedule/AddPlanScheduleDaily', JSON.stringify(data), false).subscribe((data: any) => {
                     if (data.IsSuccess == 1) {
                         this.service.messageBox(this.message, "保存成功！");

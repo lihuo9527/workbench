@@ -31,8 +31,10 @@
                 {{item.year}}年 {{item.month}}月
             </div>
             <div class="days">
-                <span class="day" *ngFor="let day of item.days;let b=index;" [ngClass]="{'bg_green':start_date==dates[i].year +'-'+ dates[i].month +'-'+ day,'bg_orange': end_date==dates[i]['year'] +'-'+ dates[i]['month'] +'-'+ day,'bg_red':day=='今天','color_red':b==0&&day>0 || b==6&&day>0 || b==7&&day>0 || b==13&&day>0 || b==14&&day>0 || b==20&&day>0 || b==21&&day>0 || b==27&&day>0 || b==28&&day>0 || b==34&&day>0 || b==35&&day>0}"
-                    (click)="selectDate(i,day)">{{day}}</span>
+                <span class="day" *ngFor="let day of item.days;let b=index;" [ngClass]="{
+                    'bg_green':start_date==dates[i].year +'-'+ dates[i].month +'-'+ day || start_date==dates[i].year +'-'+ dates[i].month +'-'+ '0'+ day || start_date==dates[i].year +'-'+'0' + dates[i].month +'-'+ day || start_date==dates[i].year +'-'+'0' + dates[i].month +'-'+'0'+ day,
+                    'bg_orange': end_date==dates[i].year +'-'+ dates[i].month +'-'+ day || end_date==dates[i].year +'-'+ dates[i].month +'-'+ '0'+ day || end_date==dates[i].year +'-'+'0' + dates[i].month +'-'+ day || end_date==dates[i].year +'-'+'0' + dates[i].month +'-'+'0'+ day,
+                    'bg_red':day=='今天','color_red':b==0&&day>0 || b==6&&day>0 || b==7&&day>0 || b==13&&day>0 || b==14&&day>0 || b==20&&day>0 || b==21&&day>0 || b==27&&day>0 || b==28&&day>0 || b==34&&day>0 || b==35&&day>0}" (click)="selectDate(i,day)">{{day}}</span>
             </div>
         </div>
         <div style="height: 30%;width: 100%;"></div>

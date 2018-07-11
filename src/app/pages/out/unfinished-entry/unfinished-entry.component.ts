@@ -54,7 +54,7 @@ export class UnfinishedEntryComponent implements OnInit {
                 date: this.amount,
                 receiveCount: totaloutgoing,
                 issueCount: totalreturn,
-                reduce: "-" + (totaloutgoing - totalreturn)
+                reduce:totalreturn - totaloutgoing
             })
             console.log(data)
         })

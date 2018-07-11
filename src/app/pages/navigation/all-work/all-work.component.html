@@ -4,8 +4,8 @@
     <!--list-->
     <div *ngFor="let items of list;let i=index;">
         <div>
-            <app-list-title *ngIf="Language=='en'" [title]="items.title"></app-list-title>
-            <app-list-title *ngIf="Language=='cn'" [title]="items.title2"></app-list-title>
+            <app-list-title *ngIf="language=='en'" [title]="items.title"></app-list-title>
+            <app-list-title *ngIf="language=='cn'" [title]="items.title2"></app-list-title>
             <ul class="list">
                 <li *ngFor="let item of items.data;let b=index;">
                     <a (click)="routerlink(item,i)">

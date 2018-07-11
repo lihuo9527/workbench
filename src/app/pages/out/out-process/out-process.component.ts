@@ -15,6 +15,7 @@ export class OutProcessComponent implements OnInit {
     public title;
     public datas = [];
     public state;
+    public type;
     ngOnInit() {
         this.data = JSON.parse(localStorage.getItem("filter"));
         this.id = this.data.id;
@@ -24,6 +25,7 @@ export class OutProcessComponent implements OnInit {
         this.updateList();
     }
     updateList($event?) {
+        if (this.type == 2 && $event == 'add') return;
         let local = JSON.parse(localStorage.getItem("filter"));
         let pageIndex = local.input ? 1 : Math.ceil(this.datas.length / 4 + 1);
         let option = "";
@@ -34,12 +36,13 @@ export class OutProcessComponent implements OnInit {
         if (object.styles) option += '&styles=' + object.styles;
         if (local.input) option += '&code=' + local.input;
         this.service.http_get('/api/OuterFactory/GetPoes?' + option, false).subscribe((data: any) => {
-            if ($event || local.input) {
-                this.datas = data;
-            } else {
+            this.type = data.length > 0 ? 1 : 2;
+            if ($event == "add") {
                 data.forEach(element => {
                     this.datas.push(element);
                 });
+            } else {
+                this.datas = data;
             }
         })
     }

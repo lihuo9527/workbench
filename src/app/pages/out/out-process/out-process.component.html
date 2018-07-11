@@ -35,21 +35,35 @@
                                 <span *ngIf="language=='cn'">订单数量</span>
                             </div>
                             <div class="other">
-                                <p>{{item.StartDate}}</p>
-                                <span *ngIf="language=='en'">Start Date</span>
-                                <span *ngIf="language=='cn'">开始日期</span>
+                                <p>{{item.customername}}</p>
+                                <span *ngIf="language=='en'">Customer Name</span>
+                                <span *ngIf="language=='cn'">客户名称</span>
                             </div>
                         </li>
                         <li class="row">
                             <div class="other">
-                                <p>{{item.EndDate}}</p>
-                                <span *ngIf="language=='en'">End Date</span>
-                                <span *ngIf="language=='cn'">结束日期</span>
+                                <p>{{item.pattern}}</p>
+                                <span *ngIf="language=='en'">Pattern</span>
+                                <span *ngIf="language=='cn'">本厂款号</span>
                             </div>
+                            <div class="other">
+                                <p>{{item.deliverydate}}</p>
+                                <span *ngIf="language=='en'">Delivery Date</span>
+                                <span *ngIf="language=='cn'">交货期</span>
+                            </div>
+                            <div class="other">
+                                <p>{{item.customerPattern}}</p>
+                                <span *ngIf="language=='en'">Customer Pattern</span>
+                                <span *ngIf="language=='cn'">客户款号</span>
+                            </div>
+                        </li>
+                        <li class="row">
                             <div class="other">
                                 <p>{{item.CuttingAmount}}</p>
                                 <span *ngIf="language=='en'">Cutting Qty</span>
                                 <span *ngIf="language=='cn'">裁床数</span>
+                            </div>
+                            <div class="other">
                             </div>
                             <div class="other">
                                 <button *ngIf="language=='en' && item.plan=='Yes' && item.isEnd==0" (click)="change(item)" class="end">End</button>
@@ -63,5 +77,5 @@
             </ul>
         </div>
     </div>
-    <app-load-more *ngIf="datas.length>3" [language]="language" (click)="updateList()"></app-load-more>
+    <app-load-more *ngIf="datas.length>0 && datas.length>3 || datas.length==0" [type]="type" (click)="updateList('add')"></app-load-more>
 </div>

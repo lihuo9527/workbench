@@ -24,6 +24,7 @@ export class SearchComponent implements OnInit {
     public datecontainer = true;
     public floors = [];
     public index;
+    public number: number = 2;
     ngOnInit() {
         this.language = localStorage.getItem("language");
         if (this.language == "en") this.placeholder = "input number or style to query";
@@ -47,12 +48,13 @@ export class SearchComponent implements OnInit {
 
         }
         if (this.index == 0 && this.id == '1') {
+            this.number = 1;
+            this.datecontainer = false;
             //每日进度
             this.datas = [
                 { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Style", title2: "大类", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Production Date", title2: "生产日期", rowstate: true, allstate: false, but: false, arrow: false, list: [] }
+                { title: "Style", title2: "大类", rowstate: false, allstate: false, but: true, arrow: true, list: [] }
             ];
 
         }
@@ -201,10 +203,15 @@ export class SearchComponent implements OnInit {
         //时间组件选择触发赋值
         let obj = JSON.parse(objs);
         let time = 0;
-        if (obj.dates) {
-            this.StartDate = obj.dates[0];
-            this.EndDate = obj.dates[1];
-            time = 1000;
+        if (this.id == 1 && this.index == 0) {
+            this.StartDate = obj.date;
+            time = 500;
+        } else {
+            if (obj.dates) {
+                this.StartDate = obj.dates[0];
+                this.EndDate = obj.dates[1];
+                time = 500;
+            }
         }
         setTimeout(() => this.state = obj.state, time);
     }
@@ -237,10 +244,9 @@ export class SearchComponent implements OnInit {
             this.datas[2].list.forEach(element => {
                 if (element.state == true) styles.push(element.id);
             });
-            localStorage.setItem("filter", JSON.stringify({ 'index': this.index, 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, "styles": styles.toString(), 'fids': fids.toString(), 'wsids': wsids.toString() }));
+            localStorage.setItem("filter", JSON.stringify({ 'index': this.index, 'id': this.id, "start": this.StartDate, "input": this.input, "styles": styles.toString(), 'fids': fids.toString(), 'wsids': wsids.toString() }));
             this.router.navigate(['productionDailyProgress']);
         }
-
         if (this.id == 2 && this.index == 0) {
             //非排产工序
             let process = [];

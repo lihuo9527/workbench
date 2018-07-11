@@ -15,7 +15,7 @@
                         <p>{{item.StartTime}}</p>
                         <span *ngIf="language=='en'">Start Date</span>
                         <span *ngIf="language=='cn'">计划开始日期</span>
-                        <p>{{item.pattern}}</p>
+                        <p>{{item.Pattern}}</p>
                         <span *ngIf="language=='en'">Fty Style</span>
                         <span *ngIf="language=='cn'">本厂款号</span>
                     </div>
@@ -34,8 +34,8 @@
                 </li>
                 <li class="row right">
                     <div class="other">
-                        <p>{{item.EndTime}}</p>
-                        <span *ngIf="language=='en'">End Date</span>
+                        <p>{{item.FactoryDelivery}}</p>
+                        <span *ngIf="language=='en'">Factory Delivery</span>
                         <span *ngIf="language=='cn'">车间最早交期</span>
                         <p>{{item.DeliveryDate}}</p>
                         <span *ngIf="language=='en'">DeliveryDate Date</span>
@@ -45,6 +45,5 @@
             </ul>
         </div>
     </div>
-    <app-load-more *ngIf="datas.length>3" [language]="language" (click)="updateList('add')"></app-load-more>
-    <p *ngIf="datas.length==0" style="color:#fff;background:#b8b8b8;text-align: center; height:3rem;line-height:3rem;">目前没有查询到更多消息！</p>
+    <app-load-more *ngIf="datas.length>0 && datas.length>3 || datas.length==0" [type]="type" (click)="updateList('add')"></app-load-more>
 </div>
