@@ -18,9 +18,9 @@ export class SearchComponent implements OnInit {
     public dateType: number;
     public datas = [];
     public today = new Date();
-    public t = this.today.getTime() + 1000 * 60 * 60 * 720;
-    public EndDate = new Date(this.t).toLocaleDateString();
-    public StartDate = this.today.toLocaleDateString();
+    public t;
+    public EndDate;
+    public StartDate;
     public datecontainer = true;
     public floors = [];
     public index;
@@ -32,8 +32,13 @@ export class SearchComponent implements OnInit {
         this.id = data.id;
         this.title = data.t;
         this.index = data.i;
+        let days;
         if (this.index == 0 && this.id == '0') {
             //关键事件
+            days = 18 * 24;
+            this.t = this.today.getTime() + 1000 * 60 * 60 * days;
+            this.EndDate = new Date(this.t).toLocaleDateString();
+            this.StartDate = this.today.toLocaleDateString();
             this.datas = [
                 { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 { title: "Critical Event", title2: "关键事件", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
@@ -48,9 +53,9 @@ export class SearchComponent implements OnInit {
 
         }
         if (this.index == 0 && this.id == '1') {
+            this.StartDate = new Date(this.today.getTime() - 1000 * 60 * 60 * 24).toLocaleDateString();
             this.number = 1;
             this.datecontainer = false;
-            //每日进度
             this.datas = [
                 { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
@@ -60,6 +65,10 @@ export class SearchComponent implements OnInit {
         }
         if (this.index == 0 && this.id == '2') {
             //非排产工序
+            days = 15 * 24;
+            this.t = this.today.getTime() + 1000 * 60 * 60 * days;
+            this.EndDate = new Date(this.t).toLocaleDateString();
+            this.StartDate = this.today.toLocaleDateString();
             this.datas = [
                 { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 { title: "Process", title2: "工序", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
@@ -74,6 +83,10 @@ export class SearchComponent implements OnInit {
         }
         if (this.index == 1) {
             //外发工序
+            days = 2 * 24;
+            this.t = this.today.getTime() - 1000 * 60 * 60 * days;
+            this.EndDate = this.today.toLocaleDateString();
+            this.StartDate = new Date(this.t).toLocaleDateString();
             this.datas = [
                 { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
