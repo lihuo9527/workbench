@@ -21,7 +21,7 @@ export class UnansweredComponent implements OnInit {
         this.language = localStorage.getItem("language");
         this.id = this.routerIonfo.snapshot.params["id"];
         this.title = this.language == "cn" ? "未回复的计划" : "Unanswered Plan";
-        this.placeholder = this.language == "cn" ? "款号/JO/PO 查询" : "input style/JO/PO to query";
+        this.placeholder = this.language == "cn" ? "输入单号或款号查询" : "input style/JO/PO to query";
         this.updateList();
     }
     updateList($event?) {

@@ -44,7 +44,7 @@
                             <div class="other">
                                 <p>{{item.pattern}}</p>
                                 <span *ngIf="language=='en'">Pattern</span>
-                                <span *ngIf="language=='cn'">本厂款号</span>
+                                <span *ngIf="language=='cn'">款号</span>
                             </div>
                             <div class="other">
                                 <p>{{item.deliverydate}}</p>
@@ -77,5 +77,6 @@
             </ul>
         </div>
     </div>
+    <app-message-box [msg]="message.msg" (event)="message.state=false" [btnText]="message.btnText" [msgShow]="message.state"></app-message-box>
     <app-load-more *ngIf="datas.length>0 && datas.length>3 || datas.length==0" [type]="type" (click)="updateList('add')"></app-load-more>
 </div>

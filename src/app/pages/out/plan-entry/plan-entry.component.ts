@@ -80,7 +80,7 @@ export class PlanEntryComponent implements OnInit {
                 }
             })
         } else {
-
+            this.service.messageBox(this.message, "请填写完整信息！");
         }
     }
     backDate($event) {

@@ -159,6 +159,12 @@ td input {
     font-size: 1.2rem;
 }
 
+.input {
+    padding: 0.8rem 0rem 0.8rem 1rem;
+    font-size: 1.2rem;
+    width: 11rem;
+}
+
 .select2 {
     padding: 0.8rem 0rem 0.8rem 1rem;
     font-size: 1.2rem;

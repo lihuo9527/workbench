@@ -20,7 +20,7 @@ export class UnfinishedComponent implements OnInit {
     ngOnInit() {
         this.language = localStorage.getItem("language");
         this.title = this.language == "cn" ? "未完成的计划" : "Uncompleted Plan";
-        this.placeholder = this.language == "cn" ? "款号/JO/PO 查询" : "input style/JO/PO to query";
+        this.placeholder = this.language == "cn" ? "输入单号或款号查询" : "input style/JO/PO to query";
         this.id = this.routerIonfo.snapshot.params["id"];
         this.updateList();
     }

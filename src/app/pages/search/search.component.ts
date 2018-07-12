@@ -85,11 +85,11 @@ export class SearchComponent implements OnInit {
             //外发工序
             days = 2 * 24;
             this.t = this.today.getTime() - 1000 * 60 * 60 * days;
+            this.title = this.language == "cn" ? this.title + "外发计划" : "Outsourced plan for " + this.title;
             this.EndDate = this.today.toLocaleDateString();
             this.StartDate = new Date(this.t).toLocaleDateString();
             this.datas = [
                 { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 { title: "Style", title2: "大类", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 { title: "Delivery Date", title2: "交货期", rowstate: true, allstate: false, but: false, arrow: false, list: [] }
             ];
@@ -129,7 +129,11 @@ export class SearchComponent implements OnInit {
         if (this.id >= 0) {
             let url: string;
             let i = 1;
-            if (this.index == 1 || this.index == 0 && this.id == 1) {
+            if (this.index == 1) {
+                i = 1;
+                url = '/api/BaseData/GetProductTypes';
+            }
+            if (this.index == 0 && this.id == 1) {
                 i = 2;
                 url = '/api/BaseData/GetProductTypes';
             }
@@ -165,7 +169,7 @@ export class SearchComponent implements OnInit {
             this.datas[i].list[b].state = this.datas[i].allstate;
         }
         if (item.title == "Factory" && !allstate) {
-            if (this.id != 0 && this.index == 0 && this.id != 2 || this.index != 0) {
+            if (this.id != 0 && this.index == 0 && this.id != 2 || this.index != 0 || this.index != 1) {
                 this.datas[1].list = [];
                 this.floors.forEach((element) => {
                     element.data.forEach(el => {
@@ -175,7 +179,7 @@ export class SearchComponent implements OnInit {
             }
         }
         if (item.title == "Factory" && allstate) {
-            if (this.id != 0 && this.index == 0 && this.id != 2 || this.index != 0) {
+            if (this.id != 0 && this.index == 0 && this.id != 2 || this.index != 0 || this.index != 1) {
                 this.datas[i + 1].allstate = false;
                 this.datas[i + 1].list = [];
             }

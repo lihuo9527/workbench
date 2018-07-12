@@ -9,7 +9,7 @@
         <div>
             <div [ngClass]="{'list_title':i!=0}">
                 <h2 *ngIf="language=='cn'">{{items.title2}}</h2>
-                <h2 *ngIf="language=='en'">{{items.title2}}</h2>
+                <h2 *ngIf="language=='en'">{{items.title}}</h2>
             </div>
             <ul class="list_1">
                 <li *ngFor="let item of items.TipsCountList;let b=index;">

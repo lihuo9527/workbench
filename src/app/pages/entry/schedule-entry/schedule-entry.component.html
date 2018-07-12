@@ -101,10 +101,10 @@
     </ul>
     <div class="tab">
         <a> <span *ngIf="language=='cn'" [ngClass]="{'green':!tabstate}" (click)="tabstate=false">分颜色尺码录入</span>
-            <span *ngIf="language=='en'" [ngClass]="{'green':!tabstate}" (click)="tabstate=false">Color/Size Entrt</span>
+            <span *ngIf="language=='en'" [ngClass]="{'green':!tabstate}" (click)="tabstate=false">Color/Size Entry</span>
         </a>
         <a> <span *ngIf="language=='cn'" [ngClass]="{'green':tabstate}" (click)="tabstate=true">按订单录入</span>
-            <span *ngIf="language=='en'" [ngClass]="{'green':tabstate}" (click)="tabstate=true">JO Entrt</span>
+            <span *ngIf="language=='en'" [ngClass]="{'green':tabstate}" (click)="tabstate=true">JO Entry</span>
         </a>
     </div>
 
@@ -140,7 +140,7 @@
     <div class="date_container border-top" *ngIf="tabstate">
         <span *ngIf="language=='en'" class="select1"> Completed Qty</span>
         <span *ngIf="language=='cn'" class="select1"> 完成数量</span>
-        <span class="select1"> {{color_tabs.CompleteAmount}}</span>
+        <span class="input"> {{color_tabs.CompleteAmount}}</span>
     </div>
     <div *ngIf="data.Pid!='non-process'">
         <div class="date_container" *ngFor="let item of inputs;">
@@ -158,10 +158,10 @@
     <div class="date_container" *ngIf="tabstate" (click)="InputFocus()">
         <span *ngIf="language=='en'" class="select1"> This progress </span>
         <span *ngIf="language=='cn'" class="select1"> 本次进度</span>
-        <input [(ngModel)]="number" type="text" [placeholder]="placeholder">
+        <input #NumberInput [(ngModel)]="number" type="text" [placeholder]="placeholder">
     </div>
 
-    <div class="date_container">
+    <div class="date_container" *ngIf="data.Pid!='non-process'">
         <span *ngIf="language=='en'" class="select1">Setup is completed</span>
         <span *ngIf="language=='cn'" class="select1">设置已完成</span>
         <i [ngClass]="{'off':!allstate,'on':allstate}" (click)="allstate=!allstate"></i>

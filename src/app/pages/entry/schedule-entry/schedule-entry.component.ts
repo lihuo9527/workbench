@@ -45,7 +45,7 @@ export class ScheduleEntryComponent implements OnInit {
     public inputs = [
         { name: "Time Consuming", name2: "消耗工时", placeholder: "input the time", placeholder2: "输入工时", number: "" },
         { name: "Number of people", name2: "人数", placeholder: "input the number", placeholder2: "输入人数", number: "" },
-        { name: "Qualification Rate", name2: "合格率", placeholder: "input the rate", placeholder2: "输入合格率(百分比)", number: "" }
+        { name: "Qualification Rate", name2: "合格率", placeholder: "input the rate", placeholder2: "输入合格率", number: "" }
     ];
     public message = {
         state: false,
@@ -60,9 +60,13 @@ export class ScheduleEntryComponent implements OnInit {
         this.color_tabs = { CompleteAmount: '', ProDataCompletedList: [] };
         if (this.data.Pid == "progress") {
             this.title = this.language == 'cn' ? "生产日进度" : "Production Daily Progress";
-            this.service.http_get('/api/Schedule/GetPlanScheduleData?poid=' + this.data.id + '&planId=' + this.data.ProductionEventID, false).subscribe((data: any) => {
+            this.service.http_get('/api/Schedule/GetPlanScheduleData?poid=' + this.data.id + '&planId=' + this.data.ProductionEventID + '&lineId=' + this.data.LineID, false).subscribe((data: any) => {
                 console.log(data)
                 this.color_tabs = data;
+                this.inputs[0].number = data.WorkHours;
+                this.inputs[1].number = data.WorkerAmount;
+                this.inputs[2].number = "100";
+
             })
         }
         if (this.data.Pid == "non-process") {
@@ -87,6 +91,10 @@ export class ScheduleEntryComponent implements OnInit {
             this.date = obj.date;
         }
         this.state = false;
+        this.service.http_get('/api/Schedule/GetLineDefaultDuration?lineId=' + this.data.LineID + '&proDate=' + this.date, false)
+            .subscribe((data: any) => {
+                this.inputs[0].number = data.WorkHours;
+            });
     }
     showDate() {
         this.state = true;
@@ -103,9 +111,9 @@ export class ScheduleEntryComponent implements OnInit {
         });
     }
     Save() {
+        let IsProCompleted = this.allstate ? 1 : 0;
         if (this.data.Pid == "non-process") {
             if (!this.tabstate) {
-                let IsProCompleted = this.allstate ? 1 : 0;
                 let data = {
                     "ProceesId": this.processId,
                     "PoId": this.data.id,
@@ -149,13 +157,13 @@ export class ScheduleEntryComponent implements OnInit {
                         this.service.messageBox(this.message, "提交失败！");
                     })
                 } else {
-                    this.service.messageBox(this.message, "请先选择工序或日期！");
+                    this.service.messageBox(this.message, "请先选择工序/填写完整信息！");
                 }
 
             } else {
-                if (this.processId && parseInt(this.date) > 0) {
-                    let data = "processId=" + this.processId + "&poId=" + this.data.id + "&proDate=" + this.date + "&amount=" + this.number;
-                    this.service.http_post('/api/Schedule/AddScheduleByPo', data, false, "form").subscribe((data: any) => {
+                if (this.processId && parseInt(this.date) > 0 && !isNaN(this.number)) {
+                    let option = "processId=" + this.processId + "&poId=" + this.data.id + "&proDate=" + this.date + "&amount=" + this.number;
+                    this.service.http_post('/api/Schedule/AddScheduleByPo', option, false, "form").subscribe((data: any) => {
                         if (data.IsSuccess == 1) {
                             this.service.messageBox(this.message, "保存成功！");
                         } else {
@@ -166,12 +174,11 @@ export class ScheduleEntryComponent implements OnInit {
                         this.service.messageBox(this.message, "提交失败！");
                     })
                 } else {
-                    this.service.messageBox(this.message, "请先选择工序或日期！");
+                    this.service.messageBox(this.message, "请先选择工序/填写完整信息！");
                 }
             }
         } else {
             if (!this.tabstate) {
-                let IsProCompleted = this.allstate ? 1 : 0;
                 let data = {
                     "ProductionEventId": this.data.ProductionEventID,
                     "LineId": this.data.LineID,
@@ -179,9 +186,12 @@ export class ScheduleEntryComponent implements OnInit {
                     "ProceesId": 0,
                     "ProDate": this.date,
                     "IsProCompleted": IsProCompleted,
-                    "ProDatas": []
+                    "ProDatas": [],
+                    "WorkerAmount": this.inputs[1].number,
+                    "WorkHours": this.inputs[0].number,
+                    "FPY": this.inputs[2].number
                 }
-                this.color_tabs.forEach((element, i) => {
+                this.color_tabs.ProDataCompletedList.forEach(element => {
                     element.SizeCompletes.forEach((el, index) => {
                         if (el.Amount > 0) {
                             let json = {
@@ -197,9 +207,12 @@ export class ScheduleEntryComponent implements OnInit {
                 data.ProDatas.forEach(element => {
                     if (element.Amount > 0) submitstate = true;
                 })
-                if (submitstate == false) {
-                    this.service.messageBox(this.message, "提交失败,请填写完整信息！");
-                    return;
+                console.log(isNaN(parseInt(this.date)));
+                if (submitstate == false || Number(this.inputs[0].number) <= 0 || Number(this.inputs[1].number) <= 0 || Number(this.inputs[2].number) <= 0 || isNaN(parseInt(this.date))) {
+                    if (!this.allstate) {
+                        this.service.messageBox(this.message, "提交失败,请填写完整信息！");
+                        return;
+                    }
                 }
                 // console.log(JSON.stringify(this.color_tabs))
                 this.service.http_post('/api/Schedule/AddPlanScheduleDaily', JSON.stringify(data), false).subscribe((data: any) => {
@@ -212,8 +225,12 @@ export class ScheduleEntryComponent implements OnInit {
                     this.service.messageBox(this.message, "提交失败！");
                 })
             } else {
-                let data = "ProductionEventId=" + this.data.ProductionEventID + "&lineId=" + this.data.LineID + "&poId=" + this.data.id + "&proDate=" + this.date + "&amount=" + this.number;
-                this.service.http_post('/api/Schedule/AddPlanScheduleByPo', data, false, "form").subscribe((data: any) => {
+                if (Number(this.inputs[0].number) <= 0 || Number(this.inputs[1].number) <= 0 || Number(this.inputs[2].number) <= 0 || isNaN(parseInt(this.date)) || isNaN(this.number)) {
+                        this.service.messageBox(this.message, "提交失败,请填写完整信息！");
+                        return;
+                }
+                let option = "ProductionEventId=" + this.data.ProductionEventID + "&lineId=" + this.data.LineID + "&poId=" + this.data.id + "&proDate=" + this.date + "&amount=" + this.number + "&WorkerAmount=" + this.inputs[1].number + "&WorkHours=" + this.inputs[0].number + "&FPY=" + this.inputs[2].number + "&isProCompleted=" + IsProCompleted;
+                this.service.http_post('/api/Schedule/AddPlanScheduleByPo', option, false, "form").subscribe((data: any) => {
                     if (data.IsSuccess == 1) {
                         this.service.messageBox(this.message, "保存成功！");
                     } else {

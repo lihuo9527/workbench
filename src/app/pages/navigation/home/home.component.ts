@@ -112,7 +112,7 @@ export class HomeComponent implements OnInit {
             this.router.navigate(['not-bind']);
             return true;
         }
-        if (obj.defaultCompany() && obj.typeCode() == "outsourcing_provider") {
+        if (obj.defaultCompany() && obj.typeCode() == "out_supplier") {
             this.router.navigate(['outSourcing']);
             return true;
         }

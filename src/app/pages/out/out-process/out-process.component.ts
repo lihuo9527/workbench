@@ -16,6 +16,11 @@ export class OutProcessComponent implements OnInit {
     public datas = [];
     public state;
     public type;
+    public message = {
+        state: false,
+        btnText: "OK",
+        msg: ""
+    }
     ngOnInit() {
         this.data = JSON.parse(localStorage.getItem("filter"));
         this.id = this.data.id;
@@ -54,7 +59,7 @@ export class OutProcessComponent implements OnInit {
         let option = 'planId=' + item.planId + "&status=" + state;
         this.service.http_post('/api/OuterFactory/ModifyPlanStatus', option, false, "form").subscribe((data: any) => {
             item.isEnd = state;
-            alert("修改成功！")
+            this.service.messageBox(this.message, "修改成功！")
         })
 
     }
