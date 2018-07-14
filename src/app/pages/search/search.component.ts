@@ -169,7 +169,8 @@ export class SearchComponent implements OnInit {
             this.datas[i].list[b].state = this.datas[i].allstate;
         }
         if (item.title == "Factory" && !allstate) {
-            if (this.id != 0 && this.index == 0 && this.id != 2 || this.index != 0 || this.index != 1) {
+             //工厂关联添加车间
+            if (this.id == 1 && this.index == 0) {
                 this.datas[1].list = [];
                 this.floors.forEach((element) => {
                     element.data.forEach(el => {
@@ -179,7 +180,8 @@ export class SearchComponent implements OnInit {
             }
         }
         if (item.title == "Factory" && allstate) {
-            if (this.id != 0 && this.index == 0 && this.id != 2 || this.index != 0 || this.index != 1) {
+             //工厂关联删除车间
+            if (this.id == 1 && this.index == 0) {
                 this.datas[i + 1].allstate = false;
                 this.datas[i + 1].list = [];
             }
@@ -194,7 +196,8 @@ export class SearchComponent implements OnInit {
             });
             this.dateType = obj.state ? index : undefined;
         }
-        if (items.title == 'Factory' && obj.state) {
+        if (items.title == 'Factory' && obj.state && this.id == 1 && this.index == 0) {
+            //工厂关联添加车间
             this.floors.forEach((element) => {
                 if (obj.id == element.id) {
                     element.data.forEach(el => {
@@ -204,8 +207,8 @@ export class SearchComponent implements OnInit {
             });
             console.log(this.datas[1].list)
         }
-        if (items.title == 'Factory' && !obj.state) {
-            //关联工厂删除
+        if (items.title == 'Factory' && !obj.state && this.id == 1 && this.index == 0) {
+            //工厂关联删除车间
             let k = 0;
             for (let i = 0; i < this.datas[1].list.length; i++) {
                 console.log(obj.id, this.datas[1].list[i].fid)

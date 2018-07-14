@@ -59,6 +59,9 @@ export class ScheduleEntryComponent implements OnInit {
         this.date = this.language == 'cn' ? "选择生产日期" : "Select production date";
         this.color_tabs = { CompleteAmount: '', ProDataCompletedList: [] };
         if (this.data.Pid == "progress") {
+            let today = new Date();
+            let t = today.getTime() - 1000 * 60 * 60 * 24;
+            this.date = new Date(t).toLocaleDateString();
             this.title = this.language == 'cn' ? "生产日进度" : "Production Daily Progress";
             this.service.http_get('/api/Schedule/GetPlanScheduleData?poid=' + this.data.id + '&planId=' + this.data.ProductionEventID + '&lineId=' + this.data.LineID, false).subscribe((data: any) => {
                 console.log(data)
@@ -226,8 +229,10 @@ export class ScheduleEntryComponent implements OnInit {
                 })
             } else {
                 if (Number(this.inputs[0].number) <= 0 || Number(this.inputs[1].number) <= 0 || Number(this.inputs[2].number) <= 0 || isNaN(parseInt(this.date)) || isNaN(this.number)) {
+                    if (!this.allstate) {
                         this.service.messageBox(this.message, "提交失败,请填写完整信息！");
                         return;
+                    }
                 }
                 let option = "ProductionEventId=" + this.data.ProductionEventID + "&lineId=" + this.data.LineID + "&poId=" + this.data.id + "&proDate=" + this.date + "&amount=" + this.number + "&WorkerAmount=" + this.inputs[1].number + "&WorkHours=" + this.inputs[0].number + "&FPY=" + this.inputs[2].number + "&isProCompleted=" + IsProCompleted;
                 this.service.http_post('/api/Schedule/AddPlanScheduleByPo', option, false, "form").subscribe((data: any) => {

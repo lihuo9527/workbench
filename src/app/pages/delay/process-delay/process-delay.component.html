@@ -15,7 +15,7 @@
             <div class="listCon">
                 <div class="process"><span class="number">{{item.Totalqty}}/{{item.Planqty}}</span>
                     <div class="processBox">
-                        <div class="processBar" [ngStyle]="{'width': item.Schedulepercent*100 + 'px'}"></div>
+                        <div class="processBar" [ngStyle]="{'width': item.Schedulepercent*100 + '%'}"></div>
                     </div>
                     <span *ngIf="language=='en'" class="begin">{{item.StartDate}}(Begin)</span>
                     <span *ngIf="language=='cn'" class="begin">{{item.StartDate}}(始)</span>

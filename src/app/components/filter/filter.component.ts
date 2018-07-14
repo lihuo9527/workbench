@@ -87,9 +87,9 @@ export class FilterComponent implements OnInit {
         for (let b = 0; b < this.datas[i].list.length; b++) {
             this.datas[i].list[b].state = this.datas[i].allstate;
         }
-        if (item.title == "Factory" && !allstate && this.Info != "delay") {
+        if (item.title == "Factory" && !allstate) {
             //关联全部工厂添加车间
-            if (this.local.id != 0 && this.local.index == 0 && this.local.id != 2 || this.local.index != 0) {
+            if (this.local.id == 1 && this.local.index == 0) {
                 this.datas[1].list = [];
                 this.floors.forEach((element) => {
                     element.data.forEach(el => {
@@ -98,9 +98,9 @@ export class FilterComponent implements OnInit {
                 });
             }
         }
-        if (item.title == "Factory" && allstate && this.Info != "delay") {
+        if (item.title == "Factory" && allstate) {
             //关联全部工厂删除车间
-            if (this.local.id != 0 && this.local.index == 0 && this.local.id != 2 || this.local.index != 0) {
+            if (this.local.id == 1 && this.local.index == 0) {
                 this.datas[i + 1].allstate = false;
                 this.datas[i + 1].list = [];
             }
@@ -116,7 +116,7 @@ export class FilterComponent implements OnInit {
             });
             this.dateType = obj.state ? index : undefined;
         }
-        if (items.title == 'Factory' && obj.state && this.Info != "delay") {
+        if (items.title == 'Factory' && obj.state && this.local.id == 1 && this.local.index == 0) {
             //关联工厂添加车间
             this.floors.forEach((element) => {
                 if (obj.id == element.id) {
@@ -127,7 +127,7 @@ export class FilterComponent implements OnInit {
             });
             console.log(this.datas[1].list)
         }
-        if (items.title == 'Factory' && !obj.state && this.Info != "delay") {
+        if (items.title == 'Factory' && !obj.state && this.local.id == 1 && this.local.index == 0) {
             //关联工厂删除车间
             let k = 0;
             for (let i = 0; i < this.datas[1].list.length; i++) {

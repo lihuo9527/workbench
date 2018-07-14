@@ -98,6 +98,8 @@ html {
 
 .container {
     width: 100%;
+    position: relative;
+    max-width: 768px;
 }
 
 

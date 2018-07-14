@@ -45,7 +45,11 @@ export class EventEntryComponent implements OnInit {
             data.Events.push(json);
         });
         this.service.http_post('/api/Schedule/UpdateEventsDate', data, false).subscribe((data: any) => {
-            if (data.IsSuccess == 1) this.service.messageBox(this.message, "保存成功！");
+            if (data.IsSuccess == 1) {
+                this.service.messageBox(this.message, "保存成功！");
+            } else {
+                this.service.messageBox(this.message, data.ErrMessage);
+            }
             console.log(data);
         }, error => {
             this.service.messageBox(this.message, "保存失败！");

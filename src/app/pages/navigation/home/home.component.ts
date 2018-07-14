@@ -108,7 +108,7 @@ export class HomeComponent implements OnInit {
             this.clearAllCookie();
             this.cookieService.set('JSESSIONID', obj.cookies(), exdate);
         }
-        if (!obj.defaultCompany() || obj.typeCode() == "provider" || obj.typeCode() == "customor" || !obj.typeCode() || obj.defaultCompany() == 'null' || obj.typeCode() == 'null' || obj.typeCode() == 'outsourcing') {
+        if (obj.typeCode() != "out_supplier" && obj.typeCode() != "internal" || !obj.defaultCompany()) {
             this.router.navigate(['not-bind']);
             return true;
         }
