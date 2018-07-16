@@ -6,7 +6,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
     styleUrls: ['./search-box.component.css']
 })
 export class SearchBoxComponent implements OnInit {
-    @Output() public OutputValue: EventEmitter<any> = new EventEmitter<any>();
+    @Output() public outputValue: EventEmitter<any> = new EventEmitter<any>();//事件输出input框的内容
     constructor() { }
     public placeholder;
     public Language;
@@ -30,7 +30,7 @@ export class SearchBoxComponent implements OnInit {
         localStorage.setItem("filter", JSON.stringify(obj));
     }
     output() {
-        this.OutputValue.emit(this.input)
+        this.outputValue.emit(this.input)
     }
     showFilter() {
         //filter过渡动漫

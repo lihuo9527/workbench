@@ -16,7 +16,6 @@
                     </div>
                     <ul class="list" *ngIf="item.rowstate">
                         <li (click)="change(arr,b,item,i)" style="overflow: hidden;" *ngFor="let arr of item.list;let b=index;" [ngClass]="{'on':arr.state}">
-                            <!-- <span *ngIf="id == 5 || id == 6 || id == 7">{{arr.itemName}}</span> -->
                             <span *ngIf="language=='en'">  {{arr.text}}</span>
                             <span *ngIf="language=='cn'">  {{arr.text2}}</span>
                         </li>

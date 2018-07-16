@@ -6,9 +6,9 @@ import { Router } from '@angular/router';
     styleUrls: ['./title.component.css']
 })
 export class TitleComponent implements OnInit {
-    @Input() public title: string;
-    @Input() public link: any;
-    @Input() public size: any;
+    @Input() public title: string;//页面标题
+    @Input() public link: any;//返回按钮触发的路由路径
+    @Input() public size: string;//控制标题文字大小big/small
     constructor(private router: Router) { }
 
     ngOnInit() {

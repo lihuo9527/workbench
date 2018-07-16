@@ -7,7 +7,7 @@ import { AppService } from '../../app.service';
     styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-
+    //搜索页面
     constructor(private routerIonfo: ActivatedRoute, private service: AppService, private router: Router) { }
     public language;
     public id;

@@ -1,8 +1,8 @@
 <div class="container">
     <app-title *ngIf="language=='en'" title="Material Arrival Within N Days"></app-title>
     <app-title *ngIf="language=='cn'" title="N天内到货物料"></app-title>
-    <app-search-box (OutputValue)='updateList()'></app-search-box>
-    <app-filter Info="material" (envet)="updateList($event)"></app-filter>
+    <app-search-box (outputValue)='updateList()'></app-search-box>
+    <app-filter info="material" (event)="updateList($event)"></app-filter>
 
     <ul class="materList">
         <li *ngFor="let item of datas;"><i></i>

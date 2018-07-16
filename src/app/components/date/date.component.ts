@@ -8,8 +8,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class DateComponent implements OnInit {
 
     constructor() { }
-    @Input() public number;
-    @Output() public submit: EventEmitter<string> = new EventEmitter();
+    @Input() public number;//=1选择1个日期   =2选择2个日期 
+    @Output() public submit: EventEmitter<string> = new EventEmitter(); //选择完日期响应事件返回一个对象 
     public year;
     public language;
     public days = [];

@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
     styleUrls: ['./loading.component.css']
 })
 export class LoadingComponent implements OnInit {
-    @Input() public loadingShow: boolean;
+    @Input() public loadingShow: boolean;//控制组件是否显示
     constructor() { }
 
     ngOnInit() {

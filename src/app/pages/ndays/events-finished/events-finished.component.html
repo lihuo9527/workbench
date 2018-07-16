@@ -1,8 +1,8 @@
 <div class="container">
     <app-title *ngIf="language=='en'" title="Events Finished Within N Days"></app-title>
     <app-title *ngIf="language=='cn'" title="N天内完成事件"></app-title>
-    <app-search-box (OutputValue)='updateList()'></app-search-box>
-    <app-filter Info="delay" (envet)="updateList($event)"></app-filter>
+    <app-search-box (outputValue)='updateList()'></app-search-box>
+    <app-filter info="delay" (event)="updateList($event)"></app-filter>
     <div class="container_box">
         <div class="box">
             <ul class="items">

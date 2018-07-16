@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
     styleUrls: ['./load-more.component.css']
 })
 export class LoadMoreComponent implements OnInit {
-    @Input() public type;
+    @Input() public type;//type = 1 更多  type = 2 查询不到更多内容 
     constructor() { }
     public text;
     public notMore;

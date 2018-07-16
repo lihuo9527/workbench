@@ -6,8 +6,8 @@ import { AppService } from '../../app.service';
     styleUrls: ['./filter.component.css']
 })
 export class FilterComponent implements OnInit {
-    @Output() public envet: EventEmitter<any> = new EventEmitter<any>();
-    @Input() public Info: string;
+    @Output() public event: EventEmitter<any> = new EventEmitter<any>();//event 筛选完成返回一个事件
+    @Input() public info: string; //info 传参信息进行判断
     constructor(private service: AppService, ) { }
     public allstate: boolean;
     public rowstate: boolean;
@@ -26,12 +26,12 @@ export class FilterComponent implements OnInit {
     ngOnInit() {
         this.language = localStorage.getItem("language");
         this.local = JSON.parse(localStorage.getItem("filter"));
-        console.log("INfo", this.Info, this.local.input);
+        console.log("info", this.info, this.local.input);
         if (this.local.id == 1 && this.local.index == 0) {
             this.number = 1;
             this.dateshow = false;
         }
-        if (this.Info == "delay") {
+        if (this.info == "delay") {
             this.dateshow = false;
             this.service.http_get('/api/BaseData/GetFactoryLines', false).subscribe((data: any) => {
                 if (data.length > 0) {
@@ -49,10 +49,10 @@ export class FilterComponent implements OnInit {
         } else {
             this.StartDate = this.local.start;
         }
-        if (this.Info == "event" && this.local.dateType >= 0) {
+        if (this.info == "event" && this.local.dateType >= 0) {
             this.dateType = this.local.dateType;
         }
-        if (this.Info == "delay" || this.Info == "material") {
+        if (this.info == "delay" || this.info == "material") {
             this.dateshow = false;
         } else {
             this.EndDate = this.local.end;
@@ -144,7 +144,7 @@ export class FilterComponent implements OnInit {
         let obj: any = {};
         let fids = [];
         let wsids = [];
-        if (this.Info != "delay" && this.Info != "material") {
+        if (this.info != "delay" && this.info != "material") {
             this.datas[0].list.forEach((element, i) => {
                 if (element.state == true) fids.push(element.id);
             });
@@ -196,14 +196,16 @@ export class FilterComponent implements OnInit {
                 });
                 if (styles.toString()) obj['styles'] = styles.toString();
             }
-        } else if (this.Info == "delay") {
+        } else if (this.info == "delay") {
+            //工序延误、事件延误、交期延误
             this.datas[0].list.forEach((element, i) => {
                 if (element.state == true) fids.push(element.id);
             });
             if (this.local.input) obj['input'] = this.local.input;
             if (fids.toString()) obj['fids'] = fids.toString();
 
-        } else if (this.Info == "material") {
+        } else if (this.info == "material") {
+            //物料延误
             let type;
             if (this.datas[0].list[0].state && this.datas[0].list[1].state || !this.datas[0].list[0].state && !this.datas[0].list[1].state) type = -1;
             if (this.datas[0].list[0].state && this.datas[0].list[1].state == false) type = 1;
@@ -213,7 +215,7 @@ export class FilterComponent implements OnInit {
         }
         console.log(JSON.stringify(obj))
         localStorage.setItem("filter", JSON.stringify(obj));
-        this.envet.emit(obj);
+        this.event.emit(obj);
         this.back();
     }
 }
