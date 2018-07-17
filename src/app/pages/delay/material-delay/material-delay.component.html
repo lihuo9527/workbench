@@ -1,7 +1,7 @@
 <div class="container">
     <app-title *ngIf="language=='en'" title="Material Delay"></app-title>
     <app-title *ngIf="language=='cn'" title="物料延误"></app-title>
-    <app-search-box (OutputValue)='updateList()'></app-search-box>
+    <app-search-box (outputValue)='updateList("search")'></app-search-box>
     <app-filter info="delay" (event)="updateList($event)"></app-filter>
     <ul class="materList material" *ngFor="let item of datas;">
         <li>

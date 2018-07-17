@@ -15,14 +15,14 @@ export class MaterialArrivalComponent implements OnInit {
     public type;
     ngOnInit() {
         this.language = localStorage.getItem("language");
-        this.updateList();
+        this.updateList('init');
     }
     updateList($event?) {
-        if (this.type == 2 && $event == 'add') return;
         let local = JSON.parse(localStorage.getItem("filter"));
         let pageIndex = $event == 'add' ? Math.ceil(this.datas.length / 4 + 1) : 1;
-        let object = $event ? $event : local;
         let option = 'pageIndex=' + pageIndex + '&pageSize=4';
+        let object = $event == 'add' || $event == 'search' || $event == 'init' ? local : $event;
+        if (object.fids) option += '&fids=' + object.fids;
         if (object.type) option += '&type=' + object.type;
         if (local.input) option += '&code=' + local.input;
         this.service.http_get('/api/TaskWarn/GetDetailMatReceive?' + option, false).subscribe((data: any) => {

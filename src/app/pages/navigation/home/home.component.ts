@@ -108,11 +108,11 @@ export class HomeComponent implements OnInit {
             this.clearAllCookie();
             this.cookieService.set('JSESSIONID', obj.cookies(), exdate);
         }
-        if (obj.typeCode() != "out_supplier" && obj.typeCode() != "internal" || !obj.defaultCompany()) {
+        if (obj.relation() != "out_supplier" && obj.relation() != "internal" || !obj.defaultCompanyId()) {
             this.router.navigate(['not-bind']);
             return true;
         }
-        if (obj.defaultCompany() && obj.typeCode() == "out_supplier") {
+        if (obj.defaultCompanyId() && obj.relation() == "out_supplier") {
             this.router.navigate(['outSourcing']);
             return true;
         }

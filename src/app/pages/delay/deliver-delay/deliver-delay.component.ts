@@ -26,10 +26,8 @@ export class DeliverDelayComponent implements OnInit {
     public type;
     ngOnInit() {
         localStorage.setItem("filter", JSON.stringify({ input: '' }));
-        console.log(this.service.get_params());
-        console.log('进入')
         let navid;
-        this.link = this.routerIonfo.snapshot.params["id"] == "all" ? ['/all', "3"] : ['/home'];
+        this.link = this.routerIonfo.snapshot.params["id"] == "all" ? ['/all'] : ['/home'];
         navid = this.routerIonfo.snapshot.params["id"] != "all" ? this.routerIonfo.snapshot.params["id"] : "0";
         this.language = localStorage.getItem("language");
         if (this.language == "cn") {
@@ -37,11 +35,11 @@ export class DeliverDelayComponent implements OnInit {
             this.tabs[1].text = "重要";
             this.tabs[2].text = "紧急";
         }
+        console.log(this.link);
         this.showIndex(navid);
     }
 
     updateList($event?) {
-        if (this.type == 2 && $event == 'add') return;
         if (this.index != undefined) {
             if (this.index == "0") this.id = "6";
             if (this.index == "1") this.id = "8";
@@ -49,8 +47,9 @@ export class DeliverDelayComponent implements OnInit {
         }
         let local = JSON.parse(localStorage.getItem("filter"));
         let pageIndex = $event == 'add' ? Math.ceil(this.datas.length / 4 + 1) : 1;
+        let object = $event == 'add' || $event == 'search' || $event == 'init' ? local : $event;
         let option = 'pageIndex=' + pageIndex + '&pageSize=4' + '&priority=' + this.id;
-        if ($event && $event.fids) option += '&fids=' + $event.fids;
+        if (object.fids) option += '&fids=' + object.fids;
         if (local.input) option += '&code=' + local.input;
         this.service.http_get('/api/TaskWarn/GetDetailDeliveryDelay?' + option, false).subscribe((data: any) => {
             this.type = data.length > 0 ? 1 : 2;
@@ -73,7 +72,7 @@ export class DeliverDelayComponent implements OnInit {
         }
         this.datas = [];
         this.index = index;
-        this.updateList();
+        this.updateList('init');
     }
     enterEdit(i) {
         this.router.navigate(['/eventDelayEdit', JSON.stringify(this.datas[i])]);

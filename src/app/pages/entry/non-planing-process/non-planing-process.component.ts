@@ -19,12 +19,10 @@ export class NonPlaningProcessComponent implements OnInit {
     }
 
     updateList($event?) {
-        if (this.type == 2 && $event == 'add') return;
         let local = JSON.parse(localStorage.getItem("filter"));
         let pageIndex = $event == 'add' ? Math.ceil(this.datas.length / 4 + 1) : 1;
-        let option = "";
         let object = $event == 'add' || $event == 'search' || $event == 'init' ? local : $event;
-        option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + object.start + '&end=' + object.end
+        let  option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + object.start + '&end=' + object.end;
         if (object.fids) option += '&fids=' + object.fids;
         if (object.wsids) option += '&wsids=' + object.wsids;
         if (object.process) option += '&processid=' + object.process;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AppService } from '../../../app.service';
 @Component({
     selector: 'app-macro-capacity',
     templateUrl: './macro-capacity.component.html',
@@ -31,7 +31,7 @@ export class MacroCapacityComponent implements OnInit {
             ]
         }
     ]
-    constructor() { }
+    constructor(private service: AppService) { }
     ngOnInit() {
         this.language = localStorage.getItem("language");
         if (this.language == "cn") {
@@ -42,6 +42,7 @@ export class MacroCapacityComponent implements OnInit {
             this.filter = "filter";
             this.placeholder = "input number or style to query";
         }
+        // this.service.
     }
 
     backDate($event) {
@@ -53,7 +54,7 @@ export class MacroCapacityComponent implements OnInit {
         }
         this.state = false;
     }
-    UpdateList($event) {
+    updateList($event) {
         console.log($event);
     }
     output() {

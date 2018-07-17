@@ -1,7 +1,7 @@
 <div class="container">
     <app-title *ngIf="language=='en'" title="Start Time Delay"></app-title>
     <app-title *ngIf="language=='cn'" title="开工期延误订单"></app-title>
-    <app-search-box (outputValue)='updateList()'></app-search-box>
+    <app-search-box (outputValue)='updateList("search")'></app-search-box>
     <app-filter info="delay" (event)="updateList($event)"></app-filter>
 
     <ul class="materList">

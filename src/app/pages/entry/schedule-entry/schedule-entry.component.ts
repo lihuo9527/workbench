@@ -63,7 +63,7 @@ export class ScheduleEntryComponent implements OnInit {
             let t = today.getTime() - 1000 * 60 * 60 * 24;
             this.date = new Date(t).toLocaleDateString();
             this.title = this.language == 'cn' ? "生产日进度" : "Production Daily Progress";
-            this.service.http_get('/api/Schedule/GetPlanScheduleData?poid=' + this.data.id + '&planId=' + this.data.ProductionEventID + '&lineId=' + this.data.LineID, false).subscribe((data: any) => {
+            this.service.http_get('/api/Schedule/GetPlanScheduleData?poid=' + this.data.id + '&planId=' + this.data.ProductionEventID + '&lineId=' + this.data.LineID + "&proTime=" + this.date, false).subscribe((data: any) => {
                 console.log(data)
                 this.color_tabs = data;
                 this.inputs[0].number = data.WorkHours;

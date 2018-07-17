@@ -8,7 +8,7 @@
         <input (click)="output()" type="button" class="searchBut">
         <input (click)="showFilter()" type="button" class="detail" [value]="filter">
     </section>
-    <app-capacity-filter (envet)="UpdateList($event)"></app-capacity-filter>
+    <app-capacity-filter (envet)="updateList($event)"></app-capacity-filter>
     <app-date *ngIf="state" number="1" (submit)="backDate($event)"></app-date>
     <section class="content">
         <div class="contentItem" *ngFor="let item of datas;">
@@ -16,10 +16,9 @@
             <div class="figure">
                 <div *ngFor="let obj of item.list; let key=index;">
                     <h4>{{obj.month}}</h4>
-                    <app-capacity-figure [dataA]="obj.typeA"  [dataB]="obj.typeB"></app-capacity-figure>
+                    <app-capacity-figure [dataA]="obj.typeA" [dataB]="obj.typeB"></app-capacity-figure>
                 </div>
             </div>
         </div>
-        
     </section>
 </div>

@@ -45,8 +45,8 @@ export class LoginComponent implements OnInit {
             if (data.msg == "success") {
                 let time: number = 2 * 60 * 6000 * 100000;
                 sessionStorage.setItem('JSESSIONID', data.result.userInfo.JSESSIONID);
-                sessionStorage.setItem('defaultCompany', data.result.userInfo.defaultCompany);
-                sessionStorage.setItem('typeCode', data.result.userInfo.typeCode);
+                sessionStorage.setItem('defaultCompanyId', data.result.userInfo.defaultCompanyId);
+                sessionStorage.setItem('relation', data.result.userInfo.relation);
                 this.router.navigate(['/home']);
                 this.service.messageBox(this.message, "登录成功！");
             } else {

@@ -25,7 +25,6 @@ export class UnansweredComponent implements OnInit {
         this.updateList();
     }
     updateList($event?) {
-        if (this.type == 2 && $event == 'add') return;
         if ($event == 'search' && !this.input) return;
         let pageIndex = Math.ceil(this.datas.length / 4) + 1;
         let option = 'pageIndex=' + pageIndex + '&pageSize=4' + "&nodeId=" + this.id;

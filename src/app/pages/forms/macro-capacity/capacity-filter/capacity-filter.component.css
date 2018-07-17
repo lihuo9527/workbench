@@ -82,7 +82,25 @@
     overflow: hidden;
 }
 
-.allOff {
+.allOff_cn {
+    background: url(/assets/images/cn_off.png) no-repeat center;
+    width: 4.5rem;
+    height: 2.1rem;
+    background-size: 4.5rem 2.1rem;
+    float: right;
+    margin: 0.5rem 1rem;
+}
+
+.allOn_cn {
+    background: url(/assets/images/cn_on.png) no-repeat center;
+    width: 4.5rem;
+    height: 2.1rem;
+    background-size: 4.5rem 2.1rem;
+    float: right;
+    margin: 0.5rem 1rem;
+}
+
+.allOff_en {
     background: url(/assets/images/filter_off.png) no-repeat center;
     width: 4rem;
     height: 2rem;
@@ -91,7 +109,7 @@
     margin: 0.5rem 1rem;
 }
 
-.allOn {
+.allOn_en {
     background: url(/assets/images/filter_on.png) no-repeat center;
     width: 4rem;
     height: 2rem;
@@ -101,7 +119,7 @@
 }
 
 #filter .list {
-    overflow: hidden;
+    overflow: auto;
     padding: 0;
     max-height: 120px;
 }
@@ -177,19 +195,22 @@
     box-sizing: border-box;
     margin-top: 0.5rem;
 }
+
 .checkMonth {
     width: 100%;
     display: flex;
-    padding-right:1rem;
+    padding-right: 1rem;
     box-sizing: border-box;
-    flex-flow: wrap; 
-    margin-bottom:1rem;
+    flex-flow: wrap;
+    margin-bottom: 1rem;
 }
+
 .checkMonthTitle {
-    margin-top:1rem;
+    margin-top: 1rem;
     font-size: 1.6rem;
     flex: 0 0 100%;
 }
+
 .icon_container {
     width: 100%;
     margin-top: 1rem;
@@ -251,6 +272,7 @@
     align-items: center;
     justify-content: center;
     position: absolute;
+    left: 0px;
 }
 
 .water a {
@@ -263,7 +285,21 @@
     align-items: center;
     color: #fff;
 }
-.beseSize {
+
+.subwidth {
     width: 45%;
+}
+
+.left {
     float: left;
+}
+
+.title_right {
+    float: right !important;
+}
+
+.right {
+    padding-left: 0 !important;
+    float: right !important;
+    padding-right: 1rem !important;
 }

@@ -53,6 +53,9 @@ export class FilterComponent implements OnInit {
             this.dateType = this.local.dateType;
         }
         if (this.info == "delay" || this.info == "material") {
+            if (this.info == "material") {
+                this.datas = JSON.parse(localStorage.getItem("datas"));
+            }
             this.dateshow = false;
         } else {
             this.EndDate = this.local.end;
@@ -141,6 +144,7 @@ export class FilterComponent implements OnInit {
     }
     complete() {
         //完成筛选返回条件
+        this.local = JSON.parse(localStorage.getItem("filter"));
         let obj: any = {};
         let fids = [];
         let wsids = [];
@@ -201,6 +205,7 @@ export class FilterComponent implements OnInit {
             this.datas[0].list.forEach((element, i) => {
                 if (element.state == true) fids.push(element.id);
             });
+            console.log('input', this.local.input)
             if (this.local.input) obj['input'] = this.local.input;
             if (fids.toString()) obj['fids'] = fids.toString();
 

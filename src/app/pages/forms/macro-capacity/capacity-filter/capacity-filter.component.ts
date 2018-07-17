@@ -15,7 +15,7 @@ export class CapacityFilterComponent implements OnInit {
     public dateType: number;
 
     public month: number = 1;
-    public waterLeft: number;
+    public waterLeft: number = 0;
     public progressWidth: number;
 
     public state: boolean = false;
@@ -24,34 +24,18 @@ export class CapacityFilterComponent implements OnInit {
             title: 'Factory', title2: '工厂', rowstate: true, allstate: false, but: true, arrow: true, list: []
         },
         {
+            title: 'Cycle', title2: '周期', rowstate: true, allstate: false, but: false, arrow: false, list: [
+                { text: 'Month', text2: '月', state: false },
+                { text: 'Week', text2: '周', state: false },
+                { text: 'day', text2: '日', state: false },
+            ]
+        },
+        {
             title: 'Statistical Unit', title2: '统计单位', rowstate: true, allstate: false, but: false, arrow: false,
             list: [
                 { text: 'Man*Hrs', text2: '人*工时', state: false },
                 { text: 'piece', text2: '件', state: false },
                 { text: 'StandardPiece', text2: '标准件', state: false },
-            ]
-        },
-        {
-            title: 'Load Calculation', title2: '负载计算方式', rowstate: true, allstate: false, but: false, arrow: false, tips: '(实际计划+以下选项)',
-            list: [
-                { text: 'Delivery Date (OTT-OTD)', text2: '交货期(OTT-OTD)', state: false },
-                { text: 'Original Delivery Date(OTT-OTD)', text2: '原始交期(OTT-OTD)', state: false },
-                { text: 'Last Product Date(OTT-OTD)', text2: '最后回复生产日期(OT-OTD)', state: false },
-                { text: 'Delivery Date(OTD)', text2: '交货期(OTD)', state: false },
-                { text: 'Original Delivery Date(OTD)', text2: '原始交期(OTD)', state: false },
-                { text: 'Last Product Date(OTD)', text2: '最后回复生产日期(OTD)', state: false },
-            ]
-        },
-        {
-            title: 'Capacity include eff.', title2: '产能含效率', rowstate: true, allstate: false, but: false, arrow: false,
-            list: [
-                { text: 'Capacity include eff.', text2: '产能含效率', state: false },
-            ]
-        },
-        {
-            title: 'Load include eff.', title2: '负载含效率', rowstate: true, allstate: false, but: false, arrow: false,
-            list: [
-                { text: 'Load include eff.', text2: '负载含效率', state: false },
             ]
         },
         {
@@ -103,7 +87,7 @@ export class CapacityFilterComponent implements OnInit {
         // 单选改变状态
         obj.state = !obj.state;
         this.dateType = index;
-        if (items.title == 'Load Calculation') {
+        if (items.title == 'Cycle' || items.title == 'Statistical Unit') {
             items.list.forEach((element, i) => {
                 if (index != i) element.state = false;
             });

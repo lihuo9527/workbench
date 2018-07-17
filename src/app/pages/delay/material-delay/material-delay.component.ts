@@ -21,14 +21,14 @@ export class MaterialDelayComponent implements OnInit {
         localStorage.setItem("filter", JSON.stringify({ input: '' }));
         this.language = localStorage.getItem("language");
         this.id = this.routerIonfo.snapshot.params["id"] == 'all' ? -1 : this.routerIonfo.snapshot.params["id"];
-        this.updateList();
+        this.updateList('init');
     }
     updateList($event?) {
-        if (this.type == 2 && $event == 'add') return;
         let local = JSON.parse(localStorage.getItem("filter"));
         let pageIndex = $event == 'add' ? Math.ceil(this.datas.length / 4 + 1) : 1;
         let option = 'pageIndex=' + pageIndex + '&pageSize=4' + '&type=' + this.id;
-        if ($event && $event.fids) option += '&fids=' + $event.fids;
+        let object = $event == 'add' || $event == 'search' || $event == 'init' ? local : $event;
+        if (object.fids) option += '&fids=' + object.fids;
         if (local.input) option += '&code=' + local.input;
         this.service.http_get('/api/TaskWarn/GetDetailMatDelay?' + option, false).subscribe((data: any) => {
             this.type = data.length > 0 ? 1 : 2;
@@ -37,7 +37,7 @@ export class MaterialDelayComponent implements OnInit {
             } else {
                 data.forEach(element => {
                     this.datas.push(element);
-              });
+                });
             }
         })
     }
