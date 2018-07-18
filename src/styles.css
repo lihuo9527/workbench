@@ -303,3 +303,8 @@ html {
     left: 0px;
     z-index: 9;
 }
+
+.forms_container {
+    height: 100%;
+    background: #fff;
+}

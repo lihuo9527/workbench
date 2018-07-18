@@ -36,7 +36,7 @@ export class CapacityFigureComponent implements OnInit {
         this.totalCapacity = this.dataA[0].value + this.dataA[1].value + this.dataA[2].value;
         this.totalLoad = this.dataB[0].value + this.dataB[1].value + this.dataB[2].value;
         this.total = this.totalCapacity - this.totalLoad;
-        this.countpercent = this.totalLoad / this.totalCapacity;
+        this.countpercent = this.totalLoad / this.totalCapacity * 100;
     }
     createChart(x, y: any[]) {
         return {
@@ -61,6 +61,7 @@ export class CapacityFigureComponent implements OnInit {
                 },
                 axisTick: {
                     show: false,
+                    alignWithLabel: true
                 },
                 type: 'category',
             }],

@@ -1,10 +1,23 @@
 .searchBox {
-    padding: 1rem 0.5rem 1rem 0.5rem;
-    overflow: hidden;
+    background: #f3f4f6;
+    padding: 1rem 0 1rem 0;
     display: flex;
-    flex: 1;
+    flex-flow: wrap;
+    position: fixed;
+    top: 46px;
+    z-index: 2;
 }
 
+.searchBox1 {
+    padding: 1rem 0 1rem 0;
+    display: flex;
+    flex-flow: wrap;
+    background: #fff;
+}
+
+.searchBox1 .search,
+.searchBox1 .detail,
+.searchBox1 .searchBut,
 .searchBox .search,
 .searchBox .detail,
 .searchBox .searchBut {
@@ -20,9 +33,10 @@
     color: #333;
 }
 
+.searchBox1 .detail,
 .searchBox .detail {
+    flex: 0 0 22%;
     width: 23%;
-    margin: 0 0 0 1rem;
     height: 3.5rem;
     background: #fff url(/assets/images/i_detail.png) no-repeat 1rem center;
     color: #808080;
@@ -30,6 +44,16 @@
     text-align: right;
     padding: 0.5rem;
     border-radius: 3px;
+}
+
+.colorBox {
+    margin-top: 1rem;
+    display: flex;
+    flex: 0 0 100%;
+    flex-flow: wrap;
+    background: #fff;
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
 .searchBox .searchBut {

@@ -27,15 +27,13 @@ export class OutProcessComponent implements OnInit {
         this.language = localStorage.getItem("language");
         this.title = this.routerIonfo.snapshot.params["title"];
         console.log(this.routerIonfo.snapshot.params["title"])
-        this.updateList();
+        this.updateList('init');
     }
     updateList($event?) {
-        if (this.type == 2 && $event == 'add') return;
         let local = JSON.parse(localStorage.getItem("filter"));
-        let pageIndex = local.input ? 1 : Math.ceil(this.datas.length / 4 + 1);
-        let option = "";
-        let object = $event ? $event : local;
-        option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + object.start + '&end=' + object.end + "&nodeId=" + this.id;
+        let pageIndex = $event == 'add' ? Math.ceil(this.datas.length / 4 + 1) : 1;
+        let object = $event == 'add' || $event == 'search' || $event == 'init' ? local : $event;
+        let option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + object.start + '&end=' + object.end + "&nodeId=" + this.id;
         if (object.fids) option += '&fids=' + object.fids;
         if (object.wsids) option += '&wsids=' + object.wsids;
         if (object.styles) option += '&styles=' + object.styles;

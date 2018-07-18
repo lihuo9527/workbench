@@ -1,11 +1,32 @@
 <div class="container">
     <app-title *ngIf="language=='en'" title="Macro Capacity"></app-title>
     <app-title *ngIf="language=='cn'" title="宏观产能"></app-title>
-    <section class="searchBox">
+    <app-undefined [length]='datas.length' *ngIf="colors.length<=0"></app-undefined>
+    <section class="searchBox1" *ngIf="colors.length>0">
+        <button *ngIf="language=='en'"> Enable date:</button>
+        <button *ngIf="language=='cn'"> 启用日期</button>
+        <p>{{date}}</p>
+        <div style="flex:0 0 2%;"></div>
+        <input type="button" class="detail" [value]="filter">
+        <div class="colorBox">
+            <div *ngFor="let item of colors;" style="flex: 0 0 30%;display: flex;align-items: center;padding-top:0.5rem;padding-bottom:0.5rem; ">
+                <div [ngStyle]="{'background':item.Color}" style="width:1.1rem;height: 1rem;"></div>
+                <span>{{item.Remark}}</span>
+            </div>
+        </div>
+    </section>
+    <section class="searchBox" *ngIf="colors.length>0">
         <button *ngIf="language=='en'"> Enable date:</button>
         <button *ngIf="language=='cn'"> 启用日期</button>
         <p (click)="state=true">{{date}}</p>
+        <div style="flex:0 0 2%;"></div>
         <input (click)="showFilter()" type="button" class="detail" [value]="filter">
+        <div class="colorBox">
+            <div *ngFor="let item of colors;" style="flex: 0 0 30%;display: flex;align-items: center;padding-top:0.5rem;padding-bottom:0.5rem; ">
+                <div [ngStyle]="{'background':item.Color}" style="width:1.1rem;height: 1rem;"></div>
+                <span>{{item.Remark}}</span>
+            </div>
+        </div>
     </section>
     <app-capacity-filter (envet)="updateList($event)"></app-capacity-filter>
     <app-date *ngIf="state" number="1" (submit)="backDate($event)"></app-date>

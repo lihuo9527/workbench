@@ -13,6 +13,7 @@ export class MacroCapacityComponent implements OnInit {
     public state;
     public date = new Date().toLocaleDateString();
     public datas: any = [];
+    public colors = [];
     constructor(private service: AppService) { }
     ngOnInit() {
         this.language = localStorage.getItem("language");
@@ -25,6 +26,9 @@ export class MacroCapacityComponent implements OnInit {
             this.placeholder = "input number or style to query";
         }
         this.updateList();
+        this.service.http_get('/api/Capacity/GetCapacityColorTip', false).subscribe((data: any) => {
+            this.colors = data;
+        })
     }
 
     backDate($event) {

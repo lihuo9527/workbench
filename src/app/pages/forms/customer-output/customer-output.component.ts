@@ -9,14 +9,16 @@ import { AppService } from '../../../app.service';
 export class CustomerOutputComponent implements OnInit {
     public language;
     public option;
+    public length = 0;
     constructor(private service: AppService) { }
 
     ngOnInit() {
         this.language = localStorage.getItem("language");
-        this.service.http_get('/api/Monitor/GetChartData?vrpcode=RPT101', false).subscribe((data: any) => { 
+        this.service.http_get('/api/Monitor/GetChartData?vrpcode=RPT101', false).subscribe((data: any) => {
             let obj = [];
             let titles = [];
-            let colors = ['#ffd634', '#ffcccb', '#d36ba6', '#89cb4f', '#8c7dd8', '#11ba9d', '#65bcc5', '#4b93df', '#ea6350', '#f6a317','#f78db3','#3dc6a8','#a0dca0','#5aabe2','#269785','#f67517','#ea3544','#5c7bbc','#54bc41','#47bd7a'];
+            let colors = ['#ffd634', '#ffcccb', '#d36ba6', '#89cb4f', '#8c7dd8', '#11ba9d', '#65bcc5', '#4b93df', '#ea6350', '#f6a317', '#f78db3', '#3dc6a8', '#a0dca0', '#5aabe2', '#269785', '#f67517', '#ea3544', '#5c7bbc', '#54bc41', '#47bd7a'];
+            if (data[0].ChartNodes.length) this.length = data[0].ChartNodes.length;
             data[0].ChartNodes.forEach((element, i) => {
                 obj.push({
                     name: element.xname,
@@ -28,7 +30,7 @@ export class CustomerOutputComponent implements OnInit {
             });
 
             this.option = {
-   
+
                 title: {
                     text: "产量(件)",
                     textStyle: {
@@ -45,7 +47,7 @@ export class CustomerOutputComponent implements OnInit {
                     left: '5%',
                     top: "18%",
                     bottom: "5%",
-                    y2:140
+                    y2: 140
                 },
                 backgroundColor: "#fff",
                 textStyle: {
@@ -97,7 +99,7 @@ export class CustomerOutputComponent implements OnInit {
                         },
                         data: obj,
                         barCategoryGap: "40%",
-                        barMaxWidth:'30%',
+                        barMaxWidth: '30%',
                     }
                 ]
 

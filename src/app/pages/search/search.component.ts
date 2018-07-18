@@ -169,7 +169,7 @@ export class SearchComponent implements OnInit {
             this.datas[i].list[b].state = this.datas[i].allstate;
         }
         if (item.title == "Factory" && !allstate) {
-             //工厂关联添加车间
+            //工厂关联添加车间
             if (this.id == 1 && this.index == 0) {
                 this.datas[1].list = [];
                 this.floors.forEach((element) => {
@@ -180,7 +180,7 @@ export class SearchComponent implements OnInit {
             }
         }
         if (item.title == "Factory" && allstate) {
-             //工厂关联删除车间
+            //工厂关联删除车间
             if (this.id == 1 && this.index == 0) {
                 this.datas[i + 1].allstate = false;
                 this.datas[i + 1].list = [];
@@ -244,7 +244,7 @@ export class SearchComponent implements OnInit {
             if (element.state == true) fids.push(element.id);
         });
         let wsids = [];
-        if (this.index == 1 || this.index == 0 && this.id == 1) {
+        if (this.index == 0 && this.id == 1) {
             this.datas[1].list.forEach((element, i) => {
                 if (element.state == true) wsids.push(element.id);
 
@@ -280,10 +280,10 @@ export class SearchComponent implements OnInit {
         if (this.index == 1) {
             //外发工序
             let styles = [];
-            this.datas[2].list.forEach(element => {
+            this.datas[1].list.forEach(element => {
                 if (element.state == true) styles.push(element.id);
             });
-            localStorage.setItem("filter", JSON.stringify({ 'index': this.index, 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, 'styles': styles.toString() }));
+            localStorage.setItem("filter", JSON.stringify({ 'fids': fids.toString(), 'index': this.index, 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, 'styles': styles.toString() }));
             console.log("fids:" + fids)
             this.router.navigate(['outProcess', this.title]);
         }

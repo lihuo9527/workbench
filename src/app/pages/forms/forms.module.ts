@@ -18,6 +18,7 @@ import { DateModule } from '../../components/date/date.module';
 import { CapacityFilterComponent } from './macro-capacity/capacity-filter/capacity-filter.component';
 import { CapacityFilterDirective } from './macro-capacity/capacity-filter/capacity-filter.directive';
 import { CapacityFigureComponent } from './macro-capacity/capacity-figure/capacity-figure.component';
+import { UndefinedModule } from '../../components/undefined/undefined.module';
 @NgModule({
     imports: [
         CommonModule,
@@ -25,6 +26,7 @@ import { CapacityFigureComponent } from './macro-capacity/capacity-figure/capaci
         NgxEchartsModule,
         TitleModule,
         DateModule,
+        UndefinedModule,
 
     ],
     declarations: [

@@ -41,6 +41,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { SearchBoxModule } from './components/search-box/search-box.module';
 import { MessageBoxModule } from './components/message-box/message-box.module';
 import { HttpClientModule,HttpClient } from '@angular/common/http';
+import { UndefinedModule } from './components/undefined/undefined.module';
 
 
 
@@ -96,6 +97,7 @@ import { HttpClientModule,HttpClient } from '@angular/common/http';
         DateModule,
         MessageBoxModule,
         LoadMoreModule,
+        UndefinedModule,
         // TranslateModule.forRoot({
         //     loader: {
         //         provide: TranslateLoader,

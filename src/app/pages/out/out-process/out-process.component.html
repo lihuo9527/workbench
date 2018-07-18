@@ -1,7 +1,7 @@
 <div class="container">
     <app-title *ngIf="language=='en'" [title]="title"></app-title>
     <app-title *ngIf="language=='cn'" [title]="title"></app-title>
-    <app-search-box (outputValue)='updateList()'></app-search-box>
+    <app-search-box (outputValue)='updateList("search")'></app-search-box>
     <app-filter info="event" (event)="updateList($event)"></app-filter>
     <div class="container_box">
         <div class="box">

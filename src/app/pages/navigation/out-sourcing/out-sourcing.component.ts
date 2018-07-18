@@ -10,7 +10,7 @@ export class OutSourcingComponent implements OnInit {
 
     constructor(private router: Router, private service: AppService) { }
     public language;
-    public plans = [];
+    public plans = { status: 200, msg: "success", result: { resultInfo: [] } };
     ngOnInit() {
         this.language = localStorage.getItem("language");
         this.service.http_get("/api/OuterFactory/PlanCount", false).subscribe((data: any) => {

@@ -11,6 +11,7 @@ export class EveryMonthQtyComponent implements OnInit {
     constructor(private service: AppService) { }
     public language;
     public option;
+    public length = 0;
     ngOnInit() {
         this.language = localStorage.getItem("language");
         this.service.http_get('/api/Monitor/GetChartData?vrpcode=RPT105', false).subscribe((data: any) => {
@@ -18,6 +19,7 @@ export class EveryMonthQtyComponent implements OnInit {
             let bar = [];
             let line = [];
             let average = data[0].Average;
+            if (data[0].ChartNodes.length) this.length = data[0].ChartNodes.length;
             data[0].ChartNodes.forEach(element => {
                 bar.push(element.yvalue2);
                 line.push(element.yvalue1);
@@ -112,7 +114,7 @@ export class EveryMonthQtyComponent implements OnInit {
                     stack: '产量',
                     data: bar,
                     barCategoryGap: "30%",
-                    barMaxWidth:'30%',
+                    barMaxWidth: '30%',
                 },
                 ]
             }

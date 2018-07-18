@@ -186,7 +186,7 @@ export class FilterComponent implements OnInit {
             if (this.local.id == 2 && this.local.index == 0) {
                 //非排产工序
                 let process = [];
-                this.datas[2].list.forEach(element => {
+                this.datas[1].list.forEach(element => {
                     if (element.state == true) process.push(element.id);
                 });
                 if (this.dateType >= 0) obj['dateType'] = this.dateType;

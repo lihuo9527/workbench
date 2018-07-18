@@ -1,5 +1,6 @@
-<div class="container">
+<div class="forms_container">
     <app-title *ngIf="language=='en'" title="Daily Line Eff% Summary"></app-title>
     <app-title *ngIf="language=='cn'" title="当天生产线效率统计表"></app-title>
-    <div echarts [options]="option" class="demo-chart"></div>
+    <app-undefined [length]='length'></app-undefined>
+    <div echarts [options]="option" class="demo-chart" *ngIf="length>0"></div>
 </div>
