@@ -283,7 +283,7 @@ export class SearchComponent implements OnInit {
             this.datas[1].list.forEach(element => {
                 if (element.state == true) styles.push(element.id);
             });
-            localStorage.setItem("filter", JSON.stringify({ 'fids': fids.toString(), 'index': this.index, 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, 'styles': styles.toString() }));
+            localStorage.setItem("filter", JSON.stringify({ 'fids': fids.toString(), 'index': this.index, 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, 'productTypeIds': styles.toString() }));
             console.log("fids:" + fids)
             this.router.navigate(['outProcess', this.title]);
         }

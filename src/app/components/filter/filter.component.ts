@@ -73,7 +73,7 @@ export class FilterComponent implements OnInit {
         let obj = JSON.parse(objs);
         let time = 0;
         if (this.local.id == 1 && this.local.index == 0 && obj.date) {
-            this.StartDate = obj.date; 
+            this.StartDate = obj.date;
             time = 500;
         } else {
             if (obj.dates) {
@@ -192,13 +192,13 @@ export class FilterComponent implements OnInit {
                 if (this.dateType >= 0) obj['dateType'] = this.dateType;
                 if (process.toString()) obj['process'] = process.toString();
             }
-            if (this.local.id >= 0 && this.local.index == 1) {
+            if (this.local.index == 1) {
                 //外发工序
                 let styles = [];
-                this.datas[2].list.forEach(element => {
+                this.datas[1].list.forEach(element => {
                     if (element.state == true) styles.push(element.id);
                 });
-                if (styles.toString()) obj['styles'] = styles.toString();
+                if (styles.toString()) obj['productTypeIds'] = styles.toString();
             }
         } else if (this.info == "delay") {
             //工序延误、事件延误、交期延误

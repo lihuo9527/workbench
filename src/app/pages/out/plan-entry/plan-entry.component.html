@@ -76,22 +76,10 @@
         <ul class="items">
             <li class="row">
                 <div class="other">
-                    <p>{{Plan.result.supplier}}</p>
-                    <span *ngIf="language=='en'">Supplier</span>
-                    <span *ngIf="language=='cn'">供应商</span>
-                </div>
-                <div class="other">
                     <p>{{Plan.result.totalCount}}</p>
                     <span *ngIf="language=='en'">Total Quantity</span>
                     <span *ngIf="language=='cn'">总数量</span>
                 </div>
-                <div class="other">
-                    <p>{{Plan.result.produceTime}}</p>
-                    <span *ngIf="language=='en'">Output Date</span>
-                    <span *ngIf="language=='cn'">出产量日期</span>
-                </div>
-            </li>
-            <li class="row">
                 <div class="other">
                     <p>{{Plan.result.startTime}}</p>
                     <span *ngIf="language=='en'">Start Date</span>
@@ -101,6 +89,20 @@
                     <p>{{Plan.result.dayCount}}</p>
                     <span *ngIf="language=='en'">Daily Quantity</span>
                     <span *ngIf="language=='cn'">每日数量</span>
+                </div>
+
+            </li>
+            <li class="row">
+                <div class="other">
+                    <p>{{Plan.result.supplier}}</p>
+                    <span *ngIf="language=='en'">Supplier</span>
+                    <span *ngIf="language=='cn'">供应商</span>
+                </div>
+
+                <div class="other">
+                    <p>{{Plan.result.produceTime}}</p>
+                    <span *ngIf="language=='en'">Output Date</span>
+                    <span *ngIf="language=='cn'">出产量日期</span>
                 </div>
                 <div class="other">
                     <p>{{Plan.result.canDayCount}}</p>
