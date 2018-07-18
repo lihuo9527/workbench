@@ -46,16 +46,16 @@
 }
 
 .colorMenu li {
-    line-height: 3rem;
+    line-height: 2rem;
     text-align: center;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     background: #f3f4f6;
 }
 
 .colorMenu li span {
-    line-height: 3rem;
+    line-height: 2rem;
     text-align: center;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     width: 100%;
     background: #f3f4f6;
 }

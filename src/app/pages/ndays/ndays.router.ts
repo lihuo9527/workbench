@@ -14,16 +14,16 @@ export const NdaysRoutes: Routes = [
                 component: MaterialArrivalComponent,
             },
             {
-                path: 'eventsFinished/:id',
+                path: 'eventsFinished/:data',
                 component: EventsFinishedComponent,
             },
             {
-                path: 'progressTracking/:id',
+                path: 'progressTracking/:data',
                 component: ProgressTrackingComponent,
             }
             ,
             {
-                path: 'selectType/:id',
+                path: 'selectType/:data',
                 component: SelectTypeComponent,
             }
         ]

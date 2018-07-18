@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../../../app.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'app-material-arrival',
     templateUrl: './material-arrival.component.html',
@@ -7,14 +8,16 @@ import { AppService } from '../../../app.service';
 })
 export class MaterialArrivalComponent implements OnInit {
 
-    constructor(private service: AppService) { }
+    constructor(private service: AppService, private routerIonfo: ActivatedRoute, ) { }
     public datas = [];
     public id;
     public language;
     public url;
     public type;
+    public title;
     ngOnInit() {
         this.language = localStorage.getItem("language");
+        this.title = JSON.parse(localStorage.getItem("filter")).t;
         this.updateList('init');
     }
     updateList($event?) {

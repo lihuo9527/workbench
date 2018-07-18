@@ -7,7 +7,7 @@
         <li *ngFor="let item of datas;">
             <div class="listTop">
                 <h5>{{item.CustomerName}} — {{item.PoCode}}</h5>
-                <em *ngIf="language=='en'">{{item.DelayDays}} days dalay</em>
+                <em *ngIf="language=='en'">{{item.DelayDays}} days delay</em>
                 <!-- <span *ngIf="language=='en'">Handle</span> -->
                 <em *ngIf="language=='cn'">{{item.DelayDays}} 天延误 </em>
                 <!-- <span *ngIf="language=='cn'">去处理</span> -->

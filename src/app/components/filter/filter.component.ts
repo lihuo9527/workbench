@@ -72,8 +72,8 @@ export class FilterComponent implements OnInit {
         //返回时间并关闭窗口
         let obj = JSON.parse(objs);
         let time = 0;
-        if (this.local.id == 1 && this.local.index == 0) {
-            this.StartDate = obj.date;
+        if (this.local.id == 1 && this.local.index == 0 && obj.date) {
+            this.StartDate = obj.date; 
             time = 500;
         } else {
             if (obj.dates) {
@@ -213,8 +213,8 @@ export class FilterComponent implements OnInit {
             //物料延误
             let type;
             if (this.datas[0].list[0].state && this.datas[0].list[1].state || !this.datas[0].list[0].state && !this.datas[0].list[1].state) type = -1;
-            if (this.datas[0].list[0].state && this.datas[0].list[1].state == false) type = 1;
-            if (this.datas[0].list[0].state == false && this.datas[0].list[1].state) type = 0;
+            if (this.datas[0].list[0].state && this.datas[0].list[1].state == false) type = 0;
+            if (this.datas[0].list[0].state == false && this.datas[0].list[1].state) type = 1;
             if (this.local.input) obj['input'] = this.local.input;
             if (type.toString()) obj['type'] = type.toString();
         }

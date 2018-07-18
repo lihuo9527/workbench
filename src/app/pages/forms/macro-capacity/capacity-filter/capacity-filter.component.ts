@@ -25,7 +25,7 @@ export class CapacityFilterComponent implements OnInit {
         },
         {
             title: 'Cycle', title2: '周期', rowstate: true, allstate: false, but: false, arrow: false, list: [
-                { text: 'Month', text2: '月', state: false },
+                { text: 'Month', text2: '月', state: true },
                 { text: 'Week', text2: '周', state: false },
                 { text: 'day', text2: '日', state: false },
             ]
@@ -33,7 +33,7 @@ export class CapacityFilterComponent implements OnInit {
         {
             title: 'Statistical Unit', title2: '统计单位', rowstate: true, allstate: false, but: false, arrow: false,
             list: [
-                { text: 'Man*Hrs', text2: '人*工时', state: false },
+                { text: 'Man*Hrs', text2: '人*工时', state: true },
                 { text: 'piece', text2: '件', state: false },
                 { text: 'StandardPiece', text2: '标准件', state: false },
             ]
@@ -71,7 +71,7 @@ export class CapacityFilterComponent implements OnInit {
             }
         })
     }
-    Back() {
+    back() {
         // filter过渡动漫
         document.getElementById('shadow').style.left = '100%';
         document.getElementById('filter').style.left = '100%';
@@ -102,25 +102,27 @@ export class CapacityFilterComponent implements OnInit {
         let obj: any = {};
         let local = JSON.parse(localStorage.getItem('filter'));
         let fids = [];
-        if ('delay') {
-            console.log(this.month);
-            this.datas[0].list.forEach((element, i) => {
-                if (element.state == true) fids.push(element.id);
-            });
-            if (local.input) obj['input'] = local.input;
-            if (fids.toString()) obj['fids'] = fids.toString();
+        this.datas[0].list.forEach((element, i) => {
+            if (element.state == true) fids.push(element.id);
+        });
+        let timeType;
+        this.datas[1].list.forEach((element, i) => {
+            if (element.state == true) timeType = i;
+        });
+        let unitType;
+        this.datas[2].list.forEach((element, i) => {
+            if (element.state == true) unitType = i;
+        });
 
-        } else if ('material') {
-            let type;
-            if (this.datas[0].list[0].state && this.datas[0].list[1].state || !this.datas[0].list[0].state && !this.datas[0].list[1].state) type = -1;
-            if (this.datas[0].list[0].state && this.datas[0].list[1].state == false) type = 1;
-            if (this.datas[0].list[0].state == false && this.datas[0].list[1].state) type = 0;
-            if (local.input) obj['input'] = local.input;
-            if (type.toString()) obj['type'] = type.toString();
-        }
+        if (fids.toString()) obj['fids'] = fids.toString();
+        obj['cycleType'] = timeType;
+        obj['cycle'] = this.month;
+        obj['unitType'] = unitType; 
+        obj['capIncOut'] = this.datas[3].list[0].state == true ? 1 : 0;
+        obj['loadingIncOut'] = this.datas[4].list[0].state == true ? 1 : 0;
         console.log(JSON.stringify(obj))
         localStorage.setItem('filter', JSON.stringify(obj));
         this.envet.emit(obj);
-        this.Back();
+        this.back();
     }
 }

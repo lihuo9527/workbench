@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../../../app.service';
-
+import { ActivatedRoute} from '@angular/router';
 @Component({
     selector: 'app-events-finished',
     templateUrl: './events-finished.component.html',
@@ -8,14 +8,16 @@ import { AppService } from '../../../app.service';
 })
 export class EventsFinishedComponent implements OnInit {
 
-    constructor(private service: AppService) { }
+    constructor(private service: AppService, private routerIonfo: ActivatedRoute,) { }
     public datas = [];
     public id;
     public language;
     public url;
     public type;
+    public title;
     ngOnInit() {
         localStorage.setItem("filter", JSON.stringify({ input: '' }));
+        this.title = JSON.parse(this.routerIonfo.snapshot.params["data"]).t;
         this.language = localStorage.getItem("language");
         this.updateList('init');
     }

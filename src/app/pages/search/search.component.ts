@@ -222,8 +222,9 @@ export class SearchComponent implements OnInit {
     backDate(objs) {
         //时间组件选择触发赋值
         let obj = JSON.parse(objs);
+        console.log(obj);
         let time = 0;
-        if (this.id == 1 && this.index == 0) {
+        if (this.id == 1 && this.index == 0 && obj.date) {
             this.StartDate = obj.date;
             time = 500;
         } else {

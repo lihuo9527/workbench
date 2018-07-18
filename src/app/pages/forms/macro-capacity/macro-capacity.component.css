@@ -21,7 +21,7 @@
 }
 
 .searchBox .detail {
-    width: 20%;
+    width: 23%;
     margin: 0 0 0 1rem;
     height: 3.5rem;
     background: #fff url(/assets/images/i_detail.png) no-repeat 1rem center;
@@ -50,7 +50,7 @@
 }
 
 .searchBox p {
-    flex: 0 0 25%;
+    flex: 0 0 40%;
     background: white;
     color: #088c77;
     display: flex;
@@ -87,27 +87,30 @@ button {
     font: 400 13.3333px Arial;
 }
 
-.content .contentItem{
+.content .contentItem {
     background-color: #fff;
     margin-bottom: 1rem;
     padding-bottom: 1rem;
 }
 
-.content .contentItem h3{
+.content .contentItem h3 {
     height: 4rem;
     line-height: 4rem;
     padding: 0 1rem;
     font-size: 1.4rem;
 }
-.content .figure{
+
+.content .figure {
     display: flex;
     flex-wrap: wrap;
     text-align: center;
 }
-.content .figure >div{
-    flex:0 0 24%;
+
+.content .figure>div {
+    flex: 0 0 24%;
 }
-.content .figure >div h4{
+
+.content .figure>div h4 {
     text-align: center;
     line-height: 2rem;
     font-size: 1.3rem;

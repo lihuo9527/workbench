@@ -5,18 +5,17 @@
         <button *ngIf="language=='en'"> Enable date:</button>
         <button *ngIf="language=='cn'"> 启用日期</button>
         <p (click)="state=true">{{date}}</p>
-        <input (click)="output()" type="button" class="searchBut">
         <input (click)="showFilter()" type="button" class="detail" [value]="filter">
     </section>
     <app-capacity-filter (envet)="updateList($event)"></app-capacity-filter>
     <app-date *ngIf="state" number="1" (submit)="backDate($event)"></app-date>
     <section class="content">
         <div class="contentItem" *ngFor="let item of datas;">
-            <h3>{{item.factoryName}}</h3>
+            <h3>{{item.Name}}</h3>
             <div class="figure">
-                <div *ngFor="let obj of item.list; let key=index;">
-                    <h4>{{obj.month}}</h4>
-                    <app-capacity-figure [dataA]="obj.typeA" [dataB]="obj.typeB"></app-capacity-figure>
+                <div *ngFor="let obj of item.CapacityChartDataList; let key=index;">
+                    <h4>{{obj.dataTime}}</h4>
+                    <app-capacity-figure [dataA]="obj.capData" [dataB]="obj.loadingData"></app-capacity-figure>
                 </div>
             </div>
         </div>

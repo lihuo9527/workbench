@@ -12,25 +12,7 @@ export class MacroCapacityComponent implements OnInit {
     public placeholder;
     public state;
     public date = new Date().toLocaleDateString();
-    public datas: any = [
-        {
-            factoryName: "RunXing Factory",
-            list: [
-                { month: "2018.01", typeA: [10, 20, 30], typeB: [21, 31, 41] },
-                { month: "2018.02", typeA: [1, 2, 7], typeB: [2, 3, 10] },
-                { month: "2018.03", typeA: [9, 1, 3], typeB: [2, 3, 4] },
-                { month: "2018.04", typeA: [9, 1, 3], typeB: [2, 3, 4] }
-            ]
-        },
-        {
-            factoryName: "Factory",
-            list: [
-                { month: "2018.01", typeA: [10, 20, 30], typeB: [21, 31, 41] },
-                { month: "2018.02", typeA: [1, 2, 7], typeB: [2, 3, 10] },
-                { month: "2018.03", typeA: [9, 1, 3], typeB: [2, 3, 4] }
-            ]
-        }
-    ]
+    public datas: any = [];
     constructor(private service: AppService) { }
     ngOnInit() {
         this.language = localStorage.getItem("language");
@@ -42,7 +24,7 @@ export class MacroCapacityComponent implements OnInit {
             this.filter = "filter";
             this.placeholder = "input number or style to query";
         }
-        // this.service.
+        this.updateList();
     }
 
     backDate($event) {
@@ -54,8 +36,14 @@ export class MacroCapacityComponent implements OnInit {
         }
         this.state = false;
     }
-    updateList($event) {
-        console.log($event);
+    updateList($event?) {
+        let option = $event ? `starDate=${this.date}&capIncOut=${$event.capIncOut}
+        &loadingIncOut=${$event.loadingIncOut}&timeSpan=${$event.cycle}&timeType=${$event.cycleType}
+        &unitType=${$event.unitType}` : `starDate=${this.date}&capIncOut=0&loadingIncOut=0&timeSpan=3&timeType=0&unitType=0`;
+        if ($event && $event.fids) option += `&fids=${$event.fids}`;
+        this.service.http_get(`/api/Capacity/GetCapacity?${option}`, false).subscribe((data: any) => {
+            this.datas = data;
+        });
     }
     output() {
     }

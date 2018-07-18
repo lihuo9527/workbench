@@ -21,6 +21,7 @@ export class SelectTypeComponent implements OnInit {
         { text: "Accessories", text2: "辅料", state: false }
     ];
     ngOnInit() {
+        this.title = JSON.parse(this.routerIonfo.snapshot.params["data"]).t;
         this.language = localStorage.getItem("language");
         if (this.language == "en") this.placeholder = "input number or style to query";
         localStorage.setItem("filter", JSON.stringify({ input: '' }));
@@ -30,7 +31,7 @@ export class SelectTypeComponent implements OnInit {
         if (this.datas[0].state && this.datas[1].state == false) this.selectType = 0;
         if (this.datas[0].state == false && this.datas[1].state) this.selectType = 1;
         localStorage.setItem("datas", JSON.stringify([{ title: "Material", title2: "物料", rowstate: true, allstate: false, but: true, arrow: true, list: this.datas }]));
-        localStorage.setItem("filter", JSON.stringify({ 'id': 'material', "input": this.input, "type": this.selectType.toString() }));
+        localStorage.setItem("filter", JSON.stringify({ 'id': 'material', "input": this.input, "type": this.selectType.toString(), "t": this.title }));
         this.router.navigate(['ndays/materialArrival']);
     }
 }

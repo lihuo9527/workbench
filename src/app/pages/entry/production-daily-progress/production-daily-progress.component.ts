@@ -24,7 +24,7 @@ export class ProductionDailyProgressComponent implements OnInit {
         let option = 'pageIndex=' + pageIndex + '&pageSize=4&planTime=' + object.start;
         if (object.fids) option += '&fids=' + object.fids;
         if (object.wsids) option += '&wsids=' + object.wsids;
-        if (object.styles) option += '&styles=' + object.styles;
+        if (object.styles) option += '&productTypeIds=' + object.styles;
         if (local.input) option += '&code=' + local.input;
         this.service.http_get('/api/Schedule/GetPlanPoes?' + option, false).subscribe((data: any) => {
             this.type = data.length > 0 ? 1 : 2;
