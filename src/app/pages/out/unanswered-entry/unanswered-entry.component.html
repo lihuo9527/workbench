@@ -15,39 +15,38 @@
                 <span *ngIf="language=='cn'">客户名称</span>
             </div>
             <div class="other">
-                <p>{{data.styleNo}}</p>
-                <span *ngIf="language=='en'">Style No</span>
-                <span *ngIf="language=='cn'">款号</span>
+                <p>{{data.deliveryDate}}</p>
+                <span *ngIf="language=='en'">Delivery Date</span>
+                <span *ngIf="language=='cn'">交货期</span>
             </div>
         </li>
         <li class="row">
             <div class="other">
-                <p>{{data.StarDate}}</p>
-                <span *ngIf="language=='en'">Start Date</span>
-                <span *ngIf="language=='cn'">开始时间</span>
+                <p>{{data.styleNo}}</p>
+                <span *ngIf="language=='en'">Style No</span>
+                <span *ngIf="language=='cn'">本厂款号</span>
             </div>
             <div class="other">
-                <p>{{data.EndDate}}</p>
-                <span *ngIf="language=='en'">End Date</span>
-                <span *ngIf="language=='cn'">结束时间</span>
+                <p>{{data.customerPattern}}</p>
+                <span *ngIf="language=='en'">Customer Pattern</span>
+                <span *ngIf="language=='cn'">客户款号</span>
             </div>
+            <div class="other">
+                <p>{{data.producttype}}</p>
+                <span *ngIf="language=='en'">Product Type</span>
+                <span *ngIf="language=='cn'">产品分类</span>
+            </div>
+        </li>
+        <li class="row">
             <div class="other">
                 <p>{{data.orderQty}}</p>
                 <span *ngIf="language=='en'">Order</span>
                 <span *ngIf="language=='cn'">订单数</span>
             </div>
-        </li>
-
-        <li class="row">
             <div class="other">
                 <p>{{data.CuttingAmount}}</p>
                 <span *ngIf="language=='en'">Cutting Qty</span>
-                <span *ngIf="language=='cn'">裁剪数</span>
-            </div>
-            <div class="other">
-                <p>{{data.deliverydate}}</p>
-                <span *ngIf="language=='en'">Delivery Date</span>
-                <span *ngIf="language=='cn'">交期</span>
+                <span *ngIf="language=='cn'">裁床数</span>
             </div>
         </li>
     </ul>
