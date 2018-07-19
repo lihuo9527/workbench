@@ -55,7 +55,7 @@ export class PlanEntryComponent implements OnInit {
                         date: this.amount,
                         outgoingCount: totaloutgoing,
                         backFactory: totalreturn,
-                        reduce:totalreturn - totaloutgoing
+                        reduce: totalreturn - totaloutgoing
                     })
                 }
 
@@ -65,7 +65,7 @@ export class PlanEntryComponent implements OnInit {
     }
     next() {
         if (this.total > 0 && this.dayAmount > 0 && parseInt(this.date) > 0) {
-            this.router.navigate(['selectingSuppliers', JSON.stringify({ total: this.total, date: this.date, dayAmount: this.dayAmount, code: this.data.code })])
+            this.router.navigate(['selectingSuppliers', JSON.stringify({ total: this.total, date: this.date, dayAmount: this.dayAmount, code: this.data.code, styleNo: this.data.pattern })])
         } else {
             this.service.messageBox(this.message, "请填写完整信息！")
         }

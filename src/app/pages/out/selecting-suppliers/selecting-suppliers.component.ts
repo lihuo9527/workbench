@@ -69,7 +69,8 @@ export class SelectingSuppliersComponent implements OnInit {
             dayCount: this.data.dayAmount,
             code: this.data.code,
             ofids: fids.toString(),
-            nodeId: this.id
+            nodeId: this.id,
+            styleNo:this.data.styleNo
         }
         this.service.http_post("/api/OuterFactory/EntryPlan", option, false).subscribe((data: any) => {
             if (data.msg == "success") {

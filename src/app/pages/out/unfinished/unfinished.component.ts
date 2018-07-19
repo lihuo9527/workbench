@@ -26,7 +26,7 @@ export class UnfinishedComponent implements OnInit {
     }
     updateList($event?) {
         if ($event == 'search' && !this.input) return;
-        let pageIndex = Math.ceil(this.datas.length / 4) + 1;
+        let pageIndex = $event == 'add' ? Math.ceil(this.datas.length / 4 + 1) : 1;
         let option = 'pageIndex=' + pageIndex + '&pageSize=4' + "&nodeId=" + this.id;
         if (this.input) option += "&code=" + this.input;
         this.service.http_get('/api/OuterFactory/UndonePlanList?' + option, false).subscribe((data: any) => {
