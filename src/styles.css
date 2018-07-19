@@ -205,7 +205,6 @@ html {
     background: #ff5a52;
     color: #fff;
     padding: 0 0.2rem;
-    display: inline-block;
     float: left;
     border-radius: 0.2rem;
     margin: 1.1rem 0 0 0.5rem;
@@ -215,7 +214,6 @@ html {
     float: right;
     line-height: 4rem;
     font-size: 1.4rem;
-    display: inline-block;
     margin: 0 1rem 0 0;
 }
 

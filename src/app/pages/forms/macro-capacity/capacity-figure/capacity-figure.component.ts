@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CapacityFigureComponent implements OnInit {
     @Input() dataA;
     @Input() dataB;
+    @Input() maxValue;
     public option;
     public countpercent: number;
     public totalCapacity: number;
@@ -48,13 +49,14 @@ export class CapacityFigureComponent implements OnInit {
             },
             grid: {
                 containLabel: true,
-                left: "0",
+                left: "-25%",
+                // right: "10%",
                 top: "20%",
                 bottom: "5%"
             },
             xAxis: [{
                 axisLine: {
-                    show: true,
+                    show: false,
                     lineStyle: {
                         color: "#ddd"
                     }
@@ -71,46 +73,47 @@ export class CapacityFigureComponent implements OnInit {
             }],
             series: [
                 {
-                    color: [x[0].color],
+                    name: "产能",
+                    color: [x[2].color],
                     type: 'bar',
                     stack: 'B',
-                    barWidth: '50%',
-                    data: [x[0].value]
+                    data: [x[2].value]
                 },
                 {
                     color: [x[1].color],
                     type: 'bar',
                     stack: 'B',
-                    barWidth: '50%',
                     data: [x[1].value],
                 },
                 {
                     type: 'bar',
                     stack: 'B',
-                    barWidth: '50%',
-                    data: [x[2].value],
-                    color: [x[2].color],
+                    data: [x[0].value],
+                    color: [x[0].color],
                 },
                 {
                     type: 'bar',
-                    barWidth: '50%',
-                    color: [y[0].color],
+                    color: [y[2].color],
                     stack: 'C',
-                    data: [y[0].value],
+                    data: [y[2].value],
                 },
                 {
                     type: 'bar',
-                    barWidth: '50%',
                     color: [y[1].color],
                     stack: 'C',
                     data: [y[1].value],
                 },
                 {
                     type: 'bar',
-                    barWidth: '50%',
-                    color: [y[2].color],
+                    color: [y[0].color],
                     stack: 'C',
-                    data: [y[2].value],
+                    data: [y[0].value],
+                },
+                {
+                    type: 'bar',
+                    stack: 'D',
+                    data: [this.maxValue],
+                    color: ["#fff"],
                 },
             ]
         };

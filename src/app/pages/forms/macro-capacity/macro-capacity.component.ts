@@ -28,6 +28,7 @@ export class MacroCapacityComponent implements OnInit {
         this.updateList();
         this.service.http_get('/api/Capacity/GetCapacityColorTip', false).subscribe((data: any) => {
             this.colors = data;
+            this.colors.push({ Color: "#677a88", Name: "TotalLoading", Remark: "总负载" })
         })
     }
 

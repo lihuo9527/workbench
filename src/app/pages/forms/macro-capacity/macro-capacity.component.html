@@ -34,9 +34,9 @@
         <div class="contentItem" *ngFor="let item of datas;">
             <h3>{{item.Name}}</h3>
             <div class="figure">
-                <div *ngFor="let obj of item.CapacityChartDataList; let key=index;">
+                <div class="barBox" *ngFor="let obj of item.CapacityChartDataList; let key=index;">
                     <h4>{{obj.dataTime}}</h4>
-                    <app-capacity-figure [dataA]="obj.capData" [dataB]="obj.loadingData"></app-capacity-figure>
+                    <app-capacity-figure [dataA]="obj.capData" [dataB]="obj.loadingData" [maxValue]="item.MaxValue"></app-capacity-figure>
                 </div>
             </div>
         </div>

@@ -118,7 +118,7 @@ button {
 }
 
 .content .contentItem h3 {
-    height: 4rem;
+    height: 3rem;
     line-height: 4rem;
     padding: 0 1rem;
     font-size: 1.4rem;
@@ -130,11 +130,12 @@ button {
     text-align: center;
 }
 
-.content .figure>div {
-    flex: 0 0 24%;
+.barBox {
+    flex: 0 0 25%;
+    margin-top: 1rem;
 }
 
-.content .figure>div h4 {
+.barBox h4 {
     text-align: center;
     line-height: 2rem;
     font-size: 1.3rem;

@@ -23,11 +23,6 @@ export class CapacityFilterDirective {
         this.boxWidth = this.el.nativeElement.parentNode.offsetWidth;
         this.persent = this.boxWidth / 12;
         this.startWidth = this.boxWidth / 24;
-        // if (this.el.nativeElement.style.left) {
-        //     this.month = Math.floor(parseInt(this.waterLeft) / this.persent) + 1;
-        //     let objs = { month: this.month, waterLeft: this.waterLeft, progressWidth: this.progressWidth };
-        //     this.CapacityFilterDirective.emit(objs);
-        // }
     }
     @HostListener('touchmove', ['$event']) onTouchMove(e) {
         let moveX = e.changedTouches[0].clientX - this.touchStartX;
