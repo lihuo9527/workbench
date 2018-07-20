@@ -18,6 +18,7 @@ export class PlanEntryComponent implements OnInit {
     public total;
     public total2;
     public dayAmount;
+    public loading: boolean = false;
     public Plan = { "msg": "", "result": { "sumBackFactory": "", "dayCount": "", "canDayCount": "", "supplier": "", "produceTime": "", "recording": [], "startTime": "", "totalCount": "", "sumOutgoingCount": "" }, "status": "" };
     public message = {
         state: false,
@@ -72,12 +73,16 @@ export class PlanEntryComponent implements OnInit {
     }
     submit() {
         if (this.total > 0 && parseInt(this.date) > 0) {
-            let option = "totalCount=" + this.total + "&startTime=" + this.date + "&code=" + this.data.code + "&planId=" + this.data.planId
+            let option = "totalCount=" + this.total + "&startTime=" + this.date + "&code=" + this.data.code + "&planId=" + this.data.planId;
+            this.loading = true;
             this.service.http_post("/api/OuterFactory/EntryDayOutSchedule", option, false, "form").subscribe((data: any) => {
+                this.loading = false;
                 if (data.msg == "success") {
                     this.getPlan();
                     this.service.messageBox(this.message, "录入成功!")
                 }
+            }, error => {
+                this.loading = false;
             })
         } else {
             this.service.messageBox(this.message, "请填写完整信息！");
@@ -93,12 +98,15 @@ export class PlanEntryComponent implements OnInit {
     change(item) {
         let state = item.isEnd == 0 ? 1 : 0;
         let option = 'planId=' + item.planId + "&status=" + state;
+        this.loading = true;
         this.service.http_post('/api/OuterFactory/ModifyPlanStatus', option, false, "form").subscribe((data: any) => {
+            this.loading = false;
             item.isEnd = state;
             this.service.messageBox(this.message, "修改成功！");
             console.log(this.data)
+        }, error => {
+            this.loading = false;
         })
-
     }
 
 }

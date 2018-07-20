@@ -13,6 +13,7 @@ export class SelectingSuppliersComponent implements OnInit {
     public datas: any = { result: { contactsList: [] } };
     public userface = [];
     public data;
+    public loading: boolean = false;
     public id = JSON.parse(localStorage.getItem("filter")).id;
     public message = {
         state: false,
@@ -60,7 +61,7 @@ export class SelectingSuppliersComponent implements OnInit {
             fids.push(element.uid);
         })
         if (fids.length <= 0) {
-            this.service.messageBox(this.message,"您还没有选择供应商！");
+            this.service.messageBox(this.message, "您还没有选择供应商！");
             return;
         }
         let option = {
@@ -70,15 +71,19 @@ export class SelectingSuppliersComponent implements OnInit {
             code: this.data.code,
             ofids: fids.toString(),
             nodeId: this.id,
-            styleNo:this.data.styleNo
+            styleNo: this.data.styleNo
         }
+        this.loading = true;
         this.service.http_post("/api/OuterFactory/EntryPlan", option, false).subscribe((data: any) => {
+            this.loading = false;
             if (data.msg == "success") {
-                this.service.messageBox(this.message,"录入成功！");
+                this.service.messageBox(this.message, "录入成功！");
                 setTimeout(() => window.history.go(-2), 1500);
             } else {
-                this.service.messageBox(this.message,data.msg);
+                this.service.messageBox(this.message, data.msg);
             }
+        }, error => {
+            this.loading = false;
         })
     }
 

@@ -104,5 +104,6 @@
         <button *ngIf="language=='en'" (click)="submit()">Confirm</button>
     </div>
     <app-date *ngIf="state" number="1" (submit)="backDate($event)"></app-date>
+    <app-loading [loadingShow]="loading"></app-loading>
     <app-message-box [msg]="message.msg" (event)="message.state=false" [btnText]="message.btnText" [msgShow]="message.state"></app-message-box>
 </div>

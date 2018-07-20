@@ -20,6 +20,7 @@ export class UnfinishedEntryComponent implements OnInit {
     public total2;
     public dayAmount;
     public amount: string;
+    public loading: boolean = false;
     public Plan = { "msg": "", "result": { "sumBackFactory": "", "dayCount": "", "canDayCount": "", "supplier": "", "produceTime": "", "listInfo": [], "startTime": "", "totalCount": "", "sumOutgoingCount": "" }, "status": "" };
     public message = {
         state: false,
@@ -54,19 +55,23 @@ export class UnfinishedEntryComponent implements OnInit {
                 date: this.amount,
                 receiveCount: totaloutgoing,
                 issueCount: totalreturn,
-                reduce:totalreturn - totaloutgoing
+                reduce: totalreturn - totaloutgoing
             })
             console.log(data)
         })
     }
     submit() {
         if (this.total > 0 && parseInt(this.date) > 0) {
-            let option = "count=" + this.total + "&outTime=" + this.date + "&planId=" + this.data.planId
+            let option = "count=" + this.total + "&outTime=" + this.date + "&planId=" + this.data.planId;
+            this.loading = true;
             this.service.http_post("/api/OuterFactory/UndonePlanEntry", option, false, "form").subscribe((data: any) => {
+                this.loading = false;
                 if (data.msg == "success") {
                     this.getPlan();
                     this.service.messageBox(this.message, "录入成功！")
                 }
+            }, error => {
+                this.loading = false;
             })
         } else {
             this.service.messageBox(this.message, "请填写完整信息再提交！")

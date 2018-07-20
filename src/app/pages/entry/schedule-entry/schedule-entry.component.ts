@@ -42,6 +42,7 @@ export class ScheduleEntryComponent implements OnInit {
     public time;
     public peoples;
     public rate;
+    public loading: boolean = false;
     public inputs = [
         { name: "Time Consuming", name2: "消耗工时", placeholder: "input the time", placeholder2: "输入工时", number: "" },
         { name: "Number of people", name2: "人数", placeholder: "input the number", placeholder2: "输入人数", number: "" },
@@ -149,7 +150,9 @@ export class ScheduleEntryComponent implements OnInit {
                 console.log(JSON.stringify(data))
                 if (this.processId && parseInt(this.date) > 0) {
                     console.log(this.processId)
+                    this.loading = true;
                     this.service.http_post('/api/Schedule/AddScheduleDaily', JSON.stringify(data), false).subscribe((data: any) => {
+                        this.loading = false;
                         if (data.IsSuccess == 1) {
                             this.service.messageBox(this.message, "保存成功！");
                         } else {
@@ -157,6 +160,7 @@ export class ScheduleEntryComponent implements OnInit {
                         }
                         console.log(data);
                     }, error => {
+                        this.loading = false;
                         this.service.messageBox(this.message, "提交失败！");
                     })
                 } else {
@@ -166,7 +170,9 @@ export class ScheduleEntryComponent implements OnInit {
             } else {
                 if (this.processId && parseInt(this.date) > 0 && !isNaN(this.number)) {
                     let option = "processId=" + this.processId + "&poId=" + this.data.id + "&proDate=" + this.date + "&amount=" + this.number;
+                    this.loading = true;
                     this.service.http_post('/api/Schedule/AddScheduleByPo', option, false, "form").subscribe((data: any) => {
+                        this.loading = false;
                         if (data.IsSuccess == 1) {
                             this.service.messageBox(this.message, "保存成功！");
                         } else {
@@ -174,6 +180,7 @@ export class ScheduleEntryComponent implements OnInit {
                         }
                         console.log(data);
                     }, error => {
+                        this.loading = false;
                         this.service.messageBox(this.message, "提交失败！");
                     })
                 } else {
@@ -218,13 +225,16 @@ export class ScheduleEntryComponent implements OnInit {
                     }
                 }
                 // console.log(JSON.stringify(this.color_tabs))
+                this.loading = true;
                 this.service.http_post('/api/Schedule/AddPlanScheduleDaily', JSON.stringify(data), false).subscribe((data: any) => {
+                    this.loading = false;
                     if (data.IsSuccess == 1) {
                         this.service.messageBox(this.message, "保存成功！");
                     } else {
                         this.service.messageBox(this.message, data.ErrMessage);
                     }
                 }, error => {
+                    this.loading = false;
                     this.service.messageBox(this.message, "提交失败！");
                 })
             } else {
@@ -235,13 +245,16 @@ export class ScheduleEntryComponent implements OnInit {
                     }
                 }
                 let option = "ProductionEventId=" + this.data.ProductionEventID + "&lineId=" + this.data.LineID + "&poId=" + this.data.id + "&proDate=" + this.date + "&amount=" + this.number + "&WorkerAmount=" + this.inputs[1].number + "&WorkHours=" + this.inputs[0].number + "&FPY=" + this.inputs[2].number + "&isProCompleted=" + IsProCompleted;
+                this.loading = true;
                 this.service.http_post('/api/Schedule/AddPlanScheduleByPo', option, false, "form").subscribe((data: any) => {
+                    this.loading = false;
                     if (data.IsSuccess == 1) {
                         this.service.messageBox(this.message, "保存成功！");
                     } else {
                         this.service.messageBox(this.message, data.ErrMessage);
                     }
                 }, error => {
+                    this.loading = false;
                     this.service.messageBox(this.message, "提交失败！");
                 })
 

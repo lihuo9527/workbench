@@ -44,7 +44,7 @@ export class MacroCapacityComponent implements OnInit {
     updateList($event?) {
         let option = $event ? `starDate=${this.date}&capIncOut=${$event.capIncOut}
         &loadingIncOut=${$event.loadingIncOut}&timeSpan=${$event.cycle}&timeType=${$event.cycleType}
-        &unitType=${$event.unitType}` : `starDate=${this.date}&capIncOut=0&loadingIncOut=0&timeSpan=3&timeType=0&unitType=0`;
+        &unitType=${$event.unitType}` : `starDate=${this.date}&capIncOut=1&loadingIncOut=1&timeSpan=3&timeType=0&unitType=0`;
         if ($event && $event.fids) option += `&fids=${$event.fids}`;
         this.service.http_get(`/api/Capacity/GetCapacity?${option}`, false).subscribe((data: any) => {
             this.datas = data;

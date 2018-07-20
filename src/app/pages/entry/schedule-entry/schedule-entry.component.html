@@ -1,11 +1,6 @@
 <div class="container">
     <app-title [title]="title"></app-title>
     <div class="non-process" *ngIf="data.Pid=='non-process'">
-        <!-- <div class="select-container" (click)="selectstate=!selectstate">
-            <span class="select_p">Please select the process</span>
-            <span class="select_name">{{processName}}</span>
-            <span class="arrow">></span>
-        </div> -->
         <ul class="select-container">
             <li (click)="getProcess()" [ngClass]="{'active': selectstate}">{{processName}}<span [ngClass]="{'active': selectstate}"></span></li>
             <li (click)="getFloor()" [ngClass]="{'active': floorselectstate}">{{floorName}}<span [ngClass]="{'active': floorselectstate}"></span></li>
@@ -171,5 +166,6 @@
         <button *ngIf="language=='cn'" type="submit" (click)="Save()">保存</button>
         <button *ngIf="language=='en'" type="submit" (click)="Save()">Submit</button>
     </div>
+    <app-loading [loadingShow]="loading"></app-loading>
     <app-message-box [msg]="message.msg" (event)="message.state=false" [btnText]="message.btnText" [msgShow]="message.state"></app-message-box>
 </div>

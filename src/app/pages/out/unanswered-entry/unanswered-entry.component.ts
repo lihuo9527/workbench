@@ -17,6 +17,7 @@ export class UnansweredEntryComponent implements OnInit {
     public total;
     public total2;
     public dayAmount;
+    public loading: boolean = false;
     public message = {
         state: false,
         btnText: "OK",
@@ -32,13 +33,17 @@ export class UnansweredEntryComponent implements OnInit {
     }
     submit() {
         if (this.total > 0 && parseInt(this.date) > 0) {
-            let option = "dayCount=" + this.total + "&startTime=" + this.date + "&planId=" + this.data.planId
+            let option = "dayCount=" + this.total + "&startTime=" + this.date + "&planId=" + this.data.planId;
+            this.loading = true;
             this.service.http_post("/api/OuterFactory/UnansweredPlanEntry ", option, false, "form").subscribe((data: any) => {
+                this.loading = false;
                 if (data.msg == "success") {
                     this.data.date = data.result.planReply.date;
                     this.data.count = data.result.planReply.count;
                     this.service.messageBox(this.message, "录入成功!");
                 }
+            }, error => {
+                this.loading = false;
             })
         } else {
             this.service.messageBox(this.message, "请填写完整信息再提交！")

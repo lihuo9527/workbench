@@ -41,13 +41,13 @@ export class CapacityFilterComponent implements OnInit {
         {
             title: 'Capacity include out', title2: '产量含外协', rowstate: true, allstate: false, but: false, arrow: false,
             list: [
-                { text: 'Capacity include out', text2: '产量含外协', state: false },
+                { text: 'Capacity include out', text2: '产量含外协', state: true },
             ]
         },
         {
             title: 'Load include', title2: '负载含外协', rowstate: true, allstate: false, but: false, arrow: false,
             list: [
-                { text: 'Load include', text2: '负载含外协', state: false },
+                { text: 'Load include', text2: '负载含外协', state: true },
             ]
         },
     ];

@@ -43,5 +43,6 @@
             </div>
         </div>
     </div>
+    <app-loading [loadingShow]="loading"></app-loading>
     <app-message-box [msg]="message.msg" (event)="message.state=false" [btnText]="message.btnText" [msgShow]="message.state"></app-message-box>
 </div>

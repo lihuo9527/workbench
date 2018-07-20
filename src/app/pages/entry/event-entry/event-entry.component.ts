@@ -19,6 +19,7 @@ export class EventEntryComponent implements OnInit {
     public DateName;
     public index;
     public state = false;
+    public loading: boolean = false;
     public message = {
         state: false,
         btnText: "OK",
@@ -44,7 +45,9 @@ export class EventEntryComponent implements OnInit {
             json["EndTime"] = element.enddate;
             data.Events.push(json);
         });
+        this.loading = true;
         this.service.http_post('/api/Schedule/UpdateEventsDate', data, false).subscribe((data: any) => {
+            this.loading = false;
             if (data.IsSuccess == 1) {
                 this.service.messageBox(this.message, "保存成功！");
             } else {
@@ -52,6 +55,7 @@ export class EventEntryComponent implements OnInit {
             }
             console.log(data);
         }, error => {
+            this.loading = false;
             this.service.messageBox(this.message, "保存失败！");
         })
     }
