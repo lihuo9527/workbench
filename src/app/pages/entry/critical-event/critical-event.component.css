@@ -82,6 +82,7 @@
 }
 
 .box .list .left-content {
+    width: 33.33%;
     flex: 0 0 33.33%;
     list-style: none;
     font-style: normal;
@@ -91,11 +92,14 @@
 }
 
 .box .list .other p {
+    line-height: 1.6rem;
     width: 100%;
-    min-height: 1.4rem;
+    height: 1.6rem;
     margin-left: 1rem;
     font-size: 1.4rem;
-    margin-bottom: 0.3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .box .list .other span {
@@ -129,6 +133,7 @@
 }
 
 .other {
+    width: 100%;
     padding-top: 1rem;
     padding-bottom: 1rem;
     display: flex;

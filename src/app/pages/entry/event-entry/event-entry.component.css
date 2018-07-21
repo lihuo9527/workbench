@@ -55,6 +55,7 @@
 }
 
 .other {
+    width: 33.33%;
     flex: 0 0 33.33%;
     list-style: none;
     font-style: normal;
@@ -66,12 +67,12 @@
 
 .other p {
     font-size: 1.4rem;
-    line-height: 1.4rem;
-    margin-bottom: 0.2rem;
+    line-height: 1.6rem;
+    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 100%;
-    min-height: 1.4rem;
+    height: 1.6rem;
 }
 
 .other span {

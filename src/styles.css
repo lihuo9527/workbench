@@ -160,9 +160,6 @@ html {
     height: 1.6rem;
     white-space: nowrap;
     text-overflow: ellipsis;
-    /* overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap; */
 }
 
 .marterInfo li span {
