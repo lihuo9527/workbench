@@ -25,7 +25,8 @@
                     <ul class="items">
                         <li class="row">
                             <div class="other">
-                                <p>{{item.plan}}</p>
+                                <p *ngIf="language=='en'">{{item.plan}}</p>
+                                <p *ngIf="language=='cn'">{{item.planC}}</p>
                                 <span *ngIf="language=='en'">Have Plan</span>
                                 <span *ngIf="language=='cn'">是否有计划</span>
                             </div>

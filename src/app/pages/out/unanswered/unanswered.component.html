@@ -24,7 +24,8 @@
                     <ul class="items">
                         <li class="row">
                             <div class="other">
-                                <p>{{item.isReply}}</p>
+                                <p *ngIf="language=='en'">{{item.isReply}}</p>
+                                <p *ngIf="language=='cn'">{{item.isReplyC}}</p>
                                 <span *ngIf="language=='en'">Reply or not</span>
                                 <span *ngIf="language=='cn'">是否回复</span>
                             </div>

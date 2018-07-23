@@ -218,6 +218,10 @@ export class ScheduleEntryComponent implements OnInit {
                     if (element.Amount > 0) submitstate = true;
                 })
                 console.log(isNaN(parseInt(this.date)));
+                if (submitstate && Number(this.inputs[0].number) <= 0) {
+                    this.service.messageBox(this.message, "提交失败,有进度数时工时不能为0！");
+                    return;
+                }
                 if (submitstate == false || Number(this.inputs[0].number) <= 0 || Number(this.inputs[1].number) <= 0 || Number(this.inputs[2].number) <= 0 || isNaN(parseInt(this.date))) {
                     if (!this.allstate) {
                         this.service.messageBox(this.message, "提交失败,请填写完整信息！");
@@ -238,6 +242,10 @@ export class ScheduleEntryComponent implements OnInit {
                     this.service.messageBox(this.message, "提交失败！");
                 })
             } else {
+                if (this.number > 0 && Number(this.inputs[0].number) <= 0) {
+                    this.service.messageBox(this.message, "提交失败,有进度数时工时不能为0！");
+                    return;
+                }
                 if (Number(this.inputs[0].number) <= 0 || Number(this.inputs[1].number) <= 0 || Number(this.inputs[2].number) <= 0 || isNaN(parseInt(this.date)) || isNaN(this.number)) {
                     if (!this.allstate) {
                         this.service.messageBox(this.message, "提交失败,请填写完整信息！");
