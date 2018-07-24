@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs/Observable";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 @Injectable()
 export class AppService {
 
-    constructor(public http: HttpClient) { }
+    constructor(public http: HttpClient, private cookieService: CookieService, private router: Router, ) { }
     private params;
     private obj = new window_obj();
 
@@ -74,5 +76,34 @@ export class AppService {
         obj.msg = message;
         obj.state = true;
         obj.btnText = "OK";
+    }
+    accessControl(obj, page?) {
+        if (obj.cookies()) {
+            let exdate = new Date();
+            exdate.setDate(exdate.getDate() + 2000);
+            this.clearAllCookie();
+            this.cookieService.set('JSESSIONID', obj.cookies(), exdate);
+
+        }
+        if (obj.relation() != "out_supplier" && obj.relation() != "internal" || !obj.defaultCompanyId()) {
+            this.router.navigate(['not-bind']);
+            return true;
+        }
+        if (obj.defaultCompanyId() && obj.relation() == "out_supplier" && page == "home" || obj.defaultCompanyId() && obj.relation() == "internal" && page == "notBind") {
+            this.router.navigate(['outSourcing']);
+            return true;
+        }
+        if (obj.defaultCompanyId() && obj.relation() == "internal" && page == "outSourcing" || obj.defaultCompanyId() && obj.relation() == "internal" && page == "notBind") {
+            this.router.navigate(['home']);
+            return true;
+        }
+        return false;
+    }
+    clearAllCookie() {
+        let keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+        if (keys) {
+            for (let i = keys.length; i--;)
+                document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
+        }
     }
 }

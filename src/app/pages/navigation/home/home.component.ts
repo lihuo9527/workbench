@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
         let obj = new window_obj();
         this.language = obj.language();
         localStorage.setItem("language", this.language);
-        if (this.accessControl(obj)) return;
+        if (this.service.accessControl(obj, "home")) return;
         // this.translate.addLangs(["zh", "en"]);
         // this.translate.setDefaultLang("zh");
         // this.translate.use("zh");
@@ -101,30 +101,5 @@ export class HomeComponent implements OnInit {
         if (index != 0 && index != 1) this.router.navigate([item.Link, item.Id]);
 
     }
-    accessControl(obj) {
-        if (obj.cookies()) {
-            let exdate = new Date();
-            exdate.setDate(exdate.getDate() + 2000);
-            this.clearAllCookie();
-            this.cookieService.set('JSESSIONID', obj.cookies(), exdate);
-        }
-        if (obj.relation() != "out_supplier" && obj.relation() != "internal" || !obj.defaultCompanyId()) {
-            this.router.navigate(['not-bind']);
-            return true;
-        }
-        if (obj.defaultCompanyId() && obj.relation() == "out_supplier") {
-            this.router.navigate(['outSourcing']);
-            return true;
-        }
-        return false;
-    }
-    clearAllCookie() {
-        let keys = document.cookie.match(/[^ =;]+(?=\=)/g);
-        if (keys) {
-            for (let i = keys.length; i--;)
-                document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
-        }
-    }
-
 
 }

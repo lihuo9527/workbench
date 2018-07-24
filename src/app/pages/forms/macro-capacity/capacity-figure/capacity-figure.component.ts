@@ -9,6 +9,7 @@ export class CapacityFigureComponent implements OnInit {
     @Input() dataA;
     @Input() dataB;
     @Input() maxValue;
+    @Input() index;
     public option;
     public countpercent: number;
     public totalCapacity: number;
@@ -46,14 +47,15 @@ export class CapacityFigureComponent implements OnInit {
     createChart(x, y: any[]) {
         return {
             tooltip: {
-                triggerOn:'mousemove',
+                confine:true,
+                triggerOn: 'click',
                 textStyle: { color: "#fff" },
-                position: ['50%', '10%'],
+                position: ['10%', '0%'],
                 padding: [
-                    15,  // 上
-                    15, // 右
-                    15,  // 下
-                    15, // 左
+                    7,  // 上
+                    10, // 右
+                    7,  // 下
+                    10, // 左
                 ],
                 alwaysShowContent: false,
                 trigger: 'item',
@@ -88,11 +90,18 @@ export class CapacityFigureComponent implements OnInit {
                         }
 
                     }
+                    console.log(this.index);
+                    let index = this.index + 1
+
                     let color = params.color;//图例颜色
-                    let htmlStr = '<div style="color:#ffffff;">';
-                    // console.log(params.seriesName);
+                    let htmlStr = '<div style="color:#ffffff;line-height:1.4rem;">';
                     htmlStr += '<span style="margin-right:5px;display:inline-block;width:10px;height:10px;border-radius:5px;background-color:' + color + ';"></span>';
-                    htmlStr += params.seriesName + '：' + params.value + '';
+                    // console.log(params.seriesName);
+                    if (index % 4 == 0) {
+                        htmlStr += params.value + '';
+                    }else{
+                        htmlStr += params.seriesName + '：' + params.value + '';
+                    }
                     htmlStr += '</div>';
                     return htmlStr;
                 },
