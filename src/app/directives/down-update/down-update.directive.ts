@@ -8,7 +8,9 @@ export class DownUpdateDirective {
     @Output() public DownUpdateDirective = new EventEmitter<any>();
     private touchStartY;
     private moveY;
-    constructor() { }
+    constructor(private el: ElementRef) {
+        this.el.nativeElement.innerHTML = '<div class="downupdate" id="downupdate">松开刷新</div>' + this.el.nativeElement.innerHTML;
+    }
     @HostListener('touchstart', ['$event']) onTouchStart(e) {
         if (!this.touchStartY) this.touchStartY = e.changedTouches[0].clientY;
     }

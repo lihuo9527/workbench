@@ -12,6 +12,14 @@
     display: flex;
 }
 
+.box {
+    display: flex;
+    flex: 0 0 100%;
+    box-sizing: border-box;
+    flex-flow: wrap;
+    min-height: 3rem;
+}
+
 .material .bar {
     flex: 0 0 10%;
     display: flex;

@@ -92,10 +92,11 @@
                 <span *ngIf="language=='en'" style="flex:0 0 20%;color: #088c77;">Date</span>
                 <span *ngIf="language=='en'" style="flex:0 0 35%;color: #088c77;text-align: center;">Receiving</span>
                 <span *ngIf="language=='en'" style="flex:0 0 25%;color: #088c77;text-align: center;">Emit number</span>
+                <span *ngIf="language=='en'" style="flex:0 0 20%;color: #088c77;text-align: center;">Difference number</span>
                 <span *ngIf="language=='cn'" style="flex:0 0 20%;color: #088c77;">日期</span>
                 <span *ngIf="language=='cn'" style="flex:0 0 35%;color: #088c77;text-align: center;">接收数</span>
                 <span *ngIf="language=='cn'" style="flex:0 0 25%;color: #088c77;text-align: center;">发出数</span>
-                <span style="flex:0 0 20%;color: #088c77;text-align: center;"></span>
+                <span *ngIf="language=='cn'" style="flex:0 0 20%;color: #088c77;text-align: center;">相差数</span>
             </div>
             <div *ngFor="let item of Plan.result.listInfo;let i=index" [ngClass]="{'background-white':i%2==0,'background-green':i%2!=0}" class="row_box">
                 <span class="row1">{{item.date}}</span>

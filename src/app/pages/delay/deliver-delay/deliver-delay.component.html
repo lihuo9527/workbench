@@ -4,7 +4,7 @@
     <app-search-box (outputValue)='updateList("search")'></app-search-box>
     <app-filter info="delay" (event)="updateList($event)"></app-filter>
     <app-tabs [tabs]="tabs" (indexchange)="showIndex($event)"></app-tabs>
-    <div class="box">
+    <div class="box" (DownUpdateDirective)="updateList('search')">
         <div class="box_row" *ngFor="let item of datas;let i=index;">
             <div class="itemTop">
                 <h4>{{item.CustomerName}} - {{item.PoCode}}</h4>

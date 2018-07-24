@@ -6,7 +6,7 @@
         <input (click)="updateList('search')" type="button" class="searchBut">
     </section>
     <div class="container_box">
-        <div class="box">
+        <div class="box" (DownUpdateDirective)="updateList('search')">
             <ul class="items">
                 <li class="list" *ngFor="let item of datas">
                     <div class="list_title">

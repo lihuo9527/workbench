@@ -43,7 +43,6 @@ import { MessageBoxModule } from './components/message-box/message-box.module';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { UndefinedModule } from './components/undefined/undefined.module';
 import { DownUpdateDirective } from './directives/down-update/down-update.directive';
-import { DownUpdateComponent } from './components/down-update/down-update.component';
 
 
 
@@ -87,7 +86,6 @@ import { DownUpdateComponent } from './components/down-update/down-update.compon
         UnansweredEntryComponent,
         UnfinishedEntryComponent,
         DownUpdateDirective,
-        DownUpdateComponent,
         NotBindComponent,
     ],
     imports: [

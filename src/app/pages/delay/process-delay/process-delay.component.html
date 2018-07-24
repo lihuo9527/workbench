@@ -3,7 +3,7 @@
     <app-title *ngIf="language=='cn'" title="工序延误"></app-title>
     <app-search-box (outputValue)='updateList("search")'></app-search-box>
     <app-filter info="delay" (event)="updateList($event)"></app-filter>
-    <ul class="processList">
+    <ul class="processList" (DownUpdateDirective)="updateList('search')">
         <li *ngFor="let item of datas;">
             <div class="listTop">
                 <h5>{{item.CustomerName}} — {{item.PoCode}}</h5>

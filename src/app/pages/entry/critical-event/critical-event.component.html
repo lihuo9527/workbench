@@ -4,7 +4,7 @@
     <app-search-box (outputValue)="updateList('search')"></app-search-box>
     <app-filter info="event" (event)="updateList($event)"></app-filter>
     <div class="container_box">
-        <div class="box">
+        <div class="box" (DownUpdateDirective)="updateList('search')">
             <ul class="list">
                 <li *ngFor="let item of datas;">
                     <div class="listTop">

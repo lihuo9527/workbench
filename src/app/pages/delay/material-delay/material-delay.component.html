@@ -3,74 +3,76 @@
     <app-title *ngIf="language=='cn'" title="物料延误"></app-title>
     <app-search-box (outputValue)='updateList("search")'></app-search-box>
     <app-filter info="delay" (event)="updateList($event)"></app-filter>
-    <ul class="materList material" *ngFor="let item of datas;">
-        <li>
-            <div class="bar">
-                <div class="start">
-                    <img src="/assets/images/m_nor.png">
+    <div class="box" (DownUpdateDirective)="updateList('search')">
+        <ul class="materList material" *ngFor="let item of datas;">
+            <li>
+                <div class="bar">
+                    <div class="start">
+                        <img src="/assets/images/m_nor.png">
+                    </div>
+                    <div>
+                        <img src="/assets/images/m_nor.png">
+                    </div>
+                    <div class="end">
+                        <img src="/assets/images/p_fault.png">
+                    </div>
                 </div>
-                <div>
-                    <img src="/assets/images/m_nor.png">
-                </div>
-                <div class="end">
-                    <img src="/assets/images/p_fault.png">
-                </div>
-            </div>
-            <ul class="marterInfo">
-                <li>
-                    <p class="big">{{item.MPDate}}</p>
-                    <span *ngIf="language=='en'">Purchase Date</span>
-                    <span *ngIf="language=='cn'">采购日期</span></li>
-                <li>
-                    <p>{{item.Amount}}</p>
-                    <span *ngIf="language=='en'">Purchase Qty</span>
-                    <span *ngIf="language=='cn'">采购量</span></li>
-                <li>
-                    <p>{{item.PoCode}}</p>
-                    <span *ngIf="language=='en'">JO</span>
-                    <span *ngIf="language=='cn'">生产单号</span></li>
-                <li>
-                    <p>{{item.MaterialCode}}</p>
-                    <span *ngIf="language=='en'">Material Code</span>
-                    <span *ngIf="language=='cn'">物料编号</span></li>
-                <li>
-                    <p>{{item.MaterialName}}</p>
-                    <span *ngIf="language=='en'">Material Name</span>
-                    <span *ngIf="language=='cn'">物料名称</span></li>
-                <li>
-                    <p *ngIf="language=='en' && item.MaterialStyle==1">Accessories</p>
-                    <p *ngIf="language=='en' && item.MaterialStyle==0">Fabric</p>
-                    <p *ngIf="language=='cn' && item.MaterialStyle==1">辅料</p>
-                    <p *ngIf="language=='cn' && item.MaterialStyle==0">主料</p>
-                    <span *ngIf="language=='en'">Material Style</span>
-                    <span *ngIf="language=='cn'">物料类型</span></li>
-                <li>
-                    <p class="big">{{item.ExpectedReciveDate}}</p>
-                    <span *ngIf="language=='en'">Material Arrival Date</span>
-                    <span *ngIf="language=='cn'">预计到货期</span></li>
-                <li>
-                    <p>{{item.MaterialColor}}</p>
-                    <span *ngIf="language=='en'">Color</span>
-                    <span *ngIf="language=='cn'">颜色</span></li>
-                <li>
-                    <p>{{item.MaterialSize}}</p>
-                    <span *ngIf="language=='en'">Size</span>
-                    <span *ngIf="language=='cn'">规格</span></li>
-                <li>
-                    <p class="big">{{nowdate}}</p>
-                    <span *ngIf="language==='en'">Now</span>
-                    <span *ngIf="language==='cn'">当前日</span></li>
-                <li>
-                    <p class="red big">{{item.DelayDays}}
-                        <span class="red big" *ngIf="language=='en'">Days Delay</span>
-                        <span class="red big" *ngIf="language=='cn'">天延误</span></p>
-                </li>
-                <li>
-                    <!-- <p *ngIf="language=='en'" class="big green">Handle</p>
-                    <p *ngIf="language=='cn'" class="big green">去处理</p> -->
-                </li>
-            </ul>
-        </li>
-    </ul>
+                <ul class="marterInfo">
+                    <li>
+                        <p class="big">{{item.MPDate}}</p>
+                        <span *ngIf="language=='en'">Purchase Date</span>
+                        <span *ngIf="language=='cn'">采购日期</span></li>
+                    <li>
+                        <p>{{item.Amount}}</p>
+                        <span *ngIf="language=='en'">Purchase Qty</span>
+                        <span *ngIf="language=='cn'">采购量</span></li>
+                    <li>
+                        <p>{{item.PoCode}}</p>
+                        <span *ngIf="language=='en'">JO</span>
+                        <span *ngIf="language=='cn'">生产单号</span></li>
+                    <li>
+                        <p>{{item.MaterialCode}}</p>
+                        <span *ngIf="language=='en'">Material Code</span>
+                        <span *ngIf="language=='cn'">物料编号</span></li>
+                    <li>
+                        <p>{{item.MaterialName}}</p>
+                        <span *ngIf="language=='en'">Material Name</span>
+                        <span *ngIf="language=='cn'">物料名称</span></li>
+                    <li>
+                        <p *ngIf="language=='en' && item.MaterialStyle==1">Accessories</p>
+                        <p *ngIf="language=='en' && item.MaterialStyle==0">Fabric</p>
+                        <p *ngIf="language=='cn' && item.MaterialStyle==1">辅料</p>
+                        <p *ngIf="language=='cn' && item.MaterialStyle==0">主料</p>
+                        <span *ngIf="language=='en'">Material Style</span>
+                        <span *ngIf="language=='cn'">物料类型</span></li>
+                    <li>
+                        <p class="big">{{item.ExpectedReciveDate}}</p>
+                        <span *ngIf="language=='en'">Material Arrival Date</span>
+                        <span *ngIf="language=='cn'">预计到货期</span></li>
+                    <li>
+                        <p>{{item.MaterialColor}}</p>
+                        <span *ngIf="language=='en'">Color</span>
+                        <span *ngIf="language=='cn'">颜色</span></li>
+                    <li>
+                        <p>{{item.MaterialSize}}</p>
+                        <span *ngIf="language=='en'">Size</span>
+                        <span *ngIf="language=='cn'">规格</span></li>
+                    <li>
+                        <p class="big">{{nowdate}}</p>
+                        <span *ngIf="language==='en'">Now</span>
+                        <span *ngIf="language==='cn'">当前日</span></li>
+                    <li>
+                        <p class="red big">{{item.DelayDays}}
+                            <span class="red big" *ngIf="language=='en'">Days Delay</span>
+                            <span class="red big" *ngIf="language=='cn'">天延误</span></p>
+                    </li>
+                    <li>
+                        <!-- <p *ngIf="language=='en'" class="big green">Handle</p>
+                                <p *ngIf="language=='cn'" class="big green">去处理</p> -->
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
     <app-load-more *ngIf="datas.length>0 && datas.length>3 || datas.length==0" [type]="type" (click)="updateList('add')"></app-load-more>
 </div>

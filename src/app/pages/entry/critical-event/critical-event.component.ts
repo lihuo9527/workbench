@@ -16,6 +16,7 @@ export class CriticalEventComponent implements OnInit {
     public datas = [];
     public language;
     public type;
+    public lastOption: string;
     ngOnInit() {
         this.language = localStorage.getItem("language");
         this.updateList('init');
