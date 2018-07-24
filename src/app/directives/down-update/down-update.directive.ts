@@ -9,7 +9,7 @@ export class DownUpdateDirective {
     private touchStartY;
     private moveY;
     constructor(private el: ElementRef) {
-        this.el.nativeElement.innerHTML = '<div class="downupdate" id="downupdate">松开刷新</div>' + this.el.nativeElement.innerHTML;
+        this.el.nativeElement.innerHTML = '<div class="downupdate" id="downupdate" style="overflow: hidden;width: 100%;background: #333;color: #fff;max-height: 4rem;height: 0px;transition: 0.7s;display: flex;justify-content: center;align-items: center;">松开刷新</div>' + this.el.nativeElement.innerHTML;
     }
     @HostListener('touchstart', ['$event']) onTouchStart(e) {
         if (!this.touchStartY) this.touchStartY = e.changedTouches[0].clientY;
