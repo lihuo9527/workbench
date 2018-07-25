@@ -42,9 +42,9 @@ import { SearchBoxModule } from './components/search-box/search-box.module';
 import { MessageBoxModule } from './components/message-box/message-box.module';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { UndefinedModule } from './components/undefined/undefined.module';
-import { DownUpdateDirective } from './directives/down-update/down-update.directive';
+// import { DownUpdateDirective } from './directives/down-update/down-update.directive';
 
-
+import {  DirectiveModule } from './directives/directives.module';
 
 // import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 // import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -85,7 +85,6 @@ import { DownUpdateDirective } from './directives/down-update/down-update.direct
         UnfinishedComponent,
         UnansweredEntryComponent,
         UnfinishedEntryComponent,
-        DownUpdateDirective,
         NotBindComponent,
     ],
     imports: [
@@ -100,6 +99,7 @@ import { DownUpdateDirective } from './directives/down-update/down-update.direct
         MessageBoxModule,
         LoadMoreModule,
         UndefinedModule,
+        DirectiveModule,
         // TranslateModule.forRoot({
         //     loader: {
         //         provide: TranslateLoader,

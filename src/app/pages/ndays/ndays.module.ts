@@ -12,6 +12,8 @@ import { SearchBoxModule } from '../../components/search-box/search-box.module';
 import { FilterModule } from '../../components/filter/filter.module';
 import { SelectTypeComponent } from './select-type/select-type.component';
 import { LoadMoreModule } from '../../components/load-more/load-more.module';
+import { DirectiveModule } from '../../directives/directives.module';
+
 @NgModule({
     imports: [
         CommonModule,
@@ -21,13 +23,15 @@ import { LoadMoreModule } from '../../components/load-more/load-more.module';
         FilterModule,
         FormsModule,
         LoadMoreModule,
+        DirectiveModule,
     ],
     declarations: [
         NdaysComponent,
         MaterialArrivalComponent,
         EventsFinishedComponent,
         ProgressTrackingComponent,
-        SelectTypeComponent
+        SelectTypeComponent,
+
     ],
     exports: [RouterModule],
 })
