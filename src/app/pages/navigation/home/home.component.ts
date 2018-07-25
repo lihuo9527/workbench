@@ -63,6 +63,9 @@ export class HomeComponent implements OnInit {
         //     this.list[0] = res;
         //     console.log(res);
         // });
+        this.updateList();
+    }
+    updateList() {
         let url: string;
         for (let i = 1; i < this.list.length; i++) {
             switch (i) {

@@ -4,39 +4,41 @@
 </header>
 <div class="hidden_header"></div>
 <!--list-->
-<div class="container">
-    <div *ngFor="let items of list;let i=index;">
-        <div>
-            <div [ngClass]="{'list_title':i!=0}">
-                <h2 *ngIf="language=='cn'">{{items.title2}}</h2>
-                <h2 *ngIf="language=='en'">{{items.title}}</h2>
-            </div>
-            <ul class="list_1">
-                <li *ngFor="let item of items.TipsCountList;let b=index;">
-                    <a (click)="link(item,items,i)">
-                        <div>
-                            <div class="icon">
-                                <!-- <object type="image/svg+xml" data="/assets/images/矢量智能对象3.svg" style="display:block;width:70%;">
+<div class="box" (DownUpdateDirective)="updateList($event)">
+    <div class="container">
+        <div *ngFor="let items of list;let i=index;">
+            <div>
+                <div [ngClass]="{'list_title':i!=0}">
+                    <h2 *ngIf="language=='cn'">{{items.title2}}</h2>
+                    <h2 *ngIf="language=='en'">{{items.title}}</h2>
+                </div>
+                <ul class="list_1">
+                    <li *ngFor="let item of items.TipsCountList;let b=index;">
+                        <a (click)="link(item,items,i)">
+                            <div>
+                                <div class="icon">
+                                    <!-- <object type="image/svg+xml" data="/assets/images/矢量智能对象3.svg" style="display:block;width:70%;">
                                 </object> -->
-                                <img [src]="item.Url">
-                                <i *ngIf="item.Amount>0">{{item.Amount}}</i>
+                                    <img [src]="item.Url">
+                                    <i *ngIf="item.Amount>0">{{item.Amount}}</i>
+                                </div>
                             </div>
-                        </div>
-                        <span *ngIf="language=='en'">{{item.Text}}</span>
-                        <span *ngIf="language=='cn'">{{item.Name}}</span>
-                    </a>
-                </li>
-                <li class="notdata" *ngIf="i==1 && items.TipsCountList.length<=0 || i==3 && items.TipsCountList.length<=0 || i==4 && items.TipsCountList.length<=0">
-                    <img src="/assets/images/notdata.png" alt="">
-                    <p *ngIf="language=='cn' && i==1 ">暂无定义外发工序！</p>
-                    <p *ngIf="language=='en' && i==1 ">Not define any process currently !</p>
-                    <p *ngIf="language=='cn' && i==3 ">暂无关键事件延误,再接再厉！</p>
-                    <p *ngIf="language=='en' && i==3 ">Not critical event delays,please continue !</p>
-                    <p *ngIf="language=='cn' && i==4 ">暂无进度延误！</p>
-                    <p *ngIf="language=='en' && i==4 ">Not process delays!</p>
-                </li>
-            </ul>
+                            <span *ngIf="language=='en'">{{item.Text}}</span>
+                            <span *ngIf="language=='cn'">{{item.Name}}</span>
+                        </a>
+                    </li>
+                    <li class="notdata" *ngIf="i==1 && items.TipsCountList.length<=0 || i==3 && items.TipsCountList.length<=0 || i==4 && items.TipsCountList.length<=0">
+                        <img src="/assets/images/notdata.png" alt="">
+                        <p *ngIf="language=='cn' && i==1 ">暂无定义外发工序！</p>
+                        <p *ngIf="language=='en' && i==1 ">Not define any process currently !</p>
+                        <p *ngIf="language=='cn' && i==3 ">暂无关键事件延误,再接再厉！</p>
+                        <p *ngIf="language=='en' && i==3 ">Not critical event delays,please continue !</p>
+                        <p *ngIf="language=='cn' && i==4 ">暂无进度延误！</p>
+                        <p *ngIf="language=='en' && i==4 ">Not process delays!</p>
+                    </li>
+                </ul>
 
+            </div>
         </div>
     </div>
 </div>
