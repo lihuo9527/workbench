@@ -5,6 +5,7 @@ import { Directive, ElementRef, HostListener, EventEmitter, Output } from '@angu
     selector: '[DownUpdateDirective]'
 })
 export class DownUpdateDirective {
+    //下拉刷新
     @Output() public DownUpdateDirective = new EventEmitter<any>();
     private touchStartY;
     private moveY;
@@ -20,8 +21,6 @@ export class DownUpdateDirective {
         if (this.moveY > 0) {
             document.getElementById("downupdate").style.height = this.moveY + "px";
         }
-
-        //  Y轴移动小于X轴 判定为横向滑动  
     }
     @HostListener('touchend', ['$event']) onTouchEnd(e) {
         if (this.moveY >= 70) {

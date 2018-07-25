@@ -34,12 +34,49 @@ header h1 {
     flex-flow: wrap;
 }
 
-.item :nth-child(2) {
-    padding-top: 2rem;
+.item .key {
+    width: 10rem;
+}
+
+.dl {
+    border-radius: 3px;
+    border: solid 1px #eee;
+    display: flex;
+    width: 20rem;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.dl span {
+    height: 1.6rem;
+    line-height: 1.6rem;
+    width: 18.5rem;
+}
+
+.max {
+    width: 15rem;
+}
+
+.dl img {
+    width: 1.5rem;
+}
+
+.arrow {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.arrow img {
+    width: 1rem;
 }
 
 .box .item p {
     line-height: 1.6rem;
     flex: 0 0 100%;
     text-align: center;
+    padding-bottom: 1rem;
 }

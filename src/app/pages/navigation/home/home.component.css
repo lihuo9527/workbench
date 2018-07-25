@@ -114,6 +114,9 @@ header h1 {
     width: 56px !important;
     position: relative;
     margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .icon i {
