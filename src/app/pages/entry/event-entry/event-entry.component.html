@@ -53,25 +53,26 @@
     <section class="editrEcord">
         <ul class="entryEdit">
             <li *ngIf="language=='en'">Critical Event</li>
-            <li *ngIf="language=='en'">Recommended Date</li>
-            <li *ngIf="language=='en'">Expect Date</li>
-            <li *ngIf="language=='en'">Completion Date</li>
+            <li class="text_center" *ngIf="language=='en'">Recommended Date</li>
+            <li class="text_center" *ngIf="language=='en'">Expect Date</li>
+            <li class="text_center" *ngIf="language=='en'">Completion Date</li>
             <li *ngIf="language=='cn'">关键事件</li>
-            <li *ngIf="language=='cn'">推荐日期</li>
-            <li *ngIf="language=='cn'">预期日期</li>
-            <li *ngIf="language=='cn'">完成日期</li>
+            <li class="text_center" *ngIf="language=='cn'">推荐日期</li>
+            <li class="text_center" *ngIf="language=='cn'">预期日期</li>
+            <li class="text_center" *ngIf="language=='cn'">完成日期</li>
         </ul>
         <ul class="entryEdit" *ngFor="let item of list;let i=index;">
             <li>{{item.eventflownodeName}}</li>
-            <li>{{item.recommendeddate}}</li>
-            <li (click)="ShowDate(i,'startdate')">{{item.startdate}}</li>
-            <li (click)="ShowDate(i,'enddate')">{{item.enddate}}</li>
+            <li class="text_center">{{item.recommendeddate}}</li>
+            <li class="text_center bg" (click)="showDate(i,'startdate')"><input [(ngModel)]="item.startdate"></li>
+            <li class="text_center bg" (click)="showDate(i,'enddate')"><input [(ngModel)]="item.enddate"></li>
         </ul>
     </section>
     <app-date *ngIf="state" number="1" (submit)="backDate($event)"></app-date>
     <div class="submitBox">
-        <button *ngIf="language=='cn'" type="submit" (click)="Save()">保存</button>
-        <button *ngIf="language=='en'" type="submit" (click)="Save()">Conserve</button>
+        <button *ngIf="language=='cn'" [ngClass]="{'gray':disabled==false}" (click)="save()">保存</button>
+        <button *ngIf="language=='en'" [ngClass]="{'gray':disabled==false}" (click)="save()">Conserve</button>
     </div>
+    <app-loading [loadingShow]="loading"></app-loading>
     <app-message-box [msg]="message.msg" (event)="message.state=false" [btnText]="message.btnText" [msgShow]="message.state"></app-message-box>
 </div>

@@ -27,17 +27,20 @@
                             <span *ngIf="language=='cn'">{{item.Name}}</span>
                         </a>
                     </li>
-                    <li class="notdata" *ngIf="i==1 && items.TipsCountList.length<=0 || i==3 && items.TipsCountList.length<=0 || i==4 && items.TipsCountList.length<=0">
+                    <li class="notdata" *ngIf="i>0 && items.TipsCountList.length<=0">
                         <img src="/assets/images/notdata.png" alt="">
                         <p *ngIf="language=='cn' && i==1 ">暂无定义外发工序！</p>
                         <p *ngIf="language=='en' && i==1 ">Not define any process currently !</p>
+                        <p *ngIf="language=='cn' && i==2 ">暂无交期延误！</p>
+                        <p *ngIf="language=='en' && i==2 ">Not delivery delays!</p>
                         <p *ngIf="language=='cn' && i==3 ">暂无关键事件延误,再接再厉！</p>
                         <p *ngIf="language=='en' && i==3 ">Not critical event delays,please continue !</p>
-                        <p *ngIf="language=='cn' && i==4 ">暂无进度延误！</p>
+                        <p *ngIf="language=='cn' && i==4 ">暂无工序延误！</p>
                         <p *ngIf="language=='en' && i==4 ">Not process delays!</p>
+                        <p *ngIf="language=='cn' && i==5 ">暂无物料延误！</p>
+                        <p *ngIf="language=='en' && i==5 ">Not material delays!</p>
                     </li>
                 </ul>
-
             </div>
         </div>
     </div>

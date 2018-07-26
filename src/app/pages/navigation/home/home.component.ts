@@ -30,9 +30,9 @@ export class HomeComponent implements OnInit {
         },
         {
             title: "Delivery Delay", title2: "交期延误单", TodayHandledCount: "0", TipsCountList: [
-                { Url: "/assets/images/ico_21.png", Text: "General", Name: "普通单", Link: "/deliverDelay", Id: "0", Amount: "0" },
-                { Url: "/assets/images/ico_22.png", Text: "Important", Name: "重要单", Link: "/deliverDelay", Id: "1", Amount: "0" },
-                { Url: "/assets/images/ico_23.png", Text: "Urgency", Name: "紧急单", Link: "/deliverDelay", Id: "2", Amount: "0" }
+                // { Url: "/assets/images/ico_21.png", Text: "General", Name: "普通单", Link: "/deliverDelay", Id: "0", Amount: "0" },
+                // { Url: "/assets/images/ico_22.png", Text: "Important", Name: "重要单", Link: "/deliverDelay", Id: "1", Amount: "0" },
+                // { Url: "/assets/images/ico_23.png", Text: "Urgency", Name: "紧急单", Link: "/deliverDelay", Id: "2", Amount: "0" }
             ]
         },
         {
@@ -43,8 +43,9 @@ export class HomeComponent implements OnInit {
         },
         {
             title: "Material Delay", title2: "物料延误", TodayHandledCount: "0", TipsCountList: [
-                { Url: "/assets/images/ico_51.png", Text: "Fabric", Name: "主料", Link: "/materialDelay", Id: "0", Amount: "0" },
-                { Url: "/assets/images/ico_52.png", Text: "Accessories", Name: "辅料", Link: "/materialDelay", Id: "1", Amount: "0" }]
+                // { Url: "/assets/images/ico_51.png", Text: "Fabric", Name: "主料", Link: "/materialDelay", Id: "0", Amount: "0" },
+                // { Url: "/assets/images/ico_52.png", Text: "Accessories", Name: "辅料", Link: "/materialDelay", Id: "1", Amount: "0" }
+            ]
         }
     ]
     public language_state;

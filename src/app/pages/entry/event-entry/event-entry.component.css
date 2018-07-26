@@ -23,6 +23,10 @@
     overflow: hidden;
 }
 
+.gray {
+    background: #c7c4c4;
+}
+
 .editrEcord h4 {
     padding: 1rem;
     font-size: 1.6rem;
@@ -80,6 +84,27 @@
     font-size: 1rem;
     color: #b2b2b2;
     flex: 0 0 100%;
+}
+
+.bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bg span,
+.bg input {
+    text-align: center;
+    line-height: 2rem;
+    width: 90%;
+    border-radius: 3px;
+    border: solid 1px #ccc;
+    height: 2rem;
+    background: #eee;
+}
+
+.text_center {
+    text-align: center;
 }
 
 .items {

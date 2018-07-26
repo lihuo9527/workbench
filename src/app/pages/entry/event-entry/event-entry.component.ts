@@ -25,6 +25,7 @@ export class EventEntryComponent implements OnInit {
         btnText: "OK",
         msg: ""
     }
+    public disabled: boolean = false;
     ngOnInit() {
         this.data = JSON.parse(this.routerIonfo.snapshot.params["data"]);
         this.language = localStorage.getItem("language");
@@ -33,7 +34,8 @@ export class EventEntryComponent implements OnInit {
             if (data.length > 0) this.list = data;
         })
     }
-    Save() {
+    save() {
+        if (!this.disabled) return;
         let data = {
             "PoId": this.data.id,
             "Events": []
@@ -61,12 +63,13 @@ export class EventEntryComponent implements OnInit {
     }
     backDate($event) {
         let obj = JSON.parse($event);
-        if (obj.date) {
+        if (obj.date && this.list[this.index][this.DateName] != obj.date) {
+            this.disabled = true;
             this.list[this.index][this.DateName] = obj.date;
         }
         this.state = false;
     }
-    ShowDate(i, event) {
+    showDate(i, event) {
         this.state = true;
         this.index = i;
         this.DateName = event;
