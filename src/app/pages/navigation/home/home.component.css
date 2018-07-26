@@ -180,3 +180,30 @@ h2 {
     justify-content: center;
     align-items: center;
 }
+
+.imgBox {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 7px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imgBox img {
+    width: 50% !important;
+    margin-bottom: 0 !important;
+}
+
+.blue {
+    background: #3d9cfa;
+}
+
+.green {
+    background: #16b78c;
+}
+
+.orange {
+    background: #ff8c3d;
+}

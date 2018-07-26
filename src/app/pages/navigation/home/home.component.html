@@ -17,9 +17,18 @@
                         <a (click)="link(item,items,i)">
                             <div>
                                 <div class="icon">
-                                    <!-- <object type="image/svg+xml" data="/assets/images/矢量智能对象3.svg" style="display:block;width:70%;">
-                                </object> -->
-                                    <img [src]="item.Url">
+                                    <!-- <div *ngIf="i==1||i==3||i==4">
+                                        <iframe src="/assets/images/矢量智能对象3.svg" width="56" height="100">
+                                                </iframe>
+                                    </div> -->
+                                    <!-- <object *ngIf="i==1||i==3||i==4" type="image/svg+xml" data="item.Url" class="example" style="width: 80%;display:block;">
+                                    
+                                       </object> -->
+
+                                    <div class="imgBox" *ngIf="i==1||i==3||i==4" [ngClass]="{'blue':i==1,'green':i==3,'orange':i==4}">
+                                        <img [src]="item.Url">
+                                    </div>
+                                    <img *ngIf="i==0||i==2||i==5" [src]="item.Url">
                                     <i *ngIf="item.Amount>0">{{item.Amount}}</i>
                                 </div>
                             </div>

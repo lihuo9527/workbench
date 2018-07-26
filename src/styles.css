@@ -48,6 +48,10 @@ html {
     font-size: 10px;
 }
 
+html {
+    overflow: -moz-scrollbars-vertical;
+}
+
 @media screen and (min-width:300px) and (max-width:350px) {
     html {
         font-size: 10px !important;
