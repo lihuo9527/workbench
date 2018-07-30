@@ -12,7 +12,9 @@ export class DownUpdateDirective {
     private lastY;
     private maxHeight = 46;
     constructor(private el: ElementRef) {
-        this.el.nativeElement.innerHTML = '<div class="downupdate" id="downupdate" style="overflow: hidden;width: 100%;background: #333;color: #fff;max-height: 46px;height: 0px;transition: 0.5s;display: flex;justify-content: center;align-items: center;min-height:0;">松开刷新</div>' + this.el.nativeElement.innerHTML;
+        // this.el.nativeElement.style.overflow = "auto";
+        // this.el.nativeElement.style.WebkitOverflowScrolling = "touch";
+        this.el.nativeElement.innerHTML = '<div class="downupdate" id="downupdate" style="overflow: hidden;width: 100%;background: #333;color: #fff;max-height: 46px;height: 0px;display: flex;justify-content: center;align-items: center;min-height:0;transition:0.5s;">松开刷新</div>' + this.el.nativeElement.innerHTML;
     }
     @HostListener('touchstart', ['$event']) onTouchStart(e) {
         console.log(document.body.scrollTop, document.documentElement.scrollTop);
@@ -40,16 +42,16 @@ export class DownUpdateDirective {
     }
     @HostListener('touchend', ['$event']) onTouchEnd(e) {
         console.log(this.moveY);
-        if (this.getScrollTop() && document.getElementById("downupdate").offsetHeight == this.maxHeight) {
+        if (this.getScrollTop() == 0 && document.getElementById("downupdate").offsetHeight == this.maxHeight) {
             this.DownUpdateDirective.emit({ state: "update" });
         }
         document.getElementById("downupdate").style.height = "0px";
-        // document.documentElement.style.overflowY = "auto";
-        // document.body.style.overflowY = "auto";
+        // document.documentElement.style.overflowY = "scroll";
+        // document.body.style.overflowY = "scroll";
     }
-    
-    getScrollTop(){
-          return document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+
+    getScrollTop() {
+        return document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
     }
 
 }

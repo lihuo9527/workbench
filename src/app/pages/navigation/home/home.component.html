@@ -17,14 +17,6 @@
                         <a (click)="link(item,items,i)">
                             <div>
                                 <div class="icon">
-                                    <!-- <div *ngIf="i==1||i==3||i==4">
-                                        <iframe src="/assets/images/矢量智能对象3.svg" width="56" height="100">
-                                                </iframe>
-                                    </div> -->
-                                    <!-- <object *ngIf="i==1||i==3||i==4" type="image/svg+xml" data="item.Url" class="example" style="width: 80%;display:block;">
-                                    
-                                       </object> -->
-
                                     <div class="imgBox" *ngIf="i==1||i==3||i==4" [ngClass]="{'blue':i==1,'green':i==3,'orange':i==4}">
                                         <img [src]="item.Url">
                                     </div>
