@@ -43,6 +43,6 @@ export class NonPlaningProcessComponent implements OnInit {
     link(item) {
         console.log(item);
         item["Pid"] = "non-process";
-        this.router.navigate(['scheduleEntry', JSON.stringify(item)])
+        this.router.navigate(['/entry/scheduleEntry', JSON.stringify(item)])
     }
 }

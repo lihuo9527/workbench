@@ -15,15 +15,18 @@
     <div class="item2">
         <div class="item2_container">
             <div class="forgot_password">
-                <a routerLink="/forgot-password">Forgot Password</a>
+                <a *ngIf="language=='en'" routerLink="/forgot-password">Forgot Password</a>
+                <a *ngIf="language=='cn'" routerLink="/forgot-password">忘记密码</a>
             </div>
             <div class="sign_up">
-                <a routerLink="/register">Sign Up</a>
+                <a *ngIf="language=='en'" routerLink="/register">Sign Up</a>
+                <a *ngIf="language=='cn'" routerLink="/register">注册</a>
             </div>
         </div>
     </div>
     <div class="item3">
-        <button class="login" (click)="login()">Login</button>
+        <button *ngIf="language=='en'" class="login" (click)="login()">Login</button>
+        <button *ngIf="language=='cn'" class="login" (click)="login()">登录</button>
     </div>
     <div class="item4">
         <p>©Guangzhou Integrated Optimization Software Co.,Ltd.</p>

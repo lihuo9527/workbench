@@ -257,7 +257,7 @@ export class SearchComponent implements OnInit {
                 if (element.state == true) events.push(element.id);
             });
             localStorage.setItem("filter", JSON.stringify({ 'index': this.index, 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, "dateType": this.dateType, 'fids': fids.toString(), eventid: events.toString() }));
-            this.router.navigate(['criticalEvent']);
+            this.router.navigate(['/entry/criticalEvent']);
         }
         if (this.id == 1 && this.index == 0) {
             //每日进度
@@ -266,7 +266,8 @@ export class SearchComponent implements OnInit {
                 if (element.state == true) styles.push(element.id);
             });
             localStorage.setItem("filter", JSON.stringify({ 'index': this.index, 'id': this.id, "start": this.StartDate, "input": this.input, "styles": styles.toString(), 'fids': fids.toString(), 'wsids': wsids.toString() }));
-            this.router.navigate(['productionDailyProgress']);
+            // this.router.navigateByUrl('/entry/productionDailyProgress');
+            this.router.navigate(['/entry/productionDailyProgress']);
         }
         if (this.id == 2 && this.index == 0) {
             //非排产工序
@@ -275,7 +276,7 @@ export class SearchComponent implements OnInit {
                 if (element.state == true) process.push(element.id);
             });
             localStorage.setItem("filter", JSON.stringify({ 'index': this.index, 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, "process": process.toString(), 'fids': fids.toString(), "dateType": this.dateType }));
-            this.router.navigate(['nonPlaningProcess']);
+            this.router.navigate(['/entry/nonPlaningProcess']);
         };
         if (this.index == 1) {
             //外发工序
@@ -285,7 +286,7 @@ export class SearchComponent implements OnInit {
             });
             localStorage.setItem("filter", JSON.stringify({ 'fids': fids.toString(), 'index': this.index, 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, 'productTypeIds': styles.toString() }));
             console.log("fids:" + fids)
-            this.router.navigate(['outProcess', this.title]);
+            this.router.navigate(['/out/outProcess', this.title]);
         }
     }
 }

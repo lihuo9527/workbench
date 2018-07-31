@@ -44,6 +44,6 @@ export class UnfinishedComponent implements OnInit {
         })
     }
     link(item) {
-        this.router.navigate(['unfinishedEntry', JSON.stringify({ data: item, title: this.title })]);
+        this.router.navigate(['/out/unfinishedEntry', JSON.stringify({ data: item, title: this.title })]);
     }
 }

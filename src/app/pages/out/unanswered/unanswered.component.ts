@@ -45,6 +45,6 @@ export class UnansweredComponent implements OnInit {
         })
     }
     Link(item) {
-        this.router.navigate(['unansweredEntry', JSON.stringify({ data: item, title: this.title })]);
+        this.router.navigate(['/out/unansweredEntry', JSON.stringify({ data: item, title: this.title })]);
     }
 }

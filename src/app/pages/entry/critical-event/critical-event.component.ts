@@ -45,6 +45,6 @@ export class CriticalEventComponent implements OnInit {
     }
     link(item) {
         console.log(item);
-        this.router.navigate(["eventEntry", JSON.stringify(item)]);
+        this.router.navigate(["/entry/criticalEntry", JSON.stringify(item)]);
     }
 }

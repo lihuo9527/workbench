@@ -50,7 +50,7 @@ export class OutProcessComponent implements OnInit {
         })
     }
     link(item) {
-        this.router.navigate(['planEntry', JSON.stringify({ data: item, title: this.title })]);
+        this.router.navigate(['/out/planEntry', JSON.stringify({ data: item, title: this.title })]);
     }
     change(item) {
         let state = item.isEnd == 0 ? 1 : 0;

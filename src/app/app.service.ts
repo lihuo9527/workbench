@@ -53,6 +53,7 @@ export class AppService {
         let ip = this.ip() + url;
         if (boolean) {
             ip = url;
+            ip.slice
         }
         // console.log("body", body);
         return this.http.post(ip, body, httpOptions);
@@ -90,7 +91,7 @@ export class AppService {
             return true;
         }
         if (obj.defaultCompanyId() && obj.relation() == "out_supplier" && page == "home" || obj.defaultCompanyId() && obj.relation() == "internal" && page == "notBind") {
-            this.router.navigate(['outSourcing']);
+            this.router.navigate(['/out/outSourcing']);
             return true;
         }
         if (obj.defaultCompanyId() && obj.relation() == "internal" && page == "outSourcing" || obj.defaultCompanyId() && obj.relation() == "internal" && page == "notBind") {

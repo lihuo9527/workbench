@@ -40,6 +40,6 @@ export class ProductionDailyProgressComponent implements OnInit {
     link(item) {
         console.log(item);
         item["Pid"] = "progress";
-        this.router.navigate(['scheduleEntry', JSON.stringify(item)])
+        this.router.navigate(['/entry/scheduleEntry', JSON.stringify(item)])
     }
 }
