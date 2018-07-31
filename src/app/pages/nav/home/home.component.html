@@ -4,7 +4,7 @@
 </header>
 <div class="hidden_header"></div>
 <!--list-->
-<div class="box" (DownUpdateDirective)="updateList()">
+<div class="box" (DownUpdateDirective)="updateList()" *ngIf="init">
     <div class="container">
         <div *ngFor="let items of list;let i=index;">
             <div>

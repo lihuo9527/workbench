@@ -48,15 +48,19 @@ export class HomeComponent implements OnInit {
             ]
         }
     ]
-    public language_state;
     public language;
-
+    public init: boolean;
 
     ngOnInit() {
         let obj = new window_obj();
         this.language = obj.language();
         localStorage.setItem("language", this.language);
-        if (this.service.accessControl(obj, "home")) return;
+        if (this.service.accessControl(obj, "home")) {
+            this.init = false;
+            return;
+        } else {
+            this.init = true;
+        }
         // this.translate.addLangs(["zh", "en"]);
         // this.translate.setDefaultLang("zh");
         // this.translate.use("zh");

@@ -90,7 +90,7 @@ export class AppService {
             this.router.navigate(['not-bind']);
             return true;
         }
-        if (obj.defaultCompanyId() && obj.relation() == "out_supplier" && page == "home" || obj.defaultCompanyId() && obj.relation() == "internal" && page == "notBind") {
+        if (obj.defaultCompanyId() && obj.relation() == "out_supplier" && page == "home" || obj.defaultCompanyId() && obj.relation() == "internal" && page == "notBind" || obj.defaultCompanyId() && obj.relation() == "out_supplier" && page == "notBind") {
             this.router.navigate(['/out/outSourcing']);
             return true;
         }
