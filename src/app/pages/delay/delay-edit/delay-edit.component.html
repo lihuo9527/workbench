@@ -1,0 +1,285 @@
+<div class="container">
+    <app-title [title]="title"></app-title>
+    <main>
+        <ul class="materList criticaEdit">
+            <li *ngIf="type=='deliver'">
+                <i></i>
+                <h3 *ngIf="language=='en'">JO</h3>
+                <h3 *ngIf="language=='cn'">生产单号</h3>
+                <em>{{data.PoCode}}</em>
+                <ul class="marterInfo">
+                    <li>
+                        <p>{{data.CustomerName}}</p>
+                        <span *ngIf="language=='en'">Customer Name</span>
+                        <span *ngIf="language=='cn'">客户名称</span>
+                    </li>
+                    <li>
+                        <p>{{data.CustomerName}}</p>
+                        <span *ngIf="language=='en'">Customer Delivery Date</span>
+                        <span *ngIf="language=='cn'">客户交期</span>
+                    </li>
+                    <li>
+                        <p>{{data.Pattern}}</p>
+                        <span *ngIf="language=='en'">Fty.Style</span>
+                        <span *ngIf="language=='cn'">本厂款号</span>
+                    </li>
+                    <li>
+                        <p>{{data.ProductTypeName}}</p>
+                        <span *ngIf="language=='en'">Product Type</span>
+                        <span *ngIf="language=='cn'">产品类型</span>
+                    </li>
+                    <li>
+                        <p>{{data.InitDeliveryDate}}</p>
+                        <span *ngIf="language=='en'">Original Delivery Date</span>
+                        <span *ngIf="language=='cn'">原始交期</span>
+                    </li>
+                    <li>
+                        <p>{{data.DeliveryDate}}</p>
+                        <span *ngIf="language=='en'">Delivery Date</span>
+                        <span *ngIf="language=='cn'">交货期</span>
+                    </li>
+                    <li>
+                        <p>{{data.MainMaterielArriveDate}}</p>
+                        <span *ngIf="language=='en'">Fabric Arrival Date</span>
+                        <span *ngIf="language=='cn'">面料到货期</span>
+                    </li>
+                    <li>
+                        <p>{{data.Capacity}}</p>
+                        <span *ngIf="language=='en'">Std.TIME(m)</span>
+                        <span *ngIf="language=='cn'">标准工时</span>
+                    </li>
+                    <li>
+                        <p>{{data.Amount}}</p>
+                        <span *ngIf="language=='en'">Amount</span>
+                        <span *ngIf="language=='cn'">数量</span>
+                    </li>
+                    <li>
+                        <p>{{data.EarlinessStartDate}}</p>
+                        <span *ngIf="language=='en'">Earliest Allowed Start Time</span>
+                        <span *ngIf="language=='cn'">最早开工日期</span>
+                    </li>
+                </ul>
+            </li>
+
+            <li *ngIf="type=='critical'">
+                <i></i>
+                <h3 *ngIf="language=='en'">JO</h3>
+                <h3 *ngIf="language=='cn'">生产单号</h3>
+                <em>{{data.PoCode}}</em>
+                <ul class="marterInfo">
+                    <li>
+                        <p>{{data.CustomerName}}</p>
+                        <span *ngIf="language=='en'">Customer Name</span>
+                        <span *ngIf="language=='cn'">客户名称</span>
+                    </li>
+                    <li>
+                        <p>{{data.Pattern}}</p>
+                        <span *ngIf="language=='en'">Fty.Style</span>
+                        <span *ngIf="language=='cn'">本厂款号</span>
+                    </li>
+                    <li>
+                        <p>{{data.CustomerStyleNO}}</p>
+                        <span *ngIf="language=='en'">Customer Style</span>
+                        <span *ngIf="language=='cn'">客户款号</span>
+                    </li>
+                    <li>
+                        <p>{{data.ProductTypeName}}</p>
+                        <span *ngIf="language=='en'">Product Type</span>
+                        <span *ngIf="language=='cn'">产品类型</span>
+                    </li>
+                    <li>
+                        <p>{{data.DeliveryDate}}</p>
+                        <span *ngIf="language=='en'">Delivery Date</span>
+                        <span *ngIf="language=='cn'">交货期</span>
+                    </li>
+                    <li>
+                        <p>{{data.Merchandiser}}</p>
+                        <span *ngIf="language=='en'">Merchandiser</span>
+                        <span *ngIf="language=='cn'">跟单员</span>
+                    </li>
+                    <li>
+                        <p>{{data.CriticalEventManID}}</p>
+                        <span *ngIf="language=='en'">Critical Event Principal</span>
+                        <span *ngIf="language=='cn'">关键事件负责人</span>
+                    </li>
+                    <li>
+                        <p>{{data.PlanStarDate}}</p>
+                        <span *ngIf="language=='en'">Schedule Start Date</span>
+                        <span *ngIf="language=='cn'">计划开始日期</span>
+                    </li>
+                    <li>
+                        <p>{{data.EventName}}</p>
+                        <span *ngIf="language=='en'">Critical Event </span>
+                        <span *ngIf="language=='cn'">关键事件</span>
+                    </li>
+                    <li>
+                        <p *ngIf="language=='cn'" style="color: red;">{{data.DelayDays}} 天</p>
+                        <p *ngIf="language=='en'" style="color: red;">{{data.DelayDays}} Days</p>
+                        <span *ngIf="language=='en'" style="color: red;">Delay</span>
+                        <span *ngIf="language=='cn'" style="color: red;">延误</span>
+                    </li>
+                    <li>
+                        <p>{{data.PlanFinishDate}}</p>
+                        <span *ngIf="language=='en'">Expected Completed Date</span>
+                        <span *ngIf="language=='cn'">预计完成日期</span>
+                    </li>
+                </ul>
+            </li>
+
+            <li *ngIf="type=='process'">
+                <i></i>
+                <h3 *ngIf="language=='en'">JO</h3>
+                <h3 *ngIf="language=='cn'">生产单号</h3>
+                <em>{{data.PoCode}}</em>
+                <ul class="marterInfo">
+                    <li>
+                        <p>{{data.CustomerName}}</p>
+                        <span *ngIf="language=='en'">Customer Name</span>
+                        <span *ngIf="language=='cn'">客户名称</span></li>
+                    <li>
+                        <p>{{data.Pattern}}</p>
+                        <span *ngIf="language=='en'">Fty.Style</span>
+                        <span *ngIf="language=='cn'">本厂款号</span></li>
+                    <li>
+                        <p>{{data.CustomerStyleNO}}</p>
+                        <span *ngIf="language=='en'">Customer Style</span>
+                        <span *ngIf="language=='cn'">客户款号</span></li>
+                    <li>
+                        <p>{{data.ProductTypeName}}</p>
+                        <span *ngIf="language=='en'">Product Type</span>
+                        <span *ngIf="language=='cn'">产品类型</span></li>
+                    <li>
+                        <p>{{data.DeliveryDate}}</p>
+                        <span *ngIf="language=='en'">Customer Delivery Date</span>
+                        <span *ngIf="language=='cn'">客户交期</span></li>
+                    <li>
+                        <p>{{data.Capacity}}</p>
+                        <span *ngIf="language=='en'">Std.TIME(m)</span>
+                        <span *ngIf="language=='cn'">标准工时</span></li>
+                    <li>
+                        <p>{{data.Amount}}</p>
+                        <span *ngIf="language=='en'">Amount</span>
+                        <span *ngIf="language=='cn'">数量</span></li>
+                    <li>
+                        <p>{{data.DeliveryDate}}</p>
+                        <span *ngIf="language=='en'">Delivery Date</span>
+                        <span *ngIf="language=='cn'">交货期</span></li>
+                    <li>
+                        <p>{{data.MainMaterielArriveDate}}</p>
+                        <span *ngIf="language=='en'">Fabric Arrival Date</span>
+                        <span *ngIf="language=='cn'">主料到货期</span></li>
+                    <li>
+                        <p>{{data.EarlinessStartDate}}</p>
+                        <span *ngIf="language=='en'">Earliest Allowed Start Time</span>
+                        <span *ngIf="language=='cn'">最早可开工</span></li>
+                    <li>
+                        <p>{{data.RouteName}}</p>
+                        <span *ngIf="language=='en'">Process Route</span>
+                        <span *ngIf="language=='cn'">工艺路线</span></li>
+                    <li>
+                        <p>{{data.ProcessName}}</p>
+                        <span *ngIf="language=='en'">工序</span>
+                        <span *ngIf="language=='cn'">Process</span></li>
+                    <li>
+                        <p *ngIf="language=='cn'" style="color: red;">{{data.DelayDays}} 天</p>
+                        <p *ngIf="language=='en'" style="color: red;">{{data.DelayDays}} Days</p>
+                        <span *ngIf="language=='en'" style="color: red;">Delay</span>
+                        <span *ngIf="language=='cn'" style="color: red;">延误</span></li>
+                </ul>
+            </li>
+
+            <li *ngIf="type=='material'">
+                <i></i>
+                <h3 *ngIf="language=='en'">JO</h3>
+                <h3 *ngIf="language=='cn'">生产单号</h3>
+                <em>{{data.PoCode}}</em>
+                <ul class="marterInfo">
+                    <li>
+                        <p>{{data.CustomerName}}</p>
+                        <span *ngIf="language=='en'">Customer Name</span>
+                        <span *ngIf="language=='cn'">客户名称</span></li>
+                    <li>
+                        <p>{{data.Pattern}}</p>
+                        <span *ngIf="language=='en'">Fty.Style</span>
+                        <span *ngIf="language=='cn'">本厂款号</span></li>
+                    <li>
+                        <p>{{data.CustomerStyleNO}}</p>
+                        <span *ngIf="language=='en'">Customer Style</span>
+                        <span *ngIf="language=='cn'">客户款号</span></li>
+                    <li>
+                        <p>{{data.MPNO}}</p>
+                        <span *ngIf="language=='en'">Purchase NO</span>
+                        <span *ngIf="language=='cn'">采购单号</span></li>
+                    <li>
+                        <p>{{data.Supplier}}</p>
+                        <span *ngIf="language=='en'">Supplier</span>
+                        <span *ngIf="language=='cn'">供应商</span></li>
+                    <li>
+                        <p>{{data.MPDate}}</p>
+                        <span *ngIf="language=='en'">Purchase Date</span>
+                        <span *ngIf="language=='cn'">采购日期</span></li>
+                    <li>
+                        <p>{{data.MaterialCode}}</p>
+                        <span *ngIf="language=='en'">Material Code</span>
+                        <span *ngIf="language=='cn'">物料编号</span></li>
+                    <li>
+                        <p>{{data.MaterialName}}</p>
+                        <span *ngIf="language=='en'">Material Name</span>
+                        <span *ngIf="language=='cn'">物料名称</span></li>
+                    <li>
+                        <p>{{data.MaterialColor}}</p>
+                        <span *ngIf="language=='en'">Color</span>
+                        <span *ngIf="language=='cn'">颜色</span></li>
+                    <li>
+                        <p>{{data.MaterialSize}}</p>
+                        <span *ngIf="language=='en'">Size</span>
+                        <span *ngIf="language=='cn'">尺码</span></li>
+                    <li>
+                        <p>{{data.Amount}}</p>
+                        <span *ngIf="language=='en'">Purchase Qty.</span>
+                        <span *ngIf="language=='cn'">采购数量</span></li>
+                    <li>
+                        <p>{{data.ExpectedReciveDate}}</p>
+                        <span *ngIf="language=='en'">Expected Arrival Date</span>
+                        <span *ngIf="language=='cn'">预计到货日期</span></li>
+                    <li>
+                        <p>{{data.NeedDate}}</p>
+                        <span *ngIf="language=='en'">Requirement Date</span>
+                        <span *ngIf="language=='cn'">需求日期</span></li>
+                    <li>
+                        <p *ngIf="language=='cn'" style="color: red;">{{data.DelayDays}} 天</p>
+                        <p *ngIf="language=='en'" style="color: red;">{{data.DelayDays}} Days</p>
+                        <span *ngIf="language=='en'" style="color: red;">Delay</span>
+                        <span *ngIf="language=='cn'" style="color: red;">延误</span></li>
+                </ul>
+            </li>
+        </ul>
+        <!-- <section class="editrEcord">
+            <h4 *ngIf="language=='en'">Historical records</h4>
+            <h4 *ngIf="language=='cn'">历史记录</h4>
+            <a class="show"></a>
+            <table>
+                <tbody>
+                    <tr>
+                        <th *ngIf="language=='en'">Date</th>
+                        <th *ngIf="language=='cn'">日期</th>
+                        <th *ngIf="language=='en'">Result</th>
+                        <th *ngIf="language=='cn'">结果</th>
+                    </tr>
+                    <tr>
+                        <td>2017-06-15</td>
+                        <td>It has been arranged to work overtime to make the antenatal board out</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <div class="inputEdit">
+            <textarea class="inputEdit" placeholder="Cause and record of treatment results"></textarea>
+        </div>
+        <div class="submitBox">
+            <button *ngIf="language=='en'" type="submit">Submit</button>
+            <button *ngIf="language=='cn'" type="submit">提交</button>
+        </div> -->
+    </main>
+
+</div>

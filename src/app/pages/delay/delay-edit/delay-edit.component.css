@@ -1,0 +1,113 @@
+.container {
+    width: 100%;
+    background: #f3f4f6;
+}
+
+.criticaEdit li .marterInfo {
+    padding: 1.5rem 1rem 1rem;
+}
+
+.criticaEdit li .marterInfo li {
+    height: 4.5rem;
+    overflow: hidden;
+    width: 30%;
+    margin: 0 0 0 3%;
+}
+
+.criticaEdit li .marterInfo li span {
+    line-height: 1.4rem;
+    display: block;
+}
+
+.criticaEdit li .marterInfo li p.color {
+    color: #0a8686;
+}
+
+.editrEcord {
+    background: #fff;
+    overflow: hidden;
+}
+
+.editrEcord h4 {
+    padding: 1rem;
+    font-size: 1.6rem;
+    line-height: 1.6rem;
+    float: left;
+}
+
+a.show {
+    float: right;
+}
+
+.editrEcord a.show,
+.editrEcord a.hidden {
+    display: inline-block;
+    background: #fff url(/assets/images/arrow_right.png) no-repeat center;
+    background-size: 2rem;
+    width: 2rem;
+    height: 2rem;
+    margin: 1rem 1rem 0 0;
+}
+
+.editrEcord a.hidden {
+    background-image: url(/assets/images/arrow_down.png);
+}
+
+.editrEcord table {
+    clear: both;
+}
+
+.editrEcord table,
+.editrEcord table td,
+.editrEcord table th {
+    border-collapse: collapse;
+    border: #dbdbdb solid 1px;
+    margin: 0 -0.1rem;
+}
+
+.editrEcord table th {
+    color: #0a8686;
+    font-size: 1.4rem;
+    text-align: center;
+    height: 3.5rem;
+    line-height: 3.5rem;
+}
+
+.editrEcord table td {
+    font-size: 1.4rem;
+    color: #808080;
+    line-height: 2rem;
+    padding: 0.5rem;
+    min-width: 9rem;
+}
+
+.inputEdit {
+    margin: 1rem 0;
+    background: #fff;
+    padding: 1rem;
+}
+
+.inputEdit textarea {
+    height: 10rem;
+    width: 100%;
+    outline: 0;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    margin: 0;
+    padding: 0;
+}
+
+.submitBox {
+    padding: 1rem;
+    background: #fff;
+}
+
+.submitBox button {
+    color: #fff;
+    background: #088c77;
+    display: block;
+    width: 100%;
+    border-radius: 0.5rem;
+    height: 4rem;
+    font-size: 1.8rem;
+}
