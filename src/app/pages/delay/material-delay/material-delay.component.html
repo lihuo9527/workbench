@@ -1,10 +1,9 @@
 <div class="container">
-    <app-title *ngIf="language=='en'" title="Material Delay"></app-title>
-    <app-title *ngIf="language=='cn'" title="物料延误"></app-title>
+    <app-title [title]="title"></app-title>
     <app-search-box (outputValue)='updateList("search")'></app-search-box>
     <app-filter info="delay" (event)="updateList($event)"></app-filter>
     <div class="box" (DownUpdateDirective)="updateList('search')">
-        <ul class="materList material" *ngFor="let item of datas;">
+        <ul class="materList material" *ngFor="let item of datas;" (click)="enterEdit(item)">
             <li>
                 <div class="bar">
                     <div class="start">

@@ -14,10 +14,12 @@ export class CriticalEventDelayComponent implements OnInit {
     public language;
     public state;
     public type;
+    public title;
     ngOnInit() {
         localStorage.setItem("filter", JSON.stringify({ input: '' }));
         this.language = localStorage.getItem("language");
         this.id = this.routerIonfo.snapshot.params["id"] == "all" ? "-1" : this.routerIonfo.snapshot.params["id"];
+        this.title = this.language == "en" ? "Critical Event Delay" : "关键事件延误";
         this.updateList('init');
     }
     updateList($event?) {
@@ -37,5 +39,8 @@ export class CriticalEventDelayComponent implements OnInit {
                 });
             }
         })
+    }
+    enterEdit(item) {
+        this.service.routerLink(['/delay/delayEdit', JSON.stringify({type:"critical", title: this.title, data: item })]);
     }
 }

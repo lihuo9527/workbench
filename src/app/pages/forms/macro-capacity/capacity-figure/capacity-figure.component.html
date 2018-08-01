@@ -1,4 +1,5 @@
-<h5>{{countpercent | number: '1.2-2'}} <span *ngIf="countpercent" style="color: #58bc58;">%</span></h5>
+<h5 *ngIf="countpercent">{{countpercent | number: '1.2-2'}} %</h5>
+<h5 *ngIf="!countpercent">0.00%</h5>
 <div echarts [options]="option" class="demo-chart"></div>
 <div>
     <ul>

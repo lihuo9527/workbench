@@ -6,7 +6,7 @@ import { DelayRoutes } from './delay.router';
 import { DeliverDelayComponent } from './deliver-delay/deliver-delay.component';
 import { CriticalEventDelayComponent } from './critical-event-delay/critical-event-delay.component';
 import { ProcessDelayComponent } from './process-delay/process-delay.component';
-import { EventDelayEditComponent } from './event-delay-edit/event-delay-edit.component';
+import { DelayEditComponent } from './delay-edit/delay-edit.component';
 import { MaterialDelayComponent } from './material-delay/material-delay.component';
 import { StartDelayComponent } from './start-delay/start-delay.component';
 import { FormsModule } from '@angular/forms';
@@ -33,7 +33,7 @@ import { DirectiveModule } from '../../directives/directives.module';
         DeliverDelayComponent,
         CriticalEventDelayComponent,
         ProcessDelayComponent,
-        EventDelayEditComponent,
+        DelayEditComponent,
         MaterialDelayComponent,
         StartDelayComponent,
     ],

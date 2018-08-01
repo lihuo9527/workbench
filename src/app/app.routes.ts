@@ -3,7 +3,6 @@ import { HomeComponent } from './pages/nav/home/home.component';
 import { DeliverDelayComponent } from './pages/delay/deliver-delay/deliver-delay.component';
 import { CriticalEventDelayComponent } from './pages/delay/critical-event-delay/critical-event-delay.component';
 import { ProcessDelayComponent } from './pages/delay/process-delay/process-delay.component';
-import { EventDelayEditComponent } from './pages/delay/event-delay-edit/event-delay-edit.component';
 import { MaterialDelayComponent } from './pages/delay/material-delay/material-delay.component';
 import { AllWorkComponent } from './pages/nav/all-work/all-work.component';
 import { SearchComponent } from './pages/search/search.component';

@@ -26,9 +26,9 @@
                     <div class="row_title">
                         <p style="padding: 1rem;">{{row.title}}</p>
                     </div>
-                    <div class="row_content" *ngFor="let user of row.names;">
+                    <div class="row_content" *ngFor="let user of row.names;" (click)="add(user,$event)">
                         <div class="user">
-                            <div class="radio_box" (click)="add(user,$event)">
+                            <div class="radio_box">
                                 <i [ngClass]="{'radio_on':user.state,'radio_off':!user.state}"></i>
                             </div>
                             <div class="img_box">

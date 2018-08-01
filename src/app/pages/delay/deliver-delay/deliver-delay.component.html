@@ -1,11 +1,10 @@
 <div class="container">
-    <app-title *ngIf="language=='en'" title="Delivery Delay" [link]="link"></app-title>
-    <app-title *ngIf="language=='cn'" title="交期延误订单" [link]="link"></app-title>
+    <app-title [title]="title" [link]="link"></app-title>
     <app-search-box (outputValue)='updateList("search")'></app-search-box>
     <app-filter info="delay" (event)="updateList($event)"></app-filter>
     <app-tabs [tabs]="tabs" (indexchange)="showIndex($event)"></app-tabs>
     <div class="box" (DownUpdateDirective)="updateList('search')">
-        <div class="box_row" *ngFor="let item of datas;let i=index;">
+        <div class="box_row" *ngFor="let item of datas;let i=index;" (click)="enterEdit(item)">
             <div class="itemTop">
                 <h4>{{item.CustomerName}} - {{item.PoCode}}</h4>
             </div>

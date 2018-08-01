@@ -1,10 +1,9 @@
 <div class="container">
-    <app-title *ngIf="language=='en'" title="Process Delay"></app-title>
-    <app-title *ngIf="language=='cn'" title="工序延误"></app-title>
+    <app-title [title]="title"></app-title>
     <app-search-box (outputValue)='updateList("search")'></app-search-box>
     <app-filter info="delay" (event)="updateList($event)"></app-filter>
     <ul class="processList" (DownUpdateDirective)="updateList('search')">
-        <li *ngFor="let item of datas;">
+        <li *ngFor="let item of datas;" (click)='enterEdit(item)'>
             <div class="listTop">
                 <h5>{{item.CustomerName}} — {{item.PoCode}}</h5>
                 <em *ngIf="language=='en'">{{item.DelayDays}} days delay</em>

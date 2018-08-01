@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from "rxjs/Observable";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { CookieService } from 'ngx-cookie-service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+
 @Injectable()
 export class AppService {
 
-    constructor(public http: HttpClient, private cookieService: CookieService, private router: Router, ) { }
+    constructor(public http: HttpClient, private cookieService: CookieService, private router: Router, private routerIonfo: ActivatedRoute, ) { }
     private params;
     private obj = new window_obj();
 
@@ -20,6 +21,9 @@ export class AppService {
             }
         }
     };
+    routerLink(params: any[]) {
+        this.router.navigate(params);
+    }
     get_params() {
         return this.params;
     };

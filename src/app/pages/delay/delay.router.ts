@@ -3,7 +3,7 @@ import { DelayComponent } from './delay.component';
 import { DeliverDelayComponent } from './deliver-delay/deliver-delay.component';
 import { CriticalEventDelayComponent } from './critical-event-delay/critical-event-delay.component';
 import { ProcessDelayComponent } from './process-delay/process-delay.component';
-import { EventDelayEditComponent } from './event-delay-edit/event-delay-edit.component';
+import { DelayEditComponent } from './delay-edit/delay-edit.component';
 import { MaterialDelayComponent } from './material-delay/material-delay.component';
 import { StartDelayComponent } from './start-delay/start-delay.component';
 export const DelayRoutes: Routes = [
@@ -24,8 +24,8 @@ export const DelayRoutes: Routes = [
                 component: ProcessDelayComponent
             },
             {
-                path: 'eventDelayEdit/:data',
-                component: EventDelayEditComponent
+                path: 'delayEdit/:data',
+                component: DelayEditComponent
             },
             {
                 path: 'materialDelay/:id',

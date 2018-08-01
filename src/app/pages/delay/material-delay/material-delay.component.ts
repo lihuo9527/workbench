@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { AppService } from '../../../app.service';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'app-material-delay',
     templateUrl: './material-delay.component.html',
@@ -17,10 +17,12 @@ export class MaterialDelayComponent implements OnInit {
     public nowdate = this.newdate.toLocaleDateString();
     public state;
     public type;
+    public title;
     ngOnInit() {
         localStorage.setItem("filter", JSON.stringify({ input: '' }));
         this.language = localStorage.getItem("language");
         this.id = this.routerIonfo.snapshot.params["id"] == 'all' ? -1 : this.routerIonfo.snapshot.params["id"];
+        this.title = this.language == "en" ? "Material Delay" : "物料延误";
         this.updateList('init');
     }
     updateList($event?) {
@@ -40,5 +42,8 @@ export class MaterialDelayComponent implements OnInit {
                 });
             }
         })
+    }
+    enterEdit(item) {
+        this.service.routerLink(['/delay/delayEdit', JSON.stringify({ type: "material", title: this.title, data: item })]);
     }
 }

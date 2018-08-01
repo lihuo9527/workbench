@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { AppService } from '../../../app.service';
 import { UnhandledAlertError } from 'selenium-webdriver';
 @Component({
@@ -9,8 +9,8 @@ import { UnhandledAlertError } from 'selenium-webdriver';
 })
 export class DeliverDelayComponent implements OnInit {
 
-    constructor(private routerIonfo: ActivatedRoute,
-        private router: Router,
+    constructor(
+        private routerIonfo: ActivatedRoute,
         private service: AppService, ) { }
     public tabs = [
         { text: "Urgency", show: false, link: "/delay/deliverDelay" },
@@ -24,12 +24,14 @@ export class DeliverDelayComponent implements OnInit {
     public state;
     public index;
     public type;
+    public title;
     ngOnInit() {
         localStorage.setItem("filter", JSON.stringify({ input: '' }));
         let navid;
         this.link = this.routerIonfo.snapshot.params["id"] == "all" ? ['/all'] : ['/home'];
         navid = this.routerIonfo.snapshot.params["id"] != "all" ? this.routerIonfo.snapshot.params["id"] : "0";
         this.language = localStorage.getItem("language");
+        this.title = this.language == "en" ? "Delivery Delay" : "交期延误订单";
         if (this.language == "cn") {
             this.tabs[0].text = "普通";
             this.tabs[1].text = "重要";
@@ -74,8 +76,7 @@ export class DeliverDelayComponent implements OnInit {
         this.index = index;
         this.updateList('init');
     }
-    enterEdit(i) {
-        this.router.navigate(['/eventDelayEdit', JSON.stringify(this.datas[i])]);
-        console.log(this.datas[i]);
+    enterEdit(item) {
+        this.service.routerLink(['/delay/delayEdit', JSON.stringify({type:"deliver", title: this.title, data: item })]);
     }
 }

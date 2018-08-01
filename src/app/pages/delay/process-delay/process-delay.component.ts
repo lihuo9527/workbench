@@ -15,10 +15,12 @@ export class ProcessDelayComponent implements OnInit {
     public id;
     public language;
     public type;
+    public title;
     ngOnInit() {
         localStorage.setItem("filter", JSON.stringify({ input: '' }));
         this.language = localStorage.getItem("language");
         this.id = this.routerIonfo.snapshot.params["id"] == 'all' ? -1 : this.routerIonfo.snapshot.params["id"];
+        this.title = this.language == "en" ? "Process Delay" : "工序延误";
         this.updateList('init');
     }
     updateList($event?) {
@@ -38,5 +40,8 @@ export class ProcessDelayComponent implements OnInit {
                 });
             }
         })
+    }
+    enterEdit(item) {
+        this.service.routerLink(['/delay/delayEdit', JSON.stringify({type:"process", title: this.title, data: item })]);
     }
 }

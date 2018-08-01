@@ -1,6 +1,5 @@
 <div class="container">
-    <app-title *ngIf="language=='en'" [title]="title"></app-title>
-    <app-title *ngIf="language=='cn'" [title]="title"></app-title>
+    <app-title [title]="title"></app-title>
     <section class="searchBox">
         <input class="searchBut search" [(ngModel)]='input' type="text" [placeholder]="placeholder">
     </section>
