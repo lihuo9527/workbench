@@ -26,13 +26,24 @@
     height: 120px;
 }
 
-.message span {
+.message div {
     flex: 0 0 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     background: #fff;
     border-radius: 10px 10px;
+    box-sizing: border-box;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.message span {
+    flex: 0 0 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
     height: 80px;
     line-height: 1.4rem;
 }

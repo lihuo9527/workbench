@@ -111,3 +111,59 @@ a.show {
     height: 4rem;
     font-size: 1.8rem;
 }
+
+.listCon {
+    padding: 1rem;
+    overflow: hidden;
+    border-bottom: #f0f0f0 solid 1px;
+    border-top: #f0f0f0 solid 1px;
+}
+
+.listCon .process {
+    overflow: hidden;
+    width: 75%;
+    float: left;
+}
+
+.listCon .number {
+    display: block;
+    text-align: center;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+}
+
+.listCon .processBox {
+    width: 100%;
+    height: 0.5rem;
+    background: #e1e1e1;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.listCon .processBar {
+    background: #ff5a52;
+    height: 0.5rem;
+    max-width: 100%;
+}
+
+.listCon .begin,
+.listCon .end {
+    font-size: 1.2rem;
+    line-height: 2rem;
+    float: left;
+    color: #adadad;
+}
+
+.listCon .end {
+    float: right;
+}
+
+.listCon .vlue {
+    display: block;
+    float: right;
+    width: 23%;
+    font-size: 2.5rem;
+    text-align: center;
+    color: #ff5a52;
+    line-height: 6rem;
+}

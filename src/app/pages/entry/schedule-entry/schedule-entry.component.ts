@@ -152,6 +152,7 @@ export class ScheduleEntryComponent implements OnInit {
                     this.service.messageBox(this.message, "提交失败,请填写完整信息！");
                     return;
                 }
+
                 console.log(JSON.stringify(data))
                 if (this.processId && parseInt(this.date) > 0) {
                     console.log(this.processId)
@@ -233,6 +234,10 @@ export class ScheduleEntryComponent implements OnInit {
                         return;
                     }
                 }
+                if (!this.checkNumber(this.inputs[1].number) || !this.checkNumber(this.inputs[2].number) || !this.checkNumber(this.inputs[0].number)) {
+                    this.service.messageBox(this.message, "提交失败,提交的信息出现非法字符串！");
+                    return;
+                }
                 // console.log(JSON.stringify(this.color_tabs))
                 this.loading = true;
                 this.service.http_post('/api/Schedule/AddPlanScheduleDaily', JSON.stringify(data), false).subscribe((data: any) => {
@@ -257,6 +262,10 @@ export class ScheduleEntryComponent implements OnInit {
                         return;
                     }
                 }
+                if (!this.checkNumber(this.inputs[1].number) || !this.checkNumber(this.inputs[2].number) || !this.checkNumber(this.inputs[0].number)) {
+                    this.service.messageBox(this.message, "提交失败,提交的信息出现非法字符串！");
+                    return;
+                }
                 let option = "ProductionEventId=" + this.data.ProductionEventID + "&lineId=" + this.data.LineID + "&poId=" + this.data.id + "&proDate=" + this.date + "&amount=" + this.number + "&WorkerAmount=" + this.inputs[1].number + "&WorkHours=" + this.inputs[0].number + "&FPY=" + this.inputs[2].number + "&isProCompleted=" + IsProCompleted;
                 this.loading = true;
                 this.service.http_post('/api/Schedule/AddPlanScheduleByPo', option, false, "form").subscribe((data: any) => {
@@ -274,6 +283,13 @@ export class ScheduleEntryComponent implements OnInit {
             }
         }
 
+    }
+    checkNumber(number: string) {
+        var reg = /^[0-9]+\.?[0-9]+?$/;
+        if (reg.test(number)) {
+            return true;
+        }
+        return false;
     }
     alert(message) {
         this.message.msg = message;

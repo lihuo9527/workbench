@@ -14,11 +14,6 @@
                         <span *ngIf="language=='cn'">客户名称</span>
                     </li>
                     <li>
-                        <p>{{data.CustomerName}}</p>
-                        <span *ngIf="language=='en'">Customer Delivery Date</span>
-                        <span *ngIf="language=='cn'">客户交期</span>
-                    </li>
-                    <li>
                         <p>{{data.Pattern}}</p>
                         <span *ngIf="language=='en'">Fty.Style</span>
                         <span *ngIf="language=='cn'">本厂款号</span>
@@ -41,7 +36,7 @@
                     <li>
                         <p>{{data.MainMaterielArriveDate}}</p>
                         <span *ngIf="language=='en'">Fabric Arrival Date</span>
-                        <span *ngIf="language=='cn'">面料到货期</span>
+                        <span *ngIf="language=='cn'">主料到厂期</span>
                     </li>
                     <li>
                         <p>{{data.Capacity}}</p>
@@ -103,11 +98,6 @@
                         <span *ngIf="language=='cn'">关键事件负责人</span>
                     </li>
                     <li>
-                        <p>{{data.PlanStarDate}}</p>
-                        <span *ngIf="language=='en'">Schedule Start Date</span>
-                        <span *ngIf="language=='cn'">计划开始日期</span>
-                    </li>
-                    <li>
                         <p>{{data.EventName}}</p>
                         <span *ngIf="language=='en'">Critical Event </span>
                         <span *ngIf="language=='cn'">关键事件</span>
@@ -135,57 +125,77 @@
                     <li>
                         <p>{{data.CustomerName}}</p>
                         <span *ngIf="language=='en'">Customer Name</span>
-                        <span *ngIf="language=='cn'">客户名称</span></li>
+                        <span *ngIf="language=='cn'">客户名称</span>
+                    </li>
                     <li>
                         <p>{{data.Pattern}}</p>
                         <span *ngIf="language=='en'">Fty.Style</span>
-                        <span *ngIf="language=='cn'">本厂款号</span></li>
+                        <span *ngIf="language=='cn'">本厂款号</span>
+                    </li>
                     <li>
                         <p>{{data.CustomerStyleNO}}</p>
                         <span *ngIf="language=='en'">Customer Style</span>
-                        <span *ngIf="language=='cn'">客户款号</span></li>
+                        <span *ngIf="language=='cn'">客户款号</span>
+                    </li>
                     <li>
                         <p>{{data.ProductTypeName}}</p>
                         <span *ngIf="language=='en'">Product Type</span>
-                        <span *ngIf="language=='cn'">产品类型</span></li>
-                    <li>
-                        <p>{{data.DeliveryDate}}</p>
-                        <span *ngIf="language=='en'">Customer Delivery Date</span>
-                        <span *ngIf="language=='cn'">客户交期</span></li>
+                        <span *ngIf="language=='cn'">产品类型</span>
+                    </li>
                     <li>
                         <p>{{data.Capacity}}</p>
                         <span *ngIf="language=='en'">Std.TIME(m)</span>
-                        <span *ngIf="language=='cn'">标准工时</span></li>
+                        <span *ngIf="language=='cn'">标准工时</span>
+                    </li>
                     <li>
                         <p>{{data.Amount}}</p>
                         <span *ngIf="language=='en'">Amount</span>
-                        <span *ngIf="language=='cn'">数量</span></li>
+                        <span *ngIf="language=='cn'">数量</span>
+                    </li>
                     <li>
                         <p>{{data.DeliveryDate}}</p>
                         <span *ngIf="language=='en'">Delivery Date</span>
-                        <span *ngIf="language=='cn'">交货期</span></li>
+                        <span *ngIf="language=='cn'">交货期</span>
+                    </li>
                     <li>
                         <p>{{data.MainMaterielArriveDate}}</p>
                         <span *ngIf="language=='en'">Fabric Arrival Date</span>
-                        <span *ngIf="language=='cn'">主料到货期</span></li>
+                        <span *ngIf="language=='cn'">主料到厂期</span>
+                    </li>
                     <li>
                         <p>{{data.EarlinessStartDate}}</p>
                         <span *ngIf="language=='en'">Earliest Allowed Start Time</span>
-                        <span *ngIf="language=='cn'">最早可开工</span></li>
+                        <span *ngIf="language=='cn'">最早可开工</span>
+                    </li>
                     <li>
                         <p>{{data.RouteName}}</p>
                         <span *ngIf="language=='en'">Process Route</span>
-                        <span *ngIf="language=='cn'">工艺路线</span></li>
+                        <span *ngIf="language=='cn'">工艺路线</span>
+                    </li>
                     <li>
                         <p>{{data.ProcessName}}</p>
-                        <span *ngIf="language=='en'">工序</span>
-                        <span *ngIf="language=='cn'">Process</span></li>
+                        <span *ngIf="language=='en'">Process</span>
+                        <span *ngIf="language=='cn'">工序</span>
+                    </li>
                     <li>
                         <p *ngIf="language=='cn'" style="color: red;">{{data.DelayDays}} 天</p>
                         <p *ngIf="language=='en'" style="color: red;">{{data.DelayDays}} Days</p>
                         <span *ngIf="language=='en'" style="color: red;">Delay</span>
-                        <span *ngIf="language=='cn'" style="color: red;">延误</span></li>
+                        <span *ngIf="language=='cn'" style="color: red;">延误</span>
+                    </li>
                 </ul>
+                <div class="listCon">
+                    <div class="process"><span class="number">{{data.Totalqty}}/{{data.Planqty}}</span>
+                        <div class="processBox">
+                            <div class="processBar" [ngStyle]="{'width': data.Schedulepercent*100 + '%'}"></div>
+                        </div>
+                        <span *ngIf="language=='en'" class="begin">{{data.StartDate}}(Begin)</span>
+                        <span *ngIf="language=='cn'" class="begin">{{data.StartDate}}(始)</span>
+                        <span *ngIf="language=='en'" class="end">{{data.EndDate}}(End)</span>
+                        <span *ngIf="language=='cn'" class="end">{{data.EndDate}}(终)</span>
+                    </div>
+                    <span class="vlue">{{data.Schedulepercent*100}}%</span>
+                </div>
             </li>
 
             <li *ngIf="type=='material'">
