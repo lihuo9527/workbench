@@ -2,21 +2,20 @@
 
 <div class="date_box">
     <div class="date_title">
-        <a class="close" (click)="close()">关闭</a>
-        <span style="flex: 0 0 100%;display:flex;justify-content: center;align-items: center;">选择日期</span>
+        <a class="close" (click)="close()">{{ date.close }}</a>
+        <span class="selectDate">{{ date.selectDate }}</span>
         <span class="show_date" *ngIf="start_date&&number==1">{{start_date}}</span>
-        <a *ngIf="number==2" class="cancel" (click)="cancel()">撤销</a>
-        <!-- <a *ngIf="number==1" class="cancel" (click)="finish()">确定</a> -->
+        <a *ngIf="number==2" class="cancel" (click)="cancel()">{{ date.cancel }}</a>
     </div>
     <div *ngIf="number==2" class="start_box" [ngClass]="{'have_bd':!state,'no_bd':state}" (click)="state=false">
-        <p class="green">开始时间</p>
+        <p class="green">{{ date.startDate }}</p>
         <span *ngIf="start_date">{{start_date}}</span>
     </div>
     <div *ngIf="number==2" class="end_box" [ngClass]="{'have_bd':state,'no_bd':!state}" (click)="state=true">
-        <p class="green">结束时间</p>
+        <p class="green">{{ date.endDate }}</p>
         <span *ngIf="end_date">{{end_date}}</span>
     </div>
-    <div class="week">
+    <div class="week" *ngIf="language=='en'">
         <span class="green">SU</span>
         <span>MO</span>
         <span>TU</span>
@@ -25,16 +24,28 @@
         <span>FR</span>
         <span class="green">SA</span>
     </div>
+    <div class="week" *ngIf="language=='cn'">
+        <span class="green">日</span>
+        <span>一</span>
+        <span>二</span>
+        <span>三</span>
+        <span>四</span>
+        <span>五</span>
+        <span class="green">六</span>
+    </div>
     <div class="dates_box">
         <div class="dates" *ngFor="let item of dates;let i=index;">
-            <div class="year_month">
-                {{item.year}}年 {{item.month}}月
+            <div class="year_month" *ngIf="language=='cn'">
+                {{item.year}} 年 {{item.month}} 月
+            </div>
+            <div class="year_month" *ngIf="language=='en'">
+                {{item.month | month}} {{item.year}}
             </div>
             <div class="days">
                 <span class="day" *ngFor="let day of item.days;let b=index;" [ngClass]="{
                     'bg_green':start_date==dates[i].year +'-'+ dates[i].month +'-'+ day || start_date==dates[i].year +'-'+ dates[i].month +'-'+ '0'+ day || start_date==dates[i].year +'-'+'0' + dates[i].month +'-'+ day || start_date==dates[i].year +'-'+'0' + dates[i].month +'-'+'0'+ day,
                     'bg_orange': end_date==dates[i].year +'-'+ dates[i].month +'-'+ day || end_date==dates[i].year +'-'+ dates[i].month +'-'+ '0'+ day || end_date==dates[i].year +'-'+'0' + dates[i].month +'-'+ day || end_date==dates[i].year +'-'+'0' + dates[i].month +'-'+'0'+ day,
-                    'bg_red':day=='今天','color_red':b==0&&day>0 || b==6&&day>0 || b==7&&day>0 || b==13&&day>0 || b==14&&day>0 || b==20&&day>0 || b==21&&day>0 || b==27&&day>0 || b==28&&day>0 || b==34&&day>0 || b==35&&day>0}" (click)="selectDate(i,day)">{{day}}</span>
+                    'bg_red':day==date.today,'color_red':b==0&&day>0 || b==6&&day>0 || b==7&&day>0 || b==13&&day>0 || b==14&&day>0 || b==20&&day>0 || b==21&&day>0 || b==27&&day>0 || b==28&&day>0 || b==34&&day>0 || b==35&&day>0}" (click)="selectDate(i,day)">{{day}}</span>
             </div>
         </div>
         <div style="height: 30%;width: 100%;"></div>

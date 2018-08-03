@@ -9,7 +9,8 @@
 
         </div>
         <div class="btn">
-            <button (click)="send()">确定&nbsp;({{userface.length}})</button>
+            <button *ngIf="language=='cn'" (click)="send()">确定&nbsp;({{userface.length}})</button>
+            <button *ngIf="language=='en'" (click)="send()">Confirm&nbsp;({{userface.length}})</button>
         </div>
     </div>
     <div class="items" *ngIf="datas.result.contactsList.length>0">

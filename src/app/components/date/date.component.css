@@ -38,6 +38,13 @@
     color: #333333;
 }
 
+.selectDate {
+    flex: 0 0 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .start_box,
 .end_box {
     float: left;

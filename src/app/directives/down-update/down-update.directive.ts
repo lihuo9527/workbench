@@ -14,7 +14,8 @@ export class DownUpdateDirective {
     constructor(private el: ElementRef) {
         // this.el.nativeElement.style.overflow = "auto";
         // this.el.nativeElement.style.WebkitOverflowScrolling = "touch";
-        this.el.nativeElement.innerHTML = '<div class="downupdate" id="downupdate" style="overflow: hidden;width: 100%;background: #333;color: #fff;max-height: 46px;height: 0px;display: flex;justify-content: center;align-items: center;min-height:0;transition:0.5s;">松开刷新</div>' + this.el.nativeElement.innerHTML;
+        let text = localStorage.getItem("language") == "cn" ? "松开刷新" : "Release to refresh ";
+        this.el.nativeElement.innerHTML = `<div class="downupdate" id="downupdate" style="overflow: hidden;width: 100%;background: #333;color: #fff;max-height: 46px;height: 0px;display: flex;justify-content: center;align-items: center;min-height:0;transition:0.5s;">${text}</div>${this.el.nativeElement.innerHTML}`;
     }
     @HostListener('touchstart', ['$event']) onTouchStart(e) {
         console.log(document.body.scrollTop, document.documentElement.scrollTop);

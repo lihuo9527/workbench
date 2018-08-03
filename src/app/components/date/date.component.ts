@@ -22,6 +22,14 @@ export class DateComponent implements OnInit {
     public state;
     public dates = [];
     public message = { state: false, btnText: "OK", msg: "" };
+    public date = {
+        close: "Close",
+        startDate: "Start Date",
+        endDate: "End Date",
+        cancel: "Cancel",
+        selectDate: "Select a date",
+        today: "Today",
+    }
     ngOnInit() {
         for (let i = 0; i < 24; i++) {
             let myDate = new Date(this.last_year + "," + this.month + "," + "01");
@@ -45,6 +53,14 @@ export class DateComponent implements OnInit {
         }
 
         this.language = localStorage.getItem("language");
+        if (this.language == "cn") {
+            this.date.close = "关闭";
+            this.date.cancel = "撤销";
+            this.date.startDate = "开始时间";
+            this.date.endDate = "结束时间";
+            this.date.selectDate = "选择日期";
+            this.date.today = "今天";
+        }
     }
     ngAfterViewInit() {
         let dates_box = document.querySelectorAll(".dates_box")[0];
@@ -54,7 +70,7 @@ export class DateComponent implements OnInit {
         if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
             for (let i = 1; i < 32; i++) {
                 if (this.today.getFullYear() == year && this.today.getMonth() + 1 == month && i == this.today.getDate()) {
-                    days.push("今天");
+                    days.push(this.date.today);
                 } else {
                     days.push(i);
                 }
@@ -64,7 +80,7 @@ export class DateComponent implements OnInit {
         if (month == 4 || month == 6 || month == 9 || month == 11) {
             for (let i = 1; i < 31; i++) {
                 if (this.today.getFullYear() == year && this.today.getMonth() + 1 == month && i == this.today.getDate()) {
-                    days.push("今天");
+                    days.push(this.date.today);
                 } else {
                     days.push(i);
                 }
@@ -74,7 +90,7 @@ export class DateComponent implements OnInit {
             if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
                 for (let i = 1; i < 30; i++) {
                     if (this.today.getFullYear() == year && this.today.getMonth() + 1 == month && i == this.today.getDate()) {
-                        days.push("今天");
+                        days.push(this.date.today);
                     } else {
                         days.push(i);
                     }
@@ -82,7 +98,7 @@ export class DateComponent implements OnInit {
             } else {
                 for (let i = 1; i < 29; i++) {
                     if (this.today.getFullYear() == year && this.today.getMonth() + 1 == month && i == this.today.getDate()) {
-                        days.push("今天");
+                        days.push(this.date.today);
                     } else {
                         days.push(i);
                     }
@@ -113,7 +129,7 @@ export class DateComponent implements OnInit {
     }
     selectDate(index, day) {
         if (this.number == 2) {
-            if (day == "今天") day = this.today.getDate();
+            if (day == this.date.today) day = this.today.getDate();
             let month = this.dates[index].month < 10 ? "0" + this.dates[index].month : this.dates[index].month.toString();
             let nowday = day < 10 ? "0" + day : day.toString();
             // this.nowdate = this.dates[index].year + "-" + month + "-" + nowday;
@@ -128,7 +144,8 @@ export class DateComponent implements OnInit {
                 let arr1 = new Date(this.start_date);
                 let arr2 = new Date(text);
                 if (arr1 > arr2) {
-                    this.alert("结束时间不能小于当前时间！");
+                    let text = this.language == "cn" ? "结束时间不能小于当前时间！" : "End time cannot be less than current time!"
+                    this.alert(text);
                     return;
                 }
                 console.log(arr1, arr2)
@@ -136,13 +153,13 @@ export class DateComponent implements OnInit {
                 this.backDate();
             } else if (!this.start_date && !this.end_date) {
                 this.state = !this.state;
-                if (day == "今天") day = this.today.getDate();
+                if (day == this.date.today) day = this.today.getDate();
                 let month = this.dates[index].month < 10 ? "0" + this.dates[index].month : this.dates[index].month.toString();
                 let nowday = day < 10 ? "0" + day : day.toString();
                 this.start_date = this.dates[index].year + "-" + month + "-" + nowday;
             }
         } else if (this.number == 1) {
-            if (day == "今天") day = this.today.getDate();
+            if (day == this.date.today) day = this.today.getDate();
             let month = this.dates[index].month < 10 ? "0" + this.dates[index].month : this.dates[index].month.toString();
             let nowday = day < 10 ? "0" + day : day.toString();
             // this.nowdate = this.dates[index].year + "-" + month + "-" + nowday;

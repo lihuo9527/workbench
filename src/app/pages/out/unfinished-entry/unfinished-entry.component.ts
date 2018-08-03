@@ -27,6 +27,7 @@ export class UnfinishedEntryComponent implements OnInit {
         btnText: "OK",
         msg: ""
     };
+    public texts = ["请填写完整信息再提交！", "录入成功！"];
     ngOnInit() {
         this.language = localStorage.getItem("language");
         this.datas = JSON.parse(this.routerIonfo.snapshot.params["data"]);
@@ -36,7 +37,10 @@ export class UnfinishedEntryComponent implements OnInit {
         this.data = this.datas.data;
         console.log(this.datas);
         this.getPlan();
-
+        if (this.language == "en") {
+            this.texts[0] = "Please fill in the complete information";
+            this.texts[1] = "Successful entry";
+        }
     }
     getPlan() {
         this.service.http_get('/api/OuterFactory/UndonePlanSubPlanList?planId=' + this.data.planId, false).subscribe((data: any) => {
@@ -68,13 +72,13 @@ export class UnfinishedEntryComponent implements OnInit {
                 this.loading = false;
                 if (data.msg == "success") {
                     this.getPlan();
-                    this.service.messageBox(this.message, "录入成功！")
+                    this.service.messageBox(this.message, this.texts[1])
                 }
             }, error => {
                 this.loading = false;
             })
         } else {
-            this.service.messageBox(this.message, "请填写完整信息再提交！")
+            this.service.messageBox(this.message, this.texts[0])
         }
     }
     backDate($event) {

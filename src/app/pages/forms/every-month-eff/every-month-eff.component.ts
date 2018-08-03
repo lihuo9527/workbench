@@ -13,8 +13,14 @@ export class EveryMonthEffComponent implements OnInit {
     public language;
     public option;
     public length = 0;
+    public texts = ["产量", "件", "效率"];
     ngOnInit() {
         this.language = localStorage.getItem("language");
+        if (this.language == "en") {
+            this.texts[0] = "Production";
+            this.texts[1] = "piece";
+            this.texts[2] = "Efficiency";
+        }
         this.service.http_get('/api/Monitor/GetChartData?vrpcode=RPT103', false).subscribe((data: any) => {
             let titles = [];
             let bar = [];
@@ -42,7 +48,7 @@ export class EveryMonthEffComponent implements OnInit {
                     y2: 140
                 },
                 legend: {
-                    data: ['效率', '产量'],
+                    data: [this.texts[2], this.texts[0]],
                     top: "0",
                 },
                 xAxis: [{
@@ -60,64 +66,66 @@ export class EveryMonthEffComponent implements OnInit {
                     },
                     data: titles
                 }],
-                yAxis: [{
-                    axisLine: {
-                        show: false,
-                    },
-                    axisTick: {
-                        show: false,
+                yAxis: [
+                    {
+                        axisLine: {
+                            show: false,
+                        },
+                        axisTick: {
+                            show: false,
 
-                    },
-                    type: 'value',
-                    name: '效率(%)',
-                    min: 0,
-                    max: 200,
-                    position: 'left',
-                    axisLabel: {
-                        formatter: '{value}'
-                    }
-                }, {
-                    axisLine: {
-                        show: false,
-                    },
-                    axisTick: {
-                        show: false,
+                        },
+                        type: 'value',
+                        name: `${this.texts[2]}(%)`,
+                        min: 0,
+                        max: 200,
+                        position: 'left',
+                        axisLabel: {
+                            formatter: '{value}'
+                        }
+                    }, {
+                        axisLine: {
+                            show: false,
+                        },
+                        axisTick: {
+                            show: false,
 
+                        },
+                        type: 'value',
+                        name: `${this.texts[0]}(${this.texts[1]})`,
+                        min: 0,
+                        position: 'right'
+                    }],
+                series: [
+                    {
+                        name: this.texts[2],
+                        type: 'line',
+                        stack: '效率',
+                        itemStyle: {
+                            color: "#3384d5"
+                        },
+                        symbolSize: "7",
+                        markLine: {
+                            symbol: ["none", "none"],
+                            data: [
+                                { type: 'average', name: '平均值', yAxis: average, label: { show: false } }
+                            ],
+                        },
+                        lineStyle: {
+                            color: "#7cdbad", width: "1"
+                        },
+                        data: line
                     },
-                    type: 'value',
-                    name: '产量(件)',
-                    min: 0,
-                    position: 'right'
-                }],
-                series: [{
-                    name: '效率',
-                    type: 'line',
-                    stack: '效率',
-                    itemStyle: {
-                        color: "#3384d5"
+                    {
+                        color: ["#54a6de"],
+                        name: this.texts[0],
+                        type: 'bar',
+                        yAxisIndex: 1,
+                        stack: '产量',
+                        data: bar,
+                        barCategoryGap: "30%",
+                        barMaxWidth: '30%',
                     },
-                    symbolSize: "7",
-                    markLine: {
-                        symbol: ["none", "none"],
-                        data: [
-                            { type: 'average', name: '平均值', yAxis: average, label: { show: false } }
-                        ],
-                    },
-                    lineStyle: {
-                        color: "#7cdbad", width: "1"
-                    },
-                    data: line
-                },
-                {
-                    color: ["#54a6de"],
-                    name: '产量',
-                    type: 'bar',
-                    yAxisIndex: 1,
-                    stack: '产量',
-                    data: bar,
-                    barCategoryGap: "30%",
-                    barMaxWidth: '30%',
-                },
                 ]
             }
         })

@@ -57,7 +57,8 @@ export class OutProcessComponent implements OnInit {
         let option = 'planId=' + item.planId + "&status=" + state;
         this.service.http_post('/api/OuterFactory/ModifyPlanStatus', option, false, "form").subscribe((data: any) => {
             item.isEnd = state;
-            this.service.messageBox(this.message, "修改成功！")
+            let text = this.language == "cn" ? "修改成功！" : "Successfully modified";
+            this.service.messageBox(this.message, text)
         })
 
     }

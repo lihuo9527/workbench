@@ -12,8 +12,14 @@ export class TheMonthEffComponent implements OnInit {
     public language;
     public option;
     public length = 0;
+    public texts = ["产量", "件", "效率"];
     ngOnInit() {
         this.language = localStorage.getItem("language");
+        if (this.language == "en") {
+            this.texts[0] = "Production";
+            this.texts[1] = "piece";
+            this.texts[2] = "Efficiency";
+        }
         this.service.http_get('/api/Monitor/GetChartData?vrpcode=RPT102', false).subscribe((data: any) => {
             let titles = [];
             let bar = [];
@@ -40,7 +46,7 @@ export class TheMonthEffComponent implements OnInit {
                     y2: 140
                 },
                 legend: {
-                    data: ['效率', '产量'],
+                    data: [this.texts[2], this.texts[0]],
                     top: "3%",
                 },
                 xAxis: [
@@ -70,7 +76,7 @@ export class TheMonthEffComponent implements OnInit {
 
                         },
                         type: 'value',
-                        name: '效率(%)',
+                        name: `${this.texts[2]}(%)`,
                         min: 0,
                         max: 200,
                         position: 'left',
@@ -86,13 +92,13 @@ export class TheMonthEffComponent implements OnInit {
 
                         },
                         type: 'value',
-                        name: '产量(件)',
+                        name: `${this.texts[0]}(${this.texts[1]})`,
                         min: 0,
                         position: 'right'
                     }],
                 series: [
                     {
-                        name: '效率',
+                        name: this.texts[2],
                         type: 'line',
                         stack: '效率',
                         symbolSize: "7",
@@ -113,7 +119,7 @@ export class TheMonthEffComponent implements OnInit {
                     },
                     {
                         color: ["#f19a79"],
-                        name: '产量',
+                        name: this.texts[0],
                         type: 'bar',
                         yAxisIndex: 1,
                         stack: '产量',

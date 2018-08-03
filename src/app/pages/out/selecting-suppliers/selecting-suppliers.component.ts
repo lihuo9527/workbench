@@ -20,6 +20,7 @@ export class SelectingSuppliersComponent implements OnInit {
         btnText: "OK",
         msg: ""
     }
+    public texts = ["您还没有选择供应商！", "录入成功！"];
     ngOnInit() {
         this.data = JSON.parse(this.routerIonfo.snapshot.params["data"]);
         this.language = localStorage.getItem("language");
@@ -27,8 +28,11 @@ export class SelectingSuppliersComponent implements OnInit {
             if (data.msg == "success") {
                 this.datas = data;
             }
-
         })
+        if (this.language == "en") {
+            this.texts[0] = "You have not selected a supplier yet!";
+            this.texts[1] = "Successful entry";
+        }
     }
     show(item, i) {
         item.state = !item.state;
@@ -44,7 +48,12 @@ export class SelectingSuppliersComponent implements OnInit {
         $event.stopPropagation();
         user.state = !user.state;
         if (user.state) {
-            this.userface.push(user);
+            this.userface.forEach((element) => {
+                if (user.uid != element.uid) {
+                    element.state = false;
+                }
+            });
+            this.userface[0] = user;
         } else {
             this.userface.forEach((element, index) => {
                 if (user.uid == element.uid) {
@@ -61,7 +70,7 @@ export class SelectingSuppliersComponent implements OnInit {
             fids.push(element.uid);
         })
         if (fids.length <= 0) {
-            this.service.messageBox(this.message, "您还没有选择供应商！");
+            this.service.messageBox(this.message, this.texts[0]);
             return;
         }
         let option = {
@@ -77,7 +86,7 @@ export class SelectingSuppliersComponent implements OnInit {
         this.service.http_post("/api/OuterFactory/EntryPlan", option, false).subscribe((data: any) => {
             this.loading = false;
             if (data.msg == "success") {
-                this.service.messageBox(this.message, "录入成功！");
+                this.service.messageBox(this.message, this.texts[1]);
                 setTimeout(() => window.history.go(-2), 1500);
             } else {
                 this.service.messageBox(this.message, data.msg);

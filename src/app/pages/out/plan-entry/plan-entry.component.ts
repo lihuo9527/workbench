@@ -26,6 +26,7 @@ export class PlanEntryComponent implements OnInit {
         msg: ""
     }
     public amount;
+    public texts = ["请填写完整信息！", "录入成功!", "修改成功！"];
     ngOnInit() {
         this.language = localStorage.getItem("language");
         this.datas = JSON.parse(this.routerIonfo.snapshot.params["data"]);
@@ -35,7 +36,11 @@ export class PlanEntryComponent implements OnInit {
         this.date = this.language == "cn" ? "请选择开始时间" : "Select start date";
         this.amount = this.language == "cn" ? "总数量" : "Total";
         this.getPlan();
-
+        if (this.language == "en") {
+            this.texts[0] = "Please fill in the complete information";
+            this.texts[1] = "Successful entry";
+            this.texts[2] = "Successfully modified";
+        }
     }
     getPlan() {
         if (this.data.plan == 'Yes') {
@@ -68,7 +73,7 @@ export class PlanEntryComponent implements OnInit {
         if (this.total > 0 && this.dayAmount > 0 && parseInt(this.date) > 0) {
             this.router.navigate(['/out/selectingSuppliers', JSON.stringify({ total: this.total, date: this.date, dayAmount: this.dayAmount, code: this.data.code, styleNo: this.data.pattern })])
         } else {
-            this.service.messageBox(this.message, "请填写完整信息！")
+            this.service.messageBox(this.message, this.texts[0])
         }
     }
     submit() {
@@ -79,13 +84,13 @@ export class PlanEntryComponent implements OnInit {
                 this.loading = false;
                 if (data.msg == "success") {
                     this.getPlan();
-                    this.service.messageBox(this.message, "录入成功!")
+                    this.service.messageBox(this.message, this.texts[1])
                 }
             }, error => {
                 this.loading = false;
             })
         } else {
-            this.service.messageBox(this.message, "请填写完整信息！");
+            this.service.messageBox(this.message, this.texts[0]);
         }
     }
     backDate($event) {
@@ -102,7 +107,7 @@ export class PlanEntryComponent implements OnInit {
         this.service.http_post('/api/OuterFactory/ModifyPlanStatus', option, false, "form").subscribe((data: any) => {
             this.loading = false;
             item.isEnd = state;
-            this.service.messageBox(this.message, "修改成功！");
+            this.service.messageBox(this.message, this.texts[2]);
             console.log(this.data)
         }, error => {
             this.loading = false;

@@ -93,7 +93,7 @@
                         <span *ngIf="language=='cn'">跟单员</span>
                     </li>
                     <li>
-                        <p>{{data.CriticalEventManID}}</p>
+                        <p>{{data.EventMan}}</p>
                         <span *ngIf="language=='en'">Critical Event Principal</span>
                         <span *ngIf="language=='cn'">关键事件负责人</span>
                     </li>
@@ -148,7 +148,7 @@
                         <span *ngIf="language=='cn'">标准工时</span>
                     </li>
                     <li>
-                        <p>{{data.Amount}}</p>
+                        <p>{{data.Totalqty}}</p>
                         <span *ngIf="language=='en'">Amount</span>
                         <span *ngIf="language=='cn'">数量</span>
                     </li>
@@ -163,9 +163,9 @@
                         <span *ngIf="language=='cn'">主料到厂期</span>
                     </li>
                     <li>
-                        <p>{{data.EarlinessStartDate}}</p>
-                        <span *ngIf="language=='en'">Earliest Allowed Start Time</span>
-                        <span *ngIf="language=='cn'">最早可开工</span>
+                        <p>{{data.MaterielArriveDate}}</p>
+                        <span *ngIf="language=='en'">Accessories Arrive Date</span>
+                        <span *ngIf="language=='cn'">辅料到厂日期</span>
                     </li>
                     <li>
                         <p>{{data.RouteName}}</p>
@@ -178,8 +178,10 @@
                         <span *ngIf="language=='cn'">工序</span>
                     </li>
                     <li>
-                        <p *ngIf="language=='cn'" style="color: red;">{{data.DelayDays}} 天</p>
-                        <p *ngIf="language=='en'" style="color: red;">{{data.DelayDays}} Days</p>
+                        <p *ngIf="language=='en' && data.DelayDays<0" style="color: red;">Abnormal data</p>
+                        <p *ngIf="language=='cn' && data.DelayDays<0" style="color: red;">数据异常 </p>
+                        <p *ngIf="language=='cn' && data.DelayDays>=0" style="color: red;">{{data.DelayDays}} 天</p>
+                        <p *ngIf="language=='en' && data.DelayDays>=0" style="color: red;">{{data.DelayDays}} Days</p>
                         <span *ngIf="language=='en'" style="color: red;">Delay</span>
                         <span *ngIf="language=='cn'" style="color: red;">延误</span>
                     </li>
@@ -213,7 +215,7 @@
                         <span *ngIf="language=='en'">Fty.Style</span>
                         <span *ngIf="language=='cn'">本厂款号</span></li>
                     <li>
-                        <p>{{data.CustomerStyleNO}}</p>
+                        <p>{{data.CustomerStyleNo}}</p>
                         <span *ngIf="language=='en'">Customer Style</span>
                         <span *ngIf="language=='cn'">客户款号</span></li>
                     <li>

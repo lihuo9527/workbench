@@ -10,10 +10,16 @@ export class CustomerOutputComponent implements OnInit {
     public language;
     public option;
     public length = 0;
+    public texts = ["产量", "件", "效率"];
     constructor(private service: AppService) { }
 
     ngOnInit() {
         this.language = localStorage.getItem("language");
+        if (this.language == "en") {
+            this.texts[0] = "Production";
+            this.texts[1] = "piece";
+            this.texts[2] = "Efficiency";
+        }
         this.service.http_get('/api/Monitor/GetChartData?vrpcode=RPT101', false).subscribe((data: any) => {
             let obj = [];
             let titles = [];
@@ -32,7 +38,7 @@ export class CustomerOutputComponent implements OnInit {
             this.option = {
 
                 title: {
-                    text: "产量(件)",
+                    text: `${this.texts[0]}(${this.texts[1]})`,
                     textStyle: {
                         color: "#34474f",
                         fontSize: "14",

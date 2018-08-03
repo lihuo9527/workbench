@@ -24,7 +24,8 @@
         <div class="colorBox">
             <div *ngFor="let item of colors;" style="flex: 0 0 30%;display: flex;align-items: center;padding-top:0.5rem;padding-bottom:0.5rem; ">
                 <div [ngStyle]="{'background':item.Color}" style="width:1.1rem;height: 1rem;"></div>
-                <span>{{item.Remark}}</span>
+                <span *ngIf="language=='cn'">{{item.Remark}}</span>
+                <span *ngIf="language=='en'">{{item.Name}}</span>
             </div>
         </div>
     </section>

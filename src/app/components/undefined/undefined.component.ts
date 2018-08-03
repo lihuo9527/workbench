@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class UndefinedComponent implements OnInit {
     @Input() public length = 0;
     constructor() { }
-
+    public language = localStorage.getItem("language");
     ngOnInit() {
     }
 

@@ -53,6 +53,7 @@ export class ScheduleEntryComponent implements OnInit {
         btnText: "OK",
         msg: ""
     }
+    public texts = ["请先选择工序/填写完整信息！", "提交失败,请填写完整信息！", "保存成功！", "提交失败！", "提交失败,有进度数时工时不能为0！", "提交失败,提交的信息出现非法字符串！"];
     ngOnInit() {
         this.data = JSON.parse(this.routerIonfo.snapshot.params["data"]);
         this.language = localStorage.getItem("language");
@@ -73,6 +74,14 @@ export class ScheduleEntryComponent implements OnInit {
                 this.inputs[2].number = "100";
 
             })
+            if (this.language == "en") {
+                this.texts[0] = "Please choose the process first / fill in the complete information";
+                this.texts[1] = "The submission failed, please fill in the complete information";
+                this.texts[2] = "Saved successfully";
+                this.texts[3] = "The submission faile";
+                this.texts[4] = "The submission failed, and the work time cannot be 0 when there is a progress count.";
+                this.texts[5] = "The submission failed, and the submitted information had an illegal character."
+            }
         }
         if (this.data.Pid == "non-process") {
             this.title = this.language == 'cn' ? "非排产工序日进度" : "Non-Planing Process Entry";
@@ -145,11 +154,11 @@ export class ScheduleEntryComponent implements OnInit {
                     if (element.Amount > 0) submitstate = true;
                 })
                 if (!this.processId) {
-                    this.service.messageBox(this.message, "请先选择工序/填写完整信息！");
+                    this.service.messageBox(this.message, this.texts[0]);
                     return;
                 }
                 if (submitstate == false) {
-                    this.service.messageBox(this.message, "提交失败,请填写完整信息！");
+                    this.service.messageBox(this.message, this.texts[1]);
                     return;
                 }
 
@@ -160,17 +169,17 @@ export class ScheduleEntryComponent implements OnInit {
                     this.service.http_post('/api/Schedule/AddScheduleDaily', JSON.stringify(data), false).subscribe((data: any) => {
                         this.loading = false;
                         if (data.IsSuccess == 1) {
-                            this.service.messageBox(this.message, "保存成功！");
+                            this.service.messageBox(this.message, this.texts[2]);
                         } else {
                             this.service.messageBox(this.message, data.ErrMessage);
                         }
                         console.log(data);
                     }, error => {
                         this.loading = false;
-                        this.service.messageBox(this.message, "提交失败！");
+                        this.service.messageBox(this.message, this.texts[3]);
                     })
                 } else {
-                    this.service.messageBox(this.message, "请先选择工序/填写完整信息！");
+                    this.service.messageBox(this.message, this.texts[0]);
                 }
 
             } else {
@@ -180,20 +189,20 @@ export class ScheduleEntryComponent implements OnInit {
                     this.service.http_post('/api/Schedule/AddScheduleByPo', option, false, "form").subscribe((data: any) => {
                         this.loading = false;
                         if (data.IsSuccess == 1) {
-                            this.service.messageBox(this.message, "保存成功！");
+                            this.service.messageBox(this.message, this.texts[2]);
                         } else {
                             this.service.messageBox(this.message, data.ErrMessage);
                         }
                         console.log(data);
                     }, error => {
                         this.loading = false;
-                        this.service.messageBox(this.message, "提交失败！");
+                        this.service.messageBox(this.message, this.texts[3]);
                     })
                 } else {
-                    this.service.messageBox(this.message, "请先选择工序/填写完整信息！");
+                    this.service.messageBox(this.message, this.texts[0]);
                 }
             }
-        } else {
+        } else if (this.data.Pid == "progress") {
             if (!this.tabstate) {
                 let data = {
                     "ProductionEventId": this.data.ProductionEventID,
@@ -225,17 +234,17 @@ export class ScheduleEntryComponent implements OnInit {
                 })
                 console.log(isNaN(parseInt(this.date)));
                 if (submitstate && Number(this.inputs[0].number) <= 0) {
-                    this.service.messageBox(this.message, "提交失败,有进度数时工时不能为0！");
+                    this.service.messageBox(this.message, this.texts[4]);
                     return;
                 }
                 if (submitstate == false || Number(this.inputs[0].number) <= 0 || Number(this.inputs[1].number) <= 0 || Number(this.inputs[2].number) <= 0 || isNaN(parseInt(this.date))) {
                     if (!this.allstate) {
-                        this.service.messageBox(this.message, "提交失败,请填写完整信息！");
+                        this.service.messageBox(this.message, this.texts[1]);
                         return;
                     }
                 }
                 if (!this.checkNumber(this.inputs[1].number) || !this.checkNumber(this.inputs[2].number) || !this.checkNumber(this.inputs[0].number)) {
-                    this.service.messageBox(this.message, "提交失败,提交的信息出现非法字符串！");
+                    this.service.messageBox(this.message, this.texts[5]);
                     return;
                 }
                 // console.log(JSON.stringify(this.color_tabs))
@@ -243,27 +252,27 @@ export class ScheduleEntryComponent implements OnInit {
                 this.service.http_post('/api/Schedule/AddPlanScheduleDaily', JSON.stringify(data), false).subscribe((data: any) => {
                     this.loading = false;
                     if (data.IsSuccess == 1) {
-                        this.service.messageBox(this.message, "保存成功！");
+                        this.service.messageBox(this.message, this.texts[2]);
                     } else {
                         this.service.messageBox(this.message, data.ErrMessage);
                     }
                 }, error => {
                     this.loading = false;
-                    this.service.messageBox(this.message, "提交失败！");
+                    this.service.messageBox(this.message, this.texts[3]);
                 })
             } else {
                 if (this.number > 0 && Number(this.inputs[0].number) <= 0) {
-                    this.service.messageBox(this.message, "提交失败,有进度数时工时不能为0！");
+                    this.service.messageBox(this.message, this.texts[4]);
                     return;
                 }
                 if (Number(this.inputs[0].number) <= 0 || Number(this.inputs[1].number) <= 0 || Number(this.inputs[2].number) <= 0 || isNaN(parseInt(this.date)) || isNaN(this.number)) {
                     if (!this.allstate) {
-                        this.service.messageBox(this.message, "提交失败,请填写完整信息！");
+                        this.service.messageBox(this.message, this.texts[1]);
                         return;
                     }
                 }
                 if (!this.checkNumber(this.inputs[1].number) || !this.checkNumber(this.inputs[2].number) || !this.checkNumber(this.inputs[0].number)) {
-                    this.service.messageBox(this.message, "提交失败,提交的信息出现非法字符串！");
+                    this.service.messageBox(this.message, this.texts[5]);
                     return;
                 }
                 let option = "ProductionEventId=" + this.data.ProductionEventID + "&lineId=" + this.data.LineID + "&poId=" + this.data.id + "&proDate=" + this.date + "&amount=" + this.number + "&WorkerAmount=" + this.inputs[1].number + "&WorkHours=" + this.inputs[0].number + "&FPY=" + this.inputs[2].number + "&isProCompleted=" + IsProCompleted;
@@ -271,13 +280,13 @@ export class ScheduleEntryComponent implements OnInit {
                 this.service.http_post('/api/Schedule/AddPlanScheduleByPo', option, false, "form").subscribe((data: any) => {
                     this.loading = false;
                     if (data.IsSuccess == 1) {
-                        this.service.messageBox(this.message, "保存成功！");
+                        this.service.messageBox(this.message, this.texts[2]);
                     } else {
                         this.service.messageBox(this.message, data.ErrMessage);
                     }
                 }, error => {
                     this.loading = false;
-                    this.service.messageBox(this.message, "提交失败！");
+                    this.service.messageBox(this.message, this.texts[3]);
                 })
 
             }

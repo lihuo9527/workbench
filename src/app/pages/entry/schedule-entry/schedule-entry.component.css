@@ -50,6 +50,8 @@
     text-align: center;
     font-size: 1.4rem;
     background: #f3f4f6;
+    padding: 0.5rem;
+    min-height: 2rem;
 }
 
 .colorMenu li span {

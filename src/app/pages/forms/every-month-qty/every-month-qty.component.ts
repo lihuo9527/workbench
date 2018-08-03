@@ -12,8 +12,14 @@ export class EveryMonthQtyComponent implements OnInit {
     public language;
     public option;
     public length = 0;
+    public texts = ["产量", "件", "耗时"];
     ngOnInit() {
         this.language = localStorage.getItem("language");
+        if (this.language == "en") {
+            this.texts[0] = "Production";
+            this.texts[1] = "piece";
+            this.texts[2] = "Time Consuming";
+        }
         this.service.http_get('/api/Monitor/GetChartData?vrpcode=RPT105', false).subscribe((data: any) => {
             let titles = [];
             let bar = [];
@@ -41,7 +47,7 @@ export class EveryMonthQtyComponent implements OnInit {
                     y2: 140
                 },
                 legend: {
-                    data: ['耗时', '产量'],
+                    data: [this.texts[2], this.texts[0]],
                     top: "0",
                 },
                 xAxis: [{
@@ -68,7 +74,7 @@ export class EveryMonthQtyComponent implements OnInit {
 
                     },
                     type: 'value',
-                    name: '耗时(h)',
+                    name: `${this.texts[2]}(h)`,
                     min: 0,
                     position: 'left',
                     axisLabel: {
@@ -83,12 +89,12 @@ export class EveryMonthQtyComponent implements OnInit {
 
                     },
                     type: 'value',
-                    name: '产量(件)',
+                    name: `${this.texts[0]}(${this.texts[1]})`,
                     min: 0,
                     position: 'right'
                 }],
                 series: [{
-                    name: '耗时',
+                    name: this.texts[2],
                     type: 'line',
                     stack: '耗时',
                     itemStyle: {
@@ -108,7 +114,7 @@ export class EveryMonthQtyComponent implements OnInit {
                 },
                 {
                     color: ["#54a6de"],
-                    name: '产量',
+                    name: this.texts[0],
                     type: 'bar',
                     yAxisIndex: 1,
                     stack: '产量',

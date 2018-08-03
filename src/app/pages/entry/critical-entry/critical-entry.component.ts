@@ -26,6 +26,9 @@ export class CriticalEntryComponent implements OnInit {
         msg: ""
     }
     public disabled: boolean = false;
+    public texts = ["保存成功", "保存失败"];
+
+
     ngOnInit() {
         this.data = JSON.parse(this.routerIonfo.snapshot.params["data"]);
         this.language = localStorage.getItem("language");
@@ -33,6 +36,10 @@ export class CriticalEntryComponent implements OnInit {
         this.service.http_get('/api/Schedule/GetPoEvents?poId=' + this.data.id, false).subscribe((data: any) => {
             if (data.length > 0) this.list = data;
         })
+        if (this.language == "en") {
+            this.texts[0] = "Saved successfully";
+            this.texts[1] = "Save failed";
+        }
     }
     save() {
         if (!this.disabled) return;
@@ -51,14 +58,14 @@ export class CriticalEntryComponent implements OnInit {
         this.service.http_post('/api/Schedule/UpdateEventsDate', data, false).subscribe((data: any) => {
             this.loading = false;
             if (data.IsSuccess == 1) {
-                this.service.messageBox(this.message, "保存成功！");
+                this.service.messageBox(this.message, this.texts[0]);
             } else {
                 this.service.messageBox(this.message, data.ErrMessage);
             }
             console.log(data);
         }, error => {
             this.loading = false;
-            this.service.messageBox(this.message, "保存失败！");
+            this.service.messageBox(this.message, this.texts[1]);
         })
     }
     backDate($event) {
