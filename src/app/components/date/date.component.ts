@@ -31,6 +31,15 @@ export class DateComponent implements OnInit {
         today: "Today",
     }
     ngOnInit() {
+        this.language = localStorage.getItem("language");
+        if (this.language == "cn") {
+            this.date.close = "关闭";
+            this.date.cancel = "撤销";
+            this.date.startDate = "开始时间";
+            this.date.endDate = "结束时间";
+            this.date.selectDate = "选择日期";
+            this.date.today = "今天";
+        }
         for (let i = 0; i < 24; i++) {
             let myDate = new Date(this.last_year + "," + this.month + "," + "01");
             this.days = [];
@@ -50,16 +59,6 @@ export class DateComponent implements OnInit {
             this.last_year = this.month == 12 ? this.last_year + 1 : this.last_year;
             this.month = this.month == 12 ? 1 : this.month + 1;
 
-        }
-
-        this.language = localStorage.getItem("language");
-        if (this.language == "cn") {
-            this.date.close = "关闭";
-            this.date.cancel = "撤销";
-            this.date.startDate = "开始时间";
-            this.date.endDate = "结束时间";
-            this.date.selectDate = "选择日期";
-            this.date.today = "今天";
         }
     }
     ngAfterViewInit() {
