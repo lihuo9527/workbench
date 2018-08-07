@@ -7,8 +7,9 @@ header {
     justify-content: center;
     position: fixed;
     z-index: 3;
-    left: 0;
     top: 0;
+    margin: 0 auto;
+    max-width: 768px;
 }
 
 header h1 {
@@ -140,11 +141,12 @@ header h1 {
 }
 
 .hidden_header {
-    width: 46px;
+    width: 100%;
     height: 46px;
     position: relative;
-    left: 0;
     top: 0;
+    margin: 0 auto;
+    max-width: 768px;
 }
 
 h2 {

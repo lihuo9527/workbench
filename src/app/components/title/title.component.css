@@ -1,5 +1,6 @@
 header {
-    left: 0;
+    margin: 0 auto;
+    max-width: 768px;
     top: 0;
     background-color: #088c77;
     width: 100%;
@@ -28,10 +29,11 @@ header .reBut {
 }
 
 .hidden_header {
-    width: 46px;
+    margin: 0 auto;
+    max-width: 768px;
+    width: 100%;
     height: 46px;
     position: relative;
-    left: 0;
     top: 0;
 }
 

@@ -7,7 +7,8 @@
                     <img [src]="item.url" width="30%" alt="">
             </div>
             <div style="flex: 0 0 80%">
-                   <input [minlength]="item.minlength" [maxlength]="item.maxlength" class="input" [type]="item.type"  [(ngModel)]="item.input" [placeholder]="item.text" required />
+                   <input *ngIf="language=='en'" [minlength]="item.minlength" [maxlength]="item.maxlength" class="input" [type]="item.type"  [(ngModel)]="item.input" [placeholder]="item.text" required />
+                   <input *ngIf="language=='cn'" [minlength]="item.minlength" [maxlength]="item.maxlength" class="input" [type]="item.type"  [(ngModel)]="item.input" [placeholder]="item.text2" required />
             </div>
         </button>
     </div>
@@ -29,7 +30,8 @@
         <button *ngIf="language=='cn'" class="login" (click)="login()">登录</button>
     </div>
     <div class="item4">
-        <p>©Guangzhou Integrated Optimization Software Co.,Ltd.</p>
+        <p *ngIf="language=='en'">©Guangzhou Integrated Optimization Software Co.,Ltd.</p>
+        <p *ngIf="language=='cn'">@广州亿澳斯软件股份有限公司</p>
     </div>
     <app-message-box [msg]="message.msg" (event)="message.state=false" [btnText]="message.btnText" [msgShow]="message.state"></app-message-box>
     <app-loading [loadingShow]="loading"></app-loading>

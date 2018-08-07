@@ -62,6 +62,7 @@ export class CustomerOutputComponent implements OnInit {
                 },
                 legend: {
                     show: false,
+                    selectedMode: false,
                 },
                 tooltip: {},
                 xAxis: {

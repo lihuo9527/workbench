@@ -17,7 +17,7 @@ export class TypeSummaryComponent implements OnInit {
             let obj = [];
             let titles = [];
             let obj2 = [];
-            this.length = data[0].ChartNodes.length;
+            if (data[0].ChartNodes.length) this.length = data[0].ChartNodes.length;
             data[0].ChartNodes.forEach(element => {
                 obj.push({
                     name: element.xname,
@@ -43,9 +43,10 @@ export class TypeSummaryComponent implements OnInit {
                     z: 2,
                     containLabel: true,
                     left: '0%',
-                    top: "0",
+                    top: "20%",
                 },
                 legend: {
+                    selectedMode: false,
                     orient: 'horizontal',
                     bottom: "2%",
                     padding: [5, 10, 5, 10],

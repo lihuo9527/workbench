@@ -50,6 +50,7 @@ export class DailyLineEffComponent implements OnInit {
                 legend: {
                     data: [this.texts[2], this.texts[0]],
                     top: "0",
+                    selectedMode: false,
                 },
                 xAxis: [
                     {

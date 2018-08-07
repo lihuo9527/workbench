@@ -60,6 +60,14 @@ export class ScheduleEntryComponent implements OnInit {
         this.placeholder = this.language == 'cn' ? "输入完成数量" : "Input completed qty";
         this.date = this.language == 'cn' ? "选择生产日期" : "Select production date";
         this.color_tabs = { CompleteAmount: '', ProDataCompletedList: [] };
+        if (this.language == "en") {
+            this.texts[0] = "Please choose the process first / fill in the complete information";
+            this.texts[1] = "The submission failed, please fill in the complete information";
+            this.texts[2] = "Saved successfully";
+            this.texts[3] = "The submission faile";
+            this.texts[4] = "The submission failed, and the work time cannot be 0 when there is a progress count.";
+            this.texts[5] = "The submission failed, and the submitted information had an illegal character."
+        }
         if (this.data.Pid == "progress") {
             // let today = new Date();
             // let t = today.getTime() - 1000 * 60 * 60 * 24;
@@ -74,14 +82,6 @@ export class ScheduleEntryComponent implements OnInit {
                 this.inputs[2].number = "100";
 
             })
-            if (this.language == "en") {
-                this.texts[0] = "Please choose the process first / fill in the complete information";
-                this.texts[1] = "The submission failed, please fill in the complete information";
-                this.texts[2] = "Saved successfully";
-                this.texts[3] = "The submission faile";
-                this.texts[4] = "The submission failed, and the work time cannot be 0 when there is a progress count.";
-                this.texts[5] = "The submission failed, and the submitted information had an illegal character."
-            }
         }
         if (this.data.Pid == "non-process") {
             this.title = this.language == 'cn' ? "非排产工序日进度" : "Non-Planing Process Entry";

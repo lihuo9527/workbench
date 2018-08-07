@@ -48,6 +48,7 @@ export class TheMonthEffComponent implements OnInit {
                 legend: {
                     data: [this.texts[2], this.texts[0]],
                     top: "3%",
+                    selectedMode: false,
                 },
                 xAxis: [
                     {

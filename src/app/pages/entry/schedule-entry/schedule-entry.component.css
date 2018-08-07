@@ -168,9 +168,9 @@ td input {
 }
 
 .select2 {
+    width: 12.5rem;
     padding: 0.8rem 0rem 0.8rem 1rem;
     font-size: 1.2rem;
-    width: 11rem;
     color: #b3b3b3;
     background: url(/assets/images/arrow_right.png) no-repeat right top 0.6rem;
     background-size: 1.2rem;

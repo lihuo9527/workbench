@@ -33,7 +33,9 @@
     <app-date *ngIf="state" number="1" (submit)="backDate($event)"></app-date>
     <section class="content">
         <div class="contentItem" *ngFor="let item of datas;let i=index;">
-            <h3>{{item.Name}}</h3>
+            <h3 *ngIf="item.Name!='汇总'">{{item.Name}}</h3>
+            <h3 *ngIf="item.Name=='汇总' && language=='en' ">Summary</h3>
+            <h3 *ngIf="item.Name=='汇总' && language=='cn' ">汇总</h3>
             <div class="figure">
                 <div class="barBox" *ngFor="let obj of item.CapacityChartDataList; let key=index;">
                     <h4>{{obj.dataTime}}</h4>
