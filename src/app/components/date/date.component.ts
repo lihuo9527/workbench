@@ -27,7 +27,7 @@ export class DateComponent implements OnInit {
         startDate: "Start Date",
         endDate: "End Date",
         cancel: "Cancel",
-        selectDate: "Select a date",
+        selectDate: "Select date",
         today: "Today",
     }
     ngOnInit() {

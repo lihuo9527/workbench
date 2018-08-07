@@ -27,7 +27,7 @@ export class SearchComponent implements OnInit {
     public number: number = 2;
     ngOnInit() {
         this.language = localStorage.getItem("language");
-        if (this.language == "en") this.placeholder = "input number or style to query";
+        if (this.language == "en") this.placeholder = "Enter JO or Style NO to query";
         let data = JSON.parse(this.routerIonfo.snapshot.params["id"]);
         this.id = data.id;
         this.title = data.t;

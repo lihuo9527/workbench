@@ -13,7 +13,7 @@ export class AllWorkComponent implements OnInit {
     public list = [
         {
             title: "Entry Confirm", title2: "录入审核", data: [
-                { url: "/assets/images/a_21.png", text: "Critical Event", text2: "关键事件进度", link: "/search", id: "0", index: "0" },
+                { url: "/assets/images/a_21.png", text: "Critical Event Progress", text2: "关键事件进度", link: "/search", id: "0", index: "0" },
                 { url: "/assets/images/a_22.png", text: "Daily Progress", text2: "生产日进度", link: "/search", id: "1", index: "0" },
                 { url: "/assets/images/a_23.png", text: "No-Planning Progress", text2: "非排产工序日进度", link: "/search", id: "2", index: "0" }]
         },
@@ -28,7 +28,7 @@ export class AllWorkComponent implements OnInit {
         {
             title: "Material and Key Event Reminder", title2: "物料与关键事件提醒", data: [
                 { url: "/assets/images/a_41.png", text: "Material Arrival (within N days)", text2: "N天内到货物料", link: "/ndays/selectType", id: "all", index: "0" },
-                { url: "/assets/images/a_42.png", text: "Events Finished (within N days)", text2: "N天内完成事件", link: "/ndays/eventsFinished", id: "all", index: "0" },
+                { url: "/assets/images/a_42.png", text: "Events Complete (within N days)", text2: "N天内完成事件", link: "/ndays/eventsFinished", id: "all", index: "0" },
                 { url: "/assets/images/a_43.png", text: "Progress Tracking (within N days)", text2: "N天内进度跟踪", link: "/ndays/progressTracking", id: "all", index: "0" }]
         },
         {

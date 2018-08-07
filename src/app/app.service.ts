@@ -91,7 +91,11 @@ export class AppService {
 
         }
         if (obj.relation() != "out_supplier" && obj.relation() != "internal" || !obj.defaultCompanyId()) {
-            this.router.navigate(['not-bind']);
+            if (!obj.obj()) {
+                this.router.navigate(['login']);
+            } else {
+                this.router.navigate(['not-bind']);
+            }
             return true;
         }
         if (obj.defaultCompanyId() && obj.relation() == "out_supplier" && page == "home" || obj.defaultCompanyId() && obj.relation() == "internal" && page == "notBind" || obj.defaultCompanyId() && obj.relation() == "out_supplier" && page == "notBind") {

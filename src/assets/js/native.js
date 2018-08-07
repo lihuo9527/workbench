@@ -15,4 +15,7 @@ function window_obj() {
     window_obj.prototype.relation = function() {
         return window.myjs ? window.myjs.relation() : sessionStorage.getItem('relation');
     }
+    window_obj.prototype.obj = function() {
+        return window.myjs ? true : false;
+    }
 }

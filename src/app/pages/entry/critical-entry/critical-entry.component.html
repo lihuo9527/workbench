@@ -53,9 +53,9 @@
     <section class="editrEcord">
         <ul class="entryEdit">
             <li *ngIf="language=='en'">Critical Event</li>
-            <li class="text_center" *ngIf="language=='en'">Recommended Date</li>
-            <li class="text_center" *ngIf="language=='en'">Expect Date</li>
-            <li class="text_center" *ngIf="language=='en'">Completion Date</li>
+            <li class="text_center" *ngIf="language=='en'">Recommend Date</li>
+            <li class="text_center" *ngIf="language=='en'">Expected Date</li>
+            <li class="text_center" *ngIf="language=='en'">Complete Date</li>
             <li *ngIf="language=='cn'">关键事件</li>
             <li class="text_center" *ngIf="language=='cn'">推荐日期</li>
             <li class="text_center" *ngIf="language=='cn'">预期日期</li>
@@ -71,7 +71,7 @@
     <app-date *ngIf="state" number="1" (submit)="backDate($event)"></app-date>
     <div class="submitBox">
         <button *ngIf="language=='cn'" [ngClass]="{'gray':disabled==false}" (click)="save()">保存</button>
-        <button *ngIf="language=='en'" [ngClass]="{'gray':disabled==false}" (click)="save()">Conserve</button>
+        <button *ngIf="language=='en'" [ngClass]="{'gray':disabled==false}" (click)="save()">Save</button>
     </div>
     <app-loading [loadingShow]="loading"></app-loading>
     <app-message-box [msg]="message.msg" (event)="message.state=false" [btnText]="message.btnText" [msgShow]="message.state"></app-message-box>
