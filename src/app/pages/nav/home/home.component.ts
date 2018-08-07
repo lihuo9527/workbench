@@ -22,27 +22,27 @@ export class HomeComponent implements OnInit {
             TipsCountList: [
                 { Url: "/assets/images/a_21.png", Text: "Critical Event", Name: "关键事件进度", Link: "/search", Id: "0", Amount: "0" },
                 { Url: "/assets/images/a_22.png", Text: "Daily Progress", Name: "生产日进度", Link: "/search", Id: "1", Amount: "0" },
-                { Url: "/assets/images/a_23.png", Text: "Non-planing Process", Name: "非排产工序日进度", Link: "/search", Id: "2", Amount: "0" },
+                { Url: "/assets/images/a_23.png", Text: "No-Planning Progress", Name: "非排产工序日进度", Link: "/search", Id: "2", Amount: "0" },
                 { Url: "/assets/images/ico_04.png", Text: "All", Name: "全部", Link: "/all", Id: "3", Amount: "0" }]
         },
         {
             title: "Outsourced process plan", title2: "外发工序计划", TodayHandledCount: "0", TipsCountList: []
         },
         {
-            title: "Delivery Delay", title2: "交期延误单", TodayHandledCount: "0", TipsCountList: [
+            title: "Delay Orders", title2: "交期延误单", TodayHandledCount: "0", TipsCountList: [
                 // { Url: "/assets/images/ico_21.png", Text: "General", Name: "普通单", Link: "/deliverDelay", Id: "0", Amount: "0" },
                 // { Url: "/assets/images/ico_22.png", Text: "Important", Name: "重要单", Link: "/deliverDelay", Id: "1", Amount: "0" },
                 // { Url: "/assets/images/ico_23.png", Text: "Urgency", Name: "紧急单", Link: "/deliverDelay", Id: "2", Amount: "0" }
             ]
         },
         {
-            title: "Critical Event Delay", title2: "关键事件延误", TodayHandledCount: "0", TipsCountList: []
+            title: "Delay Critical Events", title2: "关键事件延误", TodayHandledCount: "0", TipsCountList: []
         },
         {
-            title: "Process Delay", title2: "工序延误", TodayHandledCount: "0", TipsCountList: []
+            title: "Delay Operations/Process", title2: "工序延误", TodayHandledCount: "0", TipsCountList: []
         },
         {
-            title: "Material Delay", title2: "物料延误", TodayHandledCount: "0", TipsCountList: [
+            title: "Delay Material", title2: "物料延误", TodayHandledCount: "0", TipsCountList: [
                 // { Url: "/assets/images/ico_51.png", Text: "Fabric", Name: "主料", Link: "/materialDelay", Id: "0", Amount: "0" },
                 // { Url: "/assets/images/ico_52.png", Text: "Accessories", Name: "辅料", Link: "/materialDelay", Id: "1", Amount: "0" }
             ]

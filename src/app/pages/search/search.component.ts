@@ -58,8 +58,8 @@ export class SearchComponent implements OnInit {
             this.datecontainer = false;
             this.datas = [
                 { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Style", title2: "大类", rowstate: false, allstate: false, but: true, arrow: true, list: [] }
+                { title: "Sewing Floor", title2: "车间", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+                { title: "Category", title2: "大类", rowstate: false, allstate: false, but: true, arrow: true, list: [] }
             ];
 
         }
@@ -90,7 +90,7 @@ export class SearchComponent implements OnInit {
             this.StartDate = new Date(this.t).toLocaleDateString();
             this.datas = [
                 { title: "Factory", title2: "工厂", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
-                { title: "Style", title2: "大类", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
+                { title: "Category", title2: "大类", rowstate: false, allstate: false, but: true, arrow: true, list: [] },
                 { title: "Delivery Date", title2: "交货期", rowstate: true, allstate: false, but: false, arrow: false, list: [] }
             ];
         }

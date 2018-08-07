@@ -1,6 +1,6 @@
 function window_obj() {
     window_obj.prototype.language = function() {
-        return window.myjs ? window.myjs.getLanguage() : "cn";
+        return window.myjs ? window.myjs.getLanguage() : "en";
     }
     window_obj.prototype.ip = function() {
         return window.myjs ? window.myjs.getIp() : "http://183.6.57.161:9995";

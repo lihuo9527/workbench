@@ -1,5 +1,5 @@
 <div class="container">
-    <app-title *ngIf="language=='en'" title="Non-Planing Process Entry"></app-title>
+    <app-title *ngIf="language=='en'" title="No-Planning Progress"></app-title>
     <app-title *ngIf="language=='cn'" title="非排产工序日进度"></app-title>
     <app-search-box (outputValue)="updateList('search')"></app-search-box>
     <app-filter info="event" (event)="updateList($event)"></app-filter>

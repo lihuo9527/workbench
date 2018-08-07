@@ -13,9 +13,9 @@ export class DeliverDelayComponent implements OnInit {
         private routerIonfo: ActivatedRoute,
         private service: AppService, ) { }
     public tabs = [
-        { text: "Urgency", show: false, link: "/delay/deliverDelay" },
+        { text: "General", show: false, link: "/delay/deliverDelay" },
         { text: "Important", show: false, link: "/delay/deliverDelay" },
-        { text: "General", show: false, link: "/delay/deliverDelay" }
+        { text: "Urgency", show: false, link: "/delay/deliverDelay" }
     ];
     public datas: any = [];
     public id;

@@ -43,7 +43,7 @@
             </div>
             <div class="other">
                 <p>{{data.CuttingAmount}}</p>
-                <span *ngIf="language=='en'">Cutting Qty</span>
+                <span *ngIf="language=='en'">Cutting Quantity</span>
                 <span *ngIf="language=='cn'">裁床数</span>
             </div>
         </li>
@@ -52,7 +52,7 @@
         <p class="form_title" *ngIf="language=='en'"> Plan Requirements</p>
         <p class="form_title" *ngIf="language=='cn'"> 计划要求</p>
         <p class="form_row">
-            <span *ngIf="language=='en'">Total Amount</span>
+            <span *ngIf="language=='en'">Total Qantity</span>
             <span *ngIf="language=='cn'">总数量</span>
             <input *ngIf="language=='cn'" type="text" name="total" [(ngModel)]="total" placeholder="输入数量">
             <input *ngIf="language=='en'" type="text" name="total" [(ngModel)]="total" placeholder="input qty">
@@ -77,7 +77,7 @@
             <li class="row">
                 <div class="other">
                     <p>{{Plan.result.totalCount}}</p>
-                    <span *ngIf="language=='en'">Total Quantity</span>
+                    <span *ngIf="language=='en'">Total Qantity</span>
                     <span *ngIf="language=='cn'">总数量</span>
                 </div>
                 <div class="other">
@@ -101,7 +101,7 @@
 
                 <div class="other">
                     <p>{{Plan.result.produceTime}}</p>
-                    <span *ngIf="language=='en'">Output Date</span>
+                    <span *ngIf="language=='en'">First Output date</span>
                     <span *ngIf="language=='cn'">出产量日期</span>
                 </div>
                 <div class="other">

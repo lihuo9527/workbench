@@ -43,7 +43,7 @@
             </div>
             <div class="other">
                 <p>{{data.CuttingAmount}}</p>
-                <span *ngIf="language=='en'">Cutting Qty</span>
+                <span *ngIf="language=='en'">Cutting Quantity</span>
                 <span *ngIf="language=='cn'">裁床数</span>
             </div>
         </li>
@@ -72,7 +72,7 @@
         <li class="row" *ngIf="data.date || data.count">
             <div class="other" *ngIf="data.date">
                 <p>{{data.date}}</p>
-                <span *ngIf="language=='en'">Output Date</span>
+                <span *ngIf="language=='en'">First Output date</span>
                 <span *ngIf="language=='cn'">出产量日期</span>
             </div>
             <div class="other" *ngIf="data.count">
@@ -87,7 +87,7 @@
     <p *ngIf="language=='cn'" class="row_title"> 计划回复</p>
     <div class="submit_form">
         <p class="form_row" (click)="state=true">
-            <span *ngIf="language=='en'">Date of Output</span>
+            <span *ngIf="language=='en'">First Output date</span>
             <span *ngIf="language=='cn'">出产量日期</span>
             <i class="date">{{date}}</i>
         </p>
