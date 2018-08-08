@@ -29,7 +29,7 @@
                 <li>
                     <p *ngIf="language=='en'" style="color:red;">{{item.DelayDays}}Day</p>
                     <p *ngIf="language=='cn'" style="color:red;">{{item.DelayDays}}天</p>
-                    <span *ngIf="language=='en'">Delay</span>
+                    <span *ngIf="language=='en'">Delays</span>
                     <span *ngIf="language=='cn'">延误</span></li>
                 <li class="item" (click)="item.arrow=!item.arrow">
                     <p *ngIf="language=='cn'">更多</p>

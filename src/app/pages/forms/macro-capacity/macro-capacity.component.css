@@ -6,6 +6,7 @@
     position: fixed;
     top: 46px;
     z-index: 2;
+    max-width: 768px;
 }
 
 .searchBox1 {
@@ -13,6 +14,7 @@
     display: flex;
     flex-flow: wrap;
     background: #fff;
+    max-width: 768px;
 }
 
 .searchBox1 .search,
@@ -66,7 +68,7 @@ textarea {
 .searchBox1 .detail,
 .searchBox .detail {
     flex: 0 0 22%;
-    width: 23%;
+    width: 22%;
     height: 3.5rem;
     background: #fff url(/assets/images/i_detail.png) no-repeat 1rem center;
     color: #808080;
