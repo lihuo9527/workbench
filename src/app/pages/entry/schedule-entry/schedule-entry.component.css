@@ -351,6 +351,10 @@ td input {
     color: #808080;
 }
 
+.gray {
+    background: #808080;
+}
+
 .border-top {
     border-top: 1px solid #dbdbdb;
 }

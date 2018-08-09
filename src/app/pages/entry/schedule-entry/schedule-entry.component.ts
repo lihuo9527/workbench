@@ -43,6 +43,7 @@ export class ScheduleEntryComponent implements OnInit {
     public peoples;
     public rate;
     public loading: boolean = false;
+    public disabled = false;
     public inputs = [
         { name: "Work hour", name2: "消耗工时", placeholder: "input the time", placeholder2: "输入工时", number: "" },
         { name: "Worker", name2: "人数", placeholder: "input the number", placeholder2: "输入人数", number: "" },
@@ -253,6 +254,7 @@ export class ScheduleEntryComponent implements OnInit {
                     this.loading = false;
                     if (data.IsSuccess == 1) {
                         this.service.messageBox(this.message, this.texts[2]);
+                        if (this.allstate) this.disabled = true;
                     } else {
                         this.service.messageBox(this.message, data.ErrMessage);
                     }
@@ -281,6 +283,7 @@ export class ScheduleEntryComponent implements OnInit {
                     this.loading = false;
                     if (data.IsSuccess == 1) {
                         this.service.messageBox(this.message, this.texts[2]);
+                        if (this.allstate) this.disabled = true;
                     } else {
                         this.service.messageBox(this.message, data.ErrMessage);
                     }

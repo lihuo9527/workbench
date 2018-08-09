@@ -38,7 +38,7 @@
         <li class="row">
             <div class="other">
                 <p>{{data.amount}}</p>
-                <span *ngIf="language=='en'">Order</span>
+                <span *ngIf="language=='en'">Order Qty</span>
                 <span *ngIf="language=='cn'">订单数</span>
             </div>
             <div class="other">
@@ -58,7 +58,7 @@
             <input *ngIf="language=='en'" type="text" name="total" [(ngModel)]="total" placeholder="input qty">
         </p>
         <p class="form_row" (click)="state=true">
-            <span *ngIf="language=='en'">Start</span>
+            <span *ngIf="language=='en'">Start Date</span>
             <span *ngIf="language=='cn'">开始日期</span>
             <i class="date">{{date}}</i>
         </p>
