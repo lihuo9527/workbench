@@ -66,7 +66,7 @@
             </div>
             <div class="other" *ngIf="data.Pid!='non-process'">
                 <p>{{data.workshopDate}}</p>
-                <span *ngIf="language=='en'">Completion Time</span>
+                <span *ngIf="language=='en'">Floor Delivery Date</span>
                 <span *ngIf="language=='cn'">车间交期</span>
             </div>
             <div class="other" *ngIf="data.Pid!='non-process'">
@@ -89,7 +89,7 @@
             </div>
             <div class="other" *ngIf="data.Pid!='non-process'">
                 <p>{{data.CompleteAmount}}</p>
-                <span *ngIf="language=='en'">Completion.Qty</span>
+                <span *ngIf="language=='en'">Completed Qty</span>
                 <span *ngIf="language=='cn'">已完成数量</span>
             </div>
         </li>
@@ -157,7 +157,7 @@
     </div>
 
     <div class="date_container" *ngIf="data.Pid!='non-process'">
-        <span *ngIf="language=='en'" class="select1">Setup is completed</span>
+        <span *ngIf="language=='en'" class="select1">Setup completed</span>
         <span *ngIf="language=='cn'" class="select1">设置已完成</span>
         <i [ngClass]="{'off':!allstate,'on':allstate}" (click)="allstate=!allstate"></i>
     </div>

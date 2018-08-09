@@ -39,7 +39,7 @@
                         <span *ngIf="language=='cn'">物料名称</span></li>
                     <li>
                         <p *ngIf="language=='en' && item.MaterialStyle==1">Accessories</p>
-                        <p *ngIf="language=='en' && item.MaterialStyle==0">Fabric</p>
+                        <p *ngIf="language=='en' && item.MaterialStyle==0">Main Material</p>
                         <p *ngIf="language=='cn' && item.MaterialStyle==1">辅料</p>
                         <p *ngIf="language=='cn' && item.MaterialStyle==0">主料</p>
                         <span *ngIf="language=='en'">Material Style</span>
@@ -58,7 +58,7 @@
                         <span *ngIf="language=='cn'">规格</span></li>
                     <li>
                         <p class="big">{{nowdate}}</p>
-                        <span *ngIf="language==='en'">Now</span>
+                        <span *ngIf="language==='en'">Current Date</span>
                         <span *ngIf="language==='cn'">当前日</span></li>
                     <li>
                         <p class="red big">{{item.DelayDays}}

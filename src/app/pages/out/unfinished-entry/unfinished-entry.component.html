@@ -77,7 +77,7 @@
                 </div>
                 <div class="other">
                     <p>{{data.canDayCount}}</p>
-                    <span *ngIf="language=='en'">Daily Output</span>
+                    <span *ngIf="language=='en'">Available daily output</span>
                     <span *ngIf="language=='cn'">可供日产量</span>
                 </div>
             </li>
@@ -85,18 +85,18 @@
 
         <div class="entry_box" *ngIf="Plan.result.listInfo.length>0">
             <div class="entry_title">
-                <span *ngIf="language=='en'" style="color: #088c77;">Daily External Records</span>
-                <span *ngIf="language=='cn'" style="color: #088c77;">每日外发记录</span>
+                <span *ngIf="language=='en'" class="green">Daily outsourced records</span>
+                <span *ngIf="language=='cn'" class="green">每日外发记录</span>
             </div>
             <div class="entry_title2">
-                <span *ngIf="language=='en'" style="flex:0 0 20%;color: #088c77;">Date</span>
-                <span *ngIf="language=='en'" style="flex:0 0 35%;color: #088c77;text-align: center;">Receiving</span>
-                <span *ngIf="language=='en'" style="flex:0 0 25%;color: #088c77;text-align: center;">Emit number</span>
-                <span *ngIf="language=='en'" style="flex:0 0 20%;color: #088c77;text-align: center;">Difference number</span>
-                <span *ngIf="language=='cn'" style="flex:0 0 20%;color: #088c77;">日期</span>
-                <span *ngIf="language=='cn'" style="flex:0 0 35%;color: #088c77;text-align: center;">接收数</span>
-                <span *ngIf="language=='cn'" style="flex:0 0 25%;color: #088c77;text-align: center;">发出数</span>
-                <span *ngIf="language=='cn'" style="flex:0 0 20%;color: #088c77;text-align: center;">相差数</span>
+                <span *ngIf="language=='en'" class="row1 green">Date</span>
+                <span *ngIf="language=='en'" class="row2 green">Receiving</span>
+                <span *ngIf="language=='en'" class="row3 green">Emit number</span>
+                <span *ngIf="language=='en'" class="row4 green">Difference number</span>
+                <span *ngIf="language=='cn'" class="row1 green">日期</span>
+                <span *ngIf="language=='cn'" class="row2 green">接收数</span>
+                <span *ngIf="language=='cn'" class="row3 green">发出数</span>
+                <span *ngIf="language=='cn'" class="row4 green">相差数</span>
             </div>
             <div *ngFor="let item of Plan.result.listInfo;let i=index" [ngClass]="{'background-white':i%2==0,'background-green':i%2!=0}" class="row_box">
                 <span class="row1">{{item.date}}</span>

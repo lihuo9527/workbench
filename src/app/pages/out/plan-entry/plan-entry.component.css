@@ -105,11 +105,11 @@
 }
 
 .row1 {
-    flex: 0 0 20%;
+    flex: 0 0 25%;
 }
 
 .row2 {
-    flex: 0 0 35%;
+    flex: 0 0 25%;
     text-align: center;
 }
 
@@ -119,8 +119,12 @@
 }
 
 .row4 {
-    flex: 0 0 20%;
+    flex: 0 0 25%;
     text-align: center;
+}
+
+.green {
+    color: #088c77;
 }
 
 .entry_title {

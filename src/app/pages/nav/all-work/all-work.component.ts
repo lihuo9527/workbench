@@ -18,7 +18,7 @@ export class AllWorkComponent implements OnInit {
                 { url: "/assets/images/a_23.png", text: "No-Planning Progress", text2: "非排产工序日进度", link: "/search", id: "2", index: "0" }]
         },
         {
-            title: "Exception Issues Reminder", title2: "异常事件提醒", data: [
+            title: "Abnormal Event Reminder", title2: "异常事件提醒", data: [
                 { url: "/assets/images/a_31.png", text: "Delivery Delay", text2: "交期延误", link: "/delay/deliverDelay", id: "all", index: "0" },
                 { url: "/assets/images/a_32.png", text: "Process Delay", text2: "工序延误", link: "/delay/processDelay", id: "all", index: "0" },
                 { url: "/assets/images/a_33.png", text: "Start Time Delay", text2: "开工期延误", link: "/delay/startDelay", id: "all", index: "0" },
@@ -26,7 +26,7 @@ export class AllWorkComponent implements OnInit {
                 { url: "/assets/images/a_35.png", text: "Material Arrival Delay", text2: "物料延误", link: "/delay/materialDelay", id: "all", index: "0" }]
         },
         {
-            title: "Material and Key Event Reminder", title2: "物料与关键事件提醒", data: [
+            title: "Material and Critical Event Reminder", title2: "物料与关键事件提醒", data: [
                 { url: "/assets/images/a_41.png", text: "Material Arrival (within N days)", text2: "N天内到货物料", link: "/ndays/selectType", id: "all", index: "0" },
                 { url: "/assets/images/a_42.png", text: "Events Complete (within N days)", text2: "N天内完成事件", link: "/ndays/eventsFinished", id: "all", index: "0" },
                 { url: "/assets/images/a_43.png", text: "Progress Tracking (within N days)", text2: "N天内进度跟踪", link: "/ndays/progressTracking", id: "all", index: "0" }]

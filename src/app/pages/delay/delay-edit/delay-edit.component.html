@@ -110,7 +110,7 @@
                     </li>
                     <li>
                         <p>{{data.PlanFinishDate}}</p>
-                        <span *ngIf="language=='en'">Expected date</span>
+                        <span *ngIf="language=='en'">Expected Complete Date</span>
                         <span *ngIf="language=='cn'">预计完成日期</span>
                     </li>
                 </ul>
@@ -248,7 +248,7 @@
                         <span *ngIf="language=='cn'">尺码</span></li>
                     <li>
                         <p>{{data.Amount}}</p>
-                        <span *ngIf="language=='en'">Purchase Qty.</span>
+                        <span *ngIf="language=='en'">Purchase Qty</span>
                         <span *ngIf="language=='cn'">采购数量</span></li>
                     <li>
                         <p>{{data.ExpectedReciveDate}}</p>
@@ -256,7 +256,7 @@
                         <span *ngIf="language=='cn'">预计到货日期</span></li>
                     <li>
                         <p>{{data.NeedDate}}</p>
-                        <span *ngIf="language=='en'">Requirement Date</span>
+                        <span *ngIf="language=='en'">Required Date</span>
                         <span *ngIf="language=='cn'">需求日期</span></li>
                     <li>
                         <p *ngIf="language=='cn'" style="color: red;">{{data.DelayDays}} 天</p>

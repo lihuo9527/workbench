@@ -44,9 +44,9 @@ export class ScheduleEntryComponent implements OnInit {
     public rate;
     public loading: boolean = false;
     public inputs = [
-        { name: "Time Consuming", name2: "消耗工时", placeholder: "input the time", placeholder2: "输入工时", number: "" },
-        { name: "Number of people", name2: "人数", placeholder: "input the number", placeholder2: "输入人数", number: "" },
-        { name: "Qualification Rate", name2: "合格率", placeholder: "input the rate", placeholder2: "输入合格率", number: "" }
+        { name: "Work hour", name2: "消耗工时", placeholder: "input the time", placeholder2: "输入工时", number: "" },
+        { name: "Worker", name2: "人数", placeholder: "input the number", placeholder2: "输入人数", number: "" },
+        { name: "Pass Rate", name2: "合格率", placeholder: "input the rate", placeholder2: "输入合格率", number: "" }
     ];
     public message = {
         state: false,
@@ -61,7 +61,7 @@ export class ScheduleEntryComponent implements OnInit {
         this.date = this.language == 'cn' ? "选择生产日期" : "Select production date";
         this.color_tabs = { CompleteAmount: '', ProDataCompletedList: [] };
         if (this.language == "en") {
-            this.texts[0] = "Please choose the process first / fill in the complete information";
+            this.texts[0] = "Please select the process first /Fill in the complete information";
             this.texts[1] = "The submission failed, please fill in the complete information";
             this.texts[2] = "Saved successfully";
             this.texts[3] = "The submission faile";

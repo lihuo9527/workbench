@@ -49,7 +49,7 @@
                             <div class="box" style="display: flex;" *ngIf="item.arrow">
                                 <div class="other">
                                     <p style="margin-top: 1rem;">{{item.LastProDate}}</p>
-                                    <span *ngIf="language=='en'">Purchasing Date</span>
+                                    <span *ngIf="language=='en'">Latest production date</span>
                                     <span *ngIf="language=='cn'">最迟生产日</span>
                                     <p style="margin-top: 1rem;">{{item.ProductTypeName}}</p>
                                     <span *ngIf="language=='en'">Material Code</span>
@@ -59,7 +59,7 @@
                                     <p style="margin-top: 1rem;">{{other.Amount}}</p>
                                     <span>{{other.ProcessName}}</span>
                                     <p style="margin-top: 1rem;">{{other.TotalAmount}}</p>
-                                    <span *ngIf="language=='en'">Cumulative {{other.ProcessName}}</span>
+                                    <span *ngIf="language=='en'">{{other.ProcessName}} Total</span>
                                     <span *ngIf="language=='cn'">{{other.ProcessName}}累计</span>
                                 </div>
                             </div>

@@ -83,8 +83,8 @@
         </li>
     </ul>
 
-    <p *ngIf="language=='en'" class="row_title"> Plan Reply</p>
-    <p *ngIf="language=='cn'" class="row_title"> 计划回复</p>
+    <p *ngIf="language=='en'" class="row_title">Reply plan</p>
+    <p *ngIf="language=='cn'" class="row_title">计划回复</p>
     <div class="submit_form">
         <p class="form_row" (click)="state=true">
             <span *ngIf="language=='en'">First Output date</span>
@@ -92,7 +92,7 @@
             <i class="date">{{date}}</i>
         </p>
         <p class="form_row">
-            <span *ngIf="language=='en'">Daily Output</span>
+            <span *ngIf="language=='en'">Available daily output</span>
             <span *ngIf="language=='cn'">可供日产量</span>
             <input *ngIf="language=='en'" type="text" name="day" [(ngModel)]="total" placeholder="input qty">
             <input *ngIf="language=='cn'" type="text" name="day" [(ngModel)]="total" placeholder="输入数量">
