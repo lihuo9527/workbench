@@ -4,7 +4,7 @@
         <li class="row">
             <div class="other">
                 <p>{{data.code}}</p>
-                <span *ngIf="language=='en'">PO/JO</span>
+                <span *ngIf="language=='en'">JO</span>
                 <span *ngIf="language=='cn'">生产单号</span>
             </div>
             <div class="other">
@@ -164,7 +164,7 @@
     </div>
     <div class="cancelBox" *ngIf="data.plan=='Yes' && data.isEnd==1">
         <button class="end" *ngIf="language=='cn'" (click)="change(data)">取消已结束</button>
-        <button class="end" *ngIf="language=='en'" (click)="change(data)">Cancel the end</button>
+        <button class="end" *ngIf="language=='en'" (click)="change(data)">Cancellation has ended</button>
     </div>
     <app-date *ngIf="state" number="1" (submit)="backDate($event)"></app-date>
     <app-loading [loadingShow]="loading"></app-loading>

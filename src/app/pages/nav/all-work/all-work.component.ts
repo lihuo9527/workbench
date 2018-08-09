@@ -56,7 +56,7 @@ export class AllWorkComponent implements OnInit {
                     element.text2 = `${data.value}天内到货物料`;
                 }
                 if (i == 1) {
-                    element.text = `Events Finished (within ${data.value} days)`;
+                    element.text = `Events Complete (within ${data.value} days)`;
                     element.text2 = `${data.value}天内完成事件`;
                 }
                 if (i == 2) {

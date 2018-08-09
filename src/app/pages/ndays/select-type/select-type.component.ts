@@ -17,13 +17,13 @@ export class SelectTypeComponent implements OnInit {
     public datecontainer = true;
     public selectType = -1;
     public datas = [
-        { text: "Fabric", text2: "主料", state: false },
+        { text: "Main Material", text2: "主料", state: false },
         { text: "Accessories", text2: "辅料", state: false }
     ];
     ngOnInit() {
         this.title = JSON.parse(this.routerIonfo.snapshot.params["data"]).t;
         this.language = localStorage.getItem("language");
-        if (this.language == "en") this.placeholder = "input number or style to query";
+        if (this.language == "en") this.placeholder = "Enter JO or Style NO to query";
         localStorage.setItem("filter", JSON.stringify({ input: '' }));
     }
     query() {

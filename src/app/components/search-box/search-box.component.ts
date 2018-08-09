@@ -21,7 +21,7 @@ export class SearchBoxComponent implements OnInit {
         }
         if (this.Language == "en") {
             this.filter = "filter";
-            this.placeholder = "input number or style to query";
+            this.placeholder = "Enter JO or Style NO to query";
         }
     }
     blur() {
