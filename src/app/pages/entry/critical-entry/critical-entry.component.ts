@@ -60,7 +60,11 @@ export class CriticalEntryComponent implements OnInit {
             if (data.IsSuccess == 1) {
                 this.service.messageBox(this.message, this.texts[0]);
             } else {
-                this.service.messageBox(this.message, data.ErrMessage);
+                data.ErrMessage.forEach(element => {
+                    if (this.language == element.Lang) {
+                        this.service.messageBox(this.message, element.Message);
+                    }
+                });
             }
             console.log(data);
         }, error => {

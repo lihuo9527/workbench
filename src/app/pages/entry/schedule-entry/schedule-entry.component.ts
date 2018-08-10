@@ -127,8 +127,10 @@ export class ScheduleEntryComponent implements OnInit {
     }
     Save() {
         let IsProCompleted = this.allstate ? 1 : 0;
+        //非排产工序
         if (this.data.Pid == "non-process") {
             if (!this.tabstate) {
+                //按颜色尺码录入
                 let data = {
                     "ProceesId": this.processId,
                     "PoId": this.data.id,
@@ -172,7 +174,7 @@ export class ScheduleEntryComponent implements OnInit {
                         if (data.IsSuccess == 1) {
                             this.service.messageBox(this.message, this.texts[2]);
                         } else {
-                            this.service.messageBox(this.message, data.ErrMessage);
+                            this.filterMessage(data);
                         }
                         console.log(data);
                     }, error => {
@@ -184,6 +186,7 @@ export class ScheduleEntryComponent implements OnInit {
                 }
 
             } else {
+                //按订单录入
                 if (this.processId && parseInt(this.date) > 0 && !isNaN(this.number)) {
                     let option = "processId=" + this.processId + "&poId=" + this.data.id + "&proDate=" + this.date + "&amount=" + this.number;
                     this.loading = true;
@@ -192,7 +195,7 @@ export class ScheduleEntryComponent implements OnInit {
                         if (data.IsSuccess == 1) {
                             this.service.messageBox(this.message, this.texts[2]);
                         } else {
-                            this.service.messageBox(this.message, data.ErrMessage);
+                            this.filterMessage(data);
                         }
                         console.log(data);
                     }, error => {
@@ -203,8 +206,12 @@ export class ScheduleEntryComponent implements OnInit {
                     this.service.messageBox(this.message, this.texts[0]);
                 }
             }
-        } else if (this.data.Pid == "progress") {
+        }
+
+        //生产日进度
+        if (this.data.Pid == "progress") {
             if (!this.tabstate) {
+                //按颜色尺码录入
                 let data = {
                     "ProductionEventId": this.data.ProductionEventID,
                     "LineId": this.data.LineID,
@@ -256,13 +263,14 @@ export class ScheduleEntryComponent implements OnInit {
                         this.service.messageBox(this.message, this.texts[2]);
                         if (this.allstate) this.disabled = true;
                     } else {
-                        this.service.messageBox(this.message, data.ErrMessage);
+                        this.filterMessage(data);
                     }
                 }, error => {
                     this.loading = false;
                     this.service.messageBox(this.message, this.texts[3]);
                 })
             } else {
+                //按订单录入
                 if (this.number > 0 && Number(this.inputs[0].number) <= 0) {
                     this.service.messageBox(this.message, this.texts[4]);
                     return;
@@ -285,7 +293,7 @@ export class ScheduleEntryComponent implements OnInit {
                         this.service.messageBox(this.message, this.texts[2]);
                         if (this.allstate) this.disabled = true;
                     } else {
-                        this.service.messageBox(this.message, data.ErrMessage);
+                        this.filterMessage(data);
                     }
                 }, error => {
                     this.loading = false;
@@ -329,4 +337,12 @@ export class ScheduleEntryComponent implements OnInit {
         this.floorId = id;
         this.lineData = this.shops.Shops[key].Lines;
     }
+    filterMessage(obj) {
+        obj.ErrMessage.forEach(element => {
+            if (this.language == element.Lang) {
+                this.service.messageBox(this.message, element.Message);
+            }
+        });
+    }
+
 }

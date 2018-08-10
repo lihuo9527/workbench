@@ -61,20 +61,20 @@
 }
 
 .form_row span {
-    flex: 0 0 30%;
+    flex: 0 0 40%;
     font-size: 1.2rem;
     line-height: 1.4rem;
 }
 
 .form_row input {
-    flex: 0 0 70%;
+    flex: 0 0 60%;
     text-align: center;
     font-size: 1.2rem;
     line-height: 1.4rem;
 }
 
 .form_row .date {
-    flex: 0 0 70%;
+    flex: 0 0 60%;
     font-size: 1.2rem;
     line-height: 1.4rem;
     text-align: center;
