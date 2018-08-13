@@ -11,28 +11,17 @@ export class AppService {
     private params;
     private obj = new window_obj();
 
+    //返回api地址
     ip() {
         return this.obj.ip();
     };
-    up_date(arrays, data) {
-        if (data.length > 0) {
-            for (let i = 0; i < data.length; i++) {
-                arrays.push(data[i]);
-            }
-        }
-    };
+
+    //路由跳转
     routerLink(params: any[]) {
         this.router.navigate(params);
     }
-    get_params() {
-        return this.params;
-    };
-    set_params(params: any) {
-        this.params = params;
-    };
-    get_speech() {
-        return localStorage.getItem("speech");
-    };
+
+    //get请求
     http_get(url: string, boolean?: boolean) {
         let ip = this.ip() + url;
         if (boolean) {
@@ -40,6 +29,8 @@ export class AppService {
         }
         return this.http.get(ip, { withCredentials: true });
     };
+
+    //post请求
     http_post(url: string, body: any, boolean?: boolean, contentType?: string) {
         let httpOptions;
         if (contentType) {
@@ -53,7 +44,6 @@ export class AppService {
                 withCredentials: true
             }
         }
-
         let ip = this.ip() + url;
         if (boolean) {
             ip = url;
@@ -62,6 +52,8 @@ export class AppService {
         // console.log("body", body);
         return this.http.post(ip, body, httpOptions);
     };
+
+    //获取字符串长度
     getStrLength(str) {
         if (str == null) return 0;
         if (typeof str != "string") {
@@ -69,6 +61,8 @@ export class AppService {
         }
         return str.replace(/[^x00-xff]/g, "01").length;
     };
+
+    //判断是否合法手机号
     isPoneAvailable(pone) {
         let myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
         if (!myreg.test(pone)) {
@@ -77,11 +71,15 @@ export class AppService {
             return true;
         }
     }
+
+    //提示框
     messageBox(obj, message) {
         obj.msg = message;
         obj.state = true;
         obj.btnText = "OK";
     }
+
+    //路由权限控制
     accessControl(obj, page?) {
         if (obj.cookies()) {
             let exdate = new Date();
@@ -108,6 +106,8 @@ export class AppService {
         }
         return false;
     }
+    
+    //清空cookie
     clearAllCookie() {
         let keys = document.cookie.match(/[^ =;]+(?=\=)/g);
         if (keys) {

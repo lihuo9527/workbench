@@ -5,11 +5,11 @@ import { CriticalEventDelayComponent } from './pages/delay/critical-event-delay/
 import { ProcessDelayComponent } from './pages/delay/process-delay/process-delay.component';
 import { MaterialDelayComponent } from './pages/delay/material-delay/material-delay.component';
 import { AllWorkComponent } from './pages/nav/all-work/all-work.component';
-import { SearchComponent } from './pages/search/search.component';
+import { SearchComponent } from './pages/other/search/search.component';
 import { LoginComponent } from './pages/user/login/login.component';
 import { RegisterComponent } from './pages/user/register/register.component';
 import { ForgotPasswordComponent } from './pages/user/forgot-password/forgot-password.component';
-import { NotBindComponent } from './pages/not-bind/not-bind.component';
+import { NotBindComponent } from './pages/other/not-bind/not-bind.component';
 export const appRoutes = [
     {
         path: 'home',

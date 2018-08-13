@@ -6,7 +6,7 @@ import { AppService } from '../../app.service';
     styleUrls: ['./filter.component.css']
 })
 export class FilterComponent implements OnInit {
-    @Output() public event: EventEmitter<any> = new EventEmitter<any>();//event 筛选完成返回一个事件
+    @Output() public event: EventEmitter<any> = new EventEmitter<any>();//event 筛选完成回调
     @Input() public info: string; //info 传参信息进行判断
     constructor(private service: AppService, ) { }
     public allstate: boolean;

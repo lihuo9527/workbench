@@ -7,7 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class TabsComponent implements OnInit {
     @Input() public tabs: any = [];// tabs格式： { text: "Urgency", show: false, link: "/deliverDelay" } ;
-    @Output() public indexchange: EventEmitter<number> = new EventEmitter<number>();//输出一个事件返回当前tabs的index;
+    @Output() public indexchange: EventEmitter<number> = new EventEmitter<number>();//回调输出返回当前选择tabs的index;
 
     constructor() { }
 

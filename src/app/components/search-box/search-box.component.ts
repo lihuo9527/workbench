@@ -6,7 +6,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
     styleUrls: ['./search-box.component.css']
 })
 export class SearchBoxComponent implements OnInit {
-    @Output() public outputValue: EventEmitter<any> = new EventEmitter<any>();//事件输出input框的内容
+    @Output() public outputValue: EventEmitter<any> = new EventEmitter<any>();//回调事件输出获得input框的内容
     constructor() { }
     public placeholder;
     public Language;
