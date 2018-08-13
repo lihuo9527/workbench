@@ -17,12 +17,12 @@ export class NonPlaningProcessComponent implements OnInit {
         this.language = localStorage.getItem("language");
         this.updateList('init');
     }
-
+    //初始化-筛选-搜索-查看更多
     updateList($event?) {
         let local = JSON.parse(localStorage.getItem("filter"));
         let pageIndex = $event == 'add' ? Math.ceil(this.datas.length / 4 + 1) : 1;
         let object = $event == 'add' || $event == 'search' || $event == 'init' ? local : $event;
-        let  option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + object.start + '&end=' + object.end;
+        let option = 'pageIndex=' + pageIndex + '&pageSize=4&star=' + object.start + '&end=' + object.end;
         if (object.fids) option += '&fids=' + object.fids;
         if (object.wsids) option += '&wsids=' + object.wsids;
         if (object.process) option += '&processid=' + object.process;
@@ -35,11 +35,11 @@ export class NonPlaningProcessComponent implements OnInit {
             } else {
                 data.forEach(element => {
                     this.datas.push(element);
-              });
+                });
             }
         })
     }
-
+    //进入非排产工序日进度录入
     link(item) {
         console.log(item);
         item["Pid"] = "non-process";

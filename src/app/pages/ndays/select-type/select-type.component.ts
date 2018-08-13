@@ -26,6 +26,7 @@ export class SelectTypeComponent implements OnInit {
         if (this.language == "en") this.placeholder = "Enter JO or Style NO to query";
         localStorage.setItem("filter", JSON.stringify({ input: '' }));
     }
+    //查询
     query() {
         if (this.datas[0].state && this.datas[1].state || !this.datas[0].state && !this.datas[1].state) this.selectType = -1;
         if (this.datas[0].state && this.datas[1].state == false) this.selectType = 0;

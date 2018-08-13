@@ -41,6 +41,7 @@ export class CriticalEntryComponent implements OnInit {
             this.texts[1] = "Save failed";
         }
     }
+    //保存
     save() {
         if (!this.disabled) return;
         let data = {
@@ -72,6 +73,7 @@ export class CriticalEntryComponent implements OnInit {
             this.service.messageBox(this.message, this.texts[1]);
         })
     }
+    //选择日期回调事件
     backDate($event) {
         let obj = JSON.parse($event);
         if (obj.date && this.list[this.index][this.DateName] != obj.date) {
@@ -80,6 +82,7 @@ export class CriticalEntryComponent implements OnInit {
         }
         this.state = false;
     }
+    //选择日期触发事件
     showDate(i, event) {
         this.state = true;
         this.index = i;

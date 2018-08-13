@@ -42,6 +42,7 @@ export class PlanEntryComponent implements OnInit {
             this.texts[2] = "Successfully modified";
         }
     }
+    //获取计划数量详情
     getPlan() {
         if (this.data.plan == 'Yes') {
             this.service.http_get('/api/OuterFactory/ShowPlan?planId=' + this.data.planId, false).subscribe((data: any) => {
@@ -69,6 +70,7 @@ export class PlanEntryComponent implements OnInit {
             })
         }
     }
+    //进入选择供应商页面
     next() {
         if (this.total > 0 && this.dayAmount > 0 && parseInt(this.date) > 0) {
             this.router.navigate(['/out/selectingSuppliers', JSON.stringify({ total: this.total, date: this.date, dayAmount: this.dayAmount, code: this.data.code, styleNo: this.data.pattern })])
@@ -76,6 +78,7 @@ export class PlanEntryComponent implements OnInit {
             this.service.messageBox(this.message, this.texts[0])
         }
     }
+    //提交录入日进度数
     submit() {
         if (this.total > 0 && parseInt(this.date) > 0) {
             let option = "totalCount=" + this.total + "&startTime=" + this.date + "&code=" + this.data.code + "&planId=" + this.data.planId;
@@ -93,6 +96,7 @@ export class PlanEntryComponent implements OnInit {
             this.service.messageBox(this.message, this.texts[0]);
         }
     }
+    //日历组件回调事件
     backDate($event) {
         let obj = JSON.parse($event);
         if (obj.date) {
@@ -100,6 +104,7 @@ export class PlanEntryComponent implements OnInit {
         }
         this.state = false;
     }
+    //改变计划状态-取消-结束
     change(item) {
         let state = item.isEnd == 0 ? 1 : 0;
         let option = 'planId=' + item.planId + "&status=" + state;

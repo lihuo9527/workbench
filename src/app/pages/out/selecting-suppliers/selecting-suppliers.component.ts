@@ -44,6 +44,7 @@ export class SelectingSuppliersComponent implements OnInit {
         }
 
     }
+    //添加联系人
     add(user, $event) {
         $event.stopPropagation();
         user.state = !user.state;
@@ -64,6 +65,7 @@ export class SelectingSuppliersComponent implements OnInit {
         }
 
     }
+    //录入计划
     send() {
         let fids = [];
         this.userface.forEach((element) => {

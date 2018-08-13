@@ -24,6 +24,7 @@ export class UnfinishedComponent implements OnInit {
         this.id = this.routerIonfo.snapshot.params["id"];
         this.updateList();
     }
+    //初始化-搜索-查看更多
     updateList($event?) {
         if ($event == 'search' && !this.input) return;
         let pageIndex = $event == 'add' ? Math.ceil(this.datas.length / 4 + 1) : 1;
@@ -43,6 +44,7 @@ export class UnfinishedComponent implements OnInit {
             }
         })
     }
+    //进入未完成页面
     link(item) {
         this.router.navigate(['/out/unfinishedEntry', JSON.stringify({ data: item, title: this.title })]);
     }

@@ -24,6 +24,7 @@ export class UnansweredComponent implements OnInit {
         this.placeholder = this.language == "cn" ? "输入单号或款号查询" : "Enter JO or Style NO to query";
         this.updateList();
     }
+    //初始化-搜索-查看更多
     updateList($event?) {
         if ($event == 'search' && !this.input) return;
         let pageIndex = $event == 'add' ? Math.ceil(this.datas.length / 4 + 1) : 1;
@@ -44,6 +45,7 @@ export class UnansweredComponent implements OnInit {
             }
         })
     }
+    //进入未回复页面
     Link(item) {
         this.router.navigate(['/out/unansweredEntry', JSON.stringify({ data: item, title: this.title })]);
     }

@@ -29,6 +29,7 @@ export class OutProcessComponent implements OnInit {
         console.log(this.routerIonfo.snapshot.params["title"])
         this.updateList('init');
     }
+    //初始化-筛选-搜索-查看更多
     updateList($event?) {
         let local = JSON.parse(localStorage.getItem("filter"));
         let pageIndex = $event == 'add' ? Math.ceil(this.datas.length / 4 + 1) : 1;
@@ -49,9 +50,11 @@ export class OutProcessComponent implements OnInit {
             }
         })
     }
+    //进入外发工序录入页面
     link(item) {
         this.router.navigate(['/out/planEntry', JSON.stringify({ data: item, title: this.title })]);
     }
+    //修改外发订单状态
     change(item) {
         let state = item.isEnd == 0 ? 1 : 0;
         let option = 'planId=' + item.planId + "&status=" + state;

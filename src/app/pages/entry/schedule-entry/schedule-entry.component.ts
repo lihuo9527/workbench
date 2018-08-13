@@ -70,9 +70,6 @@ export class ScheduleEntryComponent implements OnInit {
             this.texts[5] = "The submission failed, and the submitted information had an illegal character."
         }
         if (this.data.Pid == "progress") {
-            // let today = new Date();
-            // let t = today.getTime() - 1000 * 60 * 60 * 24;
-            // this.date = new Date(t).toLocaleDateString();
             this.title = this.language == 'cn' ? "生产日进度" : "Production Daily Progress";
             this.service.http_get('/api/Schedule/GetPlanScheduleData?poid=' + this.data.id + '&planId=' + this.data.ProductionEventID + '&lineId=' + this.data.LineID, false).subscribe((data: any) => {
                 console.log(data)
@@ -100,6 +97,7 @@ export class ScheduleEntryComponent implements OnInit {
 
         }
     }
+    //日历组件回调事件
     backDate($event) {
         let obj = JSON.parse($event);
         if (obj.date) {
@@ -111,12 +109,16 @@ export class ScheduleEntryComponent implements OnInit {
                 this.inputs[0].number = data.WorkHours;
             });
     }
+    //显示日历组件
     showDate() {
         this.state = true;
     }
+
+    //点击输入框那一行的时候自动获取焦点
     InputFocus() {
         this.input.nativeElement.focus();
     }
+    //根据工序获取工时、人数、合格率
     switch(id, name) {
         this.processId = id;
         this.processName = name;
@@ -129,8 +131,8 @@ export class ScheduleEntryComponent implements OnInit {
         let IsProCompleted = this.allstate ? 1 : 0;
         //非排产工序
         if (this.data.Pid == "non-process") {
+            //按颜色尺码录入
             if (!this.tabstate) {
-                //按颜色尺码录入
                 let data = {
                     "ProceesId": this.processId,
                     "PoId": this.data.id,
@@ -210,8 +212,8 @@ export class ScheduleEntryComponent implements OnInit {
 
         //生产日进度
         if (this.data.Pid == "progress") {
+            //按颜色尺码录入
             if (!this.tabstate) {
-                //按颜色尺码录入
                 let data = {
                     "ProductionEventId": this.data.ProductionEventID,
                     "LineId": this.data.LineID,
@@ -304,6 +306,7 @@ export class ScheduleEntryComponent implements OnInit {
         }
 
     }
+    //校验是否数字
     checkNumber(number: string) {
         var reg = /^[0-9]+\.?[0-9]+?$/;
         if (reg.test(number)) {
@@ -311,32 +314,32 @@ export class ScheduleEntryComponent implements OnInit {
         }
         return false;
     }
-    alert(message) {
-        this.message.msg = message;
-        this.message.state = true;
-        this.message.btnText = "OK";
-    }
+    //获取工序
     getProcess() {
         this.selectstate = !this.selectstate;
         this.floorselectstate = false;
         this.lineselectstate = false;
     }
+    //获取车间
     getFloor() {
         this.selectstate = false;
         this.lineselectstate = false;
         this.floorselectstate = !this.floorselectstate;
     }
+    //获取产线
     getLines() {
         this.lineselectstate = !this.lineselectstate;
         this.selectstate = false;
         this.floorselectstate = false;
     }
+    //显示产线
     showLines(shopName, key, id) {
         this.floorselectstate = !this.floorselectstate;
         this.floorName = shopName;
         this.floorId = id;
         this.lineData = this.shops.Shops[key].Lines;
     }
+    //接口返回的信息框
     filterMessage(obj) {
         obj.ErrMessage.forEach(element => {
             if (this.language == element.Lang) {

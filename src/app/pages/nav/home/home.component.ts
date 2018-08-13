@@ -70,6 +70,7 @@ export class HomeComponent implements OnInit {
         // });
         this.updateList();
     }
+    //获取角标、图标、标题
     updateList() {
         let url: string;
         for (let i = 1; i < this.list.length; i++) {
@@ -98,6 +99,7 @@ export class HomeComponent implements OnInit {
 
         }
     }
+    //路由跳转
     link(item, items, index) {
         console.log("index", index, item.Id);
         if (index == 0 && item.Id == "3") {

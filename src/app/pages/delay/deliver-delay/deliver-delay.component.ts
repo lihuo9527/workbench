@@ -40,7 +40,7 @@ export class DeliverDelayComponent implements OnInit {
         console.log(this.link);
         this.showIndex(navid);
     }
-
+   //初始化-筛选-搜索-查看更多
     updateList($event?) {
         if (this.index != undefined) {
             if (this.index == "0") this.id = "6";
@@ -64,6 +64,7 @@ export class DeliverDelayComponent implements OnInit {
             }
         })
     }
+    //选择tabs
     showIndex(index) {
         for (let i = 0; i < this.tabs.length; i++) {
             if (i == index) {
@@ -76,6 +77,7 @@ export class DeliverDelayComponent implements OnInit {
         this.index = index;
         this.updateList('init');
     }
+    //进入详情页面
     enterEdit(item) {
         this.service.routerLink(['/delay/delayEdit', JSON.stringify({type:"deliver", title: this.title, data: item })]);
     }

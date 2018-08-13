@@ -33,8 +33,8 @@ export class SearchComponent implements OnInit {
         this.title = data.t;
         this.index = data.i;
         let days;
+        //关键事件
         if (this.index == 0 && this.id == '0') {
-            //关键事件
             days = 18 * 24;
             this.t = this.today.getTime() + 1000 * 60 * 60 * days;
             this.EndDate = new Date(this.t).toLocaleDateString();
@@ -52,6 +52,7 @@ export class SearchComponent implements OnInit {
             ];
 
         }
+        //生产日进度
         if (this.index == 0 && this.id == '1') {
             this.StartDate = new Date(this.today.getTime() - 1000 * 60 * 60 * 24).toLocaleDateString();
             this.number = 1;
@@ -63,8 +64,8 @@ export class SearchComponent implements OnInit {
             ];
 
         }
+        //非排产工序
         if (this.index == 0 && this.id == '2') {
-            //非排产工序
             days = 15 * 24;
             this.t = this.today.getTime() + 1000 * 60 * 60 * days;
             this.EndDate = new Date(this.t).toLocaleDateString();
@@ -81,8 +82,8 @@ export class SearchComponent implements OnInit {
             ];
 
         }
+        //外发工序
         if (this.index == 1) {
-            //外发工序
             days = 2 * 24;
             this.t = this.today.getTime() - 1000 * 60 * 60 * days;
             this.title = this.language == "cn" ? this.title + "外发计划" : "Outsourced plan for " + this.title;
@@ -170,8 +171,9 @@ export class SearchComponent implements OnInit {
         for (let b = 0; b < this.datas[i].list.length; b++) {
             this.datas[i].list[b].state = this.datas[i].allstate;
         }
+        //工厂关联添加车间
         if (item.title == "Factory" && !allstate) {
-            //工厂关联添加车间
+
             if (this.id == 1 && this.index == 0) {
                 this.datas[1].list = [];
                 this.floors.forEach((element) => {
@@ -181,8 +183,9 @@ export class SearchComponent implements OnInit {
                 });
             }
         }
+        //工厂关联删除车间
         if (item.title == "Factory" && allstate) {
-            //工厂关联删除车间
+
             if (this.id == 1 && this.index == 0) {
                 this.datas[i + 1].allstate = false;
                 this.datas[i + 1].list = [];
@@ -198,8 +201,8 @@ export class SearchComponent implements OnInit {
             });
             this.dateType = obj.state ? index : undefined;
         }
+        //工厂关联添加车间
         if (items.title == 'Factory' && obj.state && this.id == 1 && this.index == 0) {
-            //工厂关联添加车间
             this.floors.forEach((element) => {
                 if (obj.id == element.id) {
                     element.data.forEach(el => {
@@ -209,8 +212,8 @@ export class SearchComponent implements OnInit {
             });
             console.log(this.datas[1].list)
         }
+        //工厂关联删除车间
         if (items.title == 'Factory' && !obj.state && this.id == 1 && this.index == 0) {
-            //工厂关联删除车间
             let k = 0;
             for (let i = 0; i < this.datas[1].list.length; i++) {
                 console.log(obj.id, this.datas[1].list[i].fid)
@@ -221,8 +224,8 @@ export class SearchComponent implements OnInit {
             }
         }
     }
+    //日历组件回调事件
     backDate(objs) {
-        //时间组件回调事件赋值
         let obj = JSON.parse(objs);
         console.log(obj);
         let time = 0;
@@ -238,8 +241,8 @@ export class SearchComponent implements OnInit {
         }
         setTimeout(() => this.state = obj.state, time);
     }
+    //条件查询，先写入localstorage，下个页面根据存储的变量去筛选
     query() {
-        //条件查询，先写入localstorage，下个页面根据存储的变量去筛选
         localStorage.setItem("datas", JSON.stringify(this.datas));
         let fids = [];
         this.datas[0].list.forEach((element, i) => {
@@ -252,8 +255,9 @@ export class SearchComponent implements OnInit {
 
             });
         }
+        //关键事件
         if (this.id == 0 && this.index == 0) {
-            //关键事件
+
             let events = [];
             this.datas[1].list.forEach(element => {
                 if (element.state == true) events.push(element.id);
@@ -261,8 +265,8 @@ export class SearchComponent implements OnInit {
             localStorage.setItem("filter", JSON.stringify({ 'index': this.index, 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, "dateType": this.dateType, 'fids': fids.toString(), eventid: events.toString() }));
             this.router.navigate(['/entry/criticalEvent']);
         }
+        //生产日进度
         if (this.id == 1 && this.index == 0) {
-            //每日进度
             let styles = [];
             this.datas[2].list.forEach(element => {
                 if (element.state == true) styles.push(element.id);
@@ -271,8 +275,8 @@ export class SearchComponent implements OnInit {
             // this.router.navigateByUrl('/entry/productionDailyProgress');
             this.router.navigate(['/entry/productionDailyProgress']);
         }
+        //非排产工序
         if (this.id == 2 && this.index == 0) {
-            //非排产工序
             let process = [];
             this.datas[1].list.forEach(element => {
                 if (element.state == true) process.push(element.id);
@@ -280,8 +284,8 @@ export class SearchComponent implements OnInit {
             localStorage.setItem("filter", JSON.stringify({ 'index': this.index, 'id': this.id, "start": this.StartDate, "end": this.EndDate, "input": this.input, "process": process.toString(), 'fids': fids.toString(), "dateType": this.dateType }));
             this.router.navigate(['/entry/nonPlaningProcess']);
         };
+        //外发工序
         if (this.index == 1) {
-            //外发工序
             let styles = [];
             this.datas[1].list.forEach(element => {
                 if (element.state == true) styles.push(element.id);

@@ -21,6 +21,7 @@ export class EventsFinishedComponent implements OnInit {
         this.language = localStorage.getItem("language");
         this.updateList('init');
     }
+    //初始化-筛选-搜索-查看更多
     updateList($event?) {
         let local = JSON.parse(localStorage.getItem("filter"));
         let pageIndex = $event == 'add' ? Math.ceil(this.datas.length / 4 + 1) : 1;

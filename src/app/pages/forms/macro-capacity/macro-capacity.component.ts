@@ -31,7 +31,7 @@ export class MacroCapacityComponent implements OnInit {
             this.colors.push({ Color: "#ab5e5e", Name: "TotalLoading", Remark: "总负载" })
         })
     }
-
+    //日历回调事件
     backDate($event) {
         let obj = JSON.parse($event);
         console.log($event);
@@ -41,6 +41,7 @@ export class MacroCapacityComponent implements OnInit {
         }
         this.state = false;
     }
+    //初始化-筛选
     updateList($event?) {
         let option = $event ? `starDate=${this.date}&capIncOut=${$event.capIncOut}
         &loadingIncOut=${$event.loadingIncOut}&timeSpan=${$event.cycle}&timeType=${$event.cycleType}
@@ -50,10 +51,8 @@ export class MacroCapacityComponent implements OnInit {
             this.datas = data;
         });
     }
-    output() {
-    }
+    //filter过渡动漫
     showFilter() {
-        //filter过渡动漫
         document.getElementById("shadow").style.left = "0%";
         document.getElementById("filter").style.left = "0%";
     }

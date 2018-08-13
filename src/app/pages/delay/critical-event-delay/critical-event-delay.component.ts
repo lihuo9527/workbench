@@ -22,6 +22,7 @@ export class CriticalEventDelayComponent implements OnInit {
         this.title = this.language == "en" ? "Critical Event Delay" : "关键事件延误";
         this.updateList('init');
     }
+    //初始化-筛选-搜索-查看更多
     updateList($event?) {
         let local = JSON.parse(localStorage.getItem("filter"));
         let pageIndex = $event == 'add' ? Math.ceil(this.datas.length / 4 + 1) : 1;
@@ -40,6 +41,7 @@ export class CriticalEventDelayComponent implements OnInit {
             }
         })
     }
+    //进入详情页面
     enterEdit(item) {
         this.service.routerLink(['/delay/delayEdit', JSON.stringify({type:"critical", title: this.title, data: item })]);
     }

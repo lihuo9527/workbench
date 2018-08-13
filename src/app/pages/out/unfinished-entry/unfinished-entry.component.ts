@@ -42,6 +42,7 @@ export class UnfinishedEntryComponent implements OnInit {
             this.texts[1] = "Successful entry";
         }
     }
+    //获取计划数量详情
     getPlan() {
         this.service.http_get('/api/OuterFactory/UndonePlanSubPlanList?planId=' + this.data.planId, false).subscribe((data: any) => {
             if (data.msg == "success") {
@@ -64,6 +65,7 @@ export class UnfinishedEntryComponent implements OnInit {
             console.log(data)
         })
     }
+    //未完成计划录入
     submit() {
         if (this.total > 0 && parseInt(this.date) > 0) {
             let option = "count=" + this.total + "&outTime=" + this.date + "&planId=" + this.data.planId;
@@ -81,6 +83,7 @@ export class UnfinishedEntryComponent implements OnInit {
             this.service.messageBox(this.message, this.texts[0])
         }
     }
+    //日历组件回调事件
     backDate($event) {
         let obj = JSON.parse($event);
         if (obj.date) {

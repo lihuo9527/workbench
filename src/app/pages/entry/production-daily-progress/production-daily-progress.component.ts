@@ -17,6 +17,7 @@ export class ProductionDailyProgressComponent implements OnInit {
         this.language = localStorage.getItem("language");
         this.updateList('init');
     }
+    //初始化-筛选-搜索-查看更多
     updateList($event?) {
         let local = JSON.parse(localStorage.getItem("filter"));
         let pageIndex = $event == 'add' ? Math.ceil(this.datas.length / 4 + 1) : 1;
@@ -33,10 +34,11 @@ export class ProductionDailyProgressComponent implements OnInit {
             } else {
                 data.forEach(element => {
                     this.datas.push(element);
-              });
+                });
             }
         })
     }
+    //进入生产日进度录入
     link(item) {
         console.log(item);
         item["Pid"] = "progress";

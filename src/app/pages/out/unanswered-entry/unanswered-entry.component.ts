@@ -36,6 +36,7 @@ export class UnansweredEntryComponent implements OnInit {
             this.texts[1] = "Successful entry";
         }
     }
+    //未回复计划录入
     submit() {
         if (this.total > 0 && parseInt(this.date) > 0) {
             let option = "dayCount=" + this.total + "&startTime=" + this.date + "&planId=" + this.data.planId;
@@ -54,6 +55,7 @@ export class UnansweredEntryComponent implements OnInit {
             this.service.messageBox(this.message, this.texts[0])
         }
     }
+    //日历组件回调事件
     backDate($event) {
         let obj = JSON.parse($event);
         if (obj.date) {
