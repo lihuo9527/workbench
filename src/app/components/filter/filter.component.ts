@@ -62,14 +62,13 @@ export class FilterComponent implements OnInit {
             this.datas = JSON.parse(localStorage.getItem("datas"));
         }
     }
+    //filter过渡动漫
     back() {
-        //filter过渡动漫
         document.getElementById("shadow").style.left = "100%";
         document.getElementById("filter").style.left = "100%";
     }
-
+    //日历组件回调事件
     backDate(objs) {
-        //返回时间并关闭窗口
         let obj = JSON.parse(objs);
         let time = 0;
         if (this.local.id == 1 && this.local.index == 0 && obj.date) {
@@ -84,14 +83,14 @@ export class FilterComponent implements OnInit {
         }
         setTimeout(() => this.state = obj.state, time);
     }
+    //全部按钮开关改变状态
     on_off(allstate, i, item) {
-        //全部按钮开关改变状态
         this.datas[i].allstate = !this.datas[i].allstate;
         for (let b = 0; b < this.datas[i].list.length; b++) {
             this.datas[i].list[b].state = this.datas[i].allstate;
         }
+        //关联全部工厂添加车间
         if (item.title == "Factory" && !allstate) {
-            //关联全部工厂添加车间
             if (this.local.id == 1 && this.local.index == 0) {
                 this.datas[1].list = [];
                 this.floors.forEach((element) => {
@@ -101,17 +100,16 @@ export class FilterComponent implements OnInit {
                 });
             }
         }
+        //关联全部工厂删除车间
         if (item.title == "Factory" && allstate) {
-            //关联全部工厂删除车间
             if (this.local.id == 1 && this.local.index == 0) {
                 this.datas[i + 1].allstate = false;
                 this.datas[i + 1].list = [];
             }
         }
     }
-
+    //单选改变状态
     change(obj, index, items, n1) {
-        //单选改变状态
         obj.state = !obj.state;
         if (items.title == 'Production Date' || items.title == 'Date') {
             items.list.forEach((element, i) => {
@@ -119,8 +117,8 @@ export class FilterComponent implements OnInit {
             });
             this.dateType = obj.state ? index : undefined;
         }
+        //关联工厂添加车间
         if (items.title == 'Factory' && obj.state && this.local.id == 1 && this.local.index == 0) {
-            //关联工厂添加车间
             this.floors.forEach((element) => {
                 if (obj.id == element.id) {
                     element.data.forEach(el => {
@@ -130,8 +128,8 @@ export class FilterComponent implements OnInit {
             });
             console.log(this.datas[1].list)
         }
+        //关联工厂删除车间
         if (items.title == 'Factory' && !obj.state && this.local.id == 1 && this.local.index == 0) {
-            //关联工厂删除车间
             let k = 0;
             for (let i = 0; i < this.datas[1].list.length; i++) {
                 console.log(obj.id, this.datas[1].list[i].fid)
@@ -142,8 +140,8 @@ export class FilterComponent implements OnInit {
             }
         }
     }
+    //完成筛选返回条件
     complete() {
-        //完成筛选返回条件
         this.local = JSON.parse(localStorage.getItem("filter"));
         let obj: any = {};
         let fids = [];
@@ -166,25 +164,25 @@ export class FilterComponent implements OnInit {
             if (fids.toString()) obj['fids'] = fids.toString();
             console.log("input", this.local.input);
             if (this.local.input) obj['input'] = this.local.input;
+             //关键事件
             if (this.local.id == 0 && this.local.index == 0) {
                 let eventid = [];
-                //关键事件
                 this.datas[1].list.forEach(element => {
                     if (element.state == true) eventid.push(element.id);
                 });
                 if (this.dateType >= 0) obj['dateType'] = this.dateType;
                 if (eventid.toString()) obj['eventid'] = eventid.toString();
             }
+            //生产日进度
             if (this.local.id == 1 && this.local.index == 0) {
-                //每日进度
                 let styles = [];
                 this.datas[2].list.forEach((element, i) => {
                     if (element.state == true) styles.push(element.id);
                 });
                 if (styles.toString()) obj['styles'] = styles.toString();
             }
+            //非排产工序
             if (this.local.id == 2 && this.local.index == 0) {
-                //非排产工序
                 let process = [];
                 this.datas[1].list.forEach(element => {
                     if (element.state == true) process.push(element.id);
@@ -192,8 +190,8 @@ export class FilterComponent implements OnInit {
                 if (this.dateType >= 0) obj['dateType'] = this.dateType;
                 if (process.toString()) obj['process'] = process.toString();
             }
+            //外发工序
             if (this.local.index == 1) {
-                //外发工序
                 let styles = [];
                 this.datas[1].list.forEach(element => {
                     if (element.state == true) styles.push(element.id);

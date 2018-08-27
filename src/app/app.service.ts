@@ -12,7 +12,7 @@ export class AppService {
     private obj = new window_obj();
 
     //返回api地址
-    ip() {
+    private ip() {
         return this.obj.ip();
     };
 
@@ -47,12 +47,10 @@ export class AppService {
         let ip = this.ip() + url;
         if (boolean) {
             ip = url;
-            ip.slice
         }
         // console.log("body", body);
         return this.http.post(ip, body, httpOptions);
     };
-
     //获取字符串长度
     getStrLength(str) {
         if (str == null) return 0;

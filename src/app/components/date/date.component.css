@@ -26,6 +26,7 @@
 
 .date_title .close {
     position: absolute;
+    top: 1rem;
     left: 1rem;
     font-size: 1.3rem;
     color: #333333;
@@ -63,6 +64,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.start_box span,
+.end_box span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 1.2rem;
 }
 
 .have_bd {
@@ -159,6 +169,7 @@
 }
 
 .show_date {
+    min-height: 1.2rem;
     flex: 0 0 100%;
     display: flex;
     justify-content: center;

@@ -71,20 +71,20 @@ export class CapacityFilterComponent implements OnInit {
             }
         })
     }
+    // filter组件过渡动漫
     back() {
-        // filter过渡动漫
         document.getElementById('shadow').style.left = '100%';
         document.getElementById('filter').style.left = '100%';
     }
+    // 全部按钮开关改变状态
     on_off(allstate, i, item) {
-        // 全部按钮开关改变状态
         this.datas[i].allstate = !this.datas[i].allstate;
         for (let b = 0; b < this.datas[i].list.length; b++) {
             this.datas[i].list[b].state = this.datas[i].allstate;
         }
     }
+    // 单选改变状态
     change(obj, index, items, n1) {
-        // 单选改变状态
         obj.state = !obj.state;
         this.dateType = index;
         if (items.title == 'Cycle' || items.title == 'Statistical Unit') {
@@ -93,11 +93,13 @@ export class CapacityFilterComponent implements OnInit {
             });
         }
     }
+    //日历组件回调事件
     backDate($event) {
         this.month = $event.month;
         this.waterLeft = $event.waterLeft;
         this.progressWidth = $event.progressWidth;
     }
+    //完成筛选
     complete() {
         let obj: any = {};
         let local = JSON.parse(localStorage.getItem('filter'));
@@ -117,7 +119,7 @@ export class CapacityFilterComponent implements OnInit {
         if (fids.toString()) obj['fids'] = fids.toString();
         obj['cycleType'] = timeType;
         obj['cycle'] = this.month;
-        obj['unitType'] = unitType; 
+        obj['unitType'] = unitType;
         obj['capIncOut'] = this.datas[3].list[0].state == true ? 1 : 0;
         obj['loadingIncOut'] = this.datas[4].list[0].state == true ? 1 : 0;
         console.log(JSON.stringify(obj))

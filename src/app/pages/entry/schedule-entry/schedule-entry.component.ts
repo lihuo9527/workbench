@@ -308,7 +308,7 @@ export class ScheduleEntryComponent implements OnInit {
     }
     //校验是否数字
     checkNumber(number: string) {
-        var reg = /^[0-9]+\.?[0-9]+?$/;
+        var reg = /^[0-9]*\.?[0-9]*?$/;
         if (reg.test(number)) {
             return true;
         }

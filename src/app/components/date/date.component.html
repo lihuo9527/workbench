@@ -5,15 +5,18 @@
         <a class="close" (click)="close()">{{ date.close }}</a>
         <span class="selectDate">{{ date.selectDate }}</span>
         <span class="show_date" *ngIf="start_date&&number==1">{{start_date}}</span>
+        <span class="show_date" *ngIf="!start_date&&number==1"></span>
         <a *ngIf="number==2" class="cancel" (click)="cancel()">{{ date.cancel }}</a>
     </div>
     <div *ngIf="number==2" class="start_box" [ngClass]="{'have_bd':!state,'no_bd':state}" (click)="state=false">
         <p class="green">{{ date.startDate }}</p>
         <span *ngIf="start_date">{{start_date}}</span>
+        <span *ngIf="!start_date"></span>
     </div>
     <div *ngIf="number==2" class="end_box" [ngClass]="{'have_bd':state,'no_bd':!state}" (click)="state=true">
         <p class="green">{{ date.endDate }}</p>
         <span *ngIf="end_date">{{end_date}}</span>
+        <span *ngIf="!end_date"></span>
     </div>
     <div class="week" *ngIf="language=='en'">
         <span class="green">SU</span>
